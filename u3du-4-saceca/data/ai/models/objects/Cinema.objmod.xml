@@ -1,0 +1,13 @@
+<object-model name="Cinema">
+  <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.DefaultBehavior</behavior>
+  <categories>
+    <category>Building</category>
+    <category>Cinema</category>
+  </categories>
+  <services>
+    <service>watchMovie</service>
+  </services>
+  <properties>
+    <string name="i_graphics_conf" default="Cinema" visibility="private"/>
+  </properties>
+</object-model>

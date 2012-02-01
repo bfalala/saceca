@@ -1,0 +1,189 @@
+material 1298857621_1_Material#10
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+    }
+  }
+}
+material 1298857621_2_Material#1
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+    }
+  }
+}
+material 1298857621_3_Material#13
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.76078431372549 0.0941176470588235 0.0941176470588235 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+    }
+  }
+}
+material 1298857621_4_Material#11
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.0 0.0 0.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+    }
+  }
+}
+material 1298857621_5_Material#4
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.913725490196078 0.666666666666667 0.32156862745098 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+    }
+  }
+}
+material 1298857621_6_Material#3
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 0.490000009536743
+      diffuse 0.2 0.4 0.4 0.490000009536743
+      specular 0.0 0.0 0.0 0.490000009536743 0.0
+      emissive 0.0 0.0 0.0 1.0
+    }
+  }
+}
+material 1298857621_7_Material#8
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 1.0 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+    }
+  }
+}
+material 1298857621_8_Material#14
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.713725490196078 0.631372549019608 0.517647058823529 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+    }
+  }
+}
+material 1298857621_9_Material#5
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.101960784313725 0.352941176470588 0.286274509803922 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+    }
+  }
+}
+material 1298857621_10_Material#12
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.8 0.8 0.8 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+    }
+  }
+}
+material 1298857621_11_Material#2
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.2 0.2 0.2 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+    }
+  }
+}
+material 1298857621_SketchupDefault
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}

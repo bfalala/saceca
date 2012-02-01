@@ -1,0 +1,152 @@
+material 1297301316_1_porchCeiling
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.384313725490196 0.313725490196078 0.250980392156863
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 21.8966630840122, 81.73924798975
+      texture_unit
+      {
+        texture 1297301316_6_porchCeiling.jpg
+      }
+    }
+  }
+}
+material 1297301316_2_floor
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.564705882352941 0.541176470588235 0.494117647058824
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 88.9017868675996, 85.32
+      texture_unit
+      {
+        texture 1297301316_7_floor.jpg
+      }
+    }
+  }
+}
+material 1297301316_3_rear
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.337254901960784 0.317647058823529 0.274509803921569
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 312.0, 100.690006365372
+      texture_unit
+      {
+        texture 1297301316_2_rear.jpg
+      }
+    }
+  }
+}
+material 1297301316_4_north
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.486274509803922 0.462745098039216 0.435294117647059
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 312.0, 217.568
+      texture_unit
+      {
+        texture 1297301316_5_north.jpg
+      }
+    }
+  }
+}
+material 1297301316_5_south
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.498039215686275 0.486274509803922 0.470588235294118
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 312.0, 206.984222389181
+      texture_unit
+      {
+        texture 1297301316_3_south.jpg
+      }
+    }
+  }
+}
+material 1297301316_6_Couleur_008
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.117647058823529 0.117647058823529 0.117647058823529
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1297301316_7_front
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.4 0.384313725490196 0.376470588235294
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 312.0, 96.7594936708861
+      texture_unit
+      {
+        texture 1297301316_1_front.jpg
+      }
+    }
+  }
+}
+material 1297301316_8_roof
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.576470588235294 0.552941176470588 0.56078431372549
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 312.0, 159.087071240106
+      texture_unit
+      {
+        texture 1297301316_4_roof.jpg
+      }
+    }
+  }
+}
+material 1297301316_SketchupDefault
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}

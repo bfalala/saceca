@@ -1,0 +1,16 @@
+<object-model name="Ball">
+  <behavior>RandomBehavior</behavior>
+  <categories>
+    <category>Rolling</category>
+    <category>Sport</category>
+  </categories>
+  <services>
+    <service>throw</service>
+    <service>shoot</service>
+  </services>
+  <properties>
+    <double name="p_formFactor" min="0.0" max="2.0" default="1.5" visibility="public"/>
+    <enum name="p_logo" values="ADIDAS, NIKE" default="ADIDAS" visibility="public"/>
+    <int name="p_color" min="0" max="255" default="128" visibility="public"/>
+  </properties>
+</object-model>

@@ -1,0 +1,40 @@
+<agent model="Geek" id="3">
+  <position x="15.0" y="-6.0" theta="0.0"/>
+  <properties>
+    <string name="i_name" value="Alan Turing"/>
+    <string name="i_graphics_conf" value="DefaultAgent"/>
+    <int name="i_perception_maxEyesightDistance" value="20"/>
+    <double name="i_gauge_thirst" value="20" />
+	<double name="i_gauge_hunger" value="50"/>
+    <double name="i_gauge_tiredness" value="100"/>
+    <double name="i_gauge_happiness" value="70"/>
+    <int name="c_Human_maxCarriedMass" value="20"/>
+    <int name="c_Human_cash" value="20"/>
+    <bool name="i_threaded" value="true"/>
+  </properties>
+  <belongings/>
+  <memory maxSize="100">
+    <memory-elements>
+      <entry>
+        <long>3</long>
+        <memory-element forgettable="true">
+          <worldObject class="agent" model="Geek" id="3">
+            <position x="0.0" y="0.0" theta="0.0"/>
+            <properties>
+              <string name="i_name" value="Alan Turing"/>
+            </properties>
+            <belongings/>
+            <memory maxSize="0">
+              <memory-elements/>
+              <messageInbox class="linked-list"/>
+              <goals/>
+            </memory>
+          </worldObject>
+        </memory-element>
+      </entry>
+    </memory-elements>
+    <messageInbox class="linked-list"/>
+    <goals/>
+    <pastPlans/>
+  </memory>
+</agent>

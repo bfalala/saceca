@@ -1,0 +1,10 @@
+<agent-model name="Worker">
+  <behavior>fr.n7.saceca.u3du.model.ai.agent.behavior.DefaultAgentBehavior</behavior>
+  <categories>
+    <category>Human</category>
+    <category>Worker</category>
+    <category>AccountOwner</category>
+  </categories>
+  <services/>
+  <properties/>
+</agent-model>

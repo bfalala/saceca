@@ -1,0 +1,15 @@
+<service name="drinkACan" active="true" maxDist="10">
+  <consumer-categories>
+    <category>Human</category>
+  </consumer-categories>
+  <provider-categories/>
+  <statements>
+    <conditions>
+      <condition>other_c_Human_cash&gt;=120</condition>
+    </conditions>
+    <effects>
+      <effect>other_c_Human_cash-=120</effect>
+      <effect>other_i_gauge_thirst+=20</effect>
+    </effects>
+  </statements>
+</service>

@@ -1,0 +1,13 @@
+<service name="throw" active="true" maxDist="5">
+  <consumer-categories/>
+  <provider-categories>
+  	<category>Rolling</category>
+  </provider-categories>
+  <statements>
+    <conditions>
+    </conditions>
+    <effects>
+      <effect>this_c_Rolling=true</effect>
+    </effects>
+  </statements>
+</service>

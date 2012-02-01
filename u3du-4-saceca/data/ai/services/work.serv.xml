@@ -1,0 +1,18 @@
+<service name="work" active="true" maxDist="5">
+  <consumer-categories>
+    <category>Worker</category>
+    <category>AccountOwner</category>
+  </consumer-categories>
+  <provider-categories>
+  	<category>Company</category>
+  </provider-categories>
+  <statements>
+    <conditions>
+      <condition>this_c_Company_name==other_c_Worker_companyName</condition>
+    </conditions>
+    <effects>
+      <effect>other_c_AccountOwner_account+=other_c_Worker_salary</effect>
+    </effects>
+  </statements>
+  <java-action>fr.n7.saceca.u3du.model.ai.service.action.Work</java-action>
+</service>

@@ -1,0 +1,19 @@
+<service name="commit" active="true" maxDist="5">
+  <consumer-categories>
+    <category>Committer</category>
+  </consumer-categories>
+  <provider-categories>
+  	<category>CommitFacility</category>
+  </provider-categories>
+  <statements>
+    <conditions>
+      <condition>this_c_Committer_ready2commit</condition>
+      <condition>!c_CommitFacility_hasWarnings</condition>
+    </conditions>
+    <effects>
+      <effect>this_c_Committer_nbCommit+=1</effect>
+      <effect>this_c_Committer_happiness+=10</effect>
+      <effect>this_c_Committer_ready2commit=false</effect>
+    </effects>
+  </statements>
+</service>

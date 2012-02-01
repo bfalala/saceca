@@ -1,0 +1,15 @@
+<service name="withdrawMoneyAtBank" active="true" maxDist="10">
+  <consumer-categories>
+    <category>Human</category>
+    <category>AccountOwner</category>
+  </consumer-categories>
+  <provider-categories/>
+  <statements>
+  	<conditions>
+      <condition>other_c_AccountOwner_account&gt;=500</condition>
+    </conditions>
+    <effects>
+      <effect>other_c_Human_cash+=500</effect>
+    </effects>
+  </statements>
+</service>

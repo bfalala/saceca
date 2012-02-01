@@ -1,0 +1,10 @@
+<object-model name="DrinkVendingMachine"> 
+  <behavior>RandomBehavior</behavior>
+  <categories/>
+  <services>
+    <service>drinkACan</service>
+  </services>
+    <properties>
+    <string name="i_graphics_conf" default="DrinkVendingMachine" visibility="private"/>
+  </properties>
+</object-model>

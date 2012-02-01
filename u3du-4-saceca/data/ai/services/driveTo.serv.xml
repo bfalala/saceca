@@ -1,0 +1,13 @@
+<service name="driveTo" active="true" maxDist="100000">
+  <consumer-categories>
+    <category>Vehicle</category>
+  </consumer-categories>
+  <statements>
+    <conditions>
+      <condition>loc:isOn(other, this)</condition>
+    </conditions>
+    <effects>
+      <effect>loc:setNear(other, param["destination"])</effect>
+    </effects>
+  </statements>
+</service>

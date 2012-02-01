@@ -1,0 +1,13 @@
+<object-model name="Computerosaurus"> 
+  <behavior>RandomBehavior</behavior>
+  <categories>
+    <category>CommitFacility</category>
+  </categories>
+  <services>
+    <service>commit</service>
+  </services>
+  <properties>
+    <enum name="p_OS" values="MilanOS, Ubuntu, Windows7, DOS" default="Ubuntu" visibility="public"/>
+    <double name="p_diagonal" min="17.0" max="21.0" default="17.0" visibility="public"/>
+  </properties>
+</object-model>

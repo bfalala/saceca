@@ -1,0 +1,202 @@
+material 1299957223_1_Standard_9
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.85 0.85 0.85 1.0
+      diffuse 0.486274509803922 0.396078431372549 0.32156862745098 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1299957223_4_QIANG03.JPG
+      }
+    }
+  }
+}
+material 1299957223_2_19_-_Default2
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.85 0.85 0.85 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1299957223_8_WUDING.JPG
+      }
+    }
+  }
+}
+material 1299957223_3_24_-_Default2
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.85 0.85 0.85 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1299957223_3_BAIBIAN.JPG
+      }
+    }
+  }
+}
+material 1299957223_4_23_-_Default2
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.85 0.85 0.85 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1299957223_6_CHUANGHU.JPG
+      }
+    }
+  }
+}
+material 1299957223_5_Standard_8
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.85 0.85 0.85 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1299957223_7_QIANG2.JPG
+      }
+    }
+  }
+}
+material 1299957223_6_Standard_7
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.85 0.85 0.85 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1299957223_5_WUDING2.JPG
+      }
+    }
+  }
+}
+material 1299957223_7_20_-_Default2
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.85 0.85 0.85 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1299957223_9_QIANG.JPG
+      }
+    }
+  }
+}
+material 1299957223_8_21_-_Default2
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.85 0.85 0.85 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1299957223_1_QIANG02.JPG
+      }
+    }
+  }
+}
+material 1299957223_9_22_-_Default2
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.85 0.85 0.85 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1299957223_2_MEN.JPG
+      }
+    }
+  }
+}
+material 1299957223_SketchupDefault
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}

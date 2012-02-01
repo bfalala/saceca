@@ -1,0 +1,9 @@
+<vehicle-3d name="CitroenDS" visible="true" perceptible="true">
+  <normalization elevation="1.0" angle="3.14"/>
+  <model-path>Models/Car/citroen_ds/car.mesh.xml</model-path>
+  <scale x="0.02" y="0.02" z="0.02"/>  
+  <collision-shape-radius value="1"/>
+  <collision-shape-height value="1"/>
+  <step-height value="0.02"/>
+  <children/>
+</vehicle-3d>

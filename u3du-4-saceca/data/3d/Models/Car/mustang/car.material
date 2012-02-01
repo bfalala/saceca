@@ -1,0 +1,243 @@
+material 1298855075_1_Matière1
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.0941176470588235 0.0941176470588235 0.0941176470588235
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 10.0, 5.88021778584392
+      texture_unit
+      {
+        texture 1298855075_8_2010-Mustang-Emblem-2[1].jpg
+      }
+    }
+  }
+}
+material 1298855075_2_[Metal_Corrogated_Shiny]2
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 0.66
+      diffuse 0.498039215686275 0.498039215686275 0.498039215686275 0.66
+      specular 0.0 0.0 0.0 0.66 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 400.0, 400.0
+      texture_unit
+      {
+        texture 1298855075_6_Metal_Corrogated_Shiny.jpg
+      }
+    }
+  }
+}
+material 1298855075_3_Matière2
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.407843137254902 0.407843137254902 0.407843137254902
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 12.0, 11.3625
+      texture_unit
+      {
+        texture 1298855075_7_65_crager_rim.jpg
+      }
+    }
+  }
+}
+material 1298855075_4_Couleur_A06
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.756862745098039 0.0 0.0
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1298855075_5_Carreau_hexagone_blanc
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.756862745098039 0.756862745098039 0.756862745098039
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 0.75, 0.6666666875
+      texture_unit
+      {
+        texture 1298855075_2_Tile_Hexagon_White.jpg
+      }
+    }
+  }
+}
+material 1298855075_6_2744346363_5643f44a47
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.717647058823529 0.0 0.0
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 134.0, 89.244
+      texture_unit
+      {
+        texture 1298855075_3_2744346363_5643f44a47.jpg
+      }
+    }
+  }
+}
+material 1298855075_7_Couleur_009
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.227450980392157 0.227450980392157 0.227450980392157
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1298855075_8_Clôture_lattis_bleu
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.0 0.0 0.0
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 0.5, 0.5
+      texture_unit
+      {
+        texture 1298855075_1_Fencing_Mesh_Blue.png
+      }
+    }
+  }
+}
+material 1298855075_9_Stores_cellulaires_blanc
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.850980392156863 0.827450980392157 0.835294117647059
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 10.0, 10.0
+      texture_unit
+      {
+        texture 1298855075_4_Blinds_Cellular_White.jpg
+      }
+    }
+  }
+}
+material 1298855075_10_Stores_verticaux_rayés_gris
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.0862745098039216 0.0862745098039216 0.0862745098039216
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 6.0, 6.0
+      texture_unit
+      {
+        texture 1298855075_5_Blinds_Vertical_Stripe_Gray.jpg
+      }
+    }
+  }
+}
+material 1298855075_11_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.486274509803922 0.415686274509804 0.415686274509804
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 48.0, 31.866388308977
+      texture_unit
+      {
+        texture 1298855075_10_mustang[2].jpg
+      }
+    }
+  }
+}
+material 1298855075_12_Métal_ondulé_brillant
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.67843137254902 0.67843137254902 0.67843137254902
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1000.0, 1000.0
+      texture_unit
+      {
+        texture 1298855075_9_Metal_Corrogated_Shiny.jpg
+      }
+    }
+  }
+}
+material 1298855075_13_[Metal_Corrogated_Shiny]1
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 0.81
+      diffuse 0.509803921568627 0.509803921568627 0.509803921568627 0.81
+      specular 0.0 0.0 0.0 0.81 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 96.0, 96.0
+      texture_unit
+      {
+        texture 1298855075_11_Metal_Corrogated_Shiny.jpg
+      }
+    }
+  }
+}
+material 1298855075_SketchupDefault
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<service name="smellWell" active="false" maxDist="5">
+  <consumer-categories>
+    <category>Human</category>
+  </consumer-categories>
+  <provider-categories/>
+  <statements>
+    <conditions/>
+    <effects>
+      <effect>other_i_gauge_happiness+=this_p_sweetness</effect>
+    </effects>
+  </statements>
+</service>

@@ -1,0 +1,5 @@
+<box-3d name="PedestrianCrossing" visible="true" perceptible="true">
+  <normalization elevation="0.0" angle="0.0"/>
+  <texture-path>Interface/PedestrianCrossing/PedestrianCrossing.jpg</texture-path>
+  <dimensions width="8" length="8" height="0.1"/>
+</box-3d>

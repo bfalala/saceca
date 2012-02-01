@@ -1,0 +1,445 @@
+material 1299952318_1_ver-3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 105.87051294855, 107.987923207521
+      texture_unit
+      {
+        texture 1299952318_4_ver-3.jpg
+      }
+    }
+  }
+}
+material 1299952318_2_fe-1
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 90.8661417322835, 60.5774278215223
+      texture_unit
+      {
+        texture 1299952318_8_fe-1.jpg
+      }
+    }
+  }
+}
+material 1299952318_3_ver-3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 105.87051294855, 107.987923207521
+      texture_unit
+      {
+        texture 1299952318_3_ver-3.jpg
+      }
+    }
+  }
+}
+material 1299952318_4_garage
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 122.40157480315, 91.8011811023622
+      texture_unit
+      {
+        texture 1299952318_24_garage.jpg
+      }
+    }
+  }
+}
+material 1299952318_5_fe-3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 27.4677165354331, 42.1653543307087
+      texture_unit
+      {
+        texture 1299952318_12_fe-3.jpg
+      }
+    }
+  }
+}
+material 1299952318_6_ver-1
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 199.213663613616, 123.06977441019
+      texture_unit
+      {
+        texture 1299952318_10_ver-1.jpg
+      }
+    }
+  }
+}
+material 1299952318_7_fe-2
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 93.0708661417323, 87.0877390326209
+      texture_unit
+      {
+        texture 1299952318_21_fe-2.jpg
+      }
+    }
+  }
+}
+material 1299952318_8_Vegetation_Flowers_Annuals
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 84.0, 33.6
+      texture_unit
+      {
+        texture 1299952318_17_Vegetation_Flowers_Annuals.jpg
+      }
+    }
+  }
+}
+material 1299952318_9_toit
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 36.0509000504518, 20.8619421611751
+      texture_unit
+      {
+        texture 1299952318_5_toit.jpg
+      }
+    }
+  }
+}
+material 1299952318_10_fe-2
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 93.0708661417323, 87.0877390326209
+      texture_unit
+      {
+        texture 1299952318_20_fe-2.jpg
+      }
+    }
+  }
+}
+material 1299952318_11_beton
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 8.87812923371465, 6.93603846383957
+      texture_unit
+      {
+        texture 1299952318_18_beton.jpg
+      }
+    }
+  }
+}
+material 1299952318_12_porte
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 42.7952755905512, 32.1440069991251
+      texture_unit
+      {
+        texture 1299952318_2_porte.jpg
+      }
+    }
+  }
+}
+material 1299952318_13_ver
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 37.2074318767067, 11.4484405774482
+      texture_unit
+      {
+        texture 1299952318_22_ver.jpg
+      }
+    }
+  }
+}
+material 1299952318_14_garage
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 122.40157480315, 91.8011811023622
+      texture_unit
+      {
+        texture 1299952318_23_garage.jpg
+      }
+    }
+  }
+}
+material 1299952318_15_mur
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.8 0.8 0.8
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 13.2283464566929, 11.5748031496063
+      texture_unit
+      {
+        texture 1299952318_16_mur.jpg
+      }
+    }
+  }
+}
+material 1299952318_16_Stores_verticaux_motif
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.831372549019608 0.831372549019608 0.83921568627451
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 6.5, 6.5
+      texture_unit
+      {
+        texture 1299952318_19_Blinds_Vertical_Pattern.jpg
+      }
+    }
+  }
+}
+material 1299952318_17_bois
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 18.6220472440945, 7.33595800524934
+      texture_unit
+      {
+        texture 1299952318_11_bois.jpg
+      }
+    }
+  }
+}
+material 1299952318_18_fe-1
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 90.8661417322835, 60.5774278215223
+      texture_unit
+      {
+        texture 1299952318_7_fe-1.jpg
+      }
+    }
+  }
+}
+material 1299952318_19_ver-2
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 41.2189054798442, 66.1265863313008
+      texture_unit
+      {
+        texture 1299952318_13_ver-2.jpg
+      }
+    }
+  }
+}
+material 1299952318_20_ver-2
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 41.2189054798442, 66.1265863313008
+      texture_unit
+      {
+        texture 1299952318_14_ver-2.jpg
+      }
+    }
+  }
+}
+material 1299952318_21_Pierre_pavés_dalle_gris
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 72.0, 96.0
+      texture_unit
+      {
+        texture 1299952318_1_Stone_Pavers_Flagstone_Gray.jpg
+      }
+    }
+  }
+}
+material 1299952318_22_maison
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 199.251968503937, 149.438976377953
+      texture_unit
+      {
+        texture 1299952318_15_maison.jpg
+      }
+    }
+  }
+}
+material 1299952318_23_velux
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 51.8916416676679, 32.3457899728463
+      texture_unit
+      {
+        texture 1299952318_9_velux.jpg
+      }
+    }
+  }
+}
+material 1299952318_24_chem
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1 1 1
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 19.6850393700787, 65.1793525809272
+      texture_unit
+      {
+        texture 1299952318_6_chem.jpg
+      }
+    }
+  }
+}
+material 1299952318_SketchupDefault
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<agent-model name="BuildingOwnerMan">
+  <behavior>fr.n7.saceca.u3du.model.ai.agent.behavior.DefaultAgentBehavior</behavior>
+  <categories>
+    <category>BuildingOwner</category>
+    <category>Human</category>
+  </categories>
+  <services/>
+  <properties>
+  </properties>
+</agent-model>

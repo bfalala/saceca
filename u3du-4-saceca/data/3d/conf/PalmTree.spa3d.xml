@@ -1,0 +1,6 @@
+<spatial-3d name="PalmTree" visible="true" perceptible="false">
+  <normalization elevation="0.0" angle="0.0"/>
+  <model-path>Models/PalmTree/PalmTree.mesh.xml</model-path>
+  <scale x="3" y="3" z="3"/>
+  <children/>
+</spatial-3d>

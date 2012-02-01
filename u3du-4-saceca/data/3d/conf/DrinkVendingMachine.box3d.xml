@@ -1,0 +1,5 @@
+<box-3d name="DrinkVendingMachine" visible="true"  perceptible="true">
+  <normalization elevation="2.0" angle="0.0"/>
+  <texture-path>Interface/Boxes/DrinkVendingMachine.jpg</texture-path>
+  <dimensions width="2" length="2" height="4"/>
+</box-3d>

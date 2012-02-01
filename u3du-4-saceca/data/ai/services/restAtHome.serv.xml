@@ -1,0 +1,18 @@
+<service name="restAtHome" active="true" maxDist="25">
+  <consumer-categories>
+    <category>Human</category>
+    <category>BuildingOwner</category>
+  </consumer-categories>
+  <provider-categories>
+    <category>Building</category>
+  </provider-categories>
+  <statements>
+   <conditions>
+      <condition>other_c_BuildingOwner_address==this_c_Building_address</condition>
+    </conditions>
+    <effects>
+      <effect>other_i_gauge_tiredness+=100</effect>
+    </effects>
+  </statements>
+  <java-action>fr.n7.saceca.u3du.model.ai.service.action.Rest</java-action>
+</service>

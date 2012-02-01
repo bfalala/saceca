@@ -1,0 +1,6 @@
+<spatial-3d name="CinemaGaumont" visible="true" perceptible="true">
+  <normalization elevation="-0.8" angle="1.30"/>
+  <model-path>Models/CinemaGaumont/Cinema.mesh.xml</model-path>
+  <scale x="0.55" y="0.55" z="0.55"/>
+  <children/>
+</spatial-3d>

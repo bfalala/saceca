@@ -1,0 +1,13 @@
+<object-model name="Pavement">
+  <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.DefaultBehavior</behavior>
+  <categories>
+    <category>Walkable</category>
+  </categories>  
+  <services>
+    <service>walkTo</service>
+  </services>
+  <properties>
+    <string name="i_graphics_conf" default="Pavement" visibility="private"/>
+    <bool name="i_isMisc" default="true" visibility="private"/>
+  </properties>
+</object-model>

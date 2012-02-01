@@ -1,0 +1,8 @@
+<object-model name="Liner">
+  <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.DefaultBehavior</behavior>
+  <categories />
+  <services/>
+  <properties>
+    <string name="i_graphics_conf" default="Liner" visibility="private"/>
+  </properties>
+</object-model>

@@ -1,0 +1,10 @@
+<object-model name="Atm"> 
+  <behavior>RandomBehavior</behavior>
+  <categories/>
+  <services>
+    <service>withdrawMoney</service>
+  </services>
+  <properties>
+    <string name="i_graphics_conf" default="Atm" visibility="private"/>
+  </properties>
+</object-model>

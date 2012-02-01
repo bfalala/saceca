@@ -1,0 +1,10 @@
+<object-model name="Car">
+  <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.VehicleBehavior</behavior>
+  <categories>
+    <category>Vehicle</category>
+  </categories>
+  <services />
+  <properties>
+    <string name="i_graphics_conf" default="RenaultClio" visibility="private"/>
+  </properties>
+</object-model>

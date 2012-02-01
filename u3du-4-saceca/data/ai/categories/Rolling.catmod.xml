@@ -1,0 +1,6 @@
+<category-model name="Rolling">
+  <properties>
+    <enum name="c_Rolling_direction" values="N, E, S, W" default="W" visibility="public"/>
+    <bool name="c_Rolling_rolling" default="false" visibility="public"/>
+  </properties>
+</category-model>

@@ -1,0 +1,13 @@
+<service name="walkTo" active="true" maxDist="100000">
+  <consumer-categories/>
+  <provider-categories/>
+  <statements>
+    <conditions>
+      <condition>loc:isOn(other, this)</condition>
+    </conditions>
+    <effects>
+      <effect>loc:setNear(other, param["destination"])</effect>
+    </effects>
+  </statements>
+  <java-action>fr.n7.saceca.u3du.model.ai.service.action.WalkTo</java-action>
+</service>

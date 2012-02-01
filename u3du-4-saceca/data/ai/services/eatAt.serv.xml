@@ -1,0 +1,18 @@
+<service name="eatAt" active="true" maxDist="7">
+  <consumer-categories>
+    <category>Human</category>
+  </consumer-categories>
+  <provider-categories>
+    <category>Restaurant</category>
+  </provider-categories>
+  <statements>
+   <conditions>
+      <condition>other_c_Human_cash&gt;=100</condition>
+    </conditions>
+    <effects>
+      <effect>other_c_Human_cash-=100</effect>
+      <effect>other_i_gauge_hunger+=100</effect>
+    </effects>
+  </statements>
+  <java-action>fr.n7.saceca.u3du.model.ai.service.action.Eat</java-action>
+</service>
