@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 43363)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="628px" height="145px" viewBox="0 0 628 145" enable-background="new 0 0 628 145" xml:space="preserve">
+<g transform="translate(4,29)">
+	<g>
+		<defs>
+			<rect id="SVGID_1_" x="-4" y="-4" width="272" height="122"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  overflow="visible"/>
+		</clipPath>
+		
+			<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="334.301" y1="-149.8691" x2="334.301" y2="-39.8691" gradientTransform="matrix(1 0 0 -1 -204.3003 -39.8691)">
+			<stop  offset="0" style="stop-color:#00FFFF;stop-opacity:0.498"/>
+			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.498"/>
+		</linearGradient>
+		<rect x="0" clip-path="url(#SVGID_2_)" fill="url(#SVGID_3_)" width="260" height="110"/>
+	</g>
+</g>
+<g transform="translate(4,29)">
+	<g>
+		<defs>
+			<rect id="SVGID_4_" x="-4" y="-4" width="272" height="122"/>
+		</defs>
+		<clipPath id="SVGID_5_">
+			<use xlink:href="#SVGID_4_"  overflow="visible"/>
+		</clipPath>
+		
+			<rect x="0" clip-path="url(#SVGID_5_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="1" width="260" height="110"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_6_" x="-4" y="-4" width="272" height="122"/>
+		</defs>
+		<clipPath id="SVGID_7_">
+			<use xlink:href="#SVGID_6_"  overflow="visible"/>
+		</clipPath>
+		
+			<line clip-path="url(#SVGID_7_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="1" x1="0" y1="15" x2="260" y2="15"/>
+	</g>
+</g>
+<g transform="translate(4,44)">
+	<g>
+		<defs>
+			<rect id="SVGID_8_" x="0" width="260" height="103"/>
+		</defs>
+		<clipPath id="SVGID_9_">
+			<use xlink:href="#SVGID_8_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_9_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 1.9998 14)" font-family="'ArialMT'" font-size="11">&lt;&lt;Property&gt;&gt; -name : String</text>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_10_" x="0" width="260" height="103"/>
+		</defs>
+		<clipPath id="SVGID_11_">
+			<use xlink:href="#SVGID_10_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_11_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 1.9998 29)" font-family="'ArialMT'" font-size="11">&lt;&lt;Property&gt;&gt; -properties : Set&lt;PropertyModel&lt;?&gt;&gt;</text>
+		</g>
+	</g>
+</g>
+<g transform="translate(4,44)">
+	<g>
+		<defs>
+			<rect id="SVGID_12_" x="0" width="260" height="103"/>
+		</defs>
+		<clipPath id="SVGID_13_">
+			<use xlink:href="#SVGID_12_"  overflow="visible"/>
+		</clipPath>
+		
+			<line clip-path="url(#SVGID_13_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="bevel" stroke-miterlimit="1" x1="0" y1="34" x2="260" y2="34"/>
+	</g>
+</g>
+<g transform="translate(4,44)">
+	<g>
+		<defs>
+			<rect id="SVGID_14_" x="0" width="260" height="103"/>
+		</defs>
+		<clipPath id="SVGID_15_">
+			<use xlink:href="#SVGID_14_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_15_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 1.9998 48)" font-family="'ArialMT'" font-size="11">+equals(obj : Object) : boolean</text>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_16_" x="0" width="260" height="103"/>
+		</defs>
+		<clipPath id="SVGID_17_">
+			<use xlink:href="#SVGID_16_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_17_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 1.9998 63)" font-family="'ArialMT'" font-size="11">+hashCode() : int</text>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_18_" x="0" width="260" height="103"/>
+		</defs>
+		<clipPath id="SVGID_19_">
+			<use xlink:href="#SVGID_18_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_19_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 1.9998 78)" font-family="'ArialMT'" font-size="11">+toString() : String</text>
+		</g>
+	</g>
+</g>
+<g transform="translate(4,29)">
+	<g>
+		<defs>
+			<rect id="SVGID_20_" x="0" width="260" height="15"/>
+		</defs>
+		<clipPath id="SVGID_21_">
+			<use xlink:href="#SVGID_20_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_21_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 88.9998 12)" font-family="'Arial-BoldMT'" font-size="11">CategoryModel</text>
+		</g>
+	</g>
+</g>
+<g transform="translate(414,20)">
+	<g>
+		<defs>
+			<rect id="SVGID_22_" x="-4" y="-18" width="218" height="135"/>
+		</defs>
+		<clipPath id="SVGID_23_">
+			<use xlink:href="#SVGID_22_"  overflow="visible"/>
+		</clipPath>
+		
+			<linearGradient id="SVGID_24_" gradientUnits="userSpaceOnUse" x1="-105.6995" y1="-141.3516" x2="-105.6995" y2="-29.6274" gradientTransform="matrix(1 0 0 -1 205.6997 -30.8691)">
+			<stop  offset="0" style="stop-color:#FFFF00;stop-opacity:0.498"/>
+			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.498"/>
+		</linearGradient>
+		<rect x="0" y="-1.242" clip-path="url(#SVGID_23_)" fill="url(#SVGID_24_)" width="200" height="111.724"/>
+	</g>
+</g>
+<g>
+	<defs>
+		<rect id="SVGID_25_" x="410" y="2" width="204" height="145"/>
+	</defs>
+	<clipPath id="SVGID_26_">
+		<use xlink:href="#SVGID_25_"  overflow="visible"/>
+	</clipPath>
+	
+		<rect x="413.743" y="20" clip-path="url(#SVGID_26_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="1" width="243.303" height="110"/>
+</g>
+<g>
+	<defs>
+		<rect id="SVGID_27_" x="410" y="2" width="218" height="145"/>
+	</defs>
+	<clipPath id="SVGID_28_">
+		<use xlink:href="#SVGID_27_"  overflow="visible"/>
+	</clipPath>
+	
+		<line clip-path="url(#SVGID_28_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="1" x1="414.001" y1="50" x2="614" y2="50"/>
+</g>
+<g transform="translate(414,50)">
+	<g>
+		<defs>
+			<rect id="SVGID_29_" x="0" y="-2" width="200" height="97"/>
+		</defs>
+		<clipPath id="SVGID_30_">
+			<use xlink:href="#SVGID_29_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_30_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 2.0002 12)" font-family="'ArialMT'" font-size="11">&lt;&lt;Property&gt;&gt; +defaultValue : T</text>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_31_" x="0" y="-2" width="200" height="97"/>
+		</defs>
+		<clipPath id="SVGID_32_">
+			<use xlink:href="#SVGID_31_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_32_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 2.0002 27)" font-family="'ArialMT'" font-size="11">&lt;&lt;Property&gt;&gt; +name : String</text>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_33_" x="0" y="-2" width="200" height="97"/>
+		</defs>
+		<clipPath id="SVGID_34_">
+			<use xlink:href="#SVGID_33_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_34_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 2.0002 42)" font-family="'ArialMT'" font-size="11">&lt;&lt;Property&gt;&gt; +type : Class&lt;T&gt;</text>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_35_" x="0" y="-2" width="200" height="97"/>
+		</defs>
+		<clipPath id="SVGID_36_">
+			<use xlink:href="#SVGID_35_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_36_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 2.0002 57)" font-family="'ArialMT'" font-size="11">&lt;&lt;Property&gt;&gt; +visibility : Visibility</text>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_37_" x="0" y="-2" width="200" height="97"/>
+		</defs>
+		<clipPath id="SVGID_38_">
+			<use xlink:href="#SVGID_37_"  overflow="visible"/>
+		</clipPath>
+		
+			<line clip-path="url(#SVGID_38_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="bevel" stroke-miterlimit="1" x1="0" y1="62" x2="200" y2="62"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_39_" x="0" y="-2" width="200" height="97"/>
+		</defs>
+		<clipPath id="SVGID_40_">
+			<use xlink:href="#SVGID_39_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_40_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 2.0002 76)" font-family="'ArialMT'" font-size="11">+isAcceptable(newValue : T) : boolean</text>
+		</g>
+	</g>
+</g>
+<g transform="translate(414,20)">
+	<g>
+		<defs>
+			<rect id="SVGID_41_" x="-1" y="-0.5" width="207.167" height="30"/>
+		</defs>
+		<clipPath id="SVGID_42_">
+			<use xlink:href="#SVGID_41_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_42_)" enable-background="new    ">
+			<text transform="matrix(1.0358 0 0 1 64.2571 11.5)" font-family="'Arial-BoldMT'" font-size="11">&lt;&lt;Interface&gt;&gt;</text>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_43_" x="-1" y="-0.5" width="207.167" height="30"/>
+		</defs>
+		<clipPath id="SVGID_44_">
+			<use xlink:href="#SVGID_43_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_44_)" enable-background="new    ">
+			<text transform="matrix(1.0358 0 0 1 61.1497 26.5)" font-family="'Arial-BoldMT'" font-size="11">PropertyModel</text>
+		</g>
+	</g>
+</g>
+<g transform="translate(611,2)">
+	<g>
+		<defs>
+			<rect id="SVGID_45_" x="-3" y="-3" width="23" height="31"/>
+		</defs>
+		<clipPath id="SVGID_46_">
+			<use xlink:href="#SVGID_45_"  overflow="visible"/>
+		</clipPath>
+		<rect x="0" clip-path="url(#SVGID_46_)" fill="#FFFFFF" width="12" height="20"/>
+	</g>
+</g>
+<g transform="translate(611,2)">
+	<g>
+		<defs>
+			<rect id="SVGID_47_" x="-3" y="-3" width="23" height="31"/>
+		</defs>
+		<clipPath id="SVGID_48_">
+			<use xlink:href="#SVGID_47_"  overflow="visible"/>
+		</clipPath>
+		
+			<rect x="0" clip-path="url(#SVGID_48_)" fill="none" stroke="#000000" stroke-linejoin="bevel" stroke-miterlimit="1" stroke-dasharray="8,3" width="12" height="20"/>
+	</g>
+</g>
+<g transform="translate(611,2)">
+	<g>
+		<defs>
+			<rect id="SVGID_49_" x="0" width="13" height="21"/>
+		</defs>
+		<clipPath id="SVGID_50_">
+			<use xlink:href="#SVGID_49_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_50_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 3.0002 15)" font-family="'ArialMT'" font-size="11">T</text>
+		</g>
+	</g>
+</g>
+<g transform="translate(214,29)">
+	<g>
+		<defs>
+			<rect id="SVGID_51_" x="0" width="253" height="104"/>
+		</defs>
+		<clipPath id="SVGID_52_">
+			<use xlink:href="#SVGID_51_"  overflow="visible"/>
+		</clipPath>
+		
+			<line clip-path="url(#SVGID_52_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" x1="78" y1="50" x2="199" y2="50"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_53_" x="0" width="253" height="104"/>
+		</defs>
+		<clipPath id="SVGID_54_">
+			<use xlink:href="#SVGID_53_"  overflow="visible"/>
+		</clipPath>
+		<polygon clip-path="url(#SVGID_54_)" points="50,50 63,57 78,50 63,42 		"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_55_" x="0" width="253" height="104"/>
+		</defs>
+		<clipPath id="SVGID_56_">
+			<use xlink:href="#SVGID_55_"  overflow="visible"/>
+		</clipPath>
+		
+			<polygon clip-path="url(#SVGID_56_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" points="
+			50,50 63,57 78,50 63,42 		"/>
+	</g>
+</g>
+<g transform="translate(344,59)">
+	<g>
+		<defs>
+			<rect id="SVGID_57_" x="0" width="69" height="16"/>
+		</defs>
+		<clipPath id="SVGID_58_">
+			<use xlink:href="#SVGID_57_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_58_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 10.0002 12)" font-family="'ArialMT'" font-size="11">properties</text>
+		</g>
+	</g>
+</g>
+<g transform="translate(374,79)">
+	<g>
+		<defs>
+			<rect id="SVGID_59_" x="0" width="40" height="20"/>
+		</defs>
+		<clipPath id="SVGID_60_">
+			<use xlink:href="#SVGID_59_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_60_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 18.0002 14)" font-family="'ArialMT'" font-size="11">*</text>
+		</g>
+	</g>
+</g>
+<line fill="none" stroke="#000000" stroke-width="2" x1="614" y1="130.482" x2="614" y2="23"/>
+</svg>

@@ -1,0 +1,22 @@
+<project default="generate">
+	<property name="src" value="src"/>
+	<property name="bin" value="bin"/>
+	<property name="AIRoot" value="fr/n7/saceca/u3du/model/ai"/>
+	<property name="AISrcRoot" location="${src}/${AIRoot}"/>
+	<property name="InternalClassSrc" location="${AISrcRoot}/Internal.java"/>
+	<property name="InternalClassBin" location="${bin}/${AIRoot}/Internal.class"/>
+	<property name="CommonWorldObjectModel" location="${AISrcRoot}/object/_CommonWorldObjectModel.objmod.xml"/>
+	<property name="CommonAgentModel" location="${AISrcRoot}/agent/_CommonAgentModel.agmod.xml"/>
+	<property name="LibJar" location="lib/U3DU-4-SACECA Common Properties Constants Generator/u3du-4-saceca-common-properties-constants-generator.jar"/>
+
+	<target name="clean">
+		<delete file="${InternalClassSrc}"/>
+		<delete file="${InternalClassBin}"/>
+	</target>
+	
+    <target name="generate">
+    	<java jar="${LibJar}" fork="true"/>
+    	<echo message="A project refresh should automatically occur right now..."/>
+    </target>
+	
+</project>

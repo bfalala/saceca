@@ -1,0 +1,22 @@
+/**********************************
+ * Properties naming conventions *
+ **********************************/
+
+1°) '_' is some kind of path separator.
+
+2°) A property MyProp stemming from a category named MyCategory should be named:
+	c_MyCategory_MyProp
+	'c' means category
+	MyProp may contains '_', i.e. have a path.
+
+3°) A property MyProp used in internal computations should be named:
+	i_MyProp
+	'i' means internal
+	MyProp may contains '_', i.e. have a path.
+	
+4°) SERVICE DEFINITIONS ONLY
+	Services can access properties from the provider and the consumer. Additional prefixes are used for names:
+	"this_" for the provider
+	"other_" for the consumer.
+	For instance, the property bar coming from the category foo, which is available in the consumer can be accessed through:
+	other_c_foo_bar

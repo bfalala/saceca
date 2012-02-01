@@ -1,0 +1,53 @@
+<classes>
+  <!-- Behavior -->
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.behavior.DefaultAgentBehavior"  file="bin/fr/n7/saceca/u3du/model/ai/agent/behavior/DefaultAgentBehavior.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.object.behavior.VehicleBehavior"  file="bin/fr/n7/saceca/u3du/model/ai/object/behavior/CarBehavior.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.object.behavior.DefaultBehavior"  file="bin/fr/n7/saceca/u3du/model/ai/object/behavior/DefaultBehavior.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.object.behavior.TrafficLightBehavior"  file="bin/fr/n7/saceca/u3du/model/ai/object/behavior/TrafficLightBehavior.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.object.behavior.LightState"  file="bin/fr/n7/saceca/u3du/model/ai/object/behavior/LightState.class"/>
+    
+  <!-- Modules and their sub parts-->
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.message.CanYouMakeItNoAnswerMessage"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/message/CanYouMakeItNoAnswerMessage.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.message.CanYouMakeItQuestionMessage"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/message/CanYouMakeItQuestionMessage.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.message.CanYouMakeItYesAnswerMessage"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/message/CanYouMakeItYesAnswerMessage.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.message.DefaultMessage"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/message/DefaultMessage.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.message.Message"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/message/Message.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.message.WhereIsItAnswerMessage"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/message/WhereIsItAnswerMessage.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.message.WhereIsItDunnoAnswerMessage"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/message/WhereIsItDunnoAnswerMessage.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.message.WhereIsItQuestionMessage"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/message/WhereIsItQuestionMessage.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.messagehandler.CanYouMakeItNoAnswerMessageHandler"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/messagehandler/CanYouMakeItNoAnswerMessageHandler.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.messagehandler.CanYouMakeItQuestionMessageHandler"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/messagehandler/CanYouMakeItQuestionMessageHandler.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.messagehandler.CanYouMakeItYesAnswerMessageHandler"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/messagehandler/CanYouMakeItYesAnswerMessageHandler.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.messagehandler.MessageHandler"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/messagehandler/MessageHandler.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.messagehandler.VoidMessageHandler"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/messagehandler/VoidMessageHandler.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.messagehandler.WhereIsItAnswerMessageHandler"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/messagehandler/WhereIsItAnswerMessageHandler.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.messagehandler.WhereIsItDunnoAnswerMessageHandler"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/messagehandler/WhereIsItDunnoAnswerMessageHandler.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.messagehandler.WhereIsItQuestionMessageHandler"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/messagehandler/WhereIsItQuestionMessageHandler.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.DefaultCommunicationModule"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/DefaultCommunicationModule.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.emotion.EmptyEmotionModule"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/emotion/EmptyEmotionModule.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.perception.DefaultPerceptionModule"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/perception/DefaultPerceptionModule.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.planning.DefaultPlan"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/planning/DefaultPlan.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.planning.DefaultPlanningModule"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/planning/DefaultPlanningModule.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.planning.UnreachableObjectExpcetion"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/planning/UnreachableObjectExpcetion.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.reasoning.rule.ChooseGoalToReach"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/reasoning/rule/ChooseGoalToReach.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.reasoning.rule.CreateGaugeGoal"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/reasoning/rule/CreateGaugeGoal.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.reasoning.rule.PenalizeUnreachableGoal"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/reasoning/rule/PenalizeUnreachableGoal.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.reasoning.rule.RemoveGoalSameGauge"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/reasoning/rule/RemoveGoalSameGauge.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.reasoning.rule.RemoveReachedGoal"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/reasoning/rule/RemoveReachedGoal.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.reasoning.rule.Rule"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/reasoning/rule/Rule.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.reasoning.rule.SameElementsRule"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/reasoning/rule/SameElementsRule.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.reasoning.rule.UniqueElementRule"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/reasoning/rule/UniqueElementRule.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.reasoning.DefaultReasoningModule"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/reasoning/DefaultReasoningModule.class"/>
+  
+  <!-- Actions -->
+  <class qName="fr.n7.saceca.u3du.model.ai.service.action.DoSomethingInABuildingAction"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/DoSomethingInABuildingAction.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.service.action.Work"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/Work.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.service.action.Eat"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/Eat.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.service.action.Rest"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/Rest.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.service.action.WatchAMovie"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/WatchAMovie.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.service.action.WalkTo"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/WalkTo.class"/>
+
+  <!-- Animations -->
+  <class qName="fr.n7.saceca.u3du.model.graphics.animation.DisappearAnimation"  file="bin/fr/n7/saceca/u3du/model/graphics/animation/DisappearAnimation.class"/>
+  <class qName="fr.n7.saceca.u3du.model.graphics.animation.AppearAnimation"  file="bin/fr/n7/saceca/u3du/model/graphics/animation/AppearAnimation.class"/>    
+</classes>

@@ -1,0 +1,26 @@
+<agent-model name="_CommonAgentModel">
+  <!-- This file describes properties common to all agents. There is no need to repeat what was added in the similar file for World Objects -->
+  <behavior/>
+  <categories/>
+  <services/>
+  <!-- Only properties are currently used for the common agent model. -->
+  <!-- Names should start with "i_" because they are for internal use. -->
+  <properties>
+    <!-- Basics -->
+    <string name="i_name" default="anonymous" visibility="public"/>
+    
+    <!-- Gauges -->
+    <double name="i_gauge_thirst" min="0" max="100" default="90" visibility="private"/>
+    <double name="i_gauge_hunger" min="0" max="100" default="90" visibility="private"/>
+    <double name="i_gauge_tiredness" min="0" max="100" default="90" visibility="private"/>
+    <double name="i_gauge_happiness" min="0" max="100" default="90" visibility="private"/>    
+    
+    <!-- Gauges decrement periods, in seconds -->
+    <int name="i_decrement_period_default" min="0" max="1000" default="7" visibility="private"/>
+    <int name="i_decrement_period_thirst" min="0" max="1000" default="8" visibility="private"/>
+    
+    <!-- Perception -->
+    <int name="i_perception_maxEyesightDistance" min="0" max="1000" default="10" visibility="private"/>
+    <int name="i_perception_maxHearingDistance" min="0" max="1000" default="10" visibility="private"/>
+  </properties>
+</agent-model>

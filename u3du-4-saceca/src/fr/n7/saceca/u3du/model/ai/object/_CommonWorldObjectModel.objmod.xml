@@ -1,0 +1,20 @@
+<object-model name="_CommonAgentModel">
+  <!-- This file describes properties common to all world objects. -->
+  <behavior/>
+  <categories/>
+  <services/>
+  <!-- Only properties are currently used for the common world object model. -->
+  <!-- Names should start with "i_" because they are for internal use. -->
+  <properties>
+    <int name="i_mass" min="0" max="10000" default="42" visibility="public"/>
+    
+    <!-- A property to point to the graphical model definition -->
+    <string name="i_graphics_conf" default="Box" visibility="private"/>
+    
+    <!-- Defines whether this object has a thread. Agents will not consider this property, even if they inherit it. -->
+    <bool name="i_threaded" default="false" visibility="private"/>
+    
+    <!-- Determines whether the object should be saved in the "misc" folder -->
+    <bool name="i_isMisc" default="false" visibility="private"/>
+  </properties>
+</object-model>

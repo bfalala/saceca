@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 43363)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="489px" height="239px" viewBox="0 0 489 239" enable-background="new 0 0 489 239" xml:space="preserve">
+<g>
+	<rect x="0" fill="#FFFFFF" width="489" height="239"/>
+</g>
+<g transform="translate(4,4)">
+	<g>
+		<defs>
+			<rect id="SVGID_1_" x="-4" y="-4" width="202" height="102"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  overflow="visible"/>
+		</clipPath>
+		
+			<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="299.301" y1="-10.8691" x2="299.301" y2="79.1309" gradientTransform="matrix(1 0 0 -1 -204.3003 79.1309)">
+			<stop  offset="0" style="stop-color:#00FFFF;stop-opacity:0.498"/>
+			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.498"/>
+		</linearGradient>
+		<rect x="0" clip-path="url(#SVGID_2_)" fill="url(#SVGID_3_)" width="190" height="90"/>
+	</g>
+</g>
+<g transform="translate(4,4)">
+	<g>
+		<defs>
+			<rect id="SVGID_4_" x="-4" y="-4" width="202" height="102"/>
+		</defs>
+		<clipPath id="SVGID_5_">
+			<use xlink:href="#SVGID_4_"  overflow="visible"/>
+		</clipPath>
+		
+			<rect x="0" clip-path="url(#SVGID_5_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="1" width="190" height="90"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_6_" x="-4" y="-4" width="202" height="102"/>
+		</defs>
+		<clipPath id="SVGID_7_">
+			<use xlink:href="#SVGID_6_"  overflow="visible"/>
+		</clipPath>
+		
+			<line clip-path="url(#SVGID_7_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="1" x1="0" y1="30" x2="190" y2="30"/>
+	</g>
+</g>
+<g transform="translate(4,34)">
+	<g>
+		<defs>
+			<rect id="SVGID_8_" x="0" width="190" height="68"/>
+		</defs>
+		<clipPath id="SVGID_9_">
+			<use xlink:href="#SVGID_8_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_9_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 1.9998 14)" font-family="'ArialMT'" font-size="11">&lt;&lt;Property&gt;&gt; +agent : Agent</text>
+		</g>
+	</g>
+</g>
+<g transform="translate(4,34)">
+	<g>
+		<defs>
+			<rect id="SVGID_10_" x="0" width="190" height="68"/>
+		</defs>
+		<clipPath id="SVGID_11_">
+			<use xlink:href="#SVGID_10_"  overflow="visible"/>
+		</clipPath>
+		
+			<line clip-path="url(#SVGID_11_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="bevel" stroke-miterlimit="1" x1="0" y1="19" x2="190" y2="19"/>
+	</g>
+</g>
+<g transform="translate(4,34)">
+	<g>
+		<defs>
+			<rect id="SVGID_12_" x="0" width="190" height="68"/>
+		</defs>
+		<clipPath id="SVGID_13_">
+			<use xlink:href="#SVGID_12_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_13_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 1.9998 33)" font-family="'ArialMT'" font-size="11">+communicate() : void</text>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_14_" x="0" width="190" height="68"/>
+		</defs>
+		<clipPath id="SVGID_15_">
+			<use xlink:href="#SVGID_14_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_15_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 1.9998 48)" font-family="'ArialMT'" font-size="11">+addMessage(msg : Message) : void</text>
+		</g>
+	</g>
+</g>
+<g transform="translate(4,4)">
+	<g>
+		<defs>
+			<rect id="SVGID_16_" x="0" width="190" height="30"/>
+		</defs>
+		<clipPath id="SVGID_17_">
+			<use xlink:href="#SVGID_16_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_17_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 58.9998 12)" font-family="'Arial-BoldMT'" font-size="11">&lt;&lt;Interface&gt;&gt;</text>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_18_" x="0" width="190" height="30"/>
+		</defs>
+		<clipPath id="SVGID_19_">
+			<use xlink:href="#SVGID_18_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_19_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 33.9998 27)" font-family="'Arial-BoldMT'" font-size="11">CommunicationModule</text>
+		</g>
+	</g>
+</g>
+<g transform="translate(254,4)">
+	<g>
+		<defs>
+			<rect id="SVGID_20_" x="-4" y="-4" width="242" height="82"/>
+		</defs>
+		<clipPath id="SVGID_21_">
+			<use xlink:href="#SVGID_20_"  overflow="visible"/>
+		</clipPath>
+		
+			<linearGradient id="SVGID_22_" gradientUnits="userSpaceOnUse" x1="69.301" y1="9.1309" x2="69.301" y2="79.1309" gradientTransform="matrix(1 0 0 -1 45.6997 79.1309)">
+			<stop  offset="0" style="stop-color:#FFFF00;stop-opacity:0.498"/>
+			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.498"/>
+		</linearGradient>
+		<rect x="0" clip-path="url(#SVGID_21_)" fill="url(#SVGID_22_)" width="230" height="70"/>
+	</g>
+</g>
+<g transform="translate(254,4)">
+	<g>
+		<defs>
+			<rect id="SVGID_23_" x="-4" y="-4" width="242" height="82"/>
+		</defs>
+		<clipPath id="SVGID_24_">
+			<use xlink:href="#SVGID_23_"  overflow="visible"/>
+		</clipPath>
+		
+			<rect x="0" clip-path="url(#SVGID_24_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="1" width="230" height="70"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_25_" x="-4" y="-4" width="242" height="82"/>
+		</defs>
+		<clipPath id="SVGID_26_">
+			<use xlink:href="#SVGID_25_"  overflow="visible"/>
+		</clipPath>
+		
+			<line clip-path="url(#SVGID_26_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="1" x1="0" y1="30" x2="230" y2="30"/>
+	</g>
+</g>
+<g transform="translate(254,34)">
+	<g>
+		<defs>
+			<rect id="SVGID_27_" x="0" width="230" height="48"/>
+		</defs>
+		<clipPath id="SVGID_28_">
+			<use xlink:href="#SVGID_27_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_28_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 2.0002 14)" font-family="'ArialMT'" font-size="11">+STOP_CONVERSATION : Message = null</text>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_29_" x="0" width="230" height="48"/>
+		</defs>
+		<clipPath id="SVGID_30_">
+			<use xlink:href="#SVGID_29_"  overflow="visible"/>
+		</clipPath>
+		
+			<line clip-path="url(#SVGID_30_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="1" x1="2" y1="16" x2="203" y2="16"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_31_" x="0" width="230" height="48"/>
+		</defs>
+		<clipPath id="SVGID_32_">
+			<use xlink:href="#SVGID_31_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_32_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 2.0002 29)" font-family="'ArialMT'" font-size="11">&lt;&lt;Property&gt;&gt; +sender : Agent</text>
+		</g>
+	</g>
+</g>
+<g transform="translate(254,4)">
+	<g>
+		<defs>
+			<rect id="SVGID_33_" x="0" width="230" height="30"/>
+		</defs>
+		<clipPath id="SVGID_34_">
+			<use xlink:href="#SVGID_33_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_34_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 79.0002 12)" font-family="'Arial-BoldMT'" font-size="11">&lt;&lt;Interface&gt;&gt;</text>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_35_" x="0" width="230" height="30"/>
+		</defs>
+		<clipPath id="SVGID_36_">
+			<use xlink:href="#SVGID_35_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_36_)" enable-background="new    ">
+			<text transform="matrix(1 0 0 1 91.0002 27)" font-family="'Arial-BoldMT'" font-size="11">Message</text>
+		</g>
+	</g>
+</g>
+<g transform="translate(274,154)">
+	<g>
+		<defs>
+			<rect id="SVGID_37_" x="-3.875" y="-5.563" width="197.75" height="81"/>
+		</defs>
+		<clipPath id="SVGID_38_">
+			<use xlink:href="#SVGID_37_"  overflow="visible"/>
+		</clipPath>
+		
+			<linearGradient id="SVGID_39_" gradientUnits="userSpaceOnUse" x1="27.2415" y1="-139.2627" x2="27.2415" y2="-68.8281" gradientTransform="matrix(1 0 0 -1 65.6997 -70.8691)">
+			<stop  offset="0" style="stop-color:#FFFF00;stop-opacity:0.498"/>
+			<stop  offset="1" style="stop-color:#FFFFFF;stop-opacity:0.498"/>
+		</linearGradient>
+		<rect x="0.245" y="-2.041" clip-path="url(#SVGID_38_)" fill="url(#SVGID_39_)" width="185.391" height="70.435"/>
+	</g>
+</g>
+<g transform="translate(274,154)">
+	<g>
+		<defs>
+			<rect id="SVGID_40_" x="-4" y="-4" width="192" height="92"/>
+		</defs>
+		<clipPath id="SVGID_41_">
+			<use xlink:href="#SVGID_40_"  overflow="visible"/>
+		</clipPath>
+		
+			<rect x="0" clip-path="url(#SVGID_41_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="1" width="230" height="70"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_42_" x="-4" y="-4" width="192" height="92"/>
+		</defs>
+		<clipPath id="SVGID_43_">
+			<use xlink:href="#SVGID_42_"  overflow="visible"/>
+		</clipPath>
+		
+			<line clip-path="url(#SVGID_43_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="1" x1="0" y1="15" x2="180" y2="15"/>
+	</g>
+</g>
+<g transform="translate(274,169)">
+	<g>
+		<defs>
+			<rect id="SVGID_44_" x="0" width="188" height="73"/>
+		</defs>
+		<clipPath id="SVGID_45_">
+			<use xlink:href="#SVGID_44_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_45_)" enable-background="new    ">
+			<text transform="matrix(1.0444 0 0 1 2.0891 14)" font-family="'ArialMT'" font-size="11">&lt;&lt;Property&gt;&gt; -sender : Agent</text>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_46_" x="0" width="188" height="73"/>
+		</defs>
+		<clipPath id="SVGID_47_">
+			<use xlink:href="#SVGID_46_"  overflow="visible"/>
+		</clipPath>
+		
+			<line clip-path="url(#SVGID_47_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="bevel" stroke-miterlimit="1" x1="0" y1="19" x2="188" y2="19"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_48_" x="0" width="188" height="73"/>
+		</defs>
+		<clipPath id="SVGID_49_">
+			<use xlink:href="#SVGID_48_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_49_)" enable-background="new    ">
+			<text transform="matrix(1.0444 0 0 1 2.0891 33)" font-family="'ArialMT'" font-size="11">+DefaultMessage(sender : Agent)</text>
+		</g>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_50_" x="0" width="188" height="73"/>
+		</defs>
+		<clipPath id="SVGID_51_">
+			<use xlink:href="#SVGID_50_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_51_)" enable-background="new    ">
+			<text transform="matrix(1.0444 0 0 1 2.0891 48)" font-family="'ArialMT'" font-size="11">+toString() : String</text>
+		</g>
+	</g>
+</g>
+<g transform="translate(274,154)">
+	<g>
+		<defs>
+			<rect id="SVGID_52_" x="0" width="191" height="15"/>
+		</defs>
+		<clipPath id="SVGID_53_">
+			<use xlink:href="#SVGID_52_"  overflow="visible"/>
+		</clipPath>
+		<g clip-path="url(#SVGID_53_)" enable-background="new    ">
+			<text transform="matrix(1.0611 0 0 1 50.9319 12)" font-family="'Arial-BoldItalicMT'" font-size="11">DefaultMessage</text>
+		</g>
+	</g>
+</g>
+<g transform="translate(308,18)">
+	<g>
+		<defs>
+			<rect id="SVGID_54_" x="0" width="115" height="194"/>
+		</defs>
+		<clipPath id="SVGID_55_">
+			<use xlink:href="#SVGID_54_"  overflow="visible"/>
+		</clipPath>
+		
+			<line clip-path="url(#SVGID_55_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" stroke-dasharray="5" stroke-dashoffset="1" x1="56" y1="56" x2="56" y2="134"/>
+	</g>
+</g>
+<g transform="translate(308,18)">
+	<g>
+		<defs>
+			<rect id="SVGID_56_" x="0" width="115" height="194"/>
+		</defs>
+		<clipPath id="SVGID_57_">
+			<use xlink:href="#SVGID_56_"  overflow="visible"/>
+		</clipPath>
+		<polygon clip-path="url(#SVGID_57_)" fill="#FFFFFF" points="56,56 48,69 63,69 		"/>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_58_" x="0" width="115" height="194"/>
+		</defs>
+		<clipPath id="SVGID_59_">
+			<use xlink:href="#SVGID_58_"  overflow="visible"/>
+		</clipPath>
+		
+			<polygon clip-path="url(#SVGID_59_)" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-miterlimit="10" points="
+			56,56 48,69 63,69 		"/>
+	</g>
+</g>
+<line fill="none" stroke="#000000" stroke-width="2" x1="461.75" y1="153" x2="461.75" y2="224.875"/>
+</svg>

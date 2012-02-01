@@ -1,0 +1,11 @@
++-----------------------+-------------------------------------------------------------+
+| Library               |  Licence                                                    |
+------------------------+-------------------------------------------------------------+
+| Apache Commons Jexl   | Apache                                                      |
+| Apache Commons Loggin | Apache                                                      |
+| JMonkey               | BSD                                                         |
+| Jung                  | BSD                                                         |
+| Log4J                 | Apache                                                      |
+| Vecmath               | GNU General Public License (which later gave birth to LGPL) |
+| XStream               | BSD                                                         |
++-----------------------+-------------------------------------------------------------+
