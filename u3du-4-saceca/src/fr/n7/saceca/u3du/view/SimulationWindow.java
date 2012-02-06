@@ -12,6 +12,7 @@
  */
 package fr.n7.saceca.u3du.view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
@@ -24,6 +25,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -67,13 +69,14 @@ import fr.n7.saceca.u3du.controller.simulation.StartSimulationController;
 import fr.n7.saceca.u3du.model.Model;
 import fr.n7.saceca.u3du.model.ai.Internal;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
+import fr.n7.saceca.u3du.model.ai.agent.Emotion;
 import fr.n7.saceca.u3du.model.ai.agent.Gauge;
 import fr.n7.saceca.u3du.model.ai.agent.memory.Memory;
 import fr.n7.saceca.u3du.model.ai.agent.memory.MemoryElement;
 import fr.n7.saceca.u3du.model.ai.agent.module.communication.message.Message;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.Plan;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.PlanElement;
-import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.Goal;
+import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.MMGoal;
 import fr.n7.saceca.u3du.model.ai.category.Category;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
 import fr.n7.saceca.u3du.model.ai.object.properties.Property;
@@ -123,6 +126,9 @@ public class SimulationWindow {
 	
 	/** The gauges panel. */
 	private JPanel gaugesPanel;
+	
+	/** The emotions panel. */
+	private JPanel emotionsPanel;
 	
 	/** The gauges scroll pane. */
 	private JScrollPane gaugesScrollPane;
@@ -196,6 +202,10 @@ public class SimulationWindow {
 	/** the gauges layout. */
 	private GridBagLayout gaugesGridBagLayout;
 	
+	private GridBagLayout emotionsGridLayout;
+	
+	private GridBagLayout secondaryEmotionsGridLayout;
+	
 	/** The emmited messages table model. */
 	private TableModelDef emmitedMessagesTableModel;
 	
@@ -234,6 +244,8 @@ public class SimulationWindow {
 	
 	/** The console text pane scroll. */
 	private JScrollPane consoleTextPaneScroll;
+	
+	private JPanel secondaryEmotionsPanel;
 	
 	/** The logger. */
 	private static Logger logger = Logger.getLogger(SimulationWindow.class);
@@ -342,9 +354,22 @@ public class SimulationWindow {
 		// THE GAUGES
 		this.gaugesPanel = new JPanel();
 		this.gaugesScrollPane = new JScrollPane(this.gaugesPanel);
+		
 		this.gaugesGridBagLayout = new GridBagLayout();
-		this.gaugesGridBagLayout.columnWidths = new int[] { 200, 200, 200, 200 };
+		this.gaugesGridBagLayout.columnWidths = new int[] { 400, 200, 200 };
 		this.gaugesPanel.setLayout(this.gaugesGridBagLayout);
+		
+		// THE EMOTIONS
+		this.emotionsPanel = new JPanel();
+		this.emotionsGridLayout = new GridBagLayout();
+		this.emotionsGridLayout.columnWidths = new int[] { 200, 200, 200, 200 };
+		this.emotionsPanel.setLayout(this.emotionsGridLayout);
+		
+		// THE SECONDARY EMOTIONS
+		this.secondaryEmotionsPanel = new JPanel();
+		this.secondaryEmotionsGridLayout = new GridBagLayout();
+		this.secondaryEmotionsGridLayout.columnWidths = new int[] { 200, 200, 200, 200 };
+		this.secondaryEmotionsPanel.setLayout(this.secondaryEmotionsGridLayout);
 		
 		// The display
 		this.displayPanel = new JPanel();
@@ -635,6 +660,10 @@ public class SimulationWindow {
 				if (!update) {
 					SimulationWindow.this.objectInfosPane.addTab("Gauges", null,
 							SimulationWindow.this.gaugesScrollPane, null);
+					SimulationWindow.this.objectInfosPane.addTab("Emotions", null, SimulationWindow.this.emotionsPanel,
+							null);
+					SimulationWindow.this.objectInfosPane.addTab("Secondary Emotions", null,
+							SimulationWindow.this.secondaryEmotionsPanel, null);
 					SimulationWindow.this.objectInfosPane.addTab("Memory", null,
 							SimulationWindow.this.memoryScrollPane, null);
 					SimulationWindow.this.objectInfosPane.addTab("Message inbox", null,
@@ -649,6 +678,10 @@ public class SimulationWindow {
 				
 				// We show the gauges
 				SimulationWindow.this.showAgentGauges(agent);
+				
+				SimulationWindow.this.showAgentEmotions(agent);
+				
+				SimulationWindow.this.showAgentSecondaryEmotions(agent);
 				
 				// We show the memory
 				SimulationWindow.this.showAgentMemory(agent);
@@ -743,16 +776,17 @@ public class SimulationWindow {
 		this.goalsTableModel.clear();
 		
 		// We make a copy of goals list to avoid concurrent exceptions
-		Object[] goals = agent.getMemory().getGoals().toArray();
 		int row = 0;
-		for (Object obj : goals) {
-			Goal goal = (Goal) obj;
-			this.goalsTableModel.setValueAt(goal.getSuccessCondition(), row, 0);
-			this.goalsTableModel.setValueAt(goal.getPriority(), row, 1);
-			this.goalsTableModel.setValueAt(goal.isReachable(), row, 2);
-			this.goalsTableModel.setValueAt(goal.isReached(), row, 3);
-			row++;
+		synchronized (agent.getMemory().getGoalStack()) {
+			for (MMGoal goal : agent.getMemory().getGoalStack()) {
+				this.goalsTableModel.setValueAt(goal.displayName(), row, 0);
+				this.goalsTableModel.setValueAt(goal.getPriority(), row, 1);
+				this.goalsTableModel.setValueAt(goal.isReachable(), row, 2);
+				this.goalsTableModel.setValueAt(goal.isReached(), row, 3);
+				row++;
+			}
 		}
+		
 	}
 	
 	/**
@@ -771,23 +805,7 @@ public class SimulationWindow {
 			for (PlanElement planElement : plan) {
 				
 				String parameters = "";
-				if (planElement.getParameters() != null) {
-					Set<String> parametersKey = planElement.getParameters().keySet();
-					for (String key : parametersKey) {
-						if (!parameters.equals("")) {
-							parameters += ",";
-						}
-						
-						Object param = planElement.getParameters().get(key);
-						if (param instanceof WorldObject) {
-							WorldObject wo = (WorldObject) param;
-							param = wo.getModelName() + " #" + wo.getId() + " @(" + wo.getPosition().x + ","
-									+ wo.getPosition().y + ")";
-						}
-						
-						parameters += key + ": " + param;
-					}
-				}
+				
 				String serviceName = planElement.getService().getName();
 				// If the service is the service that is currently executed, we place a star after
 				// its name
@@ -795,9 +813,14 @@ public class SimulationWindow {
 				this.planTableModel.setValueAt(serviceName, row, 0);
 				this.planTableModel.setValueAt(parameters, row, 1);
 				WorldObject provider = planElement.getProvider();
-				this.planTableModel.setValueAt(
-						provider.getModelName() + " #" + provider.getId() + " @(" + provider.getPosition().x + ","
-								+ provider.getPosition().y + ")", row, 2);
+				if (provider != null) {
+					this.planTableModel.setValueAt(
+							provider.getModelName() + " #" + provider.getId() + " @(" + provider.getPosition().x + ","
+									+ provider.getPosition().y + ")", row, 2);
+				} else {
+					this.planTableModel.setValueAt("", row, 2);
+				}
+				
 				row++;
 			}
 		}
@@ -838,6 +861,12 @@ public class SimulationWindow {
 		
 		Map<Long, MemoryElement> memoryElements = m.getMemoryElements();
 		
+		DefaultMutableTreeNode longTermNode = new DefaultMutableTreeNode("LONG-TERM MEMORY");
+		this.memoryTreeRoot.add(longTermNode);
+		
+		DefaultMutableTreeNode shortTermNode = new DefaultMutableTreeNode("SHORT-TERM MEMORY");
+		this.memoryTreeRoot.add(shortTermNode);
+		
 		for (MemoryElement memoryElement : memoryElements.values().toArray(new MemoryElement[0])) {
 			
 			WorldObject worldObject = memoryElement.getWorldObject();
@@ -851,9 +880,15 @@ public class SimulationWindow {
 			}
 			
 			DefaultMutableTreeNode objectNode = new DefaultMutableTreeNode(objectNodeName);
-			this.memoryTreeRoot.add(objectNode);
+			if (memoryElement.getPlace().equals("long")) {
+				longTermNode.add(objectNode);
+			} else {
+				shortTermNode.add(objectNode);
+			}
 			
 			objectNode.add(new DefaultMutableTreeNode("Forgettable : " + memoryElement.isForgettable()));
+			
+			objectNode.add(new DefaultMutableTreeNode("Nb references : " + memoryElement.getNbReferences()));
 			
 			DefaultMutableTreeNode propertiesNode = new DefaultMutableTreeNode("Properties");
 			objectNode.add(propertiesNode);
@@ -1073,13 +1108,143 @@ public class SimulationWindow {
 		// We show the gauges
 		this.gaugesPanel.removeAll();
 		
+		JPanel panelPrimordial = new JPanel();
+		JPanel panelSecurity = new JPanel();
+		JPanel panelSocial = new JPanel();
+		
+		GridBagLayout gaugesPrimordialLayout = new GridBagLayout();
+		GridBagLayout gaugesSecurityLayout = new GridBagLayout();
+		GridBagLayout gaugesSocialLayout = new GridBagLayout();
+		gaugesPrimordialLayout.columnWidths = new int[] { 120, 80, 120, 80 };
+		gaugesSecurityLayout.columnWidths = new int[] { 120, 80 };
+		gaugesSocialLayout.columnWidths = new int[] { 120, 80 };
+		
+		panelPrimordial.setLayout(gaugesPrimordialLayout);
+		panelSecurity.setLayout(gaugesSecurityLayout);
+		panelSocial.setLayout(gaugesSocialLayout);
+		
+		panelPrimordial.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 5, Color.black));
+		panelSecurity.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 5, Color.black));
+		
+		this.gaugesPanel.setLayout(this.gaugesGridBagLayout);
+		
+		this.gaugesPanel.add(panelPrimordial);
+		this.gaugesPanel.add(panelSecurity);
+		this.gaugesPanel.add(panelSocial);
+		
 		List<Gauge> gauges = agent.getGauges();
+		
+		int nr_survival = 0, nr_security = 0, nr_social = 0;
 		
 		for (int i = 0; i < gauges.size(); i++) {
 			Gauge gauge = gauges.get(i);
-			JLabel label = new JLabel(gauge.getName());
+			
+			JLabel label = new JLabel(gauge.getNameSuffix());
 			JProgressBar progressBar = new JProgressBar((int) gauge.getMinValue(), (int) gauge.getMaxValue());
 			progressBar.setValue(gauge.getValue().intValue());
+			progressBar.setStringPainted(true);
+			
+			if (gauge.isSurvival()) {
+				GridBagConstraints labelConstraint = new GridBagConstraints();
+				labelConstraint.gridx = 0;
+				labelConstraint.gridy = 0;
+				labelConstraint.gridwidth = 1;
+				labelConstraint.gridheight = 1;
+				
+				GridBagConstraints barConstraint = new GridBagConstraints();
+				barConstraint.gridy = 0;
+				barConstraint.gridx = 1;
+				barConstraint.gridwidth = 1;
+				barConstraint.gridheight = 1;
+				
+				if (nr_survival % 2 == 0) {
+					labelConstraint.gridy = nr_survival / 2 + 1;
+					labelConstraint.gridx = 0;
+					
+					barConstraint.gridy = nr_survival / 2 + 1;
+					barConstraint.gridx = 1;
+					
+				} else {
+					labelConstraint.gridy = nr_survival / 2 + 1;
+					labelConstraint.gridx = 2;
+					
+					barConstraint.gridy = nr_survival / 2 + 1;
+					barConstraint.gridx = 3;
+				}
+				
+				gaugesPrimordialLayout.setConstraints(label, labelConstraint);
+				gaugesPrimordialLayout.setConstraints(progressBar, barConstraint);
+				
+				panelPrimordial.add(label);
+				panelPrimordial.add(progressBar);
+				
+				nr_survival++;
+			} else if (gauge.isSecurityNeed()) {
+				GridBagConstraints labelConstraint = new GridBagConstraints();
+				labelConstraint.gridx = 0;
+				labelConstraint.gridy = 0;
+				labelConstraint.gridwidth = 1;
+				labelConstraint.gridheight = 1;
+				
+				GridBagConstraints barConstraint = new GridBagConstraints();
+				barConstraint.gridy = 0;
+				barConstraint.gridx = 1;
+				barConstraint.gridwidth = 1;
+				barConstraint.gridheight = 1;
+				
+				labelConstraint.gridy = nr_security;
+				labelConstraint.gridx = 0;
+				
+				barConstraint.gridy = nr_security;
+				barConstraint.gridx = 1;
+				
+				gaugesSecurityLayout.setConstraints(label, labelConstraint);
+				gaugesSecurityLayout.setConstraints(progressBar, barConstraint);
+				
+				panelSecurity.add(label);
+				panelSecurity.add(progressBar);
+				
+				nr_security++;
+			} else if (gauge.isSocialNeed()) {
+				
+				GridBagConstraints labelConstraint = new GridBagConstraints();
+				labelConstraint.gridx = 0;
+				labelConstraint.gridy = 0;
+				labelConstraint.gridwidth = 1;
+				labelConstraint.gridheight = 1;
+				
+				GridBagConstraints barConstraint = new GridBagConstraints();
+				barConstraint.gridy = 0;
+				barConstraint.gridx = 1;
+				barConstraint.gridwidth = 1;
+				barConstraint.gridheight = 1;
+				
+				labelConstraint.gridy = nr_social;
+				labelConstraint.gridx = 0;
+				
+				barConstraint.gridy = nr_social;
+				barConstraint.gridx = 1;
+				gaugesSocialLayout.setConstraints(label, labelConstraint);
+				gaugesSocialLayout.setConstraints(progressBar, barConstraint);
+				
+				panelSocial.add(label);
+				panelSocial.add(progressBar);
+				nr_social++;
+			}
+		}
+		
+	}
+	
+	private void showAgentEmotions(Agent agent) {
+		this.emotionsPanel.removeAll();
+		
+		List<Emotion> emotions = agent.getEmotions();
+		
+		for (int i = 0; i < emotions.size(); i++) {
+			Emotion emotion = emotions.get(i);
+			JLabel label = new JLabel(emotion.getName());
+			JProgressBar progressBar = new JProgressBar((int) emotion.getMinValue(), (int) emotion.getMaxValue());
+			progressBar.setValue(emotion.getValue().intValue());
 			progressBar.setStringPainted(true);
 			
 			GridBagConstraints labelConstraint = new GridBagConstraints();
@@ -1110,11 +1275,59 @@ public class SimulationWindow {
 					barConstraint.gridx = 3;
 				}
 			}
-			this.gaugesGridBagLayout.setConstraints(label, labelConstraint);
-			this.gaugesGridBagLayout.setConstraints(progressBar, barConstraint);
+			this.emotionsGridLayout.setConstraints(label, labelConstraint);
+			this.emotionsGridLayout.setConstraints(progressBar, barConstraint);
 			
-			this.gaugesPanel.add(label);
-			this.gaugesPanel.add(progressBar);
+			this.emotionsPanel.add(label);
+			this.emotionsPanel.add(progressBar);
+		}
+	}
+	
+	private void showAgentSecondaryEmotions(Agent agent) {
+		this.secondaryEmotionsPanel.removeAll();
+		
+		List<Emotion> emotions = agent.getSecondaryEmotions();
+		
+		for (int i = 0; i < emotions.size(); i++) {
+			Emotion emotion = emotions.get(i);
+			JLabel label = new JLabel(emotion.getSecondaryEmotionName());
+			JProgressBar progressBar = new JProgressBar((int) emotion.getMinValue(), (int) emotion.getMaxValue());
+			progressBar.setValue(emotion.getValue().intValue());
+			progressBar.setStringPainted(true);
+			
+			GridBagConstraints labelConstraint = new GridBagConstraints();
+			labelConstraint.gridx = 0;
+			labelConstraint.gridy = 0;
+			labelConstraint.gridwidth = 1;
+			labelConstraint.gridheight = 1;
+			
+			GridBagConstraints barConstraint = new GridBagConstraints();
+			barConstraint.gridy = 0;
+			barConstraint.gridx = 1;
+			barConstraint.gridwidth = 1;
+			barConstraint.gridheight = 1;
+			
+			if (i != 0) {
+				if (i % 2 == 0) {
+					labelConstraint.gridy = i / 2;
+					labelConstraint.gridx = 0;
+					
+					barConstraint.gridy = i / 2;
+					barConstraint.gridx = 1;
+					
+				} else {
+					labelConstraint.gridy = i / 2;
+					labelConstraint.gridx = 2;
+					
+					barConstraint.gridy = i / 2;
+					barConstraint.gridx = 3;
+				}
+			}
+			this.secondaryEmotionsGridLayout.setConstraints(label, labelConstraint);
+			this.secondaryEmotionsGridLayout.setConstraints(progressBar, barConstraint);
+			
+			this.secondaryEmotionsPanel.add(label);
+			this.secondaryEmotionsPanel.add(progressBar);
 		}
 	}
 	
@@ -1218,7 +1431,9 @@ public class SimulationWindow {
 			}
 			if (focusJMEOnSelection) {
 				// We set the focus on the object id
+				
 				Model.getInstance().getGraphics().getEngine3D().setFocusOn(id);
+				
 			}
 		}
 	}

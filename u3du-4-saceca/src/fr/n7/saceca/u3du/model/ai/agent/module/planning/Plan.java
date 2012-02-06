@@ -12,45 +12,13 @@
  */
 package fr.n7.saceca.u3du.model.ai.agent.module.planning;
 
-/**
- * A interface for plans. A plan is an ordered collection of elements to be used to reach a goal.
- * This interface is fluent, i.e. methods <code>cons</code> and <code>append</code> return the
- * mutable plan they modify (once modified).
- */
 public interface Plan extends Iterable<PlanElement> {
 	
-	/**
-	 * Adds an element at the beginning of the plan.
-	 * 
-	 * @param element
-	 *            the element
-	 * @return "this"
-	 */
 	public Plan cons(PlanElement element);
 	
-	/**
-	 * Adds an element at the ends of the plan.
-	 * 
-	 * @param element
-	 *            the element
-	 * @return "this"
-	 */
 	public Plan append(PlanElement element);
 	
-	/**
-	 * Gets an element
-	 * 
-	 * @param i
-	 *            the i
-	 * @return the service
-	 */
-	public PlanElement get(int i);
+	public PlanElement get(int index);
 	
-	/**
-	 * Gets the size.
-	 * 
-	 * @return the int
-	 */
 	public int size();
-	
 }

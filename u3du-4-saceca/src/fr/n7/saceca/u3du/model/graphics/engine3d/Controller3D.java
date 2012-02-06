@@ -71,6 +71,12 @@ public class Controller3D implements AnalogListener, com.jme3.input.controls.Act
 	 */
 	@Override
 	public void onAction(String name, boolean keyPressed, float tpf) {
+		
+		if (name.equals("Switch_camera")) {
+			this.engine3D.enablechase();
+			this.engine3D.initCamera();
+		}
+		
 		if (name.equals("MouseLeftClic")) {
 			// If the mouse key is pressed, we memorize it, and then we get the selected object
 			if (keyPressed) {
@@ -117,8 +123,8 @@ public class Controller3D implements AnalogListener, com.jme3.input.controls.Act
 					@Override
 					public void run() {
 						
-						WorldObject object = Model.getInstance().getAI().getWorld().getWorldObjects().get(
-								Controller3D.this.selectedObject);
+						WorldObject object = Model.getInstance().getAI().getWorld().getWorldObjects()
+								.get(Controller3D.this.selectedObject);
 						
 						// If the object exists in the AI (the object may exists only in the 3D)
 						if (object != null) {
@@ -131,18 +137,19 @@ public class Controller3D implements AnalogListener, com.jme3.input.controls.Act
 							if (animation != null) {
 								animation.pause();
 							}
-							Model.getInstance().getAI().getWorld().getWorldObjects().remove(
-									Controller3D.this.selectedObject);
+							Model.getInstance().getAI().getWorld().getWorldObjects()
+									.remove(Controller3D.this.selectedObject);
 						}
 						
 						// We must wrap the call to JME so that it will be executed from the OpenGL
 						// thread
 						Model.getInstance().getGraphics().getEngine3D().enqueue(new Callable<Void>() {
+							@Override
 							public Void call() throws Exception {
 								
 								// In the 3D Engine
-								Model.getInstance().getGraphics().getEngine3D().removeObjectOrAgent(
-										Controller3D.this.selectedObject);
+								Model.getInstance().getGraphics().getEngine3D()
+										.removeObjectOrAgent(Controller3D.this.selectedObject);
 								return null;
 							}
 						});
@@ -176,8 +183,8 @@ public class Controller3D implements AnalogListener, com.jme3.input.controls.Act
 			
 			// ORIGINAL OBJECT
 			GraphicalObject selectedGraphicalObject = this.engine3D.objects.get(this.selectedObject);
-			WorldObject selectedWorldObject = Model.getInstance().getAI().getWorld().getWorldObjects().get(
-					this.selectedObject);
+			WorldObject selectedWorldObject = Model.getInstance().getAI().getWorld().getWorldObjects()
+					.get(this.selectedObject);
 			
 			// If the selected object doesn't exist in the AI we abort
 			if (selectedWorldObject == null) {
@@ -189,8 +196,8 @@ public class Controller3D implements AnalogListener, com.jme3.input.controls.Act
 				
 				// we make an AI COPY
 				String modelName = selectedWorldObject.getModelName();
-				WorldObject newWorldObject = Model.getInstance().getAI().getEntitiesFactory().createWorldObject(
-						modelName);
+				WorldObject newWorldObject = Model.getInstance().getAI().getEntitiesFactory()
+						.createWorldObject(modelName);
 				
 				// At creation, the new object has the same position and orientation
 				newWorldObject.getPosition().x = selectedWorldObject.getPosition().x;
@@ -227,6 +234,7 @@ public class Controller3D implements AnalogListener, com.jme3.input.controls.Act
 	 */
 	@Override
 	public void onAnalog(String name, float value, float tpf) {
+		
 		if (name.equals("FLYCAM_StrafeUp")) {
 			this.engine3D.moveCameraKey(tpf, CameraKey.UP);
 		}

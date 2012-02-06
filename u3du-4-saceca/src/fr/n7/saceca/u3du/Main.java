@@ -39,7 +39,10 @@ public class Main {
 	 */
 	public static void main(String[] args) throws SacecaStrictException {
 		Model m = Model.getInstance();
+		
 		m.getAI().getIOManager().loadAI(MODELS_PATH, INSTANCES_PATH);
+		
+		m.getAI().initAI();
 		
 		View v = new View();
 		v.getSimulationWindow().display();

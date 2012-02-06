@@ -1,8 +1,10 @@
 <agent-model name="PlanningTester">
-  <behavior>integrationTest.ai.planning.PlanningOnlyBehavior</behavior>
+  <behavior>integrationTest.ai.planning.MMPlanningOnlyBehavior</behavior>
   <categories>
     <category>AccountOwner</category>
     <category>Human</category>
+	<category>BuildingOwner</category>
+    <category>Worker</category>    
   </categories>
   <services/>
   <properties>

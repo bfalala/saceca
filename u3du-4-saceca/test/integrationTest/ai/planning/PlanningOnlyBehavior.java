@@ -13,7 +13,7 @@
 package integrationTest.ai.planning;
 
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
-import fr.n7.saceca.u3du.model.ai.agent.module.planning.DefaultPlanningModule;
+import fr.n7.saceca.u3du.model.ai.agent.module.planning.ClassicalPlanningModule;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.PlanningModule;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
 import fr.n7.saceca.u3du.model.ai.object.behavior.DefaultBehavior;
@@ -38,7 +38,7 @@ public class PlanningOnlyBehavior extends DefaultBehavior {
 	public void init(WorldObject object) {
 		super.init(object);
 		Agent agent = (Agent) object;
-		final PlanningModule planningModule = new DefaultPlanningModule(agent);
+		final PlanningModule planningModule = new ClassicalPlanningModule(agent);
 		agent.setPlanningModule(planningModule);
 	}
 	

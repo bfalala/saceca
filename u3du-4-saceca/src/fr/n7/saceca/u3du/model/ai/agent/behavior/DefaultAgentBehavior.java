@@ -14,15 +14,17 @@ package fr.n7.saceca.u3du.model.ai.agent.behavior;
 
 import fr.n7.saceca.u3du.model.Model;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
+import fr.n7.saceca.u3du.model.ai.agent.Emotion;
 import fr.n7.saceca.u3du.model.ai.agent.Gauge;
+import fr.n7.saceca.u3du.model.ai.agent.memory.MemoryElement;
 import fr.n7.saceca.u3du.model.ai.agent.module.communication.CommunicationModule;
 import fr.n7.saceca.u3du.model.ai.agent.module.communication.DefaultCommunicationModule;
-import fr.n7.saceca.u3du.model.ai.agent.module.emotion.EmptyEmotionModule;
+import fr.n7.saceca.u3du.model.ai.agent.module.emotion.DefaultEmotionModule;
 import fr.n7.saceca.u3du.model.ai.agent.module.perception.DefaultPerceptionModule;
 import fr.n7.saceca.u3du.model.ai.agent.module.perception.PerceptionModule;
-import fr.n7.saceca.u3du.model.ai.agent.module.planning.DefaultPlanningModule;
+import fr.n7.saceca.u3du.model.ai.agent.module.planning.MatrixMethodPlanningModule;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.PlanningModule;
-import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.DefaultReasoningModule;
+import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.MMReasoningModule;
 import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.ReasoningModule;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
 import fr.n7.saceca.u3du.model.ai.object.behavior.Behavior;
@@ -49,7 +51,7 @@ import fr.n7.saceca.u3du.model.util.Periodic.Clock;
  * communication, reasonning, planning.
  * </ul>
  * 
- * @author Jérôme Dalbert
+ * @author Jérôme Dalbert, Ciprian Munteanu
  */
 public class DefaultAgentBehavior implements Behavior {
 	
@@ -79,17 +81,17 @@ public class DefaultAgentBehavior implements Behavior {
 		final CommunicationModule communicationModule = new DefaultCommunicationModule(this.agent);
 		this.agent.setCommunicationModule(communicationModule);
 		
-		final EmptyEmotionModule emotionModule = new EmptyEmotionModule();
+		final DefaultEmotionModule emotionModule = new DefaultEmotionModule(this.agent);
 		this.agent.setEmotionModule(emotionModule);
 		
 		final PerceptionModule perceptionModule = new DefaultPerceptionModule(this.agent);
 		this.agent.setPerceptionModule(perceptionModule);
 		
-		final PlanningModule planningModule = new DefaultPlanningModule(this.agent);
+		final PlanningModule planningModule = new MatrixMethodPlanningModule(this.agent);
 		this.agent.setPlanningModule(planningModule);
 		
-		final ReasoningModule reasoningModule = new DefaultReasoningModule(this.agent);
-		this.agent.setReasoningModule(reasoningModule);
+		final ReasoningModule mmReasoningModule = new MMReasoningModule(this.agent);
+		this.agent.setMmReasoningModule(mmReasoningModule);
 	}
 	
 	/**
@@ -104,7 +106,13 @@ public class DefaultAgentBehavior implements Behavior {
 		
 		/* Initial updates */
 		this.periodicGaugesDecrement(this.agent);
+		
+		this.periodicEmotionsDecrement(this.agent);
+		
 		this.usePassiveServices(this.agent);
+		
+		this.periodicMemoryReferencesDecrement(this.agent);
+		this.agent.getMemory().arrangeMemory();
 		
 		/* Death check */
 		if (this.isDead(this.agent)) {
@@ -122,7 +130,7 @@ public class DefaultAgentBehavior implements Behavior {
 		this.agent.getCommunicationModule().communicate();
 		this.sleepIfPause(this.agent);
 		
-		this.agent.getReasoningModule().reason();
+		this.agent.getMmReasoningModule().reason();
 		this.sleepIfPause(this.agent);
 		
 		this.agent.getPlanningModule().planAndExecute();
@@ -140,7 +148,7 @@ public class DefaultAgentBehavior implements Behavior {
 				if (!service.isActive()
 						&& service.getMaxDistanceForUsage() >= object.getPosition().distance(agent.getPosition())
 						&& service.isUsable(object, agent, null)) {
-					service.execute(object, agent, null, ExecutionMode.REAL);
+					service.useService(object, agent, null, ExecutionMode.REAL);
 				}
 			}
 		}
@@ -154,7 +162,38 @@ public class DefaultAgentBehavior implements Behavior {
 	 */
 	private void periodicGaugesDecrement(Agent agent) {
 		for (Gauge gauge : agent.getGauges()) {
-			gauge.periodicDecrement(agent);
+			if (gauge.isDecreased()) {
+				gauge.periodicDecrement(agent);
+			}
+		}
+	}
+	
+	/**
+	 * Updates the primary and secondary emotions periodically
+	 * 
+	 * @param agent
+	 *            the agent
+	 */
+	private void periodicEmotionsDecrement(Agent agent) {
+		for (Emotion emotion : agent.getEmotions()) {
+			emotion.periodicDecrement(agent);
+		}
+		for (Emotion emotion : agent.getSecondaryEmotions()) {
+			emotion.periodicDecrement(agent);
+		}
+	}
+	
+	/**
+	 * Updates periodically the number of references for every element in the memory
+	 * 
+	 * @param agent
+	 *            the agent
+	 */
+	private void periodicMemoryReferencesDecrement(Agent agent) {
+		for (MemoryElement element : agent.getMemory().getMemoryElements().values()) {
+			if (element.isForgettable()) {
+				element.periodicDecrement(agent);
+			}
 		}
 	}
 	

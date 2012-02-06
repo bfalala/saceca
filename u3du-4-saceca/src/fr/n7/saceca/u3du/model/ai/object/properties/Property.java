@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import fr.n7.saceca.u3du.model.ai.agent.Emotion;
 import fr.n7.saceca.u3du.model.ai.agent.Gauge;
 
 /**
@@ -147,6 +148,12 @@ public class Property<T> implements Cloneable {
 				Property<Double> prop = new Property<Double>((PropertyModel<Double>) this.model);
 				prop.setValue((Double) this.value);
 				prop = new Gauge(prop);
+				return (Property<T>) prop;
+			}
+			if (this.getModel().getName().startsWith(Emotion.PREFIX)) {
+				Property<Double> prop = new Property<Double>((PropertyModel<Double>) this.model);
+				prop.setValue((Double) this.value);
+				prop = new Emotion(prop);
 				return (Property<T>) prop;
 			} else {
 				Property<T> prop = new Property<T>(this.model);

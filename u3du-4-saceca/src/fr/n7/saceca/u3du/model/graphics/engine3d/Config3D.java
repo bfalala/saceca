@@ -29,7 +29,7 @@ public class Config3D {
 	public static final boolean TEST_ENABLED = false;
 	
 	/** The Flycam move speed. */
-	public static final int MOVE_SPEED = 50;
+	public static final int MOVE_SPEED = 200;
 	
 	/** The prefix used to name graphical objects. */
 	public static final String OBJECTS_PREFIX = "WV_OBJECT_";

@@ -1,0 +1,11 @@
+<object model="Car" id="3579">
+  <position x="45.0" y="2.0" theta="1.5707964"/>
+  <properties>
+    <double name="c_Vehicle_drive_speed" value="0.5"/>
+    <bool name="i_threaded" value="true"/>
+    <bool name="i_isMisc" value="false"/>
+    <int name="i_mass" value="42"/>
+    <string name="i_graphics_conf" value="Citroen2CV"/>
+  </properties>
+  <belongings/>
+</object>

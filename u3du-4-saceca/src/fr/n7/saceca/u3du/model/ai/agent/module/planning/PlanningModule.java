@@ -15,17 +15,12 @@ package fr.n7.saceca.u3du.model.ai.agent.module.planning;
 import java.util.List;
 
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
-import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.Goal;
+import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.MMGoal;
 import fr.n7.saceca.u3du.model.console.CommandException;
+import fr.n7.saceca.u3du.model.util.Couple;
 import fr.n7.saceca.u3du.model.util.io.storage.Storable;
 
-/**
- * The Interface PlanningModule.
- * 
- * @author Sylvain Cambon & Jérôme Dalbert
- */
 public interface PlanningModule extends Storable {
-	
 	/**
 	 * Plan and execute.
 	 */
@@ -44,7 +39,7 @@ public interface PlanningModule extends Storable {
 	 *            the max depth
 	 * @return the plan
 	 */
-	public Plan buildPlan(Agent agent, Goal goal, int currentDepth, int maxDepth);
+	public Couple<Boolean, Plan> buildPlan(Agent agent, MMGoal goal, int currentDepth, int maxDepth);
 	
 	/**
 	 * Gets the plan.
@@ -58,7 +53,7 @@ public interface PlanningModule extends Storable {
 	 * 
 	 * @return the current goal
 	 */
-	public Goal getCurrentGoal();
+	public MMGoal getCurrentGoal();
 	
 	/**
 	 * Gets the current plan.
@@ -93,5 +88,4 @@ public interface PlanningModule extends Storable {
 	 * Enables the planning.
 	 */
 	public void enablePlanning();
-	
 }

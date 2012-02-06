@@ -12,6 +12,7 @@
  */
 package fr.n7.saceca.u3du.model.ai.agent.module.perception;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -20,15 +21,17 @@ import fr.n7.saceca.u3du.model.ai.Visibility;
 import fr.n7.saceca.u3du.model.ai.World;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
 import fr.n7.saceca.u3du.model.ai.agent.Gauge;
+import fr.n7.saceca.u3du.model.ai.agent.memory.Memory;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
 import fr.n7.saceca.u3du.model.ai.object.properties.PropertiesContainer;
 import fr.n7.saceca.u3du.model.ai.object.properties.Property;
 import fr.n7.saceca.u3du.model.ai.object.properties.PropertyModel;
+import fr.n7.saceca.u3du.model.util.Couple;
 
 /**
  * The Class DefaultPerceptionModule.
  * 
- * @author Jérôme Dalbert
+ * @author Jérôme Dalbert, Ciprian Munteanu
  */
 public class DefaultPerceptionModule implements PerceptionModule {
 	
@@ -52,6 +55,8 @@ public class DefaultPerceptionModule implements PerceptionModule {
 	public void perceive() {
 		this.doInternalPerception();
 		this.doEyesightPerception();
+		
+		this.agent.getMemory().arrangeMemory();
 	}
 	
 	/**
@@ -109,12 +114,79 @@ public class DefaultPerceptionModule implements PerceptionModule {
 				PerceptionModule.NEARBY_OBJECTS_RANGE);
 		
 		// We perceive the objects information
+		ArrayList<Couple<WorldObject, Boolean>> oldPerceviedObjects = this.agent.getMemory().getPerceivedObjects();
+		this.agent.getMemory().setPerceivedObjects(new ArrayList<Couple<WorldObject, Boolean>>());
+		
 		for (Long object : objectsInVisionField) {
-			this.perceiveInformation(world.getWorldObjects().get(object));
-		}
-		for (WorldObject worldObject : nearbyObjects) {
+			WorldObject worldObject = world.getWorldObjects().get(object);
+			
+			try {
+				if (!worldObject.getPropertiesContainer().getBoolean("i_isMisc")
+						&& !worldObject.getModelName().equals("TrafficLight")) {
+					this.agent.getMemory().addPerceivedObject(worldObject, true);
+				}
+			} catch (Exception e) {
+				
+			}
+			
 			this.perceiveInformation(worldObject);
 		}
+		for (WorldObject worldObject : nearbyObjects) {
+			try {
+				if (!worldObject.getPropertiesContainer().getBoolean("i_isMisc")
+						&& !worldObject.getModelName().equals("TrafficLight")) {
+					if (!this.objectInPerceived_list(worldObject)) {
+						this.agent.getMemory().addPerceivedObject(worldObject, true);
+					}
+				}
+			} catch (Exception e) {
+				
+			}
+			
+			this.perceiveInformation(worldObject);
+		}
+		
+		if (oldPerceviedObjects != null) {
+			this.checkPerceivedObjects(oldPerceviedObjects);
+		}
+	}
+	
+	/**
+	 * Checks to see which elements from the perceived objects list are new elements and which ones
+	 * were perceived in the previous perception
+	 * 
+	 * @param oldPerceviedObjects
+	 *            the list of perceived objects in the previous perception
+	 */
+	private void checkPerceivedObjects(ArrayList<Couple<WorldObject, Boolean>> oldPerceviedObjects) {
+		for (Couple<WorldObject, Boolean> newCouple : this.agent.getMemory().getPerceivedObjects()) {
+			for (Couple<WorldObject, Boolean> oldCouple : oldPerceviedObjects) {
+				if (newCouple.getFirstElement().getId() == oldCouple.getFirstElement().getId()) {
+					this.agent
+							.getMemory()
+							.getPerceivedObjects()
+							.set(this.agent.getMemory().getPerceivedObjects().indexOf(newCouple),
+									new Couple<WorldObject, Boolean>(oldCouple.getFirstElement(), false));
+					break;
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Checks if an object exists in the list of perceived objects
+	 * 
+	 * @param worldObject
+	 *            the object
+	 * @return
+	 */
+	private boolean objectInPerceived_list(WorldObject worldObject) {
+		for (Couple<WorldObject, Boolean> couple : this.agent.getMemory().getPerceivedObjects()) {
+			if (couple.getFirstElement().getId() == worldObject.getId()) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/**
@@ -128,6 +200,9 @@ public class DefaultPerceptionModule implements PerceptionModule {
 		WorldObject knowledgeAboutObject = this.agent.getMemory().getKnowledgeAbout(object);
 		if (knowledgeAboutObject == null) {
 			knowledgeAboutObject = this.agent.getMemory().remember(object.getEmptyClone());
+		} else if (!this.agent.getMemory().isUnimportantObject(object.getModelName())) {
+			this.agent.getMemory().getMemoryElements().get(knowledgeAboutObject.getId())
+					.increaseNbReferences(Memory.NB_REFERENCES_FROM_PERCEPTION);
 		}
 		
 		// Perceive position
@@ -147,5 +222,4 @@ public class DefaultPerceptionModule implements PerceptionModule {
 		// Perceive services
 		knowledgeAboutObject.setServices(object.getServices());
 	}
-	
 }

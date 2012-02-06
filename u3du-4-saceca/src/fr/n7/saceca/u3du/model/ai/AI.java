@@ -96,4 +96,6 @@ public interface AI {
 	 */
 	public abstract EntitiesFactory getEntitiesFactory();
 	
+	public void initAI();
+	
 }

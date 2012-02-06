@@ -45,6 +45,7 @@ public class MoveHumanAnimation extends MoveAnimation {
 		Engine3D engine3d = Model.getInstance().getGraphics().getEngine3D();
 		GraphicalAgent graphicalAgent = engine3d.agents.get(this.objectId);
 		graphicalAgent.move(this);
+		
 	}
 	
 }

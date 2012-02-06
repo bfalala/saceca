@@ -33,6 +33,7 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.collision.CollisionResult;
 import com.jme3.collision.CollisionResults;
+import com.jme3.input.ChaseCamera;
 import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.KeyTrigger;
@@ -94,6 +95,8 @@ public class Engine3D extends SimpleApplication implements Graphics {
 	 * Contains all the objects and agents visible by the agent. Visible means that the object is
 	 * interesting for agents, for instance, objects that offer services.
 	 */
+	private Spatial selectedObject = null;
+	private ChaseCamera chaseCam;
 	private Node perceptibleNodes;
 	/**
 	 * Contains all the objects without any interest for agents, for instance the ground. Other
@@ -225,8 +228,10 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		// We create the ball
 		this.makeBall();
 		
+		this.chaseCam = new ChaseCamera(this.cam, this.inputManager);
+		
 		// We call this method in order that the first picking is immediate
-		this.getPickedObject();
+		// this.getPickedObject();
 		
 		// We draw a grid
 		if (Config3D.GRID_DRAW) {
@@ -447,12 +452,21 @@ public class Engine3D extends SimpleApplication implements Graphics {
 	/**
 	 * Camera initialization.
 	 */
-	private void initCamera() {
+	public void enablechase() {
+		this.chaseCam.setEnabled(false);
+	}
+	
+	public void enablefly() {
+		this.flyCam.setEnabled(false);
+	}
+	
+	public void initCamera() {
 		// Set the location of the cam
+		//
 		this.flyCam.setEnabled(true);
 		this.flyCam.setDragToRotate(true);
 		this.flyCam.setMoveSpeed(Config3D.MOVE_SPEED);
-		this.cam.setLocation(new Vector3f(150, 150, 0));
+		this.cam.setLocation(new Vector3f(250, 250, 0));
 		this.cam.lookAt(new Vector3f(0, 0, 0), new Vector3f(0, 1, 0));
 	}
 	
@@ -485,7 +499,8 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		
 		// We map the rotation
 		this.inputManager.addMapping("FLYCAM_RotateDrag", new MouseButtonTrigger(MouseInput.BUTTON_RIGHT));
-		
+		// je mappe switch_camera
+		this.inputManager.addMapping("Switch_camera", new KeyTrigger(KeyInput.KEY_C));
 		// We map the other camera movements
 		this.inputManager.addMapping("FLYCAM_Forward", new KeyTrigger(KeyInput.KEY_E));
 		this.inputManager.addMapping("FLYCAM_Backward", new KeyTrigger(KeyInput.KEY_R));
@@ -523,8 +538,8 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		this.inputManager.addMapping("MouseLeftClic", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
 		
 		// action listener
-		this.inputManager.addListener(this.listener, new String[] { "Escape", "RotateDrag", "MouseLeftClic",
-				"CTRL_key", "SHIFT_key", "DEL_key" });
+		this.inputManager.addListener(this.listener, new String[] { "Escape", "RotateDrag", "Switch_camera",
+				"MouseLeftClic", "CTRL_key", "SHIFT_key", "DEL_key" });
 		
 		// flycam rotation listener
 		this.inputManager.addListener(this.flyCam, new String[] { "FLYCAM_RotateDrag", "FLYCAM_StrafeLeft",
@@ -533,6 +548,7 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		// analog listener
 		this.inputManager.addListener(this.listener,
 				new String[] { "FLYCAM_StrafeUp", "FLYCAM_StrafeDown", "MouseMove" });
+		// this.inputManager.addListener(this.actionListener, new String[] { "Switch_camera" });
 		
 	}
 	
@@ -647,6 +663,7 @@ public class Engine3D extends SimpleApplication implements Graphics {
 					fixed = true;
 				}
 			}
+			
 		}
 		return fixed;
 	}
@@ -753,21 +770,6 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		/** Accelerate the physcical ball. */
 		ballPhy.setLinearVelocity(new Vector3f(0, -20, 0));
 		ballPhy.setFriction(1f);
-	}
-	
-	/**
-	 * Place the specified object on the center of the camera.
-	 * 
-	 * @param id
-	 *            The id of the object
-	 */
-	public void setFocusOn(long id) {
-		GraphicalObject object = this.objects.get(id);
-		if (object == null) {
-			object = this.agents.get(id);
-		}
-		this.cam.setLocation(new Vector3f(20 + object.getXPosition(), 20, object.getZPosition()));
-		this.cam.lookAt(object.getModel().getLocalTranslation(), new Vector3f(0, 1, 0));
 	}
 	
 	/**
@@ -966,7 +968,7 @@ public class Engine3D extends SimpleApplication implements Graphics {
 	 */
 	public Long getPickedObject() {
 		// the selected object
-		Spatial selectedObject = null;
+		boolean movible = false;
 		Long objectId = null;
 		Vector2f mousePosition = this.inputManager.getCursorPosition();
 		
@@ -989,7 +991,7 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		
 		if (results.size() > 0) {
 			// We take the closest collision
-			selectedObject = results.getClosestCollision().getGeometry();
+			this.selectedObject = results.getClosestCollision().getGeometry();
 			// The object is a geometry
 			// We may want to select a whole node such as a house or a car instead of only one of
 			// its components
@@ -999,16 +1001,40 @@ public class Engine3D extends SimpleApplication implements Graphics {
 			// We look for this name. When the name is found, the whole componant has been found
 			
 			// While we do not have a componant respecting the convention name
-			while (!selectedObject.getParent().getName().startsWith("Root Node")
-					&& !selectedObject.getName().startsWith(Config3D.OBJECTS_PREFIX)) {
-				selectedObject = selectedObject.getParent();
+			if (this.selectedObject.getName().startsWith("Man") || this.selectedObject.getName().startsWith("car")
+					|| this.selectedObject.getName().startsWith("bus")) {
+				// System.out.println("%%%%%%%%%%%%%%%%%%%%%%%" + this.selectedObject.getName());
+				// this.setFocusOn(objectId);
+				movible = true;
+				
+			} else {
+				// System.out.println("***********************" + this.selectedObject.getName());
+				// this.resumecam(objectId);
+				movible = false;
+			}
+			// System.out.println(movible);
+			while (!this.selectedObject.getParent().getName().startsWith("Root Node")
+					&& !this.selectedObject.getName().startsWith(Config3D.OBJECTS_PREFIX)) {
+				this.selectedObject = this.selectedObject.getParent();
 			}
 		}
 		
-		if (selectedObject != null && selectedObject.getName().startsWith(Config3D.OBJECTS_PREFIX)) {
-			objectId = Config3D.getIdFromName(selectedObject.getName());
+		if (this.selectedObject != null && this.selectedObject.getName().startsWith(Config3D.OBJECTS_PREFIX)) {
+			objectId = Config3D.getIdFromName(this.selectedObject.getName());
+			
+			// this.flyCam.setEnabled(false);
+			// ChaseCamera chaseCam = new ChaseCamera(this.cam, this.selectedObject);
+			// this.selectedObject.addControl(this.chaseCam);
 		}
-		
+		// this.flyCam.setEnabled(true);
+		if (movible) {
+			// System.out.println(this.selectedObject.getName() + " est agent mobile");
+			this.flyCam.setEnabled(false);
+			this.chaseCam.setEnabled(true);
+			this.selectedObject.addControl(this.chaseCam);
+		} else {
+			this.resumecam(objectId);
+		}
 		return objectId;
 	}
 	
@@ -1153,4 +1179,65 @@ public class Engine3D extends SimpleApplication implements Graphics {
 	public void showMessage(Long emitter, String message) {
 		this.agents.get(emitter).getEmmitedMessages().add(message);
 	}
+	
+	/**
+	 * Place the specified object on the center of the camera.
+	 * 
+	 * @param id
+	 *            The id of the object
+	 */
+	
+	public void resumecam(long id) {
+		this.chaseCam.setEnabled(false);
+		this.flyCam.setEnabled(true);
+		this.flyCam.setDragToRotate(true);
+		this.flyCam.setMoveSpeed(Config3D.MOVE_SPEED);
+		GraphicalObject object = this.objects.get(id);
+		this.cam.setLocation(new Vector3f(20 + object.getXPosition(), 20, object.getZPosition()));
+		this.cam.lookAt(object.getModel().getLocalTranslation(), new Vector3f(0, 1, 0));
+		
+	}
+	
+	public void setFocusOn(long id) {
+		Spatial select = null;
+		GraphicalObject object = this.objects.get(id);
+		// /System.out.println("+++++++++++++++++++++++++++++++ the id is " + id +
+		// "++++++++++++++++++++++++++++");
+		
+		if (object == null) {
+			object = this.agents.get(id);
+			
+		}
+		
+		select = object.getModel();
+		// /System.out.println("****************************************the name is " +
+		// select.getName()
+		// + "***********************");
+		
+		// this.cam.setLocation(new Vector3f(20 + object.getXPosition(), 20,
+		// object.getZPosition()));
+		// this.cam.lookAt(object.getModel().getLocalTranslation(), new Vector3f(0, 1, 0));
+		
+		this.flyCam.setEnabled(false);
+		this.chaseCam.setEnabled(true);
+		select.addControl(this.chaseCam);
+		// this.flyCam.setEnabled(true);
+		/*
+		 * this.chaseCam.setSmoothMotion(true); this.chaseCam.setMaxDistance(50);
+		 * this.chaseCam.setDefaultDistance(20);
+		 */
+		// System.out.println("---------------------------------------------the name is " +
+		// select.getName()
+		// + "---------------------------");
+		// System.out.println(this.chaseCam.toString());
+	}
+	
+	public Spatial getSelectedObject() {
+		return this.selectedObject;
+	}
+	
+	public void setSelectedObject(Spatial selectedObject) {
+		this.selectedObject = selectedObject;
+	}
+	
 }

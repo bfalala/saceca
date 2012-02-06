@@ -24,10 +24,7 @@
   <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.messagehandler.WhereIsItDunnoAnswerMessageHandler"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/messagehandler/WhereIsItDunnoAnswerMessageHandler.class"/>
   <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.messagehandler.WhereIsItQuestionMessageHandler"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/messagehandler/WhereIsItQuestionMessageHandler.class"/>
   <class qName="fr.n7.saceca.u3du.model.ai.agent.module.communication.DefaultCommunicationModule"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/communication/DefaultCommunicationModule.class"/>
-  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.emotion.EmptyEmotionModule"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/emotion/EmptyEmotionModule.class"/>
   <class qName="fr.n7.saceca.u3du.model.ai.agent.module.perception.DefaultPerceptionModule"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/perception/DefaultPerceptionModule.class"/>
-  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.planning.DefaultPlan"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/planning/DefaultPlan.class"/>
-  <class qName="fr.n7.saceca.u3du.model.ai.agent.module.planning.DefaultPlanningModule"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/planning/DefaultPlanningModule.class"/>
   <class qName="fr.n7.saceca.u3du.model.ai.agent.module.planning.UnreachableObjectExpcetion"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/planning/UnreachableObjectExpcetion.class"/>
   <class qName="fr.n7.saceca.u3du.model.ai.agent.module.reasoning.rule.ChooseGoalToReach"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/reasoning/rule/ChooseGoalToReach.class"/>
   <class qName="fr.n7.saceca.u3du.model.ai.agent.module.reasoning.rule.CreateGaugeGoal"  file="bin/fr/n7/saceca/u3du/model/ai/agent/module/reasoning/rule/CreateGaugeGoal.class"/>
@@ -46,6 +43,7 @@
   <class qName="fr.n7.saceca.u3du.model.ai.service.action.Rest"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/Rest.class"/>
   <class qName="fr.n7.saceca.u3du.model.ai.service.action.WatchAMovie"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/WatchAMovie.class"/>
   <class qName="fr.n7.saceca.u3du.model.ai.service.action.WalkTo"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/WalkTo.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.service.action.GoToToilet"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/GoToToilet.class"/>
 
   <!-- Animations -->
   <class qName="fr.n7.saceca.u3du.model.graphics.animation.DisappearAnimation"  file="bin/fr/n7/saceca/u3du/model/graphics/animation/DisappearAnimation.class"/>

@@ -23,7 +23,7 @@ import fr.n7.saceca.u3du.model.Model;
 public class MainEngine {
 	
 	/** The Constant INSTANCES_PATH. */
-	private static final String INSTANCES_PATH = "data/ai/instances/normal";
+	private static final String INSTANCES_PATH = "data/ai/instances/planning test 1";
 	
 	/** The Constant MODELS_PATH. */
 	private static final String MODELS_PATH = "data/ai";

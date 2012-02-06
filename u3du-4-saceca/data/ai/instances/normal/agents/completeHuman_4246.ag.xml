@@ -5,7 +5,6 @@
     <int name="c_Human_cash" value="100"/>
     <string name="c_BuildingOwner_address" value="15 Beach road"/>
     <string name="c_Worker_companyName" value="The World Company"/>
-    <double name="i_gauge_hunger" value="80.0"/>
     <int name="i_decrement_period_default" value="14"/>
     <int name="i_perception_maxHearingDistance" value="10"/>
     <int name="i_perception_maxEyesightDistance" value="10"/>
@@ -13,9 +12,12 @@
     <int name="i_mass" value="75"/>
     <int name="i_decrement_period_thirst" value="8"/>
     <string name="i_graphics_conf" value="Man"/>
-    <double name="i_gauge_thirst" value="78.0"/>
-    <double name="i_gauge_tiredness" value="50.0"/>
-    <double name="i_gauge_happiness" value="87.0"/>
+     <double name="i_gauge_primordial_hunger" value="80.0"/>
+    <double name="i_gauge_primordial_thirst" value="75.0"/>
+    <double name="i_gauge_primordial_tiredness" value="86.0"/>
+    <double name="i_gauge_primordial_breath" value="86.0"/>
+    <double name="i_gauge_primordial_naturalneeds" value="56.0"/>
+    <double name="i_gauge_primordial_skintemperature" value="86.0"/>
     <int name="c_Worker_workingTime" value="40"/>
     <int name="c_Human_restDuration" value="50"/>
     <int name="c_Human_maxCarriedMass" value="10"/>
@@ -29,7 +31,7 @@
     <memory-elements>
       <entry>
         <long>34</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="House" id="34">
             <position x="46.0" y="-71.0" theta="3.1415927"/>
             <properties>
@@ -45,7 +47,7 @@
       </entry>
       <entry>
         <long>35</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="House" id="35">
             <position x="68.0" y="-81.0" theta="0.0"/>
             <properties>
@@ -61,7 +63,7 @@
       </entry>
       <entry>
         <long>2</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="Atm" id="2">
             <position x="-10.0" y="-30.0" theta="0.0"/>
             <properties>
@@ -76,7 +78,7 @@
       </entry>
       <entry>
         <long>33</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="House" id="33">
             <position x="70.0" y="-9.0" theta="1.5707964"/>
             <properties>
@@ -92,7 +94,7 @@
       </entry>
       <entry>
         <long>3</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="Bank" id="3">
             <position x="-91.0" y="28.0" theta="1.57"/>
             <properties>
@@ -108,7 +110,7 @@
       </entry>
       <entry>
         <long>6</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="Restaurant" id="6">
             <position x="-50.0" y="-20.0" theta="7.8531857"/>
             <properties>
@@ -125,7 +127,7 @@
       </entry>
       <entry>
         <long>36</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="House" id="36">
             <position x="84.0" y="-55.0" theta="0.0"/>
             <properties>
@@ -141,7 +143,7 @@
       </entry>
       <entry>
         <long>7</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="Building" id="7">
             <position x="-83.0" y="43.0" theta="3.1407964"/>
             <properties>
@@ -158,7 +160,7 @@
       </entry>
       <entry>
         <long>8</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="House" id="8">
             <position x="27.0" y="-61.0" theta="3.1415927"/>
             <properties>
@@ -174,7 +176,7 @@
       </entry>
       <entry>
         <long>9</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="House" id="9">
             <position x="26.0" y="-26.0" theta="4.712389"/>
             <properties>
@@ -190,7 +192,7 @@
       </entry>
       <entry>
         <long>10</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="House" id="10">
             <position x="35.0" y="-11.0" theta="4.712389"/>
             <properties>
@@ -206,7 +208,7 @@
       </entry>
       <entry>
         <long>21</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="Cinema" id="21">
             <position x="64.0" y="52.0" theta="0.0"/>
             <properties>
@@ -223,7 +225,7 @@
       </entry>
       <entry>
         <long>20</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="Restaurant" id="20">
             <position x="-16.0" y="-53.0" theta="7.853982"/>
             <properties>
@@ -240,7 +242,7 @@
       </entry>
       <entry>
         <long>24</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="DrinkVendingMachine" id="24">
             <position x="-10.0" y="-19.0" theta="1.59"/>
             <properties>
@@ -255,7 +257,7 @@
       </entry>
       <entry>
         <long>27</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="House" id="27">
             <position x="59.0" y="-26.0" theta="4.712389"/>
             <properties>
@@ -271,7 +273,7 @@
       </entry>
       <entry>
         <long>4246</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="false" place="long" nbRef="100">
           <worldObject class="agent" model="CompleteHuman" id="4246">
             <position x="-23.0" y="-6.0" theta="0.0"/>
             <properties>
@@ -279,7 +281,7 @@
               <int name="c_Human_cash" value="100"/>
               <string name="c_BuildingOwner_address" value="15 Beach road"/>
               <string name="c_Worker_companyName" value="The World Company"/>
-              <double name="i_gauge_hunger" value="80.0"/>
+             
               <int name="i_decrement_period_default" value="14"/>
               <int name="i_perception_maxHearingDistance" value="10"/>
               <int name="i_perception_maxEyesightDistance" value="10"/>
@@ -287,9 +289,12 @@
               <int name="i_mass" value="75"/>
               <int name="i_decrement_period_thirst" value="8"/>
               <string name="i_graphics_conf" value="Man"/>
-              <double name="i_gauge_thirst" value="78.0"/>
-              <double name="i_gauge_tiredness" value="30.0"/>
-              <double name="i_gauge_happiness" value="87.0"/>
+              <double name="i_gauge_primordial_hunger" value="80.0"/>
+				<double name="i_gauge_primordial_thirst" value="15.0"/>
+				<double name="i_gauge_primordial_tiredness" value="86.0"/>
+				<double name="i_gauge_primordial_breath" value="86.0"/>
+				<double name="i_gauge_primordial_naturalneeds" value="86.0"/>
+				<double name="i_gauge_primordial_skintemperature" value="86.0"/>
               <int name="c_Worker_workingTime" value="40"/>
               <int name="c_Human_restDuration" value="50"/>
               <int name="c_Human_maxCarriedMass" value="10"/>
@@ -312,7 +317,7 @@
       </entry>
       <entry>
         <long>29</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="House" id="29">
             <position x="25.0" y="-46.0" theta="10.995574"/>
             <properties>
@@ -328,7 +333,7 @@
       </entry>
       <entry>
         <long>3030</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="Restaurant" id="3030">
             <position x="11.0" y="32.0" theta="28.274338"/>
             <properties>
@@ -345,7 +350,7 @@
       </entry>
       <entry>
         <long>28</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="House" id="28">
             <position x="62.0" y="-85.0" theta="1.5707964"/>
             <properties>
@@ -361,7 +366,7 @@
       </entry>
       <entry>
         <long>30</long>
-        <memory-element forgettable="false">
+        <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="House" id="30">
             <position x="69.0" y="-44.0" theta="0.0"/>
             <properties>
@@ -375,6 +380,23 @@
           </worldObject>
         </memory-element>
       </entry>
+	  <entry>
+        <long>8120</long>
+        <memory-element forgettable="true" place="long" nbRef="50">
+		<worldObject model="Toilet" id="8120">
+			<position x="74.0" y="9.0" theta="0.0"/>
+			<properties>
+				<int name="c_Toilet_duration" value="5"/>
+				<bool name="i_threaded" value="false"/>
+				<bool name="i_isMisc" value="false"/>
+				<string name="c_Building_address" value="none"/>
+				<int name="i_mass" value="42"/>
+				<string name="i_graphics_conf" value="Toilet"/>
+			</properties>
+			<belongings/>
+		</worldObject>
+		</memory-element>
+	  </entry>
     </memory-elements>
     <insertionOrderedElements/>
     <messageInbox class="linked-list"/>

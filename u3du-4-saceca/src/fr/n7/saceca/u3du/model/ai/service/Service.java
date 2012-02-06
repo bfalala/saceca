@@ -12,6 +12,7 @@
  */
 package fr.n7.saceca.u3du.model.ai.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -19,22 +20,28 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
+import Emotion_secondary.update_secondary;
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
+import fr.n7.saceca.u3du.model.ai.agent.Agent;
+import fr.n7.saceca.u3du.model.ai.agent.Emotion;
+import fr.n7.saceca.u3du.model.ai.agent.memory.Memory;
 import fr.n7.saceca.u3du.model.ai.category.Category;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
+import fr.n7.saceca.u3du.model.ai.object.properties.PropertiesContainer;
 import fr.n7.saceca.u3du.model.ai.service.action.Action;
 import fr.n7.saceca.u3du.model.ai.statement.ExecutionMode;
-import fr.n7.saceca.u3du.model.ai.statement.StatementsGroup;
 import fr.n7.saceca.u3du.model.util.Couple;
+import fr.n7.saceca.u3du.model.util.Oriented2DPosition;
 import fr.n7.saceca.u3du.model.util.io.storage.Storable;
 
 /**
  * A class to represent a service. A service is shared among all its providers.
  * 
- * @author Sylvain Cambon
+ * @author Sylvain Cambon, Ciprian Munteanu, Mehdi Boukhris
  */
 @XStreamAlias("service")
 public class Service implements Storable {
@@ -47,6 +54,10 @@ public class Service implements Storable {
 	@XStreamAlias("name")
 	@XStreamAsAttribute
 	private String name;
+	
+	/** The provider's id */
+	@XStreamOmitField
+	private Long providerId;
 	
 	/** The kind of service. */
 	@XStreamAlias("active")
@@ -66,9 +77,21 @@ public class Service implements Storable {
 	@XStreamAlias("provider-categories")
 	private Set<Category> providerCategories;
 	
-	/** The statements. */
-	@XStreamAlias("statements")
-	private StatementsGroup statements;
+	/** The service's parameters */
+	@XStreamAlias("service-parameters")
+	private ArrayList<Param> serviceParameters;
+	
+	/** The service's preconditions */
+	@XStreamAlias("service-preconditions")
+	private ArrayList<ServiceProperty> servicePreconditions;
+	
+	/** The service's effects plus */
+	@XStreamAlias("service-effectsPlus")
+	private ArrayList<ServiceProperty> serviceEffectsPlus;
+	
+	/** The service negative effects */
+	@XStreamAlias("service-effectsMinus")
+	private ArrayList<ServiceProperty> serviceEffectsMinus;
 	
 	/** The action class. */
 	@XStreamAlias("java-action")
@@ -98,15 +121,39 @@ public class Service implements Storable {
 	 *            the action class
 	 */
 	public Service(String name, boolean active, int maxDistanceForUsage, Set<Category> providerCategories,
-			Set<Category> consumerCategories, StatementsGroup statements, Class<? extends Action> actionClass) {
+			Set<Category> consumerCategories, ArrayList<Param> serviceParameters,
+			ArrayList<ServiceProperty> servicePreconditions, ArrayList<ServiceProperty> serviceEffectsPlus,
+			ArrayList<ServiceProperty> serviceEffectsMinus, Class<? extends Action> actionClass) {
 		super();
 		this.active = active;
 		this.maxDistanceForUsage = maxDistanceForUsage;
 		this.providerCategories = providerCategories;
 		this.consumerCategories = consumerCategories;
 		this.name = name;
-		this.statements = statements;
+		this.serviceParameters = serviceParameters;
+		this.servicePreconditions = servicePreconditions;
+		this.serviceEffectsPlus = serviceEffectsPlus;
+		this.serviceEffectsMinus = serviceEffectsMinus;
 		this.actionClass = actionClass;
+		this.readResolve();
+	}
+	
+	/**
+	 * Default constructor
+	 */
+	public Service() {
+		super();
+		this.active = true;
+		this.maxDistanceForUsage = 0;
+		this.providerCategories = null;
+		this.consumerCategories = null;
+		this.name = "";
+		this.serviceParameters = null;
+		this.servicePreconditions = null;
+		this.serviceEffectsPlus = null;
+		this.serviceEffectsMinus = null;
+		this.setProviderId(0L);
+		this.readResolve();
 	}
 	
 	/**
@@ -128,8 +175,7 @@ public class Service implements Storable {
 	}
 	
 	/**
-	 * Executes the service. All the effects are edge-effects. The conditions are checked before
-	 * usage.
+	 * Executes the service by applying all the positive and negative effects of that service
 	 * 
 	 * @param provider
 	 *            The provider.
@@ -145,7 +191,95 @@ public class Service implements Storable {
 			ExecutionMode mode) {
 		boolean useable = this.isUsable(provider, consumer, parameters);
 		if (useable) {
-			this.statements.executeEffects(provider, consumer, parameters, mode);
+			Agent agent = (Agent) consumer;
+			
+			ArrayList<ServiceProperty> servicePropertyList = new ArrayList<ServiceProperty>();
+			
+			for (ServiceProperty serviceProperty : this.serviceEffectsPlus) {
+				servicePropertyList.add(serviceProperty.deepDataClone());
+			}
+			
+			for (ServiceProperty serviceProperty : this.serviceEffectsMinus) {
+				servicePropertyList.add(serviceProperty.deepDataClone());
+			}
+			
+			String treatment;
+			String type, paramValue;
+			
+			PropertiesContainer agentProperties = agent.getPropertiesContainer();
+			PropertiesContainer agentPropertiesFromMemory = agent.getMemory().getKnowledgeAboutOwner()
+					.getPropertiesContainer();
+			
+			for (ServiceProperty serviceProperty : servicePropertyList) {
+				treatment = serviceProperty.getTreatment_effect();
+				String[] vars = new String[3];
+				vars = treatment.split("__");
+				type = serviceProperty.getParameter(vars[2]).getParamType();
+				paramValue = serviceProperty.getParameter(vars[2]).getParamValue();
+				
+				try {
+					if (vars[1].equals("+")) {
+						if (type.equals("int")) {
+							Integer value = Integer.parseInt(paramValue);
+							agentProperties.setInt(vars[0], agentProperties.getInt(vars[0]) + value);
+							agentPropertiesFromMemory
+									.setInt(vars[0], agentPropertiesFromMemory.getInt(vars[0]) + value);
+						} else if (type.equals("double")) {
+							Double value = Double.parseDouble(paramValue);
+							agentProperties.setDouble(vars[0], agentProperties.getDouble(vars[0]) + value);
+							agentPropertiesFromMemory.setDouble(vars[0], agentPropertiesFromMemory.getDouble(vars[0])
+									+ value);
+						}
+					} else if (vars[1].equals("-")) {
+						if (type.equals("int")) {
+							Integer value = Integer.parseInt(paramValue);
+							agentProperties.setInt(vars[0], agentProperties.getInt(vars[0]) - value);
+							agentPropertiesFromMemory
+									.setInt(vars[0], agentPropertiesFromMemory.getInt(vars[0]) - value);
+						} else if (type.equals("double")) {
+							Double value = Double.parseDouble(paramValue);
+							agentProperties.setDouble(vars[0], agentProperties.getDouble(vars[0]) - value);
+							agentPropertiesFromMemory.setDouble(vars[0], agentPropertiesFromMemory.getDouble(vars[0])
+									- value);
+						}
+					} else if (vars[1].equals("=")) {
+						if (type.equals("string")) {
+							agentProperties.setString(vars[0], paramValue);
+							agentPropertiesFromMemory.setString(vars[0], paramValue);
+						} else if (type.equals("3DPoint")) {
+							String[] coordonates = paramValue.split("_");
+							agent.setPosition(new Oriented2DPosition(Float.parseFloat(coordonates[0]), Float
+									.parseFloat(coordonates[1]), Float.parseFloat(coordonates[2])));
+							agent.getMemory()
+									.getKnowledgeAboutOwner()
+									.setPosition(
+											new Oriented2DPosition(Float.parseFloat(coordonates[0]), Float
+													.parseFloat(coordonates[1]), Float.parseFloat(coordonates[2])));
+						}
+						
+					}
+				} catch (Exception e) {
+					
+				}
+			}
+			
+			if (agent.getMemory().getKnowledgeAbout(this.providerId) != null) {
+				agent.getMemory().getMemoryElements().get(this.providerId)
+						.increaseNbReferences(Memory.NB_REFERENCES_FROM_USAGE);
+			}
+			
+			update_secondary update = new update_secondary();
+			
+			int[][] result = update.resultingSecondaryEmotions(update.potentialsecondary(this),
+					update.potentialvaluesecondary(agent.getEmotions()));
+			int i = 0;
+			for (Emotion secondary : agent.getSecondaryEmotions()) {
+				if (result[0][i] != 0) {
+					secondary.setValue(secondary.getValue() + result[0][i]);
+					System.out.println(secondary.getValue());
+				}
+				i++;
+			}
 		}
 		
 		return useable ? ExecutionStatus.SUCCESSFUL_TERMINATION : ExecutionStatus.FAILURE;
@@ -199,6 +333,47 @@ public class Service implements Storable {
 	}
 	
 	/**
+	 * Uses the service.
+	 * 
+	 * @param provider
+	 *            the provider
+	 * @param consumer
+	 *            the consumer
+	 * @param parameters
+	 *            the parameters
+	 * @param mode
+	 *            the mode
+	 * @return The execution status after the execution of a part of the service.
+	 */
+	public ExecutionStatus useService(WorldObject provider, WorldObject consumer, Map<String, Object> parameters,
+			ExecutionMode mode) {
+		ExecutionStatus state = ExecutionStatus.SUCCESSFUL_TERMINATION;
+		Couple<WorldObject, WorldObject> couple = new Couple<WorldObject, WorldObject>(provider, consumer);
+		Action action = this.runningActions.get(couple);
+		if (action == null && this.actionClass != null) {
+			try {
+				action = this.actionClass.newInstance();
+				this.runningActions.put(couple, action);
+			} catch (InstantiationException e) {
+				logger.warn("Could not instantiate " + this.actionClass.getCanonicalName(), e);
+				state = ExecutionStatus.SUCCESSFUL_TERMINATION;
+			} catch (IllegalAccessException e) {
+				logger.warn("Could not access the default constructor of " + this.actionClass.getCanonicalName(), e);
+				state = ExecutionStatus.SUCCESSFUL_TERMINATION;
+			}
+		}
+		if (action != null) {
+			state = action.executeStep(provider, consumer, parameters);
+		}
+		
+		if (state == ExecutionStatus.SUCCESSFUL_TERMINATION) {
+			this.runningActions.remove(couple);
+			state = this.applyEffects(provider, consumer, parameters, mode);
+		}
+		return state;
+	}
+	
+	/**
 	 * Gets the required consumer's categories.
 	 * 
 	 * @return the required consumer's categories
@@ -223,15 +398,6 @@ public class Service implements Storable {
 	 */
 	public final Set<Category> getProviderCategories() {
 		return this.providerCategories;
-	}
-	
-	/**
-	 * Gets the statements.
-	 * 
-	 * @return the statements
-	 */
-	public final StatementsGroup getStatements() {
-		return this.statements;
 	}
 	
 	/**
@@ -265,15 +431,47 @@ public class Service implements Storable {
 	 * @return true, if is usable
 	 */
 	public boolean isUsable(WorldObject provider, WorldObject consumer, Map<String, Object> parameters) {
+		if (provider == null || consumer == null) {
+			return true;
+		}
 		final boolean consumerCategoryCheck = consumer.getCategories().containsAll(this.consumerCategories);
 		final boolean providerCategoryCheck = provider.getCategories().containsAll(this.providerCategories);
 		if (consumerCategoryCheck && providerCategoryCheck) {
-			// The consumer & the provider have the right categories, the
-			// preconditions
-			// have to be checked
-			final boolean preconditionsCheck = this.statements.checkConditions(provider, consumer, parameters);
-			return preconditionsCheck;
+			
+			return true;
 		}
+		return false;
+	}
+	
+	/**
+	 * Checks if the service is usable considering the provider and the consumer. This methos is
+	 * used by the classical method of planning
+	 * 
+	 * @param provider
+	 *            The provider.
+	 * @param consumer
+	 *            The consumer.
+	 * @param parameters
+	 *            the parameters
+	 * @return true, if is usable
+	 */
+	public boolean isClassicUsable(WorldObject provider, Agent consumer) {
+		if (provider == null || consumer == null) {
+			return true;
+		}
+		final boolean consumerCategoryCheck = consumer.getCategories().containsAll(this.consumerCategories);
+		final boolean providerCategoryCheck = provider.getCategories().containsAll(this.providerCategories);
+		
+		if (consumerCategoryCheck && providerCategoryCheck) {
+			for (ServiceProperty precondition : this.servicePreconditions) {
+				if (!precondition.getPropertyName().equals("at")
+						&& !consumer.getMemory().checkVirtualMemory(precondition)) {
+					return false;
+				}
+			}
+			return true;
+		}
+		
 		return false;
 	}
 	
@@ -318,16 +516,6 @@ public class Service implements Storable {
 	}
 	
 	/**
-	 * Sets the statements.
-	 * 
-	 * @param statements
-	 *            the new statements
-	 */
-	public final void setStatements(StatementsGroup statements) {
-		this.statements = statements;
-	}
-	
-	/**
 	 * To string.
 	 * 
 	 * @return the string
@@ -352,7 +540,7 @@ public class Service implements Storable {
 			builder.append(cat);
 			builder.append("\n");
 		}
-		builder.append(this.statements);
+		// builder.append(this.statements);
 		builder.append("Java-code=");
 		builder.append(this.actionClass == null ? null : this.actionClass.getCanonicalName());
 		builder.append("\n");
@@ -377,6 +565,352 @@ public class Service implements Storable {
 	 */
 	public final void setMaxDistanceForUsage(int maxDistanceForUsage) {
 		this.maxDistanceForUsage = maxDistanceForUsage;
+	}
+	
+	/**
+	 * Gets the service parameters
+	 * 
+	 * @return
+	 */
+	public ArrayList<Param> getServiceParameters() {
+		return this.serviceParameters;
+	}
+	
+	/**
+	 * Sets the service parameters
+	 * 
+	 * @param serviceParameters
+	 *            the list of parameters
+	 */
+	public void setServiceParameters(ArrayList<Param> serviceParameters) {
+		this.serviceParameters = serviceParameters;
+	}
+	
+	/**
+	 * Gets the service preconditions
+	 * 
+	 * @return
+	 */
+	public ArrayList<ServiceProperty> getServicePreconditions() {
+		return this.servicePreconditions;
+	}
+	
+	/**
+	 * Sets the service preconditions
+	 * 
+	 * @param servicePreconditions
+	 *            the list of preconditions
+	 */
+	public void setServicePreconditions(ArrayList<ServiceProperty> servicePreconditions) {
+		this.servicePreconditions = servicePreconditions;
+	}
+	
+	/**
+	 * Gets the service effects plus
+	 * 
+	 * @return
+	 */
+	public ArrayList<ServiceProperty> getServiceEffectsPlus() {
+		return this.serviceEffectsPlus;
+	}
+	
+	/**
+	 * Sets the service effects plus
+	 * 
+	 * @param serviceEffectsPlus
+	 *            the positive effects list
+	 */
+	public void setServiceEffectsPlus(ArrayList<ServiceProperty> serviceEffectsPlus) {
+		this.serviceEffectsPlus = serviceEffectsPlus;
+	}
+	
+	/**
+	 * Gets the service effects minus
+	 * 
+	 * @return
+	 */
+	public ArrayList<ServiceProperty> getServiceEffectsMinus() {
+		return this.serviceEffectsMinus;
+	}
+	
+	/**
+	 * Sets the service effects minus
+	 * 
+	 * @param serviceEffectsMinus
+	 *            the negative effects list
+	 */
+	public void setServiceEffectsMinus(ArrayList<ServiceProperty> serviceEffectsMinus) {
+		this.serviceEffectsMinus = serviceEffectsMinus;
+	}
+	
+	/**
+	 * Gets a service parameter
+	 * 
+	 * @param index
+	 *            the index
+	 * @return
+	 */
+	public Param getParameter(int index) {
+		return this.serviceParameters.get(index);
+	}
+	
+	/**
+	 * Gets a service parameter
+	 * 
+	 * @param name
+	 *            the parameter's name
+	 * @return
+	 */
+	public Param getParameter(String name) {
+		for (Param parameter : this.serviceParameters) {
+			if (parameter.getParamName().equals(name)) {
+				return parameter;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Gets the parameter's value
+	 * 
+	 * @param name
+	 *            the parameter's name
+	 * @return
+	 */
+	public String getParamValue(String name) {
+		for (Param parameter : this.serviceParameters) {
+			if (parameter.getParamName().equals(name)) {
+				return parameter.getParamValue();
+			}
+		}
+		return "";
+	}
+	
+	/**
+	 * Sets a paramter
+	 * 
+	 * @param index
+	 *            the index of parameter to be set
+	 * @param parameter
+	 *            the new parameter
+	 */
+	public void setParameter(int index, Param parameter) {
+		this.serviceParameters.set(index, parameter);
+	}
+	
+	/**
+	 * Sets the last parameter in the parameters list
+	 * 
+	 * @param parameter
+	 *            the parameter
+	 */
+	public void setLastParameter(Param parameter) {
+		this.setParameter(this.serviceParameters.size() - 1, parameter);
+	}
+	
+	/**
+	 * Gets the last parameter in the parameters list
+	 * 
+	 * @return
+	 */
+	public Param getLastParameter() {
+		return this.getParameter(this.serviceParameters.size() - 1);
+	}
+	
+	/**
+	 * Gets a precondition
+	 * 
+	 * @param index
+	 *            the index
+	 * @return
+	 */
+	public ServiceProperty getPrecondition(int index) {
+		return this.servicePreconditions.get(index);
+	}
+	
+	/**
+	 * Gets the last precondition
+	 * 
+	 * @return
+	 */
+	public ServiceProperty getLastPrecondition() {
+		return this.getPrecondition(this.servicePreconditions.size() - 1);
+	}
+	
+	/**
+	 * Sets a precondition
+	 * 
+	 * @param index
+	 *            the index
+	 * @param precond
+	 *            the new precondition
+	 */
+	public void setPrecondition(int index, ServiceProperty precond) {
+		this.servicePreconditions.set(index, precond);
+	}
+	
+	/**
+	 * Sets the last precondition in the list
+	 * 
+	 * @param precond
+	 *            the new precondition
+	 */
+	public void setLastPrecondition(ServiceProperty precond) {
+		this.setPrecondition(this.servicePreconditions.size() - 1, precond);
+	}
+	
+	/**
+	 * Gets an effect plus
+	 * 
+	 * @param index
+	 *            the index
+	 * @return
+	 */
+	public ServiceProperty getEffectPlus(int index) {
+		return this.serviceEffectsPlus.get(index);
+	}
+	
+	/**
+	 * Gets the last positive effect in the list
+	 * 
+	 * @return
+	 */
+	public ServiceProperty getLastEffectPlus() {
+		return this.getEffectPlus(this.serviceEffectsPlus.size() - 1);
+	}
+	
+	/**
+	 * Sets a positive effect
+	 * 
+	 * @param index
+	 *            the index
+	 * @param precond
+	 *            the positive effect
+	 */
+	public void setEffectPlus(int index, ServiceProperty precond) {
+		this.serviceEffectsPlus.set(index, precond);
+	}
+	
+	/**
+	 * Sets the last positive effect in the list
+	 * 
+	 * @param precond
+	 *            the new positive effect
+	 */
+	public void setLastEffectPlus(ServiceProperty precond) {
+		this.setEffectPlus(this.serviceEffectsPlus.size() - 1, precond);
+	}
+	
+	/**
+	 * Gets a negative effect
+	 * 
+	 * @param index
+	 *            the index
+	 * @return
+	 */
+	public ServiceProperty getEffectMinus(int index) {
+		return this.serviceEffectsMinus.get(index);
+	}
+	
+	/**
+	 * Gets the last negative effect
+	 * 
+	 * @return
+	 */
+	public ServiceProperty getLastEffectMinus() {
+		return this.getEffectMinus(this.serviceEffectsMinus.size() - 1);
+	}
+	
+	/**
+	 * Sets a negative effect
+	 * 
+	 * @param index
+	 *            the index in the list
+	 * @param precond
+	 *            the new negative effect
+	 */
+	public void setEffectMinus(int index, ServiceProperty precond) {
+		this.serviceEffectsMinus.set(index, precond);
+	}
+	
+	/**
+	 * Sets the last negative effect
+	 * 
+	 * @param precond
+	 *            the new negative effect
+	 */
+	public void setLastEffectMinus(ServiceProperty precond) {
+		this.setEffectMinus(this.serviceEffectsMinus.size() - 1, precond);
+	}
+	
+	/**
+	 * Sets the provider's id
+	 * 
+	 * @param providerId
+	 *            the provider's id
+	 */
+	public void setProviderId(Long providerId) {
+		this.providerId = providerId;
+	}
+	
+	/**
+	 * Gets the provider's id
+	 * 
+	 * @return
+	 */
+	public Long getProviderId() {
+		return this.providerId;
+	}
+	
+	/**
+	 * Completly clones the service
+	 * 
+	 * @return the cloned service
+	 */
+	public Service deepDataClone() {
+		Service clone = new Service(this.name, this.active, this.maxDistanceForUsage, null, null, null, null, null,
+				null, this.actionClass);
+		
+		clone.setProviderId(this.providerId);
+		
+		Set<Category> catSet = new HashSet<Category>();
+		for (Category cat : this.providerCategories) {
+			catSet.add(cat);
+		}
+		clone.setProviderCategories(catSet);
+		
+		catSet = new HashSet<Category>();
+		
+		for (Category cat : this.consumerCategories) {
+			catSet.add(cat);
+		}
+		clone.setConsumerCategories(catSet);
+		
+		ArrayList<Param> paramList = new ArrayList<Param>();
+		for (Param parameter : this.serviceParameters) {
+			paramList.add(parameter.deepDataClone());
+		}
+		clone.setServiceParameters(paramList);
+		
+		ArrayList<ServiceProperty> proprList = new ArrayList<ServiceProperty>();
+		for (ServiceProperty propr : this.servicePreconditions) {
+			proprList.add(propr.deepDataClone());
+		}
+		clone.setServicePreconditions(proprList);
+		
+		proprList = new ArrayList<ServiceProperty>();
+		for (ServiceProperty propr : this.serviceEffectsPlus) {
+			proprList.add(propr.deepDataClone());
+		}
+		clone.setServiceEffectsPlus(proprList);
+		
+		proprList = new ArrayList<ServiceProperty>();
+		for (ServiceProperty propr : this.serviceEffectsMinus) {
+			proprList.add(propr.deepDataClone());
+		}
+		clone.setServiceEffectsMinus(proprList);
+		
+		return clone;
 	}
 	
 }

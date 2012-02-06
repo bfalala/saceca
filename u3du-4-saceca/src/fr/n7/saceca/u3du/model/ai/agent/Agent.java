@@ -33,6 +33,7 @@ import fr.n7.saceca.u3du.model.ai.object.properties.Property;
 import fr.n7.saceca.u3du.model.ai.object.properties.PropertyFilter;
 import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
 import fr.n7.saceca.u3du.model.ai.service.Service;
+import fr.n7.saceca.u3du.model.ai.service.ServiceProperty;
 import fr.n7.saceca.u3du.model.graphics.animation.DieAnimation;
 import fr.n7.saceca.u3du.model.graphics.animation.ReviveAnimation;
 
@@ -59,6 +60,8 @@ public class Agent extends WorldObject {
 	
 	/** The reasoning module. */
 	private ReasoningModule reasoningModule;
+	
+	private ReasoningModule mmReasoningModule;
 	
 	/** The planning module. */
 	private PlanningModule planningModule;
@@ -301,6 +304,46 @@ public class Agent extends WorldObject {
 		return gauges;
 	}
 	
+	public List<Emotion> getEmotions() {
+		List<Emotion> emotions = new ArrayList<Emotion>();
+		
+		Collection<Property<?>> emotionProps = this.getPropertiesContainer().getProperties(new PropertyFilter() {
+			@Override
+			public boolean accept(Property<?> property) {
+				return property.getModel().getName().startsWith(Emotion.PREFIX);
+			}
+		});
+		
+		for (Property<?> emotionProp : emotionProps) {
+			Emotion emotion = (Emotion) emotionProp;
+			if (emotion.isPrimary()) {
+				emotions.add(emotion);
+			}
+		}
+		
+		return emotions;
+	}
+	
+	public List<Emotion> getSecondaryEmotions() {
+		List<Emotion> emotions = new ArrayList<Emotion>();
+		
+		Collection<Property<?>> emotionProps = this.getPropertiesContainer().getProperties(new PropertyFilter() {
+			@Override
+			public boolean accept(Property<?> property) {
+				return property.getModel().getName().startsWith(Emotion.PREFIX);
+			}
+		});
+		
+		for (Property<?> emotionProp : emotionProps) {
+			Emotion emotion = (Emotion) emotionProp;
+			if (emotion.isSecondary()) {
+				emotions.add(emotion);
+			}
+		}
+		
+		return emotions;
+	}
+	
 	@Override
 	public Agent getEmptyClone() {
 		return new Agent(this.getModelName(), this.getId(), false);
@@ -369,4 +412,88 @@ public class Agent extends WorldObject {
 		}
 	}
 	
+	public ArrayList<Service> getPossibleServices() {
+		ArrayList<Service> serviceList = new ArrayList<Service>();
+		
+		boolean serviceAdded = false;
+		
+		for (WorldObject object : this.getMemory().getKnowledges()) {
+			for (Service service : object.getServices()) {
+				service.setProviderId(object.getId());
+				if (service.getName().equals("walkTo")) {
+					if (!serviceAdded) {
+						serviceList.add(service.deepDataClone());
+						serviceAdded = true;
+					}
+				} else {
+					serviceList.add(service.deepDataClone());
+				}
+			}
+		}
+		return serviceList;
+	}
+	
+	public ArrayList<ServiceProperty> getPossibleEffectsPlus(ArrayList<WorldObject> objects) {
+		ArrayList<ServiceProperty> effectPlusList = new ArrayList<ServiceProperty>();
+		
+		boolean serviceAdded = false;
+		
+		for (WorldObject object : objects) {
+			for (Service service : object.getServices()) {
+				for (ServiceProperty property : service.getServiceEffectsPlus()) {
+					if (service.getName().equals("walkTo")) {
+						if (!serviceAdded) {
+							effectPlusList.add(property.deepDataClone());
+							serviceAdded = true;
+						}
+					} else {
+						effectPlusList.add(property.deepDataClone());
+					}
+				}
+			}
+		}
+		return effectPlusList;
+	}
+	
+	public ArrayList<ServiceProperty> getPossibleEffects(List<WorldObject> objects) {
+		ArrayList<ServiceProperty> effectList = new ArrayList<ServiceProperty>();
+		
+		boolean serviceAdded = false;
+		
+		for (WorldObject object : objects) {
+			for (Service service : object.getServices()) {
+				
+				for (ServiceProperty property : service.getServiceEffectsPlus()) {
+					if (service.getName().equals("walkTo")) {
+						if (!serviceAdded) {
+							effectList.add(property.deepDataClone());
+							serviceAdded = true;
+						}
+					} else {
+						effectList.add(property.deepDataClone());
+					}
+				}
+				for (ServiceProperty property2 : service.getServiceEffectsMinus()) {
+					if (service.getName().equals("walkTo")) {
+						if (!serviceAdded) {
+							effectList.add(property2.deepDataClone());
+							serviceAdded = true;
+						}
+					} else {
+						effectList.add(property2.deepDataClone());
+					}
+				}
+			}
+		}
+		
+		return effectList;
+	}
+	
+	public void setMmReasoningModule(ReasoningModule mmReasoningModule) {
+		this.mmReasoningModule = mmReasoningModule;
+	}
+	
+	public ReasoningModule getMmReasoningModule() {
+		return this.mmReasoningModule;
+	}
 }

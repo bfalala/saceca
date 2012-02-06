@@ -16,12 +16,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
 import javax.vecmath.Point2f;
 
 import org.apache.log4j.Logger;
+
+import Emotion_primary.matrix_rule;
+import Emotion_primary.property_rule;
 
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 
@@ -32,7 +36,10 @@ import fr.n7.saceca.u3du.model.ai.agent.module.communication.message.Message;
 import fr.n7.saceca.u3du.model.ai.graph.WeightedEdge;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
 import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
+import fr.n7.saceca.u3du.model.ai.service.PropertyLink;
 import fr.n7.saceca.u3du.model.ai.service.Service;
+import fr.n7.saceca.u3du.model.ai.service.ServiceProperty;
+import fr.n7.saceca.u3du.model.ai.service.action.Action;
 import fr.n7.saceca.u3du.model.util.Couple;
 
 /**
@@ -50,12 +57,46 @@ public class World {
 	
 	/** The walkable graph. */
 	private UndirectedSparseGraph<WorldObject, WeightedEdge> walkableGraph;
+	/** matrix_emotion_effect */
+	private int[][] matrix_effect_emotions;
+	
+	private ArrayList<PropertyLink> linkList;
+	
+	private double[][] matrix_primary_secondary;
+	
+	private Hashtable<String, Class<? extends Action>> stimulusReactionTable;
+	
+	private matrix_rule matrule;
+	
+	private ArrayList<property_rule> property_rule_tab;
+	
+	private Hashtable<String, Integer> emotion_index_tab;
+	
+	/** the effectlist */
+	private ArrayList<Couple<String, ServiceProperty>> serviceEffectList;
+	
+	public ArrayList<property_rule> getProperty_rule_tab() {
+		return this.property_rule_tab;
+	}
+	
+	public void setProperty_rule_tab(ArrayList<property_rule> property_rule_tab) {
+		this.property_rule_tab = property_rule_tab;
+	}
+	
+	public matrix_rule getMatrule() {
+		return this.matrule;
+	}
+	
+	public void setMatrule(matrix_rule matrule) {
+		this.matrule = matrule;
+	}
 	
 	/**
 	 * Instantiates a new world.
 	 */
 	public World() {
 		this.worldObjects = new HashMap<Long, WorldObject>();
+		
 	}
 	
 	/**
@@ -327,4 +368,51 @@ public class World {
 		return Collections.unmodifiableCollection(reactiveObjects);
 	}
 	
+	public int[][] getMatrix_effect_emotions() {
+		return this.matrix_effect_emotions;
+	}
+	
+	public void setMatrix_effect_emotions(int[][] matrix_effect_emotions) {
+		this.matrix_effect_emotions = matrix_effect_emotions;
+	}
+	
+	public ArrayList<PropertyLink> getLinkList() {
+		return this.linkList;
+	}
+	
+	public void setLinkList(ArrayList<PropertyLink> linkList) {
+		this.linkList = linkList;
+	}
+	
+	public void setMatrix_primary_secondary(double[][] matrix_primary_secondary) {
+		this.matrix_primary_secondary = matrix_primary_secondary;
+	}
+	
+	public double[][] getMatrix_primary_secondary() {
+		return this.matrix_primary_secondary;
+	}
+	
+	public void setStimulusReactionTable(Hashtable<String, Class<? extends Action>> stimulusReactionTable) {
+		this.stimulusReactionTable = stimulusReactionTable;
+	}
+	
+	public Hashtable<String, Class<? extends Action>> getStimulusReactionTable() {
+		return this.stimulusReactionTable;
+	}
+	
+	public void setEmotion_index_tab(Hashtable<String, Integer> emotion_index_tab) {
+		this.emotion_index_tab = emotion_index_tab;
+	}
+	
+	public Hashtable<String, Integer> getEmotion_index_tab() {
+		return this.emotion_index_tab;
+	}
+	
+	public void setServiceEffectList(ArrayList<Couple<String, ServiceProperty>> serviceEffectList) {
+		this.serviceEffectList = serviceEffectList;
+	}
+	
+	public ArrayList<Couple<String, ServiceProperty>> getServiceEffectList() {
+		return this.serviceEffectList;
+	}
 }

@@ -76,6 +76,8 @@ public abstract class DoSomethingInABuildingAction implements Action {
 				return ExecutionStatus.FAILURE;
 			}
 			// Send a disappearance animation to simulate doing something in a building
+			// Model.getInstance().getGraphics().sendAnimation(new
+			// Jump_Animation(consumer.getId()));
 			Model.getInstance().getGraphics().sendAnimation(new DisappearAnimation(consumer.getId()));
 			
 			this.initialized = true;
@@ -83,6 +85,7 @@ public abstract class DoSomethingInABuildingAction implements Action {
 		
 		if (Model.getInstance().getAI().getSimulation().getTime() >= this.expectedEnd) {
 			// The agent comes back
+			
 			Model.getInstance().getGraphics().sendAnimation(new AppearAnimation(consumer.getId()));
 			return ExecutionStatus.SUCCESSFUL_TERMINATION;
 		}

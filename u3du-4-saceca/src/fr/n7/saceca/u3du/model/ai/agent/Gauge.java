@@ -20,7 +20,7 @@ import fr.n7.saceca.u3du.model.util.Periodic;
 /**
  * The Class Gauge. It is used for "i_gauge_X" property handling.
  * 
- * @author Jérôme Dalbert
+ * @author Jérôme Dalbert, Ciprian Munteanu
  */
 public class Gauge extends Property<Double> {
 	
@@ -31,7 +31,7 @@ public class Gauge extends Property<Double> {
 	public static final String DECREMENT_PERIOD_PREFIX = "i_decrement_period_";
 	
 	/** The Constant SURVIVAL_SUFFIXES. */
-	public static final String[] SURVIVAL_SUFFIXES = { "hunger", "tiredness", "thirst" };
+	public static final String[] DECREASED_SUFFIXES = { "hunger", "tiredness", "thirst", "naturalneeds" };
 	
 	/** The gauge decrement time. */
 	private int gaugeDecrementTime;
@@ -49,19 +49,43 @@ public class Gauge extends Property<Double> {
 	}
 	
 	/**
-	 * Checks if is survival.
+	 * Checks if is a survival gauge
 	 * 
 	 * @return true, if is survival
 	 */
 	public boolean isSurvival() {
-		String gaugeNameSuffix = this.getNameSuffix();
-		
-		for (String survivalGaugeNameSuffix : SURVIVAL_SUFFIXES) {
-			if (gaugeNameSuffix.equals(survivalGaugeNameSuffix)) {
+		return this.getGaugeType().equals("primordial");
+	}
+	
+	/**
+	 * Checks if it is a security gauge
+	 * 
+	 * @return
+	 */
+	public boolean isSecurityNeed() {
+		return this.getGaugeType().equals("security");
+	}
+	
+	/**
+	 * Checks if it's a social gauge
+	 * 
+	 * @return
+	 */
+	public boolean isSocialNeed() {
+		return this.getGaugeType().equals("social");
+	}
+	
+	/**
+	 * Checks if it's a gauge that decreases in time
+	 * 
+	 * @return
+	 */
+	public boolean isDecreased() {
+		for (String suffix : DECREASED_SUFFIXES) {
+			if (this.getNameSuffix().equals(suffix)) {
 				return true;
 			}
 		}
-		
 		return false;
 	}
 	
@@ -145,7 +169,16 @@ public class Gauge extends Property<Double> {
 	 * @return the name suffix
 	 */
 	public String getNameSuffix() {
-		return this.getModel().getName().replace(PREFIX, "");
+		return this.getModel().getName().split("_")[3];
+	}
+	
+	/**
+	 * Gets the gauge type: primordial, social or security
+	 * 
+	 * @return
+	 */
+	public String getGaugeType() {
+		return this.getModel().getName().split("_")[2];
 	}
 	
 	/**

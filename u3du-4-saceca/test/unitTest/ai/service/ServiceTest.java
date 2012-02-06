@@ -96,8 +96,9 @@ public class ServiceTest {
 		StatementsGroup statements = new StatementsGroup(tests, actions);
 		
 		// 2.2. Building the service itself
-		this.drinkACan = new Service(this.drinkACanName, true, 10, providerCategories, consumerCategories, statements,
-				null);
+		// this.drinkACan = new Service(this.drinkACanName, true, 10, providerCategories,
+		// consumerCategories, statements,
+		// null);
 		
 		// 3. Building the provider
 		this.machine = new WorldObject("machine", 1);

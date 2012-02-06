@@ -15,12 +15,13 @@ package fr.n7.saceca.u3du.model.ai.agent.memory;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
@@ -31,20 +32,28 @@ import fr.n7.saceca.u3du.model.ai.Internal;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
 import fr.n7.saceca.u3du.model.ai.agent.module.communication.message.Message;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.Plan;
+import fr.n7.saceca.u3du.model.ai.agent.module.planning.initialization.TableClass;
+import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.DefaultMMGoalStack;
 import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.Goal;
+import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.MMGoal;
+import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.MMGoalStack;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
+import fr.n7.saceca.u3du.model.ai.object.properties.PropertiesContainer;
 import fr.n7.saceca.u3du.model.ai.object.properties.Property;
 import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
+import fr.n7.saceca.u3du.model.ai.service.Service;
+import fr.n7.saceca.u3du.model.ai.service.ServiceProperty;
+import fr.n7.saceca.u3du.model.util.Couple;
+import fr.n7.saceca.u3du.model.util.Oriented2DPosition;
 
 /**
  * The memory of an agent.<br/>
  * 
  * It remembers memory elements (a memory element is basically a kind of clone of a world object)
- * that are forgettable. When the memory is full, the oldest added memory elements are forgotten.<br/>
  * 
  * The Memory also contains the message inbox, the goals, and the past plans of the agent.
  * 
- * @author Jérôme Dalbert
+ * @author Jérôme Dalbert, Ciprian Munteanu
  */
 @XStreamAlias("memory")
 public class Memory {
@@ -63,14 +72,18 @@ public class Memory {
 	private Queue<Message> messageInbox;
 	
 	/**
-	 * The goals, sorted by decreasing order of priority.
+	 * The list of goals - useless but kept here because of the old modules that were not removed
+	 * and they use this variable
 	 */
 	private List<Goal> goals;
+	
+	/** The stack of goals. */
+	private MMGoalStack goalStack;
 	
 	/**
 	 * The past plans that have succeeded.
 	 */
-	private Map<Goal, Plan> pastPlans;
+	private Map<MMGoal, Plan> pastPlans;
 	
 	/** The max size for memory elements. */
 	@XStreamAlias("maxSize")
@@ -81,12 +94,51 @@ public class Memory {
 	@XStreamOmitField
 	private Agent ownerAgent;
 	
+	/** The list of perceived objects */
+	@XStreamOmitField
+	private ArrayList<Couple<WorldObject, Boolean>> perceivedObjects;
+	
 	/** The surrounding objects. */
-	// TODO : a enlever, inutile
 	public Collection<WorldObject> surroundingObjects;
 	
 	/** The Constant INITIAL_KNOWN_PROPERTIES. */
 	public static final String[] INITIAL_KNOWN_PROPERTIES = { Internal.Agent.NAME };
+	
+	/**
+	 * The Constant INITIAL_ENTRY_NB_REFERENCES - number of references when a new object is added in
+	 * the memory.
+	 */
+	public static final int INITIAL_ENTRY_NB_REFERENCES = 10;
+	
+	/**
+	 * The Constant LIMIT_NB_REFERENCES - the required number of references for an object to be
+	 * added in the long-term memory.
+	 */
+	public static final int LIMIT_NB_REFERENCES = 30;
+	
+	/**
+	 * The Constant NB_REFERENCES_FROM_PERCEPTION - the increase value of number of references from
+	 * perception.
+	 */
+	public static final int NB_REFERENCES_FROM_PERCEPTION = 1;
+	
+	/**
+	 * The Constant NB_REFERENCES_FROM_USAGE - the increase value of number of references when the
+	 * agent uses an object's service.
+	 */
+	public static final int NB_REFERENCES_FROM_USAGE = 10;
+	
+	/**
+	 * The Constant DIVIDE_PERCENT - the division percent = how much represents the short-term
+	 * memory from the entire memory.
+	 */
+	public static final double DIVIDE_PERCENT = 0.3;
+	
+	/**
+	 * The Constant MISC_MODELS - models of objects that are not very important for the agent - they
+	 * cannot be added in the long-term memory.
+	 */
+	public static final String[] MISC_MODELS = { "Pavement", "TrafficLight", "Road", "PedestrianCrossing", "Car", "Bus" };
 	
 	/**
 	 * Instantiates a new memory.
@@ -100,11 +152,12 @@ public class Memory {
 		this.ownerAgent = ownerAgent;
 		this.memoryElements = new ConcurrentHashMap<Long, MemoryElement>();
 		this.maxSize = maxSize;
-		this.goals = new CopyOnWriteArrayList<Goal>();
 		this.messageInbox = new ConcurrentLinkedQueue<Message>();
-		this.pastPlans = new HashMap<Goal, Plan>();
+		this.pastPlans = new HashMap<MMGoal, Plan>();
 		this.surroundingObjects = new ArrayList<WorldObject>();
 		this.insertionOrderedElements = new ArrayList<MemoryElement>();
+		this.goalStack = new DefaultMMGoalStack();
+		this.perceivedObjects = new ArrayList<Couple<WorldObject, Boolean>>();
 	}
 	
 	/**
@@ -116,14 +169,15 @@ public class Memory {
 		if (this.memoryElements == null) {
 			this.memoryElements = new HashMap<Long, MemoryElement>();
 		}
-		if (this.goals == null) {
-			this.goals = new ArrayList<Goal>();
+		
+		if (this.goalStack == null) {
+			this.goalStack = new DefaultMMGoalStack();
 		}
 		if (this.messageInbox == null) {
 			this.messageInbox = new ConcurrentLinkedQueue<Message>();
 		}
 		if (this.pastPlans == null) {
-			this.pastPlans = new HashMap<Goal, Plan>();
+			this.pastPlans = new HashMap<MMGoal, Plan>();
 		}
 		if (this.surroundingObjects == null) {
 			this.surroundingObjects = new ArrayList<WorldObject>();
@@ -131,6 +185,10 @@ public class Memory {
 		if (this.insertionOrderedElements == null) {
 			this.insertionOrderedElements = new ArrayList<MemoryElement>();
 		}
+		if (this.perceivedObjects == null) {
+			this.perceivedObjects = new ArrayList<Couple<WorldObject, Boolean>>();
+		}
+		
 		return this;
 	}
 	
@@ -174,19 +232,41 @@ public class Memory {
 	}
 	
 	/**
-	 * Forget first possible element.
+	 * Forget
 	 * 
-	 * @return true, if successful
+	 * @param id
+	 *            the id of object to forget
 	 */
-	public boolean forgetFirstPossibleElement() {
-		for (MemoryElement memElem : this.insertionOrderedElements) {
-			if (memElem.isForgettable()) {
-				this.forget(memElem);
-				return true;
+	public void forget(Long id) {
+		this.memoryElements.remove(id);
+	}
+	
+	/**
+	 * foergets an element from the short-term memory
+	 * 
+	 * @return true if succesful
+	 */
+	public boolean forgetElementFromShortTermMemory() {
+		this.forget(this.getIdElementToForget());
+		
+		return true;
+	}
+	
+	/**
+	 * gets the object with the lowest number of references
+	 * 
+	 * @return the id of the object to forget
+	 */
+	public Long getIdElementToForget() {
+		int min = Integer.MAX_VALUE;
+		long id = 0L;
+		for (MemoryElement element : this.getShortTermMemory().values()) {
+			if (min > element.getNbReferences()) {
+				min = element.getNbReferences();
+				id = element.getWorldObject().getId();
 			}
 		}
-		
-		return false;
+		return id;
 	}
 	
 	/**
@@ -199,16 +279,23 @@ public class Memory {
 	 * @return the world object
 	 */
 	public WorldObject remember(WorldObject worldObject, boolean forgettable) {
-		if (this.memoryElements.size() == this.maxSize) {
-			boolean forgotten = this.forgetFirstPossibleElement();
+		MemoryElement memoryElement = null;
+		if (!forgettable) {
+			memoryElement = new MemoryElement(worldObject, forgettable, "long", Memory.INITIAL_ENTRY_NB_REFERENCES);
+			this.memoryElements.put(worldObject.getId(), memoryElement);
+			return memoryElement.getWorldObject();
+		}
+		
+		if (this.getShortTermMemory().size() == this.maxSize * Memory.DIVIDE_PERCENT) {
+			boolean forgotten = this.forgetElementFromShortTermMemory();
 			if (!forgotten) {
 				throw new FullMemoryException("Memory is full.");
 			}
 		}
 		
-		MemoryElement memoryElement = new MemoryElement(worldObject, forgettable);
+		memoryElement = new MemoryElement(worldObject, forgettable, "short", Memory.INITIAL_ENTRY_NB_REFERENCES);
+		
 		this.memoryElements.put(worldObject.getId(), memoryElement);
-		this.insertionOrderedElements.add(memoryElement);
 		
 		return memoryElement.getWorldObject();
 	}
@@ -254,6 +341,22 @@ public class Memory {
 	}
 	
 	/**
+	 * Gets the knowledge about an object.
+	 * 
+	 * @param objectId
+	 *            the object's ID
+	 * @return the knowledge about this object
+	 */
+	public WorldObject getKnowledgeAbout(Long objectId) {
+		MemoryElement e = this.memoryElements.get(objectId);
+		if (e != null) {
+			return e.getWorldObject();
+		}
+		
+		return null;
+	}
+	
+	/**
 	 * Gets the all the knowledges about objects.
 	 * 
 	 * @return all the knowledges
@@ -285,6 +388,98 @@ public class Memory {
 	 */
 	public final void setMemoryElements(Map<Long, MemoryElement> memoryElements) {
 		this.memoryElements = memoryElements;
+	}
+	
+	/**
+	 * gets all the elements from the short-term memory
+	 * 
+	 * @return
+	 */
+	public Map<Long, MemoryElement> getShortTermMemory() {
+		Map<Long, MemoryElement> shortTermMemory = new ConcurrentHashMap<Long, MemoryElement>();
+		for (MemoryElement element : this.memoryElements.values()) {
+			if (element.getPlace().equals("short")) {
+				shortTermMemory.put(element.getWorldObject().getId(), element);
+			}
+		}
+		return shortTermMemory;
+	}
+	
+	/**
+	 * gets all the elements from the long-term memory
+	 * 
+	 * @return
+	 */
+	public Map<Long, MemoryElement> getLongTermMemory() {
+		Map<Long, MemoryElement> longTermMemory = new ConcurrentHashMap<Long, MemoryElement>();
+		for (MemoryElement element : this.memoryElements.values()) {
+			if (element.getPlace().equals("long")) {
+				longTermMemory.put(element.getWorldObject().getId(), element);
+			}
+		}
+		return longTermMemory;
+	}
+	
+	/**
+	 * arranges the memory in short-term and long-term memory
+	 */
+	public void arrangeMemory() {
+		int nbElementsLongTermMemory = 0, nbElementsShortTermMemory = 0;
+		int minNbReferencesLongTerm = 0;
+		long idMin = -1;
+		
+		while (this.memoryElements.size() > this.maxSize) {
+			this.forgetElementFromShortTermMemory();
+		}
+		
+		for (MemoryElement element : this.memoryElements.values()) {
+			if (element.getNbReferences() <= 0) {
+				this.forget(element);
+				continue;
+			}
+			// if the number of references is bigger than the LIMIT_NB_REFERENCES and if it is an
+			// important object we put it in the long-term memory
+			if (element.getNbReferences() >= Memory.LIMIT_NB_REFERENCES
+					&& !this.isUnimportantObject(element.getWorldObject().getModelName())) {
+				// if the long-term memory is not full we put the object in the long-term memory
+				if (nbElementsLongTermMemory <= (1 - Memory.DIVIDE_PERCENT) * this.maxSize) {
+					element.setPlace("long");
+					
+					if ((minNbReferencesLongTerm > element.getNbReferences())) {
+						minNbReferencesLongTerm = element.getNbReferences();
+						idMin = element.getWorldObject().getId();
+					}
+					
+					nbElementsLongTermMemory++;
+					// if the lowest number of references from the long-term memory is smaller than
+					// the object's number of references, we put the element from the long-term in
+					// the short-term memory
+				} else if (minNbReferencesLongTerm < element.getNbReferences()) {
+					this.memoryElements.get(idMin).setPlace("short");
+					element.setPlace("long");
+				}
+				// if there is enough space in the short-term memory, we put the object there
+			} else if (nbElementsShortTermMemory <= Memory.DIVIDE_PERCENT * this.maxSize) {
+				element.setPlace("short");
+				nbElementsShortTermMemory++;
+			}
+		}
+	}
+	
+	/**
+	 * check if an object is important or not for the agent
+	 * 
+	 * @param modelName
+	 *            the name of the object's model
+	 * @return true if the object is unimportant
+	 */
+	public boolean isUnimportantObject(String modelName) {
+		for (String miscModel : Memory.MISC_MODELS) {
+			if (miscModel.equals(modelName)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/**
@@ -324,21 +519,13 @@ public class Memory {
 	}
 	
 	/**
-	 * Gets the goals.
-	 * 
-	 * @return the goals
-	 */
-	public List<Goal> getGoals() {
-		return this.goals;
-	}
-	
-	/**
 	 * Creates a clone of the memory. Only the Memory Elements are copied.
 	 * 
 	 * @return the memory
 	 */
 	public Memory deepDataClone() {
 		Memory memory = new Memory(null, this.maxSize);
+		memory.setMemoryElements(new HashMap<Long, MemoryElement>());
 		for (MemoryElement element : this.getMemoryElements().values()) {
 			MemoryElement memoryElement = element.deepDataClone();
 			memory.getMemoryElements().put(memoryElement.getWorldObject().getId(), memoryElement);
@@ -351,8 +538,190 @@ public class Memory {
 	 * 
 	 * @return the past plans that have succeeded
 	 */
-	public Map<Goal, Plan> getPastPlans() {
+	public Map<MMGoal, Plan> getPastPlans() {
 		return this.pastPlans;
 	}
 	
+	public void setGoals(List<Goal> goals) {
+		this.goals = goals;
+	}
+	
+	public List<Goal> getGoals() {
+		return this.goals;
+	}
+	
+	/**
+	 * Sets the stack of goals
+	 * 
+	 * @param goalStack
+	 */
+	public void setGoalStack(MMGoalStack goalStack) {
+		this.goalStack = goalStack;
+	}
+	
+	/**
+	 * Gets the stack of goals
+	 * 
+	 * @return
+	 */
+	public MMGoalStack getGoalStack() {
+		return this.goalStack;
+	}
+	
+	/**
+	 * Sets the list of perceived objects
+	 * 
+	 * @param perceived_objects
+	 */
+	public void setPerceivedObjects(ArrayList<Couple<WorldObject, Boolean>> perceived_objects) {
+		this.perceivedObjects = perceived_objects;
+	}
+	
+	/**
+	 * Gets the list of perceived objects
+	 * 
+	 * @return
+	 */
+	public ArrayList<Couple<WorldObject, Boolean>> getPerceivedObjects() {
+		return this.perceivedObjects;
+	}
+	
+	/**
+	 * Adds a new object in the list of perceived objects
+	 * 
+	 * @param object
+	 *            the object to add in the list
+	 * @param new_object
+	 *            if it's a new perceived object
+	 */
+	public void addPerceivedObject(WorldObject object, boolean new_object) {
+		if (this.perceivedObjects == null) {
+			this.perceivedObjects = new ArrayList<Couple<WorldObject, Boolean>>();
+		}
+		this.perceivedObjects.add(new Couple<WorldObject, Boolean>(object, new_object));
+	}
+	
+	/**
+	 * Checks the virtual memory to see if a service property is true using the
+	 * treatment_precondition of the service property
+	 * 
+	 * @param property
+	 *            the service property to check
+	 * @return true if the service property is true according to the virtual memory
+	 */
+	public boolean checkVirtualMemory(ServiceProperty property) {
+		String treatment = property.getTreatment_precond();
+		
+		if (treatment.equals("")) {
+			return false;
+		}
+		
+		String[] vars = new String[3];
+		vars = treatment.split("__");
+		
+		String paramValue = property.getParameter(vars[2]).getParamValue();
+		String paramType = property.getParameter(vars[2]).getParamType();
+		
+		try {
+			if (vars[1].equals("=")) {
+				if (!paramType.equals("3DPoint")) {
+					return paramValue == String.valueOf(this.getKnowledgeAboutOwner().getPropertiesContainer()
+							.getProperty(vars[0]).getValue());
+				} else {
+					String[] coordonates = paramValue.split("_");
+					Oriented2DPosition point = new Oriented2DPosition(Float.parseFloat(coordonates[0]),
+							Float.parseFloat(coordonates[1]), Float.parseFloat(coordonates[2]));
+					return this.getKnowledgeAboutOwner().getPosition().egal(point);
+				}
+			} else if (vars[1].equals(">")) {
+				if (paramType.equals("int")) {
+					return this.getKnowledgeAboutOwner().getPropertiesContainer().getInt(vars[0]) >= Integer
+							.parseInt(paramValue);
+				} else if (paramType.equals("double")) {
+					return this.getKnowledgeAboutOwner().getPropertiesContainer().getDouble(vars[0]) >= Double
+							.parseDouble(paramValue);
+				}
+			}
+		} catch (Exception e) {
+			return false;
+		}
+		return false;
+	}
+	
+	/**
+	 * Updates the virtual memory by applying the effects of a certain service. It takes the
+	 * positive and negative effects and applies them to the virtual memory
+	 * 
+	 * @param service
+	 *            the service
+	 * @return a list of TableClass with the changes is the virtual memory
+	 */
+	public Set<TableClass> updateVirtualMemory(Service service) {
+		
+		ArrayList<ServiceProperty> servicePropertyList = new ArrayList<ServiceProperty>();
+		
+		for (ServiceProperty serviceProperty : service.getServiceEffectsPlus()) {
+			servicePropertyList.add(serviceProperty.deepDataClone());
+		}
+		
+		for (ServiceProperty serviceProperty : service.getServiceEffectsMinus()) {
+			servicePropertyList.add(serviceProperty.deepDataClone());
+		}
+		
+		String treatment;
+		String type, paramValue;
+		
+		Set<TableClass> updateList = new HashSet<TableClass>();
+		
+		PropertiesContainer ownerProperties = this.getKnowledgeAboutOwner().getPropertiesContainer();
+		
+		for (ServiceProperty serviceProperty : servicePropertyList) {
+			treatment = serviceProperty.getTreatment_effect();
+			String[] vars = new String[3];
+			vars = treatment.split("__");
+			type = serviceProperty.getParameter(vars[2]).getParamType();
+			paramValue = serviceProperty.getParameter(vars[2]).getParamValue();
+			
+			try {
+				if (!vars[0].equals("position")) {
+					updateList.add(new TableClass(vars[0], String.valueOf(ownerProperties.getProperty(vars[0])
+							.getValue())));
+				} else {
+					updateList
+							.add(new TableClass(vars[0], this.getKnowledgeAboutOwner().getPosition().toStringForXML()));
+				}
+				
+				if (vars[1].equals("+")) {
+					if (type.equals("int")) {
+						Integer value = Integer.parseInt(paramValue);
+						ownerProperties.setInt(vars[0], ownerProperties.getInt(vars[0]) + value);
+					} else if (type.equals("double")) {
+						Double value = Double.parseDouble(paramValue);
+						ownerProperties.setDouble(vars[0], ownerProperties.getDouble(vars[0]) + value);
+					}
+				} else if (vars[1].equals("-")) {
+					if (type.equals("int")) {
+						Integer value = Integer.parseInt(paramValue);
+						ownerProperties.setInt(vars[0], ownerProperties.getInt(vars[0]) - value);
+					} else if (type.equals("double")) {
+						Double value = Double.parseDouble(paramValue);
+						ownerProperties.setDouble(vars[0], ownerProperties.getDouble(vars[0]) - value);
+					}
+				} else if (vars[1].equals("=")) {
+					if (type.equals("string")) {
+						ownerProperties.setString(vars[0], paramValue);
+					} else if (type.equals("3DPoint")) {
+						String[] coordonates = paramValue.split("_");
+						this.getKnowledgeAboutOwner().setPosition(
+								new Oriented2DPosition(Float.parseFloat(coordonates[0]), Float
+										.parseFloat(coordonates[1]), Float.parseFloat(coordonates[2])));
+					}
+					
+				}
+			} catch (Exception e) {
+				
+			}
+		}
+		return updateList;
+	}
 }

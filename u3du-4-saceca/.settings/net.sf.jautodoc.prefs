@@ -1,0 +1,9 @@
+#Thu Mar 17 11:18:03 CET 2011
+add_header=true
+eclipse.preferences.version=1
+get_set_from_field=true
+header_text=/*\r\n * This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike\r\n * 3.0 Unported License. To view a copy of this license, visit\r\n * http\://creativecommons.org/licenses/by-nc-sa/3.0/ or send a letter to Creative Commons,\r\n * 171 Second Street, Suite 300, San Francisco, California, 94105, USA.\r\n *\r\n * The original Urban 3 Dimensional Universe application was created by Sylvain Cambon,\r\n * Aur\u00E9lien Chabot, Anthony Foulfoin, J\u00E9r\u00F4me Dalbert & Johann Legaye.\r\n * Contact them for other licensing possibilities, using this email address pattern\:\r\n * <first_name> DOT <name> AT etu DOT enseeiht DOT fr .\r\n * http\://www.projet.long.2011.free.fr\r\n */
+project_specific_settings=true
+replace_header=true
+replacements=<?xml version\="1.0" standalone\="yes"?>\n\n<replacements>\n<replacement key\="get" scope\="1" mode\="0">Gets the</replacement>\n<replacement key\="set" scope\="1" mode\="0">Sets the</replacement>\n<replacement key\="add" scope\="1" mode\="0">Adds the</replacement>\n<replacement key\="edit" scope\="1" mode\="0">Edits the</replacement>\n<replacement key\="remove" scope\="1" mode\="0">Removes the</replacement>\n<replacement key\="init" scope\="1" mode\="0">Inits the</replacement>\n<replacement key\="parse" scope\="1" mode\="0">Parses the</replacement>\n<replacement key\="create" scope\="1" mode\="0">Creates the</replacement>\n<replacement key\="build" scope\="1" mode\="0">Builds the</replacement>\n<replacement key\="is" scope\="1" mode\="0">Checks if is</replacement>\n<replacement key\="print" scope\="1" mode\="0">Prints the</replacement>\n<replacement key\="has" scope\="1" mode\="0">Checks for</replacement>\n</replacements>\n\n
+use_internal_formatter=true

@@ -39,7 +39,7 @@ import fr.n7.saceca.u3du.model.util.MathUtil;
  * 
  * This class is the code linked to the service "walkTo".
  * 
- * @author Jérôme Dalbert
+ * @author Jérôme Dalbert dfsdf
  */
 public class WalkTo implements Action {
 	
@@ -79,10 +79,21 @@ public class WalkTo implements Action {
 		if (destination == null) {
 			return ExecutionStatus.FAILURE;
 		}
+		if (provider == null) {
+			return ExecutionStatus.SUCCESSFUL_TERMINATION;
+		}
+		
+		if (provider.getPosition().egal(destination.getPosition())) {
+			return ExecutionStatus.SUCCESSFUL_TERMINATION;
+		}
 		
 		// Initialization
 		if (this.path == null || (!this.path.isEmpty() && !destination.equals(this.path.get(this.path.size() - 1)))) {
 			this.initPath(provider, destination);
+		}
+		
+		if (this.path == null) {
+			return ExecutionStatus.CONTINUE_NEXT_TIME;
 		}
 		
 		Animation animation = consumer.getAnimation();
@@ -132,6 +143,9 @@ public class WalkTo implements Action {
 			return false;
 		}
 		
+		if (this.nextPlace == null) {
+			return false;
+		}
 		/* We don't stop if the next destination is not a pedestrian crossing */
 		if (!this.nextPlace.getModelName().toLowerCase().equals("pedestriancrossing")) {
 			return false;

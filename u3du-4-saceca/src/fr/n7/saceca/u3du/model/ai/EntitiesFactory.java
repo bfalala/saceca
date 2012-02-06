@@ -24,6 +24,7 @@ import org.apache.log4j.Logger;
 import fr.n7.saceca.u3du.exception.MalformedObjectException;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
 import fr.n7.saceca.u3du.model.ai.agent.AgentModel;
+import fr.n7.saceca.u3du.model.ai.agent.Emotion;
 import fr.n7.saceca.u3du.model.ai.agent.Gauge;
 import fr.n7.saceca.u3du.model.ai.category.Category;
 import fr.n7.saceca.u3du.model.ai.category.CategoryModel;
@@ -194,6 +195,9 @@ public class EntitiesFactory {
 			Property<?> property = new Property(propertyModel);
 			if (Double.class.equals(propertyModel.getType()) && propertyModel.getName().startsWith(Gauge.PREFIX)) {
 				property = new Gauge((Property<Double>) property);
+			} else if (Double.class.equals(propertyModel.getType())
+					&& propertyModel.getName().startsWith(Emotion.PREFIX)) {
+				property = new Emotion((Property<Double>) property);
 			}
 			this.addProperty(property, properties);
 		}
@@ -305,6 +309,8 @@ public class EntitiesFactory {
 	private void addProperty(Property<?> property, PropertiesContainer properties) {
 		if (property.getModel().getName().startsWith(Gauge.PREFIX)) {
 			properties.addProperty(new Gauge((Property<Double>) property));
+		} else if (property.getModel().getName().startsWith(Emotion.PREFIX)) {
+			properties.addProperty(new Emotion((Property<Double>) property));
 		} else {
 			properties.addProperty(property);
 		}

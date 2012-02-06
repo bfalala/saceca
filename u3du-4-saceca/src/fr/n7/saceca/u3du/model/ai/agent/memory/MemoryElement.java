@@ -14,13 +14,17 @@ package fr.n7.saceca.u3du.model.ai.agent.memory;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
+import fr.n7.saceca.u3du.model.ai.agent.Agent;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
+import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
+import fr.n7.saceca.u3du.model.util.Periodic;
 
 /**
  * A class describing an object in an agent's memory.
  * 
- * @author Jérôme Dalbert
+ * @author Jérôme Dalbert, Ciprian Munteanu
  */
 @XStreamAlias("memory-element")
 public class MemoryElement {
@@ -33,6 +37,40 @@ public class MemoryElement {
 	@XStreamAsAttribute
 	private boolean forgettable;
 	
+	/** The place in the memory: short or long - term memory */
+	@XStreamAlias("place")
+	@XStreamAsAttribute
+	private String place;
+	
+	/** The number of references */
+	@XStreamAlias("nbRef")
+	@XStreamAsAttribute
+	private Integer nbReferences;
+	
+	/** The number of references decrement time */
+	@XStreamOmitField
+	private int nbReferencesDecrementTime;
+	
+	/**
+	 * Instantiates a new memory world object.
+	 * 
+	 * @param worldObject
+	 *            the object
+	 * @param forgettable
+	 *            the forgettable
+	 * @param place
+	 *            the place in the memory (short or long - term)
+	 * @param nbReferences
+	 *            number of references
+	 */
+	public MemoryElement(WorldObject worldObject, boolean forgettable, String place, int nbReferences) {
+		super();
+		this.worldObject = worldObject;
+		this.forgettable = forgettable;
+		this.setPlace(place);
+		this.setNbReferences(nbReferences);
+	}
+	
 	/**
 	 * Instantiates a new memory world object.
 	 * 
@@ -42,9 +80,7 @@ public class MemoryElement {
 	 *            the forgettable
 	 */
 	public MemoryElement(WorldObject worldObject, boolean forgettable) {
-		super();
-		this.worldObject = worldObject;
-		this.forgettable = forgettable;
+		this(worldObject, forgettable, "short", Memory.INITIAL_ENTRY_NB_REFERENCES);
 	}
 	
 	/**
@@ -85,6 +121,64 @@ public class MemoryElement {
 		this.worldObject = object;
 	}
 	
+	/**
+	 * Sets the place in the memory
+	 * 
+	 * @param place
+	 *            the place
+	 */
+	public void setPlace(String place) {
+		this.place = place;
+	}
+	
+	/**
+	 * Gets the place in the memory
+	 * 
+	 * @return
+	 */
+	public String getPlace() {
+		return this.place;
+	}
+	
+	/**
+	 * Sets the number of references
+	 * 
+	 * @param nbReferences
+	 *            the new number of references
+	 */
+	public void setNbReferences(Integer nbReferences) {
+		this.nbReferences = nbReferences;
+	}
+	
+	/**
+	 * Gets the number of references
+	 * 
+	 * @return
+	 */
+	public Integer getNbReferences() {
+		return this.nbReferences;
+	}
+	
+	/**
+	 * Increases the number of references
+	 * 
+	 * @param value
+	 *            the increment value
+	 */
+	public void increaseNbReferences(Integer value) {
+		this.nbReferences += value;
+	}
+	
+	/**
+	 * Decreases the number of references
+	 * 
+	 * @param value
+	 *            the decrement value
+	 */
+	public void decreaseNbReferences(Integer value) {
+		this.nbReferences -= value;
+	}
+	
 	@Override
 	public String toString() {
 		if (this.worldObject == null) {
@@ -99,7 +193,41 @@ public class MemoryElement {
 	 * @return the memory element
 	 */
 	public MemoryElement deepDataClone() {
-		return new MemoryElement(this.worldObject.deepDataClone(), this.forgettable);
+		return new MemoryElement(this.worldObject.deepDataClone(), this.forgettable, this.place, this.nbReferences);
+	}
+	
+	private Integer getDecrementPeriod(Agent agent) {
+		Integer nbReferencesDecrementPeriod = null;
+		
+		// Case when there is a decrement period for the current gauge
+		try {
+			nbReferencesDecrementPeriod = agent.getPropertiesContainer().getInt("i_decrement_period_references");
+		}
+		// Case when there the decrement period is not found. We use the default decrement period.
+		catch (UnknownPropertyException e) {
+			try {
+				nbReferencesDecrementPeriod = agent.getPropertiesContainer().getInt("i_decrement_period_default");
+			} catch (UnknownPropertyException e1) {
+				e.printStackTrace();
+			}
+		}
+		
+		return nbReferencesDecrementPeriod;
+	}
+	
+	/**
+	 * Decrements periodically the number of references at every nbReferencesDecrementTime
+	 * 
+	 * @param agent
+	 *            the agent
+	 */
+	public void periodicDecrement(Agent agent) {
+		int decrementPeriod = this.getDecrementPeriod(agent);
+		if (this.nbReferencesDecrementTime == decrementPeriod - 1) {
+			this.decreaseNbReferences(1);
+		}
+		
+		this.nbReferencesDecrementTime = Periodic.incrementPeriodTime(this.nbReferencesDecrementTime, decrementPeriod);
 	}
 	
 }

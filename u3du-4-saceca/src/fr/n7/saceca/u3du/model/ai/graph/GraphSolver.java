@@ -101,19 +101,25 @@ public final class GraphSolver {
 	 * @return the path
 	 */
 	public List<WorldObject> getShortestPath(WorldObject source, WorldObject target) {
-		List<WeightedEdge> edgePath = this.solver.getPath(source, target);
-		List<WorldObject> verticesPath = new ArrayList<WorldObject>(edgePath.size() + 1);
-		
-		WorldObject outNode = source;
-		for (WeightedEdge edge : edgePath) {
-			verticesPath.add(outNode);
-			outNode = this.graph.getOpposite(outNode, edge);
+		List<WeightedEdge> edgePath = null;
+		try {
+			edgePath = this.solver.getPath(source, target);
+		} catch (Exception e) {
 		}
-		verticesPath.add(outNode);
-		
-		this.cleanBetweenStraightLines(verticesPath);
-		
-		return verticesPath;
+		if (edgePath != null) {
+			List<WorldObject> verticesPath = new ArrayList<WorldObject>(edgePath.size() + 1);
+			WorldObject outNode = source;
+			for (WeightedEdge edge : edgePath) {
+				verticesPath.add(outNode);
+				outNode = this.graph.getOpposite(outNode, edge);
+			}
+			verticesPath.add(outNode);
+			
+			this.cleanBetweenStraightLines(verticesPath);
+			
+			return verticesPath;
+		}
+		return null;
 	}
 	
 	/**

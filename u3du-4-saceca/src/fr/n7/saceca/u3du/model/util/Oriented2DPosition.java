@@ -91,9 +91,18 @@ public class Oriented2DPosition extends Point2f {
 		return false;
 	}
 	
+	public boolean egal(Oriented2DPosition position) {
+		return Math.abs(this.x - position.x) <= 0.1 && Math.abs(this.y - position.y) <= 0.1
+				&& Math.abs(this.theta - position.theta) <= 0.1;
+	}
+	
 	@Override
 	public String toString() {
 		return "(x=" + FormatUtil.format(this.x) + ", y=" + FormatUtil.format(this.y) + ", theta="
 				+ FormatUtil.format(this.theta) + ")";
+	}
+	
+	public String toStringForXML() {
+		return FormatUtil.format(this.x) + "_" + FormatUtil.format(this.y) + "_" + FormatUtil.format(this.theta);
 	}
 }

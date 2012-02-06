@@ -83,6 +83,7 @@ public class PlanningTest {
 		} while (planningModule.getPlan() != null);
 		
 		System.out.println("Memory.pastPlans=" + this.planningTester.getMemory().getPastPlans());
-		Assert.assertTrue(this.planningTester.getPropertiesContainer().getDouble(Internal.Agent.GAUGE_THIRST) >= 50);
+		Assert.assertTrue(this.planningTester.getPropertiesContainer()
+				.getDouble(Internal.Agent.GAUGE_PRIMORDIAL_THIRST) >= 50);
 	}
 }

@@ -19,7 +19,7 @@ public class MemoryForgetTest {
 	
 	public static void main(String[] args) {
 		Agent a = new Agent("Agent", 10);
-		a.setMemory(new Memory(a, 3));
+		a.setMemory(new Memory(a, 10));
 		
 		a.getMemory().remember(new Agent("Agent", 1));
 		a.getMemory().remember(new Agent("Agent", 2));
