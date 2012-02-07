@@ -1,0 +1,5 @@
+<category-model name="Restaurant">
+  <properties>
+    <int name="c_Restaurant_mealDuration" min="0" max="100" default="20" visibility="public"/>
+  </properties>
+</category-model>

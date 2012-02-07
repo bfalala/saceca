@@ -1,0 +1,11 @@
+<object model="House" id="28">
+  <position x="62.0" y="-85.0" theta="1.5707964"/>
+  <properties>
+    <bool name="i_threaded" value="false"/>
+    <bool name="i_isMisc" value="false"/>
+    <string name="c_Building_address" value="7 Beach road"/>
+    <int name="i_mass" value="42"/>
+    <string name="i_graphics_conf" value="House4"/>
+  </properties>
+  <belongings/>
+</object>

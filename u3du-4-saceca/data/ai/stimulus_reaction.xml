@@ -1,0 +1,26 @@
+<list>
+  <entry>
+    <string>reactive_emotion_fear</string>
+    <java-class>fr.n7.saceca.u3du.model.ai.service.action.go_back</java-class>
+  </entry>
+  <entry>
+    <string>reactive_emotion_joy</string>
+    <java-class>fr.n7.saceca.u3du.model.ai.service.action.go_back</java-class>
+  </entry>
+  <entry>
+    <string>reactive_emotion_disgust</string>
+    <java-class>fr.n7.saceca.u3du.model.ai.service.action.go_back</java-class>
+  </entry>
+  <entry>
+    <string>reactive_emotion_sadness</string>
+    <java-class>fr.n7.saceca.u3du.model.ai.service.action.Wait</java-class>
+  </entry>
+  <entry>
+    <string>reactive_emotion_surprise</string>
+    <java-class>fr.n7.saceca.u3du.model.ai.service.action.Jump</java-class>
+  </entry>
+  <entry>
+    <string>reactive_emotion_angry</string>
+    <java-class>fr.n7.saceca.u3du.model.ai.service.action.Jump</java-class>
+  </entry>
+</list>

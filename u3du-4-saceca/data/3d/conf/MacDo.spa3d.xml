@@ -1,0 +1,6 @@
+<spatial-3d name="MacDo" visible="true" perceptible="true">
+  <normalization elevation="0.0" angle="0.8835"/>
+  <model-path>Models/Restaurant/MacDo/MacDo.mesh.xml</model-path>
+  <scale x="0.3" y="0.3" z="0.3"/>
+  <children/>
+</spatial-3d>

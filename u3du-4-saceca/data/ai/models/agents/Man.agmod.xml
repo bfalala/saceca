@@ -1,0 +1,8 @@
+<agent-model name="Man">
+  <behavior>fr.n7.saceca.u3du.model.ai.agent.behavior.DefaultAgentBehavior</behavior>
+  <categories>
+    <category>Human</category>
+  </categories>
+  <services/>
+  <properties/>
+</agent-model>

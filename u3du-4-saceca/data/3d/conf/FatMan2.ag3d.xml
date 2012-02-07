@@ -1,0 +1,6 @@
+<agent-3d name="FatMan2" visible="true"  perceptible="true">
+  <normalization elevation="1.0" angle="0.0"/>
+  <model-path>Models/Man/Man2.mesh.xml</model-path>
+  <scale x="0.6" y="0.4" z="0.8"/>
+  <eyes-height y="2.5"/>
+</agent-3d>

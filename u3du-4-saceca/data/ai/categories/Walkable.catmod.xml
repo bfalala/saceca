@@ -1,0 +1,5 @@
+<category-model name="Walkable">
+  <properties>
+  	<double name="c_Walkable_unit" min="0.001" max="1000" default="3" visibility="public"/>
+  </properties>
+</category-model>

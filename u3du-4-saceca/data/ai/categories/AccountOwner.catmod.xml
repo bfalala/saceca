@@ -1,0 +1,5 @@
+<category-model name="AccountOwner">
+  <properties>
+	<int name="c_AccountOwner_account" min="0" max="1000000" default="20" visibility="private"/>
+  </properties>
+</category-model>

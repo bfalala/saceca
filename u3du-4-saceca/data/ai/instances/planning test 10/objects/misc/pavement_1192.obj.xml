@@ -1,0 +1,11 @@
+<object model="Pavement" id="1192">
+  <position x="-11.0" y="6.0" theta="0.0"/>
+  <properties>
+    <double name="c_Walkable_unit" value="3.0"/>
+    <bool name="i_threaded" value="false"/>
+    <bool name="i_isMisc" value="true"/>
+    <int name="i_mass" value="42"/>
+    <string name="i_graphics_conf" value="Pavement"/>
+  </properties>
+  <belongings/>
+</object>

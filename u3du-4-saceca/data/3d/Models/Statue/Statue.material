@@ -1,0 +1,319 @@
+material 1299540572_1_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.63921568627451 0.709803921568627 0.658823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1018.84229327564, 1181.10236220472
+      texture_unit
+      {
+        texture 1299540572_14_cristo_tras.jpg
+      }
+    }
+  }
+}
+material 1299540572_2_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.63921568627451 0.709803921568627 0.658823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1018.84229327564, 1181.10236220472
+      texture_unit
+      {
+        texture 1299540572_10_cristo_tras.jpg
+      }
+    }
+  }
+}
+material 1299540572_3_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.63921568627451 0.709803921568627 0.658823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1018.84229327564, 1181.10236220472
+      texture_unit
+      {
+        texture 1299540572_6_cristo_tras.jpg
+      }
+    }
+  }
+}
+material 1299540572_4_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.63921568627451 0.709803921568627 0.658823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1018.84229327564, 1181.10236220472
+      texture_unit
+      {
+        texture 1299540572_12_cristo_tras.jpg
+      }
+    }
+  }
+}
+material 1299540572_5_Matière2
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.764705882352941 0.737254901960784 0.572549019607843
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 3.93700787401575, 3.93700787401575
+      texture_unit
+      {
+        texture 1299540572_1_cor_estatua_cristo.jpg
+      }
+    }
+  }
+}
+material 1299540572_6_Matière4
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.168627450980392 0.152941176470588 0.0901960784313725
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 97.755905511811, 35.7185039370079
+      texture_unit
+      {
+        texture 1299540572_2_pedestal_cristo.jpg
+      }
+    }
+  }
+}
+material 1299540572_7_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.63921568627451 0.709803921568627 0.658823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1018.84229327564, 1181.10236220472
+      texture_unit
+      {
+        texture 1299540572_17_cristo_tras.jpg
+      }
+    }
+  }
+}
+material 1299540572_8_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.63921568627451 0.709803921568627 0.658823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1018.84229327564, 1181.10236220472
+      texture_unit
+      {
+        texture 1299540572_11_cristo_tras.jpg
+      }
+    }
+  }
+}
+material 1299540572_9_cristo
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.466666666666667 0.533333333333333 0.592156862745098
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1298.20094488189, 1565.9842519685
+      texture_unit
+      {
+        texture 1299540572_3_Cristo_Redentor_-_Rio.jpg
+      }
+    }
+  }
+}
+material 1299540572_10_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.63921568627451 0.709803921568627 0.658823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1018.84229327564, 1181.10236220472
+      texture_unit
+      {
+        texture 1299540572_7_cristo_tras.jpg
+      }
+    }
+  }
+}
+material 1299540572_11_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.63921568627451 0.709803921568627 0.658823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1018.84229327564, 1181.10236220472
+      texture_unit
+      {
+        texture 1299540572_4_cristo_tras.jpg
+      }
+    }
+  }
+}
+material 1299540572_12_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.63921568627451 0.709803921568627 0.658823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1018.84229327564, 1181.10236220472
+      texture_unit
+      {
+        texture 1299540572_16_cristo_tras.jpg
+      }
+    }
+  }
+}
+material 1299540572_13_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.63921568627451 0.709803921568627 0.658823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1018.84229327564, 1181.10236220472
+      texture_unit
+      {
+        texture 1299540572_8_cristo_tras.jpg
+      }
+    }
+  }
+}
+material 1299540572_14_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.63921568627451 0.709803921568627 0.658823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1018.84229327564, 1181.10236220472
+      texture_unit
+      {
+        texture 1299540572_9_cristo_tras.jpg
+      }
+    }
+  }
+}
+material 1299540572_15_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.63921568627451 0.709803921568627 0.658823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1018.84229327564, 1181.10236220472
+      texture_unit
+      {
+        texture 1299540572_15_cristo_tras.jpg
+      }
+    }
+  }
+}
+material 1299540572_16_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.63921568627451 0.709803921568627 0.658823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1018.84229327564, 1181.10236220472
+      texture_unit
+      {
+        texture 1299540572_13_cristo_tras.jpg
+      }
+    }
+  }
+}
+material 1299540572_17_Matière3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.63921568627451 0.709803921568627 0.658823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1018.84229327564, 1181.10236220472
+      texture_unit
+      {
+        texture 1299540572_5_cristo_tras.jpg
+      }
+    }
+  }
+}
+material 1299540572_SketchupDefault
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}

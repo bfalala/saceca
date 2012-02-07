@@ -1,0 +1,13 @@
+<object model="TrafficLight" id="14">
+  <position x="89.0" y="-6.0" theta="3.1415927"/>
+  <properties>
+    <int name="m_TrafficLight_deltaPhase" value="1100"/>
+    <int name="m_TrafficLight_groupNumber" value="0"/>
+    <enum name="m_TrafficLight_color" value="RED"/>
+    <bool name="i_threaded" value="true"/>
+    <bool name="i_isMisc" value="false"/>
+    <int name="i_mass" value="42"/>
+    <string name="i_graphics_conf" value="TrafficLight"/>
+  </properties>
+  <belongings/>
+</object>

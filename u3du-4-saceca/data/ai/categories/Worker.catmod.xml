@@ -1,0 +1,7 @@
+<category-model name="Worker">
+  <properties>
+    <int name="c_Worker_salary" min="0" max="100000" default="1000" visibility="private"/>
+    <int name="c_Worker_workingTime" min="0" max="100" default="50" visibility="private"/>
+    <string name="c_Worker_companyName" default="none" visibility="private"/>
+  </properties>
+</category-model>

@@ -1,0 +1,52 @@
+material 1299533544_1_Stores_bois_bambou
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.513725490196078 0.368627450980392 0.235294117647059
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 8.0, 8.0
+      texture_unit
+      {
+        texture 1299533544_1_Blinds_Wood_Bamboo.jpg
+      }
+    }
+  }
+}
+material 1299533544_2_island
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.8 0.8 0.1 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 55.5511811023621, 54.4431140277827
+      texture_unit
+      {
+        texture 1299533544_2_island.png
+      }
+    }
+  }
+}
+material 1299533544_SketchupDefault
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}

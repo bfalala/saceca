@@ -1,0 +1,7 @@
+<category-model name="Committer">
+  <properties>
+    <bool name="c_Committer_ready2commit" default="false" visibility="private"/>
+    <int name="c_Committer_happiness" min="0" max="100" default="50" visibility="private"/>
+    <int name="c_Committer_nbCommit" min="0" max="1024" default="0"  visibility="public"/>
+  </properties>
+</category-model>

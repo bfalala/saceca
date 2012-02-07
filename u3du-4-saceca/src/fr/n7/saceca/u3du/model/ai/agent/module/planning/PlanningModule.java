@@ -20,6 +20,11 @@ import fr.n7.saceca.u3du.model.console.CommandException;
 import fr.n7.saceca.u3du.model.util.Couple;
 import fr.n7.saceca.u3du.model.util.io.storage.Storable;
 
+/**
+ * The Interface PlanningModule.
+ * 
+ * @author Sylvain Cambon & Jérôme Dalbert
+ */
 public interface PlanningModule extends Storable {
 	/**
 	 * Plan and execute.

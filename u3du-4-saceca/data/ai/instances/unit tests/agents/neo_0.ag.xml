@@ -1,0 +1,105 @@
+<agent model="Geek" id="0">
+  <position x="1.0" y="2.0" theta="3.0"/>
+  <properties>
+    <double name="i_gauge_hunger" value="90"/>
+    <bool name="c_Committer_ready2commit" value="true"/>
+    <int name="i_perception_maxHearingDistance" value="10"/>
+    <int name="i_perception_maxEyesightDistance" value="10"/>
+    <string name="i_name" value="Neo"/>
+    <int name="i_mass" value="42"/>
+    <string name="i_graphics_conf" value="null"/>
+    <double name="i_gauge_geekness" value="42"/>
+    <double name="i_gauge_thirst" value="90"/>
+    <double name="i_gauge_happiness" value="90"/>
+    <double name="i_gauge_tiredness" value="90"/>
+    <int name="c_Committer_nbCommit" value="0"/>
+    <int name="c_Committer_happiness" value="50"/>
+    <bool name="i_threaded" value="false"/>
+  </properties>
+  <belongings>
+    <belonging id="1"/>
+  </belongings>
+  <memory maxSize="100">
+    <memory-elements>
+      <entry>
+        <long>0</long>
+        <memory-element forgettable="false">
+          <worldObject class="agent" model="Geek" id="0">
+            <position x="1.0" y="2.0" theta="3.0"/>
+            <properties>
+              <string name="i_name" value="Neo"/>
+            </properties>
+            <belongings/>
+            <memory maxSize="0">
+              <memory-elements/>
+              <insertionOrderedElements/>
+              <messageInbox class="java.util.concurrent.ConcurrentLinkedQueue" serialization="custom">
+                <unserializable-parents/>
+                <java.util.concurrent.ConcurrentLinkedQueue>
+                  <default/>
+                  <null/>
+                </java.util.concurrent.ConcurrentLinkedQueue>
+              </messageInbox>
+              <goals/>
+              <pastPlans/>
+              <surroundingObjects class="list"/>
+            </memory>
+          </worldObject>
+        </memory-element>
+      </entry>
+      <entry>
+        <long>1</long>
+        <memory-element forgettable="false">
+          <worldObject model="Computerosaurus" id="1">
+            <position x="42.0" y="51.0" theta="3.14159"/>
+            <properties>
+              <bool name="c_CommitFacility_hasWarnings" value="true"/>
+              <double name="p_diagonal" value="17.0"/>
+              <enum name="p_OS" value="Ubuntu"/>
+              <bool name="i_threaded" value="false"/>
+              <int name="i_mass" value="42"/>
+              <string name="i_graphics_conf" value="null"/>
+            </properties>
+            <belongings/>
+          </worldObject>
+        </memory-element>
+      </entry>
+    </memory-elements>
+    <insertionOrderedElements>
+      <memory-element forgettable="false">
+        <worldObject class="agent" model="Geek" id="0">
+          <position x="0.0" y="0.0" theta="0.0"/>
+          <properties>
+            <string name="i_name" value="anonymous"/>
+          </properties>
+          <belongings/>
+          <memory maxSize="0">
+            <memory-elements/>
+            <insertionOrderedElements/>
+            <messageInbox class="java.util.concurrent.ConcurrentLinkedQueue" serialization="custom">
+              <unserializable-parents/>
+              <java.util.concurrent.ConcurrentLinkedQueue>
+                <default/>
+                <null/>
+              </java.util.concurrent.ConcurrentLinkedQueue>
+            </messageInbox>
+            <goals/>
+            <pastPlans/>
+            <surroundingObjects class="list"/>
+          </memory>
+        </worldObject>
+      </memory-element>
+      <memory-element reference="../../memory-elements/entry/memory-element"/>
+    </insertionOrderedElements>
+    <messageInbox class="java.util.concurrent.ConcurrentLinkedQueue" serialization="custom">
+      <unserializable-parents/>
+      <java.util.concurrent.ConcurrentLinkedQueue>
+        <default/>
+        <null/>
+      </java.util.concurrent.ConcurrentLinkedQueue>
+    </messageInbox>
+    <goals/>
+    <pastPlans/>
+    <surroundingObjects class="list"/>
+  </memory>
+</agent>

@@ -1,0 +1,10 @@
+<object model="Road" id="4600">
+  <position x="-1.0" y="0.0" theta="6.2831855"/>
+  <properties>
+    <bool name="i_threaded" value="false"/>
+    <bool name="i_isMisc" value="true"/>
+    <int name="i_mass" value="42"/>
+    <string name="i_graphics_conf" value="CrossRoad"/>
+  </properties>
+  <belongings/>
+</object>

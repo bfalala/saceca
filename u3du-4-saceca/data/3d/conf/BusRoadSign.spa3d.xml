@@ -1,0 +1,6 @@
+<spatial-3d name="BusRoadSign" visible="true" perceptible="true">
+  <normalization elevation="0.0" angle="0.0"/>
+  <model-path>Models/BusRoadSign/BusRoadSign.mesh.xml</model-path>
+  <scale x="1.0" y="1.0" z="1.0"/>
+  <children/>
+</spatial-3d>

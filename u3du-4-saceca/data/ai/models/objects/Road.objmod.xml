@@ -1,0 +1,11 @@
+<object-model name="Road">
+  <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.DefaultBehavior</behavior>
+  <categories/>
+  <services>
+    <service>driveTo</service>
+  </services>
+  <properties>
+    <string name="i_graphics_conf" default="Road" visibility="private"/>
+    <bool name="i_isMisc" default="true" visibility="private"/>
+  </properties>
+</object-model>

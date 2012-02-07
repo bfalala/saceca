@@ -1,0 +1,12 @@
+<object model="Computerosaurus" id="1">
+  <position x="42.0" y="51.0" theta="3.14159"/>
+  <properties>
+    <bool name="c_CommitFacility_hasWarnings" value="true"/>
+    <double name="p_diagonal" value="17.0"/>
+    <enum name="p_OS" value="Ubuntu"/>
+    <bool name="i_threaded" value="false"/>
+    <int name="i_mass" value="42"/>
+    <string name="i_graphics_conf" value="null"/>
+  </properties>
+  <belongings/>
+</object>

@@ -1,0 +1,264 @@
+material 1298855347_1_Couleur_D02
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1.0 0.8 0.196078431372549
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1298855347_2_F150-BrakeLight1
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.423529411764706 0.250980392156863 0.250980392156863 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1298855347_2_478B1116.tga
+      }
+    }
+  }
+}
+material 1298855347_3_F150-LOGO1
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.486274509803922 0.498039215686275 0.568627450980392 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1298855347_3_6031B08C.tga
+      }
+    }
+  }
+}
+material 1298855347_4_F150-HeadLt1
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.325490196078431 0.298039215686275 0.282352941176471 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1298855347_4_309709C7.tga
+      }
+    }
+  }
+}
+material 1298855347_5_Métal_acier_texturé
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.415686274509804 0.431372549019608 0.482352941176471
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 24.0, 24.0
+      texture_unit
+      {
+        texture 1298855347_1_Metal_Steel_Textured.jpg
+      }
+    }
+  }
+}
+material 1298855347_6_Couleur_005
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.447058823529412 0.447058823529412 0.447058823529412
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1298855347_7_Couleur_003
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.666666666666667 0.666666666666667 0.666666666666667
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1298855347_8_F150-BODY1
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.254901960784314 0.0784313725490196 0.0784313725490196 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1298855347_6_17EBD0A6.tga
+      }
+    }
+  }
+}
+material 1298855347_9_TIRE2
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.211764705882353 0.211764705882353 0.207843137254902 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1298855347_7_7A7AC911.tga
+      }
+    }
+  }
+}
+material 1298855347_10_F-150_LICENSE1
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.749019607843137 0.741176470588235 0.741176470588235 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1298855347_5_6971BCED.tga
+      }
+    }
+  }
+}
+material 1298855347_11_F150-Badging1
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 1.0
+      diffuse 0.525490196078431 0.47843137254902 0.482352941176471 1.0
+      specular 0.0 0.0 0.0 1.0 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1298855347_8_EAD4D0DA.tga
+      }
+    }
+  }
+}
+material 1298855347_12_Couleur_008
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.117647058823529 0.117647058823529 0.117647058823529
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1298855347_13_F150-glass1
+{
+  technique
+  {
+    pass
+    {
+      scene_blend alpha_blend
+      depth_check on
+      depth_write off
+      ambient 0.0 0.0 0.0 0.5
+      diffuse 0.0980392156862745 0.0980392156862745 0.0980392156862745 0.5
+      specular 0.0 0.0 0.0 0.5 0.0
+      emissive 0.0 0.0 0.0 1.0
+      // texture size: 1.0, 1.0
+      texture_unit
+      {
+        texture 1298855347_9_5A9E32F0.tga
+      }
+    }
+  }
+}
+material 1298855347_14_Couleur_009
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.0 0.0 0.0
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1298855347_SketchupDefault
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}

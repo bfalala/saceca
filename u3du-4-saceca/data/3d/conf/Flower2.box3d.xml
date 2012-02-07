@@ -1,0 +1,5 @@
+<box-3d name="Flower2" visible="true"  perceptible="true">
+  <normalization elevation="0.0" angle="0.0"/>
+  <texture-path>Interface/Flowers/Flowers.jpg</texture-path>
+  <dimensions width="5" length="5" height="0.1"/>
+</box-3d>

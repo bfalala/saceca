@@ -1,0 +1,6 @@
+<list>
+  <entry>
+    <string>joy</string>
+    <java-class>fr.n7.saceca.u3du.model.ai.service.action.Jumpa</java-class>
+  </entry>
+</list>

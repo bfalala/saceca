@@ -1,0 +1,96 @@
+<agent model="PlanningTester" id="5">
+	<position x="14.0" y="20" theta="0.0" />
+	<properties>
+		<double name="i_gauge_primordial_thirst" value="35" />
+		<double name="i_gauge_primordial_hunger" value="50"/>
+        <double name="i_gauge_primordial_tiredness" value="100"/>
+			<double name="i_emotion_fear" value="50.0" />
+	<double name="i_emotion_joy" value="50.0" />
+	<double name="i_emotion_disgust" value="50.0" />
+	<double name="i_emotion_sadness" value="50.0" />
+	<double name="i_emotion_surprise" value="50.0" />
+	<double name="i_emotion_angry" value="50.0" />
+        <int name="c_Human_maxCarriedMass" value="20"/>
+		<int name="i_mass" value="70" />
+		<string name="i_name" value="canDrinker" />
+		<int name="i_perception_maxHearingDistance" value="10" />
+		<int name="i_perception_maxEyesightDistance" value="10" />
+		<int name="c_AccountOwner_account" value="550" />
+        <string name="i_graphics_conf" value="DefaultAgent"/>
+        <int name="c_Human_cash" value="20"/>
+        <bool name="i_threaded" value="true"/>
+	</properties>
+	<belongings />
+	<memory maxSize="100">
+		<memory-elements>
+			<entry>
+				<long>5</long>
+				<memory-element forgettable="false">
+					<worldObject class="agent" model="PlanningTester" id="5">
+						<position x="14.0" y="20.0" theta="0.0" />
+						<properties>
+						<double name="i_gauge_primordial_tiredness" value="100"/>
+							<double name="i_gauge_primordial_hunger" value="50" />
+							<double name="i_gauge_primordial_thirst" value="35" />
+								<double name="i_emotion_fear" value="50.0" />
+	<double name="i_emotion_joy" value="50.0" />
+	<double name="i_emotion_disgust" value="50.0" />
+	<double name="i_emotion_sadness" value="50.0" />
+	<double name="i_emotion_surprise" value="50.0" />
+	<double name="i_emotion_angry" value="50.0" />
+							<string name="i_name" value="canDrinker" />
+							<int name="c_Human_cash" value="20" />
+							<int name="c_AccountOwner_account" value="550" />
+						</properties>
+						<belongings />
+						<memory maxSize="0">
+							<memory-elements />
+							<messageInbox class="linked-list" />
+							<goals />
+						</memory>
+					</worldObject>
+				</memory-element>
+			</entry>
+			<entry>
+				<long>4</long>
+				<memory-element forgettable="false">
+					<worldObject model="Atm" id="2">
+						<position x="12.0" y="15.0" theta="0.0" />
+						<properties />
+						<belongings />
+					</worldObject>
+				</memory-element>
+			</entry>
+			<entry>
+				<long>6</long>
+				<memory-element forgettable="false">
+					<worldObject model="DrinkVendingMachine" id="6">
+						<position x="15.0" y="30.0" theta="0.7" />
+						<properties />
+						<belongings />
+					</worldObject>
+				</memory-element>
+			</entry>
+	<entry>
+        <long>60</long>
+        <memory-element forgettable="false">
+          <worldObject model="Restaurant" id="60">
+            <position x="-50.0" y="-20.0" theta="7.8531857"/>
+            <properties>
+              <bool name="i_threaded" value="false"/>
+              <int name="c_Restaurant_mealDuration" value="60"/>
+              <bool name="i_isMisc" value="false"/>
+              <string name="c_Building_address" value="2 Main street"/>
+              <int name="i_mass" value="42"/>
+              <string name="i_graphics_conf" value="PizzaHut"/>
+            </properties>
+            <belongings/>
+          </worldObject>
+        </memory-element>
+      </entry>
+		</memory-elements>
+		<messageInbox class="linked-list" />
+		<goals />
+		<pastPlans/>
+	</memory>
+</agent>

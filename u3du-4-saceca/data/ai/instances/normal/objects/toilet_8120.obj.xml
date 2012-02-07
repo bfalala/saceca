@@ -1,0 +1,12 @@
+<object model="Toilet" id="8120">
+  <position x="74.0" y="9.0" theta="0.0"/>
+  <properties>
+    <int name="c_Toilet_duration" value="5"/>
+    <bool name="i_threaded" value="false"/>
+    <bool name="i_isMisc" value="false"/>
+    <string name="c_Building_address" value="none"/>
+    <int name="i_mass" value="42"/>
+    <string name="i_graphics_conf" value="Toilet"/>
+  </properties>
+  <belongings/>
+</object>

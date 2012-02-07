@@ -1,0 +1,6 @@
+<spatial-3d name="Bank" visible="true"  perceptible="true">
+  <normalization elevation="0.0" angle="0.075"/>
+  <model-path>Models/Bank/Bank.mesh.xml</model-path>
+  <scale x="0.8" y="0.8" z="0.8"/>
+  <children/>
+</spatial-3d>
