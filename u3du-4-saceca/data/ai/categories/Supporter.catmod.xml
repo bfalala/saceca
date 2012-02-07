@@ -1,7 +1,0 @@
-<category-model name="Supporter">
-  <properties>
-    <string name="p_team" default="none" visibility="none"/>
-    <int name="p_color" min="0" max="255" default="128" visibility="public"/>
-    <enum name="p_logo" values="ADIDAS, NIKE" default="ADIDAS" visibility="public"/>
-  </properties>
-</category-model>

@@ -1,5 +1,0 @@
-<category-model name="BuildingOwner">
-  <properties>
-    <string name="c_BuildingOwner_address" default="none" visibility="private"/>
-  </properties>
-</category-model>

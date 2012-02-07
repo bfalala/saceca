@@ -1,5 +1,0 @@
-<category-model name="Toilet">
-  <properties>
-    <int name="c_Toilet_duration" min="0" max="100" default="5" visibility="public"/>
-  </properties>
-</category-model>

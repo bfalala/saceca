@@ -1,8 +1,0 @@
-<vehicle-3d name="MultiColorBus" visible="true"  perceptible="true">
-  <normalization elevation="1.0" angle="0"/>
-  <model-path>Models/Bus/multicolor/bus.mesh.xml</model-path>
-  <scale x="1.7" y="1.7" z="1.7"/>  
-  <collision-shape-radius value="0.3"/>
-  <collision-shape-height value="0.01"/>
-  <step-height value="0.02"/>
-</vehicle-3d>

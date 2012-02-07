@@ -1,5 +1,0 @@
-<box-3d name="Box" visible="true"  perceptible="true">
-  <normalization elevation="0.5" angle="0.0"/>
-  <texture-path>Interface/Boxes/MarioBox.jpg</texture-path>
-  <dimensions width="1.0" length="1.0" height="1.0"/>
-</box-3d>

@@ -1,8 +1,0 @@
-<object-model name="Statue">
-  <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.DefaultBehavior</behavior>
-  <categories />
-  <services/>
-  <properties>
-    <string name="i_graphics_conf" default="Statue" visibility="private"/>
-  </properties>
-</object-model>

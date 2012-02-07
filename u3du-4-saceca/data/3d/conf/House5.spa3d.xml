@@ -1,6 +1,0 @@
-<spatial-3d name="House5" visible="true" perceptible="true">
-  <normalization elevation="-4.0" angle="0.0"/>
-  <model-path>Models/House/House9/House3.mesh.xml</model-path>
-  <scale x="0.65" y="0.65" z="0.65"/>
-  <children/>
-</spatial-3d>

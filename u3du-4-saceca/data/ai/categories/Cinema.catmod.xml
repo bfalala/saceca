@@ -1,5 +1,0 @@
-<category-model name="Cinema">
-  <properties>
-    <int name="c_Cinema_filmDuration" min="0" max="240" default="90" visibility="public"/>
-  </properties>
-</category-model>

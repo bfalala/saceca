@@ -1,5 +1,0 @@
-<category-model name="Sport">
-  <properties>
-    <string name="c_Sport_team" default="none" visibility="public"/>
-  </properties>
-</category-model>

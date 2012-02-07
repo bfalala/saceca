@@ -1,9 +1,0 @@
-<vehicle-3d name="Citroen2CV" visible="true" perceptible="true">
-  <normalization elevation="1.0" angle="-1.09"/>
-  <model-path>Models/Car/citroen_2cv/car.mesh.xml</model-path>
-  <scale x="0.02" y="0.02" z="0.02"/>  
-  <collision-shape-radius value="0.7"/>
-  <collision-shape-height value="0.7"/>
-  <step-height value="0.02"/>
-  <children/>
-</vehicle-3d>

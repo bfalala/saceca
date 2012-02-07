@@ -1,9 +1,0 @@
-<vehicle-3d name="RenaultClio" visible="true" perceptible="true">
-  <normalization elevation="1.0" angle="0"/>
-  <model-path>Models/Car/renault_clio/car.mesh.xml</model-path>
-  <scale x="80" y="80" z="80"/>  
-  <collision-shape-radius value="1.1"/>
-  <collision-shape-height value="1.1"/>
-  <step-height value="0.02"/>
-  <children/>
-</vehicle-3d>

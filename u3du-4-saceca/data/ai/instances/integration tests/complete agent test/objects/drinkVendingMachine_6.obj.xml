@@ -1,8 +1,0 @@
-<object model="DrinkVendingMachine" id="6">
-  <position x="11" y="30.0" theta="0.2"/>
-  <properties>
-    <string name="i_graphics_conf" value="DrinkVendingMachine"/>
-    <bool name="i_threaded" value="false"/>
-  </properties>
-  <belongings/>
-</object>

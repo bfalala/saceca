@@ -1,5 +1,0 @@
-<category-model name="CommitFacility">
-  <properties>
-    <bool name="c_CommitFacility_hasWarnings" default="true" visibility="public"/>
-  </properties>
-</category-model>

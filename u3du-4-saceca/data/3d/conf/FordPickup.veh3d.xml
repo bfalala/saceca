@@ -1,9 +1,0 @@
-<vehicle-3d name="FordPickup" visible="true" perceptible="true">
-  <normalization elevation="1.0" angle="0.0"/>
-  <model-path>Models/Car/ford_pickup/car.mesh.xml</model-path>
-  <scale x="2.4" y="2.4" z="2.4"/>  
-  <collision-shape-radius value="0.3"/>
-  <collision-shape-height value="0.01"/>
-  <step-height value="0.02"/>
-  <children/>
-</vehicle-3d>

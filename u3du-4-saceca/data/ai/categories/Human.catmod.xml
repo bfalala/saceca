@@ -1,8 +1,0 @@
-<category-model name="Human">
-  <properties>
-    <int name="c_Human_maxCarriedMass" min="0" max="1000" default="10" visibility="private"/>
-    <int name="c_Human_cash" min="0" max="100000" default="0"  visibility="private"/>
-    <double name="c_Human_walk_speed" min="0" max="1000" default="0.04" visibility="private" />
-    <int name="c_Human_restDuration" min="0" max="1000" default="50" visibility="private" />
-  </properties>
-</category-model>

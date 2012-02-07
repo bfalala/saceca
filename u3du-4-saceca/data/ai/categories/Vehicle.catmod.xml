@@ -1,5 +1,0 @@
-<category-model name="Vehicle">
-	<properties>
-		<double name="c_Vehicle_drive_speed" min="0" max="1000" default="0.5" visibility="private" />
-	</properties>
-</category-model>

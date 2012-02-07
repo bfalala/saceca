@@ -1,9 +1,0 @@
-<vehicle-3d name="ClassicBlue" visible="true" perceptible="true">
-  <normalization elevation="1.0" angle="1.65"/>
-  <model-path>Models/Car/classic_blue/car.mesh.xml</model-path>
-  <scale x="7.0" y="7.0" z="7.0"/>  
-  <collision-shape-radius value="0.3"/>
-  <collision-shape-height value="0.01"/>
-  <step-height value="0.02"/>
-  <children/>
-</vehicle-3d>

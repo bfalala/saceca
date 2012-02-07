@@ -1,6 +1,0 @@
-<spatial-3d name="Liner" visible="true" perceptible="false">
-  <normalization elevation="5.0" angle="0.0"/>
-  <model-path>Models/Boat/Liner/Liner.mesh.xml</model-path>
-  <scale x="0.3" y="0.3" z="0.3"/>
-  <children/>
-</spatial-3d>

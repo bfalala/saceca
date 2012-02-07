@@ -1,5 +1,0 @@
-<box-3d name="Pavement" visible="true" perceptible="false">
-  <normalization elevation="0.0" angle="0.0"/>
-  <texture-path>Interface/Pavement/Pavement.jpg</texture-path>
-  <dimensions width="4" length="4" height="0.1"/>
-</box-3d>

@@ -1,5 +1,0 @@
-<category-model name="Company">
-  <properties>
-    <string name="c_Company_name" default="none" visibility="public"/>
-  </properties>
-</category-model>
