@@ -12,6 +12,9 @@
  */
 package fr.n7.saceca.u3du;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import fr.n7.saceca.u3du.exception.SacecaStrictException;
 import fr.n7.saceca.u3du.model.Model;
 import fr.n7.saceca.u3du.view.View;
@@ -38,6 +41,9 @@ public class Main {
 	 *             If a problem occurs.
 	 */
 	public static void main(String[] args) throws SacecaStrictException {
+		
+		Logger.getLogger("").setLevel(Level.SEVERE);
+		
 		Model m = Model.getInstance();
 		
 		m.getAI().getIOManager().loadAI(MODELS_PATH, INSTANCES_PATH);
@@ -46,6 +52,7 @@ public class Main {
 		
 		View v = new View();
 		v.getSimulationWindow().display();
+		
 	}
 	
 }

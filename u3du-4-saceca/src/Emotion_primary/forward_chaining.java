@@ -47,7 +47,7 @@ public class forward_chaining {
 		 * = 0; this.j < this.vector_forwarded_result[0].length; this.j++) { System.out.print(" " +
 		 * this.vector_forwarded_result[this.i][this.j]); } }
 		 */
-
+		
 	}
 	
 	public int[][] getVector_forwarded() {
@@ -159,12 +159,12 @@ public class forward_chaining {
 		int[][] result = new int[m1rowsa][m1colsa];
 		// System.out.println("l'or des deux matrice est ");
 		for (i = 0; i < m1rowsa; i++) {
-			System.out.println();
+			// System.out.println();
 			for (this.j = 0; this.j < m1colsa; this.j++) {
 				result[i][this.j] = matrixa[i][this.j] | matrixb[i][this.j];
 				// System.out.print(" " + result[i][this.j]);
 			}
-			System.out.println();
+			// System.out.println();
 		}
 		
 		return result;
