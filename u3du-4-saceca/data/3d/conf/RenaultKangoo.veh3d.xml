@@ -1,7 +1,7 @@
 <vehicle-3d name="RenaultKangoo" visible="true" perceptible="true">
   <normalization elevation="1.0" angle="0"/>
   <model-path>Models/Car/renault_kangoo/car.mesh.xml</model-path>
-  <scale x="80" y="80" z="80"/>  
+  <scale x="70" y="70" z="70"/>  
   <collision-shape-radius value="1.5"/>
   <collision-shape-height value="1.5"/>
   <step-height value="0.02"/>

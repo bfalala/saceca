@@ -1,7 +1,7 @@
 <vehicle-3d name="PoliceCar" visible="true" perceptible="true">
   <normalization elevation="0.5" angle="0"/>
   <model-path>Models/Car/us_police/car.mesh.xml</model-path>
-  <scale x="2" y="2" z="2"/>  
+  <scale x="1.5" y="1.5" z="1.5"/>  
   <collision-shape-radius value="0.1"/>
   <collision-shape-height value="0.1"/>
   <step-height value="0.02"/>
