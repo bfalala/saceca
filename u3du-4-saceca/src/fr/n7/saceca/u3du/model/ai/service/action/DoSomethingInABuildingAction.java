@@ -26,7 +26,7 @@ import fr.n7.saceca.u3du.util.Log;
  * This class gather the common code for making an agent disappear in a building and reappear a
  * while after.
  * 
- * @author Sylvain Cambon
+ * @author Sylvain Cambon, Bertrand Deguelle
  */
 public abstract class DoSomethingInABuildingAction implements Action {
 	
@@ -34,6 +34,11 @@ public abstract class DoSomethingInABuildingAction implements Action {
 	protected boolean initialized;
 	/** The expected duration. */
 	private int expectedEnd;
+	/** The Constant DEFAULT_TICK_PERIOD, in ms. */
+	public static final long DEFAULT_TICK_PERIOD = 10;
+	
+	/** The Constant DAY_MINUTES. */
+	private static final int DAY_MINUTES = 24 * 60;
 	
 	/**
 	 * Instantiates a new do something in a building action.
@@ -66,11 +71,11 @@ public abstract class DoSomethingInABuildingAction implements Action {
 	 */
 	@Override
 	public ExecutionStatus executeStep(WorldObject provider, WorldObject consumer, Map<String, Object> parameters) {
+		int currentTime = Model.getInstance().getAI().getSimulation().getTime();
 		if (!this.initialized) {
 			// This is the first call
 			try {
-				this.expectedEnd = this.getDuration(provider, consumer, parameters)
-						+ Model.getInstance().getAI().getSimulation().getTime();
+				this.expectedEnd = this.getDuration(provider, consumer, parameters) + currentTime;
 			} catch (UnknownPropertyException e) {
 				Log.debug("A duration property related to the Action  \"" + this.getStorageLabel() + "\" is missing.");
 				return ExecutionStatus.FAILURE;
@@ -83,7 +88,10 @@ public abstract class DoSomethingInABuildingAction implements Action {
 			this.initialized = true;
 		}
 		
-		if (Model.getInstance().getAI().getSimulation().getTime() >= this.expectedEnd) {
+		// Gestion du modulo des 24h (1440 minutes)
+		
+		if ((this.expectedEnd < DAY_MINUTES && currentTime >= this.expectedEnd)
+				|| (this.expectedEnd >= DAY_MINUTES && currentTime >= this.expectedEnd % DAY_MINUTES && currentTime <= DAY_MINUTES / 2)) {
 			// The agent comes back
 			
 			Model.getInstance().getGraphics().sendAnimation(new AppearAnimation(consumer.getId()));
