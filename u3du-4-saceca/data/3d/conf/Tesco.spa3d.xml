@@ -1,0 +1,6 @@
+<spatial-3d name="Tesco" visible="true" perceptible="true">
+  <normalization elevation="0" angle="-0.05"></normalization>
+  <model-path>Models/Tesco/tesco.mesh.xml</model-path>
+  <scale x="0.55" y="0.55" z="0.55"></scale>
+  <children/>
+</spatial-3d>

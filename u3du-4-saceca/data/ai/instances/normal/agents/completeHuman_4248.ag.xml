@@ -3,34 +3,80 @@
   <properties>
     <int name="c_AccountOwner_account" value="550"/>
     <int name="c_Human_cash" value="20"/>
-    <string name="c_BuildingOwner_address" value="9 Beach road"/>
-    <string name="c_Worker_companyName" value="The World Company"/>
-   
-    <int name="i_decrement_period_default" value="14"/>
-    <int name="i_perception_maxHearingDistance" value="10"/>
-    <int name="i_perception_maxEyesightDistance" value="10"/>
-    <string name="i_name" value="Sylvain"/>
-    <int name="i_mass" value="140"/>
-    <int name="i_decrement_period_thirst" value="8"/>
+    <double name="i_emotion_secondary_relief" value="50.0"/>
+    <int name="i_decrement_period_joy" value="1"/>
+    <int name="i_decrement_period_angry" value="1"/>
+    <int name="i_decrement_period_disgust" value="1"/>
+    <double name="i_emotion_surprise" value="50.0"/>
+    <double name="i_emotion_secondary_Remorse" value="50.0"/>
+    <double name="i_gauge_security_financial" value="90.0"/>
     <string name="i_graphics_conf" value="Man"/>
-     <double name="i_gauge_primordial_hunger" value="80.0"/>
-    <double name="i_gauge_primordial_thirst" value="35.0"/>
-    <double name="i_gauge_primordial_tiredness" value="86.0"/>
-    <double name="i_gauge_primordial_breath" value="86.0"/>
-    <double name="i_gauge_primordial_naturalneeds" value="86.0"/>
-    <double name="i_gauge_primordial_skintemperature" value="86.0"/>
-    <int name="c_Worker_workingTime" value="40"/>
-    <int name="c_Human_restDuration" value="50"/>
-    <int name="c_Human_maxCarriedMass" value="10"/>
-	
+    <double name="i_emotion_disgust" value="50.0"/>
     <double name="c_Human_walk_speed" value="0.04"/>
     <bool name="i_threaded" value="true"/>
-    <bool name="i_isMisc" value="false"/>
+    <double name="i_emotion_secondary_horror" value="50.0"/>
+    <double name="i_emotion_secondary_Submission" value="50.0"/>
     <int name="c_Worker_salary" value="200"/>
+    <string name="c_Worker_companyName" value="The World Company"/>
+    <int name="i_decrement_period_fear" value="1"/>
+    <int name="i_perception_maxHearingDistance" value="10"/>
+    <int name="i_decrement_period_surprise" value="1"/>
+    <double name="i_gauge_primordial_thirst" value="35.0"/>
+    <double name="i_emotion_secondary_Aggressivness" value="50.0"/>
+    <double name="i_emotion_secondary_nervousness" value="50.0"/>
+    <double name="i_emotion_secondary_Disappoinment" value="50.0"/>
+    <double name="i_emotion_secondary_hope" value="50.0"/>
+    <int name="i_mass" value="140"/>
+    <double name="i_emotion_secondary_Contempt" value="50.0"/>
+    <double name="i_emotion_secondary_frustation" value="50.0"/>
+    <int name="c_Human_restDuration" value="50"/>
+    <double name="i_emotion_secondary_jealousy" value="50.0"/>
+    <double name="i_emotion_secondary_shame" value="50.0"/>
+    <double name="i_emotion_secondary_optimism" value="50.0"/>
+    <double name="i_emotion_angry" value="50.0"/>
+    <double name="i_gauge_primordial_naturalneeds" value="86.0"/>
+    <double name="i_gauge_primordial_tiredness" value="86.0"/>
+    <int name="i_decrement_period_default" value="14"/>
+    <double name="i_emotion_sadness" value="50.0"/>
+    <double name="i_emotion_fear" value="50.0"/>
+    <double name="i_emotion_secondary_Awe" value="50.0"/>
+    <int name="i_decrement_period_thirst" value="8"/>
+    <double name="i_gauge_social_love" value="90.0"/>
+    <int name="c_Worker_workingTime" value="40"/>
+    <double name="i_gauge_primordial_skintemperature" value="86.0"/>
+    <string name="c_BuildingOwner_address" value="9 Beach road"/>
+    <int name="i_perception_maxEyesightDistance" value="10"/>
+    <string name="i_name" value="Sylvain"/>
+    <double name="i_gauge_security_body" value="90.0"/>
+    <double name="i_gauge_primordial_hunger" value="80.0"/>
+    <double name="i_gauge_primordial_breath" value="86.0"/>
+    <int name="i_decrement_period_sadness" value="1"/>
+    <int name="c_Human_maxCarriedMass" value="10"/>
+    <double name="i_emotion_joy" value="50.0"/>
+    <double name="i_gauge_social_friendship" value="90.0"/>
+    <bool name="i_isMisc" value="false"/>
+    <double name="i_emotion_secondary_mepris" value="50.0"/>
   </properties>
   <belongings/>
   <memory maxSize="100">
     <memory-elements>
+      <entry>
+        <long>8117</long>
+        <memory-element forgettable="true" place="long" nbRef="50">
+          <worldObject model="Toilet" id="8117">
+            <position x="-59.0" y="-9.0" theta="0.0"/>
+            <properties>
+              <int name="c_Toilet_duration" value="5"/>
+              <bool name="i_threaded" value="false"/>
+              <bool name="i_isMisc" value="false"/>
+              <string name="c_Building_address" value="none"/>
+              <int name="i_mass" value="42"/>
+              <string name="i_graphics_conf" value="Toilet"/>
+            </properties>
+            <belongings/>
+          </worldObject>
+        </memory-element>
+      </entry>
       <entry>
         <long>4248</long>
         <memory-element forgettable="false" place="long" nbRef="100">
@@ -39,29 +85,59 @@
             <properties>
               <int name="c_AccountOwner_account" value="550"/>
               <int name="c_Human_cash" value="20"/>
-              <string name="c_BuildingOwner_address" value="13 Beach road"/>
-              <string name="c_Worker_companyName" value="The World Company"/>
-                 <double name="i_gauge_primordial_hunger" value="80.0"/>
-                  <double name="i_gauge_primordial_thirst" value="15.0"/>
-                     <double name="i_gauge_primordial_tiredness" value="86.0"/>
-                     <double name="i_gauge_primordial_breath" value="86.0"/>
-                  <double name="i_gauge_primordial_naturalneeds" value="86.0"/>
-              <double name="i_gauge_primordial_skintemperature" value="86.0"/>
-              <int name="i_decrement_period_default" value="14"/>
-              <int name="i_perception_maxHearingDistance" value="10"/>
-              <int name="i_perception_maxEyesightDistance" value="10"/>
-              <string name="i_name" value="Sylvain"/>
-              <int name="i_mass" value="140"/>
-              <int name="i_decrement_period_thirst" value="8"/>
+              <double name="i_emotion_secondary_relief" value="50.0"/>
+              <int name="i_decrement_period_joy" value="1"/>
+              <int name="i_decrement_period_angry" value="1"/>
+              <int name="i_decrement_period_disgust" value="1"/>
+              <double name="i_emotion_surprise" value="50.0"/>
+              <double name="i_emotion_secondary_Remorse" value="50.0"/>
+              <double name="i_gauge_security_financial" value="90.0"/>
               <string name="i_graphics_conf" value="Man"/>
-            
-              <int name="c_Worker_workingTime" value="40"/>
-              <int name="c_Human_restDuration" value="50"/>
-              <int name="c_Human_maxCarriedMass" value="10"/>
+              <double name="i_emotion_disgust" value="50.0"/>
               <double name="c_Human_walk_speed" value="0.04"/>
               <bool name="i_threaded" value="true"/>
-              <bool name="i_isMisc" value="false"/>
+              <double name="i_emotion_secondary_horror" value="50.0"/>
+              <double name="i_emotion_secondary_Submission" value="50.0"/>
               <int name="c_Worker_salary" value="200"/>
+              <string name="c_Worker_companyName" value="The World Company"/>
+              <int name="i_decrement_period_fear" value="1"/>
+              <int name="i_perception_maxHearingDistance" value="10"/>
+              <int name="i_decrement_period_surprise" value="1"/>
+              <double name="i_gauge_primordial_thirst" value="15.0"/>
+              <double name="i_emotion_secondary_Aggressivness" value="50.0"/>
+              <double name="i_emotion_secondary_nervousness" value="50.0"/>
+              <double name="i_emotion_secondary_Disappoinment" value="50.0"/>
+              <double name="i_emotion_secondary_hope" value="50.0"/>
+              <int name="i_mass" value="140"/>
+              <double name="i_emotion_secondary_Contempt" value="50.0"/>
+              <double name="i_emotion_secondary_frustation" value="50.0"/>
+              <int name="c_Human_restDuration" value="50"/>
+              <double name="i_emotion_secondary_jealousy" value="50.0"/>
+              <double name="i_emotion_secondary_shame" value="50.0"/>
+              <double name="i_emotion_secondary_optimism" value="50.0"/>
+              <double name="i_emotion_angry" value="50.0"/>
+              <double name="i_gauge_primordial_naturalneeds" value="86.0"/>
+              <double name="i_gauge_primordial_tiredness" value="86.0"/>
+              <int name="i_decrement_period_default" value="14"/>
+              <double name="i_emotion_sadness" value="50.0"/>
+              <double name="i_emotion_fear" value="50.0"/>
+              <double name="i_emotion_secondary_Awe" value="50.0"/>
+              <int name="i_decrement_period_thirst" value="8"/>
+              <double name="i_gauge_social_love" value="90.0"/>
+              <int name="c_Worker_workingTime" value="40"/>
+              <double name="i_gauge_primordial_skintemperature" value="86.0"/>
+              <string name="c_BuildingOwner_address" value="13 Beach road"/>
+              <int name="i_perception_maxEyesightDistance" value="10"/>
+              <string name="i_name" value="Sylvain"/>
+              <double name="i_gauge_security_body" value="90.0"/>
+              <double name="i_gauge_primordial_hunger" value="80.0"/>
+              <double name="i_gauge_primordial_breath" value="86.0"/>
+              <int name="i_decrement_period_sadness" value="1"/>
+              <int name="c_Human_maxCarriedMass" value="10"/>
+              <double name="i_emotion_joy" value="50.0"/>
+              <double name="i_gauge_social_friendship" value="90.0"/>
+              <bool name="i_isMisc" value="false"/>
+              <double name="i_emotion_secondary_mepris" value="50.0"/>
             </properties>
             <belongings/>
             <memory maxSize="0">
@@ -69,6 +145,9 @@
               <insertionOrderedElements/>
               <messageInbox class="linked-list"/>
               <goals/>
+              <goalStack class="fr.n7.saceca.u3du.model.ai.agent.module.reasoning.DefaultMMGoalStack">
+                <goalList class="linked-list"/>
+              </goalStack>
               <pastPlans/>
               <surroundingObjects class="list"/>
             </memory>
@@ -92,23 +171,6 @@
         </memory-element>
       </entry>
       <entry>
-        <long>7</long>
-        <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="Building" id="7">
-            <position x="-83.0" y="43.0" theta="3.1407964"/>
-            <properties>
-              <string name="c_Company_name" value="The World Company"/>
-              <bool name="i_threaded" value="false"/>
-              <bool name="i_isMisc" value="false"/>
-              <string name="c_Building_address" value="3 Main street"/>
-              <int name="i_mass" value="42"/>
-              <string name="i_graphics_conf" value="Building"/>
-            </properties>
-            <belongings/>
-          </worldObject>
-        </memory-element>
-      </entry>
-      <entry>
         <long>21</long>
         <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="Cinema" id="21">
@@ -126,17 +188,19 @@
         </memory-element>
       </entry>
       <entry>
-        <long>8122</long>
+        <long>7</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="DrinkVendingMachine" id="8122">
-				<position x="8.0" y="60.0" theta="0.0"/>
-				<properties>
-					<bool name="i_threaded" value="false"/>
-					<bool name="i_isMisc" value="false"/>
-					<int name="i_mass" value="42"/>
-					<string name="i_graphics_conf" value="DrinkVendingMachine"/>
-				</properties>
-				<belongings/>
+          <worldObject model="Building" id="7">
+            <position x="-83.0" y="43.0" theta="3.1407964"/>
+            <properties>
+              <string name="c_Company_name" value="The World Company"/>
+              <bool name="i_threaded" value="false"/>
+              <bool name="i_isMisc" value="false"/>
+              <string name="c_Building_address" value="3 Main street"/>
+              <int name="i_mass" value="42"/>
+              <string name="i_graphics_conf" value="Building"/>
+            </properties>
+            <belongings/>
           </worldObject>
         </memory-element>
       </entry>
@@ -157,27 +221,28 @@
           </worldObject>
         </memory-element>
       </entry>
-	  <entry>
-        <long>8117</long>
+      <entry>
+        <long>8122</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-		<worldObject model="Toilet" id="8117">
-			<position x="-59.0" y="-9.0" theta="0.0"/>
-			<properties>
-				<int name="c_Toilet_duration" value="5"/>
-				<bool name="i_threaded" value="false"/>
-				<bool name="i_isMisc" value="false"/>
-				<string name="c_Building_address" value="none"/>
-				<int name="i_mass" value="42"/>
-				<string name="i_graphics_conf" value="Toilet"/>
-			</properties>
-			<belongings/>
-		</worldObject>
-		</memory-element>
-	  </entry>
+          <worldObject model="DrinkVendingMachine" id="8122">
+            <position x="8.0" y="60.0" theta="0.0"/>
+            <properties>
+              <bool name="i_threaded" value="false"/>
+              <bool name="i_isMisc" value="false"/>
+              <int name="i_mass" value="42"/>
+              <string name="i_graphics_conf" value="DrinkVendingMachine"/>
+            </properties>
+            <belongings/>
+          </worldObject>
+        </memory-element>
+      </entry>
     </memory-elements>
     <insertionOrderedElements/>
     <messageInbox class="linked-list"/>
     <goals/>
+    <goalStack class="fr.n7.saceca.u3du.model.ai.agent.module.reasoning.DefaultMMGoalStack">
+      <goalList class="linked-list"/>
+    </goalStack>
     <pastPlans/>
     <surroundingObjects class="list"/>
   </memory>

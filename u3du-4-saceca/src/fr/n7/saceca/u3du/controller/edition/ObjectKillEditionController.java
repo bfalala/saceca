@@ -14,10 +14,8 @@ package fr.n7.saceca.u3du.controller.edition;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.concurrent.Callable;
 
 import fr.n7.saceca.u3du.model.Model;
-import fr.n7.saceca.u3du.model.graphics.animation.Animation;
 import fr.n7.saceca.u3du.view.EditionWindow;
 
 /**
@@ -54,28 +52,28 @@ public class ObjectKillEditionController implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// We destruct the object
 		
+		Model.getInstance().getGraphics().getEngine3D().getController3D().deleteObject(this.id);
+		
 		// In the 2D interface
-		ObjectKillEditionController.this.ew.removeObject(ObjectKillEditionController.this.id);
-		
-		// In the AI
-		Animation animation = Model.getInstance().getAI().getWorld().getWorldObjects().get(
-				ObjectKillEditionController.this.id).getAnimation();
-		if (animation != null) {
-			animation.pause();
-		}
-		Model.getInstance().getAI().getWorld().getWorldObjects().get(ObjectKillEditionController.this.id).killThread();
-		Model.getInstance().getAI().getWorld().getWorldObjects().remove(ObjectKillEditionController.this.id);
-		
-		// In the 3D Engine
-		// We must wrap the call to JME so that it will be executed from the OpenGL thread
-		Model.getInstance().getGraphics().getEngine3D().enqueue(new Callable<Void>() {
-			@Override
-			public Void call() throws Exception {
-				Model.getInstance().getGraphics().getEngine3D()
-						.removeObjectOrAgent(ObjectKillEditionController.this.id);
-				return null;
-			}
-		});
+		/*
+		 * ObjectKillEditionController.this.ew.removeObject(ObjectKillEditionController.this.id);
+		 * 
+		 * // In the AI Animation animation =
+		 * Model.getInstance().getAI().getWorld().getWorldObjects()
+		 * .get(ObjectKillEditionController.this.id).getAnimation(); if (animation != null) {
+		 * animation.pause(); }
+		 * Model.getInstance().getAI().getWorld().getWorldObjects().get(ObjectKillEditionController
+		 * .this.id).killThread();
+		 * Model.getInstance().getAI().getWorld().remove(ObjectKillEditionController.this.id);
+		 * 
+		 * // In the 3D Engine // We must wrap the call to JME so that it will be executed from the
+		 * OpenGL thread Model.getInstance().getGraphics().getEngine3D().enqueue(new
+		 * Callable<Void>() {
+		 * 
+		 * @Override public Void call() throws Exception {
+		 * Model.getInstance().getGraphics().getEngine3D()
+		 * .removeObjectOrAgent(ObjectKillEditionController.this.id); return null; } });
+		 */
 		
 	}
 }

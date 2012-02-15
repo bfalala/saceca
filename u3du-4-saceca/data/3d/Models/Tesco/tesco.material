@@ -1,0 +1,819 @@
+material 1329261017_1_8
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.588235294117647 0.568627450980392 0.568627450980392
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1459.84251968504, 355.02006801679
+      texture_unit
+      {
+        texture 1329261017_13_8.jpg
+      }
+    }
+  }
+}
+material 1329261017_2_P9160180
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.780392156862745 0.749019607843137 0.76078431372549
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 428.11737803651, 52.8739798961285
+      texture_unit
+      {
+        texture 1329261017_15_P9160180.jpg
+      }
+    }
+  }
+}
+material 1329261017_3_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_29_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_4_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_25_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_5_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_20_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_6_6
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.317647058823529 0.298039215686275 0.341176470588235
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 174.732283464567, 224.015748031496
+      texture_unit
+      {
+        texture 1329261017_6_6(1).jpg
+      }
+    }
+  }
+}
+material 1329261017_7_6
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.317647058823529 0.298039215686275 0.341176470588235
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 174.732283464567, 224.015748031496
+      texture_unit
+      {
+        texture 1329261017_5_6(1).jpg
+      }
+    }
+  }
+}
+material 1329261017_8_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_26_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_9_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_23_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_10_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_19_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_11_2
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.713725490196078 0.709803921568627 0.713725490196078
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 2151.1811023622, 246.836615302605
+      texture_unit
+      {
+        texture 1329261017_17_2.jpg
+      }
+    }
+  }
+}
+material 1329261017_12_9
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.458823529411765 0.450980392156863 0.447058823529412
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 165.543307086614, 151.181102362205
+      texture_unit
+      {
+        texture 1329261017_9_9.jpg
+      }
+    }
+  }
+}
+material 1329261017_13_8
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.588235294117647 0.568627450980392 0.568627450980392
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1459.84251968504, 355.02006801679
+      texture_unit
+      {
+        texture 1329261017_11_8.jpg
+      }
+    }
+  }
+}
+material 1329261017_14_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_24_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_15_Couleur_B24
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.2 0.137254901960784 0.117647058823529
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1329261017_16_Google_Earth_Snapshot
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.486274509803922 0.501960784313725 0.47843137254902
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 5442.17593993425, 6016.36568573954
+      texture_unit
+      {
+        texture 1329261017_4_Google_Earth_Snapshot.jpg
+      }
+    }
+  }
+}
+material 1329261017_17_9
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.458823529411765 0.450980392156863 0.447058823529412
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 165.543307086614, 151.181102362205
+      texture_unit
+      {
+        texture 1329261017_8_9.jpg
+      }
+    }
+  }
+}
+material 1329261017_18_8
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.588235294117647 0.568627450980392 0.568627450980392
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1459.84251968504, 355.02006801679
+      texture_unit
+      {
+        texture 1329261017_10_8.jpg
+      }
+    }
+  }
+}
+material 1329261017_19_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_36_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_20_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_21_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_21_7
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.129411764705882 0.168627450980392 0.219607843137255
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 91.2755905511811, 181.102362204724
+      texture_unit
+      {
+        texture 1329261017_37_7.jpg
+      }
+    }
+  }
+}
+material 1329261017_22_3
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.745098039215686 0.737254901960784 0.729411764705882
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1464.17322834646, 440.352850630513
+      texture_unit
+      {
+        texture 1329261017_1_3.jpg
+      }
+    }
+  }
+}
+material 1329261017_23_4
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.662745098039216 0.596078431372549 0.615686274509804
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 394.267716535433, 224.015748031496
+      texture_unit
+      {
+        texture 1329261017_39_4.jpg
+      }
+    }
+  }
+}
+material 1329261017_24_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_35_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_25_Asphalte_nouveau
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.262745098039216 0.235294117647059 0.243137254901961
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 12.0, 12.0
+      texture_unit
+      {
+        texture 1329261017_7_Asphalt_New.jpg
+      }
+    }
+  }
+}
+material 1329261017_26_<Charcoal>
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.137254901960784 0.137254901960784 0.137254901960784
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1329261017_27_<Beige>1
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.827450980392157 0.741176470588235 0.564705882352941
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1329261017_28_Green
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.0 0.501960784313725 0.0
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1329261017_29_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_27_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_30_2
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.713725490196078 0.709803921568627 0.713725490196078
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 2151.1811023622, 246.836615302605
+      texture_unit
+      {
+        texture 1329261017_18_2.jpg
+      }
+    }
+  }
+}
+material 1329261017_31_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_32_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_32_1
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.780392156862745 0.772549019607843 0.768627450980392
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1500.3937007874, 221.623884902127
+      texture_unit
+      {
+        texture 1329261017_14_1.jpg
+      }
+    }
+  }
+}
+material 1329261017_33_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_31_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_34_4
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.662745098039216 0.596078431372549 0.615686274509804
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 394.267716535433, 224.015748031496
+      texture_unit
+      {
+        texture 1329261017_38_4.jpg
+      }
+    }
+  }
+}
+material 1329261017_35_jean_blue
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.141176470588235 0.184313725490196 0.258823529411765
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1329261017_36_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_28_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_37_96,96,96
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.376470588235294 0.376470588235294 0.376470588235294
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1329261017_38_<LightGray>
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.662745098039216 0.662745098039216 0.662745098039216
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1329261017_39_P9160180
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.780392156862745 0.749019607843137 0.76078431372549
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 428.11737803651, 52.8739798961285
+      texture_unit
+      {
+        texture 1329261017_16_P9160180.jpg
+      }
+    }
+  }
+}
+material 1329261017_40_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_34_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_41_8
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.588235294117647 0.568627450980392 0.568627450980392
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 1459.84251968504, 355.02006801679
+      texture_unit
+      {
+        texture 1329261017_12_8.jpg
+      }
+    }
+  }
+}
+material 1329261017_42_Google_Earth_Snapshot
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.486274509803922 0.501960784313725 0.47843137254902
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 5442.17593993425, 6016.36568573954
+      texture_unit
+      {
+        texture 1329261017_3_Google_Earth_Snapshot.jpg
+      }
+    }
+  }
+}
+material 1329261017_43_Google_Earth_Snapshot
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.486274509803922 0.501960784313725 0.47843137254902
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 5442.17593993425, 6016.36568573954
+      texture_unit
+      {
+        texture 1329261017_2_Google_Earth_Snapshot.jpg
+      }
+    }
+  }
+}
+material 1329261017_44_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_33_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_45_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_30_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_46_5
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.505882352941176 0.458823529411765 0.490196078431373
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+      // texture size: 327.373674321705, 224.844556539632
+      texture_unit
+      {
+        texture 1329261017_22_5.jpg
+      }
+    }
+  }
+}
+material 1329261017_47_0135_GrisFoncé
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 0.317647058823529 0.317647058823529 0.317647058823529
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}
+material 1329261017_SketchupDefault
+{
+  technique
+  {
+    pass
+    {
+      ambient 0.0 0.0 0.0
+      diffuse 1.0 1.0 1.0
+      specular 0.0 0.0 0.0 0.0
+      emissive 0.0 0.0 0.0
+    }
+  }
+}

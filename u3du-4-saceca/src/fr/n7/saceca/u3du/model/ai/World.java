@@ -100,6 +100,22 @@ public class World {
 	}
 	
 	/**
+	 * Removes properly an object from the world.
+	 * 
+	 * @param objectId
+	 *            the id of the object to destroy
+	 */
+	public void remove(long id) {
+		
+		for (Agent a : this.getAgents()) {
+			a.getMemory().forget(id);
+		}
+		
+		this.worldObjects.remove(id);
+		
+	}
+	
+	/**
 	 * Gets the world objects.
 	 * 
 	 * @return the entities

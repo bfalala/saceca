@@ -14,8 +14,6 @@ package fr.n7.saceca.u3du.model.graphics.engine3d;
 
 import java.util.concurrent.Callable;
 
-import javax.swing.SwingUtilities;
-
 import com.jme3.input.controls.AnalogListener;
 
 import fr.n7.saceca.u3du.exception.MalformedObjectException;
@@ -117,46 +115,7 @@ public class Controller3D implements AnalogListener, com.jme3.input.controls.Act
 					& this.selectedObject != null) {
 				
 				// REMOVE THE OBJECT
-				
-				// Wrap the call for 2D view
-				SwingUtilities.invokeLater(new Runnable() {
-					@Override
-					public void run() {
-						
-						WorldObject object = Model.getInstance().getAI().getWorld().getWorldObjects()
-								.get(Controller3D.this.selectedObject);
-						
-						// If the object exists in the AI (the object may exists only in the 3D)
-						if (object != null) {
-							// In the 2D interface
-							Controller3D.this.engine3D.notifyNewOrRemovedObject(Controller3D.this.selectedObject, true);
-							
-							// In the AI
-							object.killThread();
-							Animation animation = object.getAnimation();
-							if (animation != null) {
-								animation.pause();
-							}
-							Model.getInstance().getAI().getWorld().getWorldObjects()
-									.remove(Controller3D.this.selectedObject);
-						}
-						
-						// We must wrap the call to JME so that it will be executed from the OpenGL
-						// thread
-						Model.getInstance().getGraphics().getEngine3D().enqueue(new Callable<Void>() {
-							@Override
-							public Void call() throws Exception {
-								
-								// In the 3D Engine
-								Model.getInstance().getGraphics().getEngine3D()
-										.removeObjectOrAgent(Controller3D.this.selectedObject);
-								return null;
-							}
-						});
-						
-					}
-				});
-				
+				this.deleteObject(this.selectedObject);
 			}
 		}
 	}
@@ -255,4 +214,42 @@ public class Controller3D implements AnalogListener, com.jme3.input.controls.Act
 			this.brush();
 		}
 	}
+	
+	public void deleteObject(final long id) {
+		// Wrap the call for 2D view
+		
+		WorldObject object = Model.getInstance().getAI().getWorld().getWorldObjects().get(/*
+																						 * Controller3D.
+																						 * this.
+																						 * selectedObject
+																						 */id);
+		
+		// If the object exists in the AI (the object may exists only in the 3D)
+		if (object != null) {
+			// In the edition window
+			Controller3D.this.engine3D.notifyNewOrRemovedObject(id, true);
+			
+			// In the AI
+			object.killThread();
+			Animation animation = object.getAnimation();
+			if (animation != null) {
+				animation.pause();
+			}
+			Model.getInstance().getAI().getWorld().remove(id);
+		}
+		
+		// We must wrap the call to JME so that it will be executed from the OpenGL
+		// thread
+		Model.getInstance().getGraphics().getEngine3D().enqueue(new Callable<Void>() {
+			@Override
+			public Void call() throws Exception {
+				
+				// In the 3D Engine
+				Model.getInstance().getGraphics().getEngine3D().removeObjectOrAgent(id);
+				return null;
+			}
+		});
+		
+	}
+	
 }

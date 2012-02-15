@@ -967,6 +967,9 @@ public class Engine3D extends SimpleApplication implements Graphics {
 	 * @return the object on which user has clicked
 	 */
 	public Long getPickedObject() {
+		// reset the previous selected object
+		this.selectedObject = null;
+		
 		// the selected object
 		boolean movible = false;
 		Long objectId = null;
@@ -1033,8 +1036,12 @@ public class Engine3D extends SimpleApplication implements Graphics {
 			this.chaseCam.setEnabled(true);
 			this.selectedObject.addControl(this.chaseCam);
 		} else {
-			this.resumecam(objectId);
+			if (objectId != null) {
+				this.resumecam(objectId);
+			}
+			
 		}
+		
 		return objectId;
 	}
 	
@@ -1238,6 +1245,10 @@ public class Engine3D extends SimpleApplication implements Graphics {
 	
 	public void setSelectedObject(Spatial selectedObject) {
 		this.selectedObject = selectedObject;
+	}
+	
+	public Controller3D getController3D() {
+		return this.listener;
 	}
 	
 }
