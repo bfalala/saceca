@@ -1,0 +1,13 @@
+<object-model name="TennisCourt">
+  <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.DefaultBehavior</behavior>
+  <categories>
+    <category>Building</category>
+    <category>TennisCourt</category>
+  </categories>
+  <services>
+    <service>playTennis</service>
+  </services>
+  <properties>
+    <string name="i_graphics_conf" default="TennisCourt" visibility="private"/>
+  </properties>
+</object-model>

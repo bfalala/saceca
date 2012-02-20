@@ -122,7 +122,7 @@ public class GraphicsFactory {
 				orientation, scale, elevation, eyexHeight, visionDistance, engine, walkSpeed,
 				agentConfiguration.getCorrectiveAngle());
 		
-		return graphicalAgent;
+		return  graphicalAgent;
 		
 	}
 	
@@ -142,9 +142,9 @@ public class GraphicsFactory {
 		
 		String pathTexture = boxConfiguration.getPathTexture();
 		Material mat = new Material(this.materials.getEngine().getAssetManager(),
-				"Common/MatDefs/Misc/SimpleTextured.j3md");
+				"Common/MatDefs/Light/Lighting.j3md");
 		final Texture texture = this.materials.getEngine().getAssetManager().loadTexture(pathTexture);
-		mat.setTexture("ColorMap", texture);
+		mat.setTexture("DiffuseMap", texture);
 		
 		Oriented2DPosition position = object.getPosition();
 		float graphicalX = position.x;
@@ -165,9 +165,12 @@ public class GraphicsFactory {
 		/* The rotation is applied: The object rolls by orientation. */
 		boxGeo.getLocalRotation().fromAngleNormalAxis(orientation, Vector3f.UNIT_Y);
 		boxGeo.setLocalTranslation(center);
+		
+		boxGeo.setMaterial(mat);
+		
 		// Visibility
 		Node node = (boxConfiguration.isVisible() ? engine.getPerceptibleNodes() : engine.getNonPerceptibleNodes());
-		GraphicalShape boxGS = new GraphicalShape(id, node, boxGeo, mat, engine);
+		GraphicalShape boxGS = new GraphicalShape(id, node, boxGeo, engine);
 		
 		return boxGS;
 	}
@@ -234,6 +237,7 @@ public class GraphicsFactory {
 		} catch (UnknownPropertyException e) {
 			e.printStackTrace();
 		}
+			
 		
 		GraphicalVehicule graphicalVehicle = new GraphicalVehicule(id, rootNode, model, bulletAppState, graphicalX,
 				graphicalZ, orientation, scale, elevation, engine, collisionShapeRadius, collisionShapeHeight,
@@ -274,7 +278,7 @@ public class GraphicsFactory {
 		model.setLocalScale(xScale, yScale, zScale);
 		
 		// BulletAppState bulletAppState = engine.getBulletAppState(); // TODO
-		
+				
 		GraphicalObject graphicalObject = new GraphicalObject(id, rootNode, model, engine);
 		
 		// Build and add the children
@@ -332,4 +336,26 @@ public class GraphicsFactory {
 				+ "\" can be found. Creation of this object escaped.");
 		return null;
 	}
+	
+	
+	
+	/*public GraphicalObject setMaterial(GraphicalShape grapho, BoxConfiguration boxConfiguration){
+		Material mat = new Material(this.materials.getEngine().getAssetManager(),
+				"Common/MatDefs/Light/Lighting.j3md");
+		String pathTexture = boxConfiguration.getPathTexture();
+		final Texture texture = this.materials.getEngine().getAssetManager().loadTexture(pathTexture);
+		mat.setTexture("ColorMap", texture);
+		grapho.getModel().setMaterial(mat);
+		return grapho ;
+	}*/
+	
+	
+	
+	/*public GraphicalObject setMaterial(GraphicalObject grapho){
+		Material mat = new Material(this.materials.getEngine().getAssetManager(),
+				"Common/MatDefs/Light/Lighting.j3md");
+		grapho.getModel().setMaterial(mat);
+		return grapho ;
+	}*/
+	
 }

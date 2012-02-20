@@ -1,0 +1,6 @@
+<spatial-3d name="TennisCourt" visible="true" perceptible="true">
+  <normalization elevation="2" angle="0"></normalization>
+  <model-path>Models/TennisCourt/tennisCourt.mesh.xml</model-path>
+  <scale x="0.55" y="0.55" z="0.55"></scale>
+  <children/>
+</spatial-3d>

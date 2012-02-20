@@ -42,7 +42,7 @@ public class Main {
 	 */
 	public static void main(String[] args) throws SacecaStrictException {
 		
-		Logger.getLogger("").setLevel(Level.FINEST);
+		Logger.getLogger("").setLevel(Level.SEVERE);
 		
 		Model m = Model.getInstance();
 		

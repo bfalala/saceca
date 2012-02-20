@@ -2,8 +2,8 @@
 	<consumer-categories>
 		<category>Human</category>
 	</consumer-categories>
-	<provider-categories>
-		<category>Restaurant</category>
+	<provider-categories>		
+		<category>Building</category>
 	</provider-categories>
 	<service-parameters>
 		<param>

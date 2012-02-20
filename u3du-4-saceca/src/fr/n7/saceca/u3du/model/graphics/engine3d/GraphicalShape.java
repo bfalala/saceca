@@ -38,9 +38,16 @@ public class GraphicalShape extends GraphicalObject {
 	 * @param engine3D
 	 *            the engine3 d
 	 */
+	public GraphicalShape(long id, Node node, Spatial model/*, Material material*/, Engine3D engine3D) {
+		super(id, node, model, engine3D);
+		this.material = null;
+		/*model.setMaterial(material);*/
+		
+	}
+	
 	public GraphicalShape(long id, Node node, Spatial model, Material material, Engine3D engine3D) {
 		super(id, node, model, engine3D);
-		this.material = material;
+		this.material = null;
 		model.setMaterial(material);
 		
 	}

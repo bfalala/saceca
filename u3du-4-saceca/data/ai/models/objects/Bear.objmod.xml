@@ -1,0 +1,13 @@
+<object-model name="Bear">
+  <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.DefaultBehavior</behavior>
+  <categories>
+    <category>Building</category>
+    <category>Bear</category>   
+  </categories>
+   <services>
+    <service>scare</service>
+  </services>
+  <properties>
+    <string name="i_graphics_conf" default="Bear" visibility="private"/>
+  </properties>
+</object-model>

@@ -468,6 +468,9 @@ public class GraphicalAgent extends GraphicalDynamicObject {
 	 */
 	@Override
 	public void init() {
+		
+		this.bulletAppState.getPhysicsSpace().enableDebug(this.engine3D.getAssetManager());
+		
 		this.control = new CharacterControl(new CapsuleCollisionShape(1.5f, 2f), 0.2f);
 		this.model.addControl(this.control);
 		this.bulletAppState.getPhysicsSpace().add(this.control);
@@ -493,22 +496,16 @@ public class GraphicalAgent extends GraphicalDynamicObject {
 	 * @param tpf
 	 *            the tpf
 	 */
-	@Override
-	public void onAction(String binding, boolean value, float tpf) {
-		
-		if (binding.equals("agentLeft")) {
-			this.left = value;
-		} else if (binding.equals("agentRight")) {
-			this.right = value;
-		} else if (binding.equals("agentUp")) {
-			this.up = value;
-		} else if (binding.equals("agentDown")) {
-			this.down = value;
-		} else if (binding.equals("agentTest")) {
-			this.test();
-		}
-		
-	}
+	/*
+	 * @Override public void onAction(String binding, boolean value, float tpf) {
+	 * 
+	 * if (binding.equals("agentLeft")) { this.left = value; } else if
+	 * (binding.equals("agentRight")) { this.right = value; } else if (binding.equals("agentUp")) {
+	 * this.up = value; } else if (binding.equals("agentDown")) { this.down = value; } else if
+	 * (binding.equals("agentTest")) { this.test(); }
+	 * 
+	 * }
+	 */
 	
 	/**
 	 * Trigger the animation

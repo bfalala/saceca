@@ -253,7 +253,7 @@ public abstract class GraphicalDynamicObject extends GraphicalObject {
 	 * @param tpf
 	 *            the tpf
 	 */
-	public abstract void onAction(String binding, boolean value, float tpf);
+	// public abstract void onAction(String binding, boolean value, float tpf);
 	
 	/** The animation of the mouvement */
 	public abstract void animate();

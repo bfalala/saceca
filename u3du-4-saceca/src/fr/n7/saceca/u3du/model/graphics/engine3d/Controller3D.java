@@ -115,8 +115,8 @@ public class Controller3D implements AnalogListener, com.jme3.input.controls.Act
 					& this.selectedObject != null) {
 				
 				// REMOVE THE OBJECT
-				this.deleteObject(this.selectedObject);
-			}
+				this.deleteObject(this.selectedObject);				
+			}//else this.engine3D.getWeather().change();
 		}
 	}
 	

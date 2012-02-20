@@ -303,6 +303,23 @@
         </memory-element>
       </entry>
       <entry>
+        <long>3030</long>
+        <memory-element forgettable="true" place="long" nbRef="50">
+          <worldObject model="Restaurant" id="3030">
+            <position x="11.0" y="32.0" theta="28.274338"/>
+            <properties>
+              <bool name="i_threaded" value="false"/>
+              <int name="c_Restaurant_mealDuration" value="40"/>
+              <bool name="i_isMisc" value="false"/>
+              <string name="c_Building_address" value="1 Time street"/>
+              <int name="i_mass" value="42"/>
+              <string name="i_graphics_conf" value="Wendys"/>
+            </properties>
+            <belongings/>
+          </worldObject>
+        </memory-element>
+      </entry>
+      <entry>
         <long>29</long>
         <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="House" id="29">
@@ -319,17 +336,16 @@
         </memory-element>
       </entry>
       <entry>
-        <long>3030</long>
+        <long>28</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="Restaurant" id="3030">
-            <position x="11.0" y="32.0" theta="28.274338"/>
+          <worldObject model="House" id="28">
+            <position x="62.0" y="-85.0" theta="1.5707964"/>
             <properties>
               <bool name="i_threaded" value="false"/>
-              <int name="c_Restaurant_mealDuration" value="40"/>
               <bool name="i_isMisc" value="false"/>
-              <string name="c_Building_address" value="1 Time street"/>
+              <string name="c_Building_address" value="7 Beach road"/>
               <int name="i_mass" value="42"/>
-              <string name="i_graphics_conf" value="Wendys"/>
+              <string name="i_graphics_conf" value="House4"/>
             </properties>
             <belongings/>
           </worldObject>
@@ -409,22 +425,6 @@
               <pastPlans/>
               <surroundingObjects class="list"/>
             </memory>
-          </worldObject>
-        </memory-element>
-      </entry>
-      <entry>
-        <long>28</long>
-        <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="House" id="28">
-            <position x="62.0" y="-85.0" theta="1.5707964"/>
-            <properties>
-              <bool name="i_threaded" value="false"/>
-              <bool name="i_isMisc" value="false"/>
-              <string name="c_Building_address" value="7 Beach road"/>
-              <int name="i_mass" value="42"/>
-              <string name="i_graphics_conf" value="House4"/>
-            </properties>
-            <belongings/>
           </worldObject>
         </memory-element>
       </entry>

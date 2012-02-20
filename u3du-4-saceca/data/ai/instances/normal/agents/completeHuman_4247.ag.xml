@@ -303,22 +303,6 @@
         </memory-element>
       </entry>
       <entry>
-        <long>29</long>
-        <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="House" id="29">
-            <position x="25.0" y="-46.0" theta="10.995574"/>
-            <properties>
-              <bool name="i_threaded" value="false"/>
-              <bool name="i_isMisc" value="false"/>
-              <string name="c_Building_address" value="1 Beach road"/>
-              <int name="i_mass" value="42"/>
-              <string name="i_graphics_conf" value="House5"/>
-            </properties>
-            <belongings/>
-          </worldObject>
-        </memory-element>
-      </entry>
-      <entry>
         <long>3030</long>
         <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="Restaurant" id="3030">
@@ -336,16 +320,16 @@
         </memory-element>
       </entry>
       <entry>
-        <long>28</long>
+        <long>29</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="House" id="28">
-            <position x="62.0" y="-85.0" theta="1.5707964"/>
+          <worldObject model="House" id="29">
+            <position x="25.0" y="-46.0" theta="10.995574"/>
             <properties>
               <bool name="i_threaded" value="false"/>
               <bool name="i_isMisc" value="false"/>
-              <string name="c_Building_address" value="7 Beach road"/>
+              <string name="c_Building_address" value="1 Beach road"/>
               <int name="i_mass" value="42"/>
-              <string name="i_graphics_conf" value="House4"/>
+              <string name="i_graphics_conf" value="House5"/>
             </properties>
             <belongings/>
           </worldObject>
@@ -363,6 +347,22 @@
               <string name="c_Building_address" value="none"/>
               <int name="i_mass" value="42"/>
               <string name="i_graphics_conf" value="Toilet"/>
+            </properties>
+            <belongings/>
+          </worldObject>
+        </memory-element>
+      </entry>
+      <entry>
+        <long>28</long>
+        <memory-element forgettable="true" place="long" nbRef="50">
+          <worldObject model="House" id="28">
+            <position x="62.0" y="-85.0" theta="1.5707964"/>
+            <properties>
+              <bool name="i_threaded" value="false"/>
+              <bool name="i_isMisc" value="false"/>
+              <string name="c_Building_address" value="7 Beach road"/>
+              <int name="i_mass" value="42"/>
+              <string name="i_graphics_conf" value="House4"/>
             </properties>
             <belongings/>
           </worldObject>

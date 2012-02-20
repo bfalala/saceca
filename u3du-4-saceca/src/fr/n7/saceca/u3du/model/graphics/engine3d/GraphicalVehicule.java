@@ -88,22 +88,16 @@ public class GraphicalVehicule extends GraphicalDynamicObject {
 	}
 	
 	/** {@inheritDoc} */
-	@Override
-	public void onAction(String binding, boolean value, float tpf) {
-		
-		if (binding.equals("vehiculeLeft")) {
-			this.left = value;
-		} else if (binding.equals("vehiculeRight")) {
-			this.right = value;
-		} else if (binding.equals("vehiculeUp")) {
-			this.up = value;
-		} else if (binding.equals("vehiculeDown")) {
-			this.down = value;
-		} else if (binding.equals("vehiculeTest")) {
-			this.test();
-		}
-		
-	}
+	/*
+	 * @Override public void onAction(String binding, boolean value, float tpf) {
+	 * 
+	 * if (binding.equals("vehiculeLeft")) { this.left = value; } else if
+	 * (binding.equals("vehiculeRight")) { this.right = value; } else if
+	 * (binding.equals("vehiculeUp")) { this.up = value; } else if (binding.equals("vehiculeDown"))
+	 * { this.down = value; } else if (binding.equals("vehiculeTest")) { this.test(); }
+	 * 
+	 * }
+	 */
 	
 	/**
 	 * Test.

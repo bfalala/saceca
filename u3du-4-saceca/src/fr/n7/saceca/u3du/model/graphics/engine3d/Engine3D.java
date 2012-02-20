@@ -39,6 +39,7 @@ import com.jme3.input.MouseInput;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
+import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -90,6 +91,9 @@ import jme3tools.converters.ImageToAwt;
  * @author Aurélien Chabot, Anthony Foulfoin, Johann Legaye
  */
 public class Engine3D extends SimpleApplication implements Graphics {
+	
+	/* current weather */
+	private Weather weather ;
 	
 	/**
 	 * Contains all the objects and agents visible by the agent. Visible means that the object is
@@ -171,6 +175,7 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		this.visualisationMode = Config3D.VisualisationMode.SIMULATION;
 		this.terrainSize = 512;
 		this.walkableGraphDisplayed = false;
+		
 	}
 	
 	/**
@@ -216,8 +221,9 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		this.initCamera();
 		this.initListener();
 		this.initKeys();
-		this.initSky();
-		this.initLight();
+		
+		this.weather = new Weather(Weather.WeatherState.SUNNY);
+		
 		this.initObjects();
 		this.initAgents();
 		// We draw the ground
@@ -251,6 +257,10 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		for (GraphicalDynamicObject obj : this.dynObjects.values()) {
 			obj.update(tpf);
 		}
+		
+		// weather managing
+		
+		
 	}
 	
 	/**
@@ -367,9 +377,9 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		// we set wave properties
 		waterProcessor.setWaterDepth(0); // transparency of water
 		waterProcessor.setDistortionScale(2f); // strength of waves
-		waterProcessor.setWaveSpeed(0.8f); // speed of waves
-		waterProcessor.setWaterTransparency(0);
-		waterProcessor.setWaterColor(ColorRGBA.Blue);
+		waterProcessor.setWaveSpeed(0.05f); // speed of waves
+		waterProcessor.setWaterTransparency(1);
+		waterProcessor.setWaterColor(ColorRGBA.Brown);		
 		
 		// we define the wave size by setting the size of the texture coordinates
 		Quad quad = new Quad(10000, 10000);
@@ -390,29 +400,29 @@ public class Engine3D extends SimpleApplication implements Graphics {
 	private void drawGround() {
 		
 		// Create material from Terrain Material Definition
-		Material matRock = new Material(this.assetManager, "Common/MatDefs/Terrain/Terrain.j3md");
+		Material matRock = new Material(this.assetManager, "Common/MatDefs/Terrain/TerrainLighting.j3md");
 		// Load alpha map (for splat textures)
-		matRock.setTexture("m_Alpha", this.assetManager.loadTexture("Textures/Terrain/splat/red&green.png"));
+		matRock.setTexture("AlphaMap", this.assetManager.loadTexture("Textures/Terrain/splat/red&green.png"));
 		// load heightmap image (for the terrain heightmap)
 		Texture heightMapImage = this.assetManager.loadTexture("Textures/Terrain/splat/map_64x64.png");
 		
 		// load grass texture
 		Texture grass = this.assetManager.loadTexture("Textures/Terrain/splat/grass.jpg");
 		grass.setWrap(WrapMode.Repeat);
-		matRock.setTexture("m_Tex1", grass);
-		matRock.setFloat("m_Tex1Scale", 64f);
+		matRock.setTexture("DiffuseMap", grass);
+		matRock.setFloat("DiffuseMap_0_scale", 64f);
 		
 		// load dirt texture
 		Texture dirt = this.assetManager.loadTexture("Textures/Terrain/splat/dirt.jpg");
 		dirt.setWrap(WrapMode.Repeat);
-		matRock.setTexture("m_Tex2", dirt);
-		matRock.setFloat("m_Tex2Scale", 32f);
+		matRock.setTexture("DiffuseMap_1", dirt);
+		matRock.setFloat("DiffuseMap_1_scale", 32f);
 		
 		// load sand texture
 		Texture rock = this.assetManager.loadTexture("Textures/Terrain/splat/sand.jpg");
 		rock.setWrap(WrapMode.Repeat);
-		matRock.setTexture("m_Tex3", rock);
-		matRock.setFloat("m_Tex3Scale", 128f);
+		matRock.setTexture("DiffuseMap_2", rock);
+		matRock.setFloat("DiffuseMap_2_scale", 128f);
 		
 		ImageBasedHeightMap heightmap = new ImageBasedHeightMap(ImageToAwt.convert(heightMapImage.getImage(), false,
 				true, 0), 1f);
@@ -552,31 +562,7 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		
 	}
 	
-	/**
-	 * Lights initialization.
-	 */
-	private void initLight() {
-		// Create 5 lights
-		DirectionalLight dl = new DirectionalLight();
-		dl.setDirection(new Vector3f(0f, -1f, 0f).normalize());
-		this.rootNode.addLight(dl);
-		
-		DirectionalLight dl2 = new DirectionalLight();
-		dl2.setDirection(new Vector3f(500f, -1f, 500f).normalize());
-		this.rootNode.addLight(dl2);
-		
-		DirectionalLight dl3 = new DirectionalLight();
-		dl3.setDirection(new Vector3f(500f, -1f, -500f).normalize());
-		this.rootNode.addLight(dl3);
-		
-		DirectionalLight dl4 = new DirectionalLight();
-		dl4.setDirection(new Vector3f(-500f, -1f, 500f).normalize());
-		this.rootNode.addLight(dl4);
-		
-		DirectionalLight dl5 = new DirectionalLight();
-		dl5.setDirection(new Vector3f(-100f, -1f, -100f).normalize());
-		this.rootNode.addLight(dl5);
-	}
+	
 	
 	/**
 	 * Controller initialization.
@@ -584,14 +570,7 @@ public class Engine3D extends SimpleApplication implements Graphics {
 	private void initListener() {
 		this.listener = new Controller3D(this);
 	}
-	
-	/**
-	 * Sky initialization.
-	 */
-	private void initSky() {
 		
-		this.rootNode.attachChild(SkyFactory.createSky(this.assetManager, "Textures/Sky/Skysphere.jpg", true));
-	}
 	
 	/**
 	 * Rotate the specified object by PI / 2
@@ -1250,5 +1229,15 @@ public class Engine3D extends SimpleApplication implements Graphics {
 	public Controller3D getController3D() {
 		return this.listener;
 	}
+
+	public Weather getWeather() {
+		return weather;
+	}
+
+	public void setWeather(Weather weather) {
+		this.weather = weather;
+	}
+	
+	
 	
 }

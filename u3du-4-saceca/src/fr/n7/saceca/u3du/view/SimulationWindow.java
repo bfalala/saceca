@@ -66,6 +66,7 @@ import fr.n7.saceca.u3du.controller.simulation.NewOrRemovedObjectController;
 import fr.n7.saceca.u3du.controller.simulation.ObjectSelectionController;
 import fr.n7.saceca.u3du.controller.simulation.PickingController;
 import fr.n7.saceca.u3du.controller.simulation.StartSimulationController;
+import fr.n7.saceca.u3du.controller.simulation.WeatherController;
 import fr.n7.saceca.u3du.model.Model;
 import fr.n7.saceca.u3du.model.ai.Internal;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
@@ -307,6 +308,13 @@ public class SimulationWindow {
 		mnMenu.add(edition);
 		edition.addActionListener(new LaunchEditionWindowController(this));
 		
+		// Weather menu
+		JMenu weatherMenu = new JMenu("Weather");
+		menuBar.add(weatherMenu);
+		JMenuItem weather = new JMenuItem("Switch weather");
+		weatherMenu.add(weather);
+		weather.addActionListener(new WeatherController());
+		
 		// Help menu
 		JMenu helpMenu = new JMenu("?");
 		menuBar.add(helpMenu);
@@ -314,6 +322,7 @@ public class SimulationWindow {
 		helpMenu.add(about);
 		about.addActionListener(new AboutController(this.frame));
 		
+				
 		// $hide>>$
 		if (this.canvas == null) {
 			// $hide<<$

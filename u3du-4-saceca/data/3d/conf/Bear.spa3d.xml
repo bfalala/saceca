@@ -1,0 +1,6 @@
+<spatial-3d name="Bear" visible="true" perceptible="true">
+  <normalization elevation="3.3" angle="0"/>
+  <model-path>Models/Bear/Man.mesh.xml</model-path>
+  <scale x="0.7" y="0.5" z="0.9"/>
+  <children/>
+</spatial-3d>
