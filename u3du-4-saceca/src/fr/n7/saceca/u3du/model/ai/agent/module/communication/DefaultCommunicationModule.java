@@ -54,7 +54,7 @@ public class DefaultCommunicationModule implements CommunicationModule {
 			while (DefaultCommunicationModule.this.agent.isAlive() && !DefaultCommunicationModule.this.agent.isPause()) {
 				DefaultCommunicationModule.this.communicate();
 				try {
-					Thread.sleep(DefaultAgentBehavior.BEHAVE_PERIOD);
+					Thread.sleep(DefaultAgentBehavior.BEHAVE_PERIOD / 2);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

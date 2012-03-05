@@ -61,7 +61,7 @@ public class DefaultAgentBehavior implements Behavior {
 	private Agent agent;
 	
 	/** The agent will behave only every BEHAVE_PERIOD ms. */
-	public static final long BEHAVE_PERIOD = 500;
+	public static final long BEHAVE_PERIOD = 1000;
 	
 	/** The behave clock. */
 	private Clock behaveClock;

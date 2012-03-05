@@ -51,7 +51,7 @@ public class MMReasoningModule implements ReasoningModule {
 			while (MMReasoningModule.this.agent.isAlive() && !MMReasoningModule.this.agent.isPause()) {
 				MMReasoningModule.this.reason();
 				try {
-					Thread.sleep(DefaultAgentBehavior.BEHAVE_PERIOD);
+					Thread.sleep(DefaultAgentBehavior.BEHAVE_PERIOD / 2);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -53,7 +53,7 @@ public class DefaultEmotionModule implements EmotionModule {
 			while (DefaultEmotionModule.this.agent.isAlive() && !DefaultEmotionModule.this.agent.isPause()) {
 				DefaultEmotionModule.this.detectEmotions();
 				try {
-					Thread.sleep(DefaultAgentBehavior.BEHAVE_PERIOD);
+					Thread.sleep(DefaultAgentBehavior.BEHAVE_PERIOD / 2);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
