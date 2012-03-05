@@ -42,4 +42,16 @@ public interface CommunicationModule extends Storable {
 	 * @return the agent
 	 */
 	public Agent getAgent();
+	
+	/**
+	 * Checks if the communication thread is alive
+	 * 
+	 * @return thread's state
+	 */
+	boolean isAlive();
+	
+	/**
+	 * Starts the communication module's thread
+	 */
+	void start();
 }

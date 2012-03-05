@@ -12,6 +12,8 @@
  */
 package fr.n7.saceca.u3du.model.ai.agent.behavior;
 
+import java.util.ArrayList;
+
 import fr.n7.saceca.u3du.model.Model;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
 import fr.n7.saceca.u3du.model.ai.agent.Emotion;
@@ -47,8 +49,8 @@ import fr.n7.saceca.u3du.model.util.Periodic.Clock;
  * <li>executing the behavior every BEHAVE_PERIOD ms
  * <li>updating gauges and automatically using passive services
  * <li>checking the agent's death
- * <li>executing the intelligences module one by one in this order : perception, emotion,
- * communication, reasonning, planning.
+ * <li>launch the intelligence modules' threads (perception, emotion, communication, reasonning,
+ * planning) when necessary
  * </ul>
  * 
  * @author Jérôme Dalbert, Ciprian Munteanu
@@ -59,7 +61,7 @@ public class DefaultAgentBehavior implements Behavior {
 	private Agent agent;
 	
 	/** The agent will behave only every BEHAVE_PERIOD ms. */
-	private static final long BEHAVE_PERIOD = 1000;
+	public static final long BEHAVE_PERIOD = 500;
 	
 	/** The behave clock. */
 	private Clock behaveClock;
@@ -100,7 +102,7 @@ public class DefaultAgentBehavior implements Behavior {
 	@Override
 	public void behave() {
 		/* If the agent is not ready to react, we exit the behave method */
-		if (!this.behaveClock.tic()) {
+		if (!this.behaveClock.tic() || this.agent.isPause()) {
 			return;
 		}
 		
@@ -121,19 +123,27 @@ public class DefaultAgentBehavior implements Behavior {
 		}
 		
 		/* Intelligence modules execution */
-		this.agent.getPerceptionModule().perceive();
+		if (!this.agent.getPerceptionModule().isAlive()) {
+			this.agent.getPerceptionModule().start();
+		}
+		
+		if (!this.agent.getEmotionModule().isAlive()) {
+			this.agent.getEmotionModule().start();
+		}
+		
+		if (!this.agent.getCommunicationModule().isAlive()) {
+			this.agent.getCommunicationModule().start();
+		}
+		
+		if (!this.agent.getMmReasoningModule().isAlive()) {
+			this.agent.getMmReasoningModule().start();
+		}
+		
 		this.sleepIfPause(this.agent);
 		
-		this.agent.getEmotionModule().detectEmotions();
-		this.sleepIfPause(this.agent);
-		
-		this.agent.getCommunicationModule().communicate();
-		this.sleepIfPause(this.agent);
-		
-		this.agent.getMmReasoningModule().reason();
-		this.sleepIfPause(this.agent);
-		
-		this.agent.getPlanningModule().planAndExecute();
+		if (!this.agent.getPlanningModule().isAlive()) {
+			this.agent.getPlanningModule().start();
+		}
 	}
 	
 	/**
@@ -190,7 +200,8 @@ public class DefaultAgentBehavior implements Behavior {
 	 *            the agent
 	 */
 	private void periodicMemoryReferencesDecrement(Agent agent) {
-		for (MemoryElement element : agent.getMemory().getMemoryElements().values()) {
+		ArrayList<MemoryElement> ame = new ArrayList<MemoryElement>(agent.getMemory().getMemoryElements().values());
+		for (MemoryElement element : ame) {
 			if (element.isForgettable()) {
 				element.periodicDecrement(agent);
 			}

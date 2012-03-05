@@ -14,7 +14,7 @@ package fr.n7.saceca.u3du.model.ai.agent.memory;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +65,7 @@ public class Memory {
 	@XStreamAlias("memory-elements")
 	private Map<Long, MemoryElement> memoryElements;
 	
-	/** The memories sorted by insertion order, from the older to the newer. */
+	/** UNUSED !! The memories sorted by insertion order, from the older to the newer. */
 	private List<MemoryElement> insertionOrderedElements;
 	
 	/** The message inbox. */
@@ -98,7 +98,7 @@ public class Memory {
 	@XStreamOmitField
 	private ArrayList<Couple<WorldObject, Boolean>> perceivedObjects;
 	
-	/** The surrounding objects. */
+	/** UNUSED :-) The surrounding objects. */
 	public Collection<WorldObject> surroundingObjects;
 	
 	/** The Constant INITIAL_KNOWN_PROPERTIES. */
@@ -153,9 +153,9 @@ public class Memory {
 		this.memoryElements = new ConcurrentHashMap<Long, MemoryElement>();
 		this.maxSize = maxSize;
 		this.messageInbox = new ConcurrentLinkedQueue<Message>();
-		this.pastPlans = new HashMap<MMGoal, Plan>();
-		this.surroundingObjects = new ArrayList<WorldObject>();
-		this.insertionOrderedElements = new ArrayList<MemoryElement>();
+		this.pastPlans = new ConcurrentHashMap<MMGoal, Plan>();
+		this.surroundingObjects = Collections.synchronizedList(new ArrayList<WorldObject>());
+		this.insertionOrderedElements = Collections.synchronizedList(new ArrayList<MemoryElement>());
 		this.goalStack = new DefaultMMGoalStack();
 		this.perceivedObjects = new ArrayList<Couple<WorldObject, Boolean>>();
 	}
@@ -167,7 +167,7 @@ public class Memory {
 	 */
 	public Memory readResolve() {
 		if (this.memoryElements == null) {
-			this.memoryElements = new HashMap<Long, MemoryElement>();
+			this.memoryElements = new ConcurrentHashMap<Long, MemoryElement>();
 		}
 		
 		if (this.goalStack == null) {
@@ -177,13 +177,13 @@ public class Memory {
 			this.messageInbox = new ConcurrentLinkedQueue<Message>();
 		}
 		if (this.pastPlans == null) {
-			this.pastPlans = new HashMap<MMGoal, Plan>();
+			this.pastPlans = new ConcurrentHashMap<MMGoal, Plan>();
 		}
 		if (this.surroundingObjects == null) {
-			this.surroundingObjects = new ArrayList<WorldObject>();
+			this.surroundingObjects = Collections.synchronizedList(new ArrayList<WorldObject>());
 		}
 		if (this.insertionOrderedElements == null) {
-			this.insertionOrderedElements = new ArrayList<MemoryElement>();
+			this.insertionOrderedElements = Collections.synchronizedList(new ArrayList<MemoryElement>());
 		}
 		if (this.perceivedObjects == null) {
 			this.perceivedObjects = new ArrayList<Couple<WorldObject, Boolean>>();
@@ -364,7 +364,8 @@ public class Memory {
 	public List<WorldObject> getKnowledges() {
 		List<WorldObject> knowledges = new ArrayList<WorldObject>();
 		
-		for (MemoryElement e : this.memoryElements.values()) {
+		ArrayList<MemoryElement> ame = new ArrayList<MemoryElement>(this.memoryElements.values());
+		for (MemoryElement e : ame) {
 			knowledges.add(e.getWorldObject());
 		}
 		
@@ -397,7 +398,8 @@ public class Memory {
 	 */
 	public Map<Long, MemoryElement> getShortTermMemory() {
 		Map<Long, MemoryElement> shortTermMemory = new ConcurrentHashMap<Long, MemoryElement>();
-		for (MemoryElement element : this.memoryElements.values()) {
+		ArrayList<MemoryElement> ame = new ArrayList<MemoryElement>(this.memoryElements.values());
+		for (MemoryElement element : ame) {
 			if (element.getPlace().equals("short")) {
 				shortTermMemory.put(element.getWorldObject().getId(), element);
 			}
@@ -412,7 +414,8 @@ public class Memory {
 	 */
 	public Map<Long, MemoryElement> getLongTermMemory() {
 		Map<Long, MemoryElement> longTermMemory = new ConcurrentHashMap<Long, MemoryElement>();
-		for (MemoryElement element : this.memoryElements.values()) {
+		ArrayList<MemoryElement> ame = new ArrayList<MemoryElement>(this.memoryElements.values());
+		for (MemoryElement element : ame) {
 			if (element.getPlace().equals("long")) {
 				longTermMemory.put(element.getWorldObject().getId(), element);
 			}
@@ -431,8 +434,8 @@ public class Memory {
 		while (this.memoryElements.size() > this.maxSize) {
 			this.forgetElementFromShortTermMemory();
 		}
-		
-		for (MemoryElement element : this.memoryElements.values()) {
+		ArrayList<MemoryElement> ame = new ArrayList<MemoryElement>(this.memoryElements.values());
+		for (MemoryElement element : ame) {
 			if (element.getNbReferences() <= 0) {
 				this.forget(element);
 				continue;
@@ -505,7 +508,9 @@ public class Memory {
 	 * @return the message queue
 	 */
 	public Queue<Message> getMessageInbox() {
+		// synchronized (this.messageInbox) {
 		return this.messageInbox;
+		// }
 	}
 	
 	/**
@@ -525,8 +530,9 @@ public class Memory {
 	 */
 	public Memory deepDataClone() {
 		Memory memory = new Memory(null, this.maxSize);
-		memory.setMemoryElements(new HashMap<Long, MemoryElement>());
-		for (MemoryElement element : this.getMemoryElements().values()) {
+		memory.setMemoryElements(new ConcurrentHashMap<Long, MemoryElement>());
+		ArrayList<MemoryElement> ame = new ArrayList<MemoryElement>(this.getMemoryElements().values());
+		for (MemoryElement element : ame) {
 			MemoryElement memoryElement = element.deepDataClone();
 			memory.getMemoryElements().put(memoryElement.getWorldObject().getId(), memoryElement);
 		}

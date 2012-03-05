@@ -29,4 +29,16 @@ public interface PerceptionModule extends Storable {
 	/** The Constant NEARBY_OBJECTS_RANGE. */
 	public static final int NEARBY_OBJECTS_RANGE = 4;
 	
+	/**
+	 * Checks if the perception thread is alive
+	 * 
+	 * @return thread's state
+	 */
+	boolean isAlive();
+	
+	/**
+	 * Starts the perception module's thread
+	 */
+	void start();
+	
 }

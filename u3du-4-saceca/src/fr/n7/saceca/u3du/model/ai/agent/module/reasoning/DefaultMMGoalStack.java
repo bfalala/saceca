@@ -38,7 +38,7 @@ public class DefaultMMGoalStack implements MMGoalStack {
 	 */
 	public DefaultMMGoalStack() {
 		super();
-		this.goalList = new LinkedList<MMGoal>();
+		this.goalList = Collections.synchronizedList(new LinkedList<MMGoal>());
 	}
 	
 	/**
@@ -54,11 +54,13 @@ public class DefaultMMGoalStack implements MMGoalStack {
 	 */
 	@Override
 	public MMGoalStack addBegining(MMGoal goal) {
-		if (this.goalList.size() == MAX_SIZE) {
-			((LinkedList<MMGoal>) this.goalList).removeLast();
+		synchronized (this) {
+			if (this.goalList.size() == MAX_SIZE) {
+				((LinkedList<MMGoal>) this.goalList).removeLast();
+			}
+			((LinkedList<MMGoal>) this.goalList).addFirst(goal);
+			return this;
 		}
-		((LinkedList<MMGoal>) this.goalList).addFirst(goal);
-		return this;
 	}
 	
 	/**
@@ -66,11 +68,13 @@ public class DefaultMMGoalStack implements MMGoalStack {
 	 */
 	@Override
 	public MMGoalStack addEnd(MMGoal goal) {
-		if (this.goalList.size() == MAX_SIZE) {
-			((LinkedList<MMGoal>) this.goalList).removeLast();
+		synchronized (this) {
+			if (this.goalList.size() == MAX_SIZE) {
+				((LinkedList<MMGoal>) this.goalList).removeLast();
+			}
+			((LinkedList<MMGoal>) this.goalList).addLast(goal);
+			return this;
 		}
-		((LinkedList<MMGoal>) this.goalList).addLast(goal);
-		return this;
 	}
 	
 	/**
@@ -78,34 +82,38 @@ public class DefaultMMGoalStack implements MMGoalStack {
 	 */
 	@Override
 	public MMGoalStack addMiddle(MMGoal goal, String mode) {
-		
-		int position = -1;
-		// if the goal comes from a guage
-		if (mode.equals("gauge")) {
-			if ((position = this.existGoal(goal)) != -1 && this.goalList.get(position).isReachable()) {
-				int old_priority = this.goalList.get(position).getPriority();
-				if (goal.getPriority() >= old_priority
-						|| old_priority - goal.getPriority() >= ServiceProperty.MAX_ATTRACTIVITY) {
-					this.goalList.get(position).setPriority(goal.getPriority());
+		synchronized (this) {
+			int position = -1;
+			// if the goal comes from a guage
+			if (mode.equals("gauge")) {
+				if ((position = this.existGoal(goal)) != -1 && !this.goalList.get(position).isReachable()) {
+					this.goalList.remove(position);
+				} else if ((position = this.existGoal(goal)) != -1 && this.goalList.get(position).isReachable()) {
+					int old_priority = this.goalList.get(position).getPriority();
+					if (goal.getPriority() >= old_priority
+							|| old_priority - goal.getPriority() >= ServiceProperty.MAX_ATTRACTIVITY) {
+						this.goalList.get(position).setPriority(goal.getPriority());
+					}
+				} else if (position == -1) {
+					this.goalList.add(goal);
 				}
-			} else if (position == -1) {
+				// if the goal comes from perception
+			} else if (mode.equals("perception")) {
+				if ((position = this.existGoal(goal)) != -1 && this.goalList.get(position).isReachable()) {
+					this.goalList.get(position).setPriority(
+							this.goalList.get(position).getPriority() + goal.getPriority());
+				} else if (position != -1 && !this.goalList.get(position).isReachable()) {
+					this.goalList.get(position).setReachable(true);
+					this.goalList.get(position).setPriority(goal.getPriority());
+				} else if (position == -1) {
+					this.goalList.add(goal);
+				}
+				// if the goal comes from an emotion
+			} else if (mode.equals("emotion")) {
 				this.goalList.add(goal);
 			}
-			// if the goal comes from perception
-		} else if (mode.equals("perception")) {
-			if ((position = this.existGoal(goal)) != -1 && this.goalList.get(position).isReachable()) {
-				this.goalList.get(position).setPriority(this.goalList.get(position).getPriority() + goal.getPriority());
-			} else if (position != -1 && !this.goalList.get(position).isReachable()) {
-				this.goalList.get(position).setReachable(true);
-				this.goalList.get(position).setPriority(goal.getPriority());
-			} else if (position == -1) {
-				this.goalList.add(goal);
-			}
-			// if the goal comes from an emotion
-		} else if (mode.equals("emotion")) {
-			this.goalList.add(goal);
+			return this;
 		}
-		return this;
 	}
 	
 	/**
@@ -113,8 +121,10 @@ public class DefaultMMGoalStack implements MMGoalStack {
 	 */
 	@Override
 	public MMGoalStack removeFirst() {
-		((LinkedList<MMGoal>) this.goalList).removeFirst();
-		return this;
+		synchronized (this) {
+			((LinkedList<MMGoal>) this.goalList).removeFirst();
+			return this;
+		}
 	}
 	
 	/**
@@ -122,8 +132,10 @@ public class DefaultMMGoalStack implements MMGoalStack {
 	 */
 	@Override
 	public MMGoalStack removeMiddle(MMGoal goal) {
-		((LinkedList<MMGoal>) this.goalList).remove(goal);
-		return this;
+		synchronized (this) {
+			((LinkedList<MMGoal>) this.goalList).remove(goal);
+			return this;
+		}
 	}
 	
 	/**
@@ -131,8 +143,10 @@ public class DefaultMMGoalStack implements MMGoalStack {
 	 */
 	@Override
 	public MMGoalStack removeLast() {
-		((LinkedList<MMGoal>) this.goalList).removeLast();
-		return this;
+		synchronized (this) {
+			((LinkedList<MMGoal>) this.goalList).removeLast();
+			return this;
+		}
 	}
 	
 	/**
@@ -158,7 +172,9 @@ public class DefaultMMGoalStack implements MMGoalStack {
 	 *            the list of goals
 	 */
 	public void setGoalList(List<MMGoal> goalList) {
-		this.goalList = goalList;
+		synchronized (this) {
+			this.goalList = Collections.synchronizedList(goalList);
+		}
 	}
 	
 	/**
@@ -178,14 +194,17 @@ public class DefaultMMGoalStack implements MMGoalStack {
 	 * @return -1 if doesn't exist and the index in the stack if exists
 	 */
 	private int existGoal(MMGoal goal) {
-		int index = 0;
-		for (MMGoal mmGoal : this.goalList) {
-			if (mmGoal.getSuccessCondition().egal(goal.getSuccessCondition())) {
-				return index;
+		synchronized (this) {
+			int index = 0;
+			for (MMGoal mmGoal : this.goalList) {
+				if (mmGoal.getSuccessCondition().egal(goal.getSuccessCondition())) {
+					return index;
+				}
+				index++;
 			}
-			index++;
+			
+			return -1;
 		}
-		return -1;
 	}
 	
 	/**
@@ -193,27 +212,30 @@ public class DefaultMMGoalStack implements MMGoalStack {
 	 */
 	@Override
 	public void sortGoalStack() {
-		if (this.goalList.isEmpty()) {
-			return;
-		}
-		
-		MMGoal previousMaxGoal = this.goalList.get(0);
-		
-		// We sort the goals by comparing their priority
-		Collections.sort(this.goalList, Collections.reverseOrder(new Comparator<MMGoal>() {
-			@Override
-			public int compare(MMGoal g1, MMGoal g2) {
-				return g1.getPriority().compareTo(g2.getPriority());
+		synchronized (this) {
+			if (this.goalList.isEmpty()) {
+				return;
 			}
-		}));
-		
-		if (previousMaxGoal.getPriority().equals(this.goalList.get(0).getPriority())) {
-			this.goalList.remove(previousMaxGoal);
-			this.goalList.add(0, previousMaxGoal);
-		}
-		
-		while (this.goalList.size() > MAX_SIZE) {
-			((LinkedList<MMGoal>) this.goalList).removeLast();
+			
+			MMGoal previousMaxGoal = this.goalList.get(0);
+			
+			// We sort the goals by comparing their priority
+			
+			Collections.sort(this.goalList, Collections.reverseOrder(new Comparator<MMGoal>() {
+				@Override
+				public int compare(MMGoal g1, MMGoal g2) {
+					return g1.getPriority().compareTo(g2.getPriority());
+				}
+			}));
+			
+			if (previousMaxGoal.getPriority().equals(this.goalList.get(0).getPriority())) {
+				this.goalList.remove(previousMaxGoal);
+				this.goalList.add(0, previousMaxGoal);
+			}
+			
+			while (this.goalList.size() > MAX_SIZE) {
+				((LinkedList<MMGoal>) this.goalList).removeLast();
+			}
 		}
 	}
 	
@@ -222,15 +244,17 @@ public class DefaultMMGoalStack implements MMGoalStack {
 	 */
 	@Override
 	public boolean isEmpty() {
-		if (this.goalList.size() == 0) {
+		synchronized (this) {
+			if (this.goalList.size() == 0) {
+				return true;
+			}
+			for (MMGoal goal : this.goalList) {
+				if (goal.isReachable() == true) {
+					return false;
+				}
+			}
 			return true;
 		}
-		for (MMGoal goal : this.goalList) {
-			if (goal.isReachable() == true) {
-				return false;
-			}
-		}
-		return true;
 	}
 	
 	/**
@@ -239,7 +263,6 @@ public class DefaultMMGoalStack implements MMGoalStack {
 	@Override
 	public List<MMGoal> getElementList() {
 		return this.goalList;
-		
 	}
 	
 }

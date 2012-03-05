@@ -544,6 +544,15 @@ public class WorldObject {
 	}
 	
 	/**
+	 * check if alive.
+	 * 
+	 * @return true, if it is alive
+	 */
+	public boolean isAlive() {
+		return this.alive;
+	}
+	
+	/**
 	 * A short string representation of the object, of the form "Object <ModelName> (id=<id>)".
 	 * 
 	 * @return the short string

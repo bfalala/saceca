@@ -21,6 +21,7 @@ import Emotion_primary.property_rule;
 import fr.n7.saceca.u3du.model.Model;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
 import fr.n7.saceca.u3du.model.ai.agent.Emotion;
+import fr.n7.saceca.u3du.model.ai.agent.behavior.DefaultAgentBehavior;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
 import fr.n7.saceca.u3du.model.util.Couple;
 
@@ -31,7 +32,48 @@ import fr.n7.saceca.u3du.model.util.Couple;
  */
 public class DefaultEmotionModule implements EmotionModule {
 	
+	/**
+	 * The Class EmotionThread.
+	 */
+	private class EmotionThread extends Thread {
+		
+		/**
+		 * Instantiates a new emotion thread and names it according to the owning object.
+		 */
+		public EmotionThread() {
+			super();
+			this.setName(DefaultEmotionModule.this.agent.toShortString() + "Emotion thread");
+		}
+		
+		/**
+		 * This method represents the "emotion loop"
+		 */
+		@Override
+		public void run() {
+			while (DefaultEmotionModule.this.agent.isAlive() && !DefaultEmotionModule.this.agent.isPause()) {
+				DefaultEmotionModule.this.detectEmotions();
+				try {
+					Thread.sleep(DefaultAgentBehavior.BEHAVE_PERIOD);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
 	private Agent agent;
+	
+	/** The emotion thread */
+	private EmotionThread emotionThread;
+	
+	/**
+	 * Checks if the emotion thread is alive
+	 */
+	@Override
+	public boolean isAlive() {
+		return this.emotionThread != null && this.emotionThread.isAlive();
+	}
 	
 	/**
 	 * Detect emotions.
@@ -40,6 +82,15 @@ public class DefaultEmotionModule implements EmotionModule {
 	public void detectEmotions() {
 		this.dovirtualPerception();
 		
+	}
+	
+	/**
+	 * Starts the emotion module's thread
+	 */
+	@Override
+	public void start() {
+		this.emotionThread = new EmotionThread();
+		this.emotionThread.start();
 	}
 	
 	/**
@@ -58,10 +109,18 @@ public class DefaultEmotionModule implements EmotionModule {
 	 */
 	public void dovirtualPerception() {
 		ArrayList<String> vision = new ArrayList<String>();
-		for (Couple<WorldObject, Boolean> newCouple : this.agent.getMemory().getPerceivedObjects()) {
-			vision.add(newCouple.getFirstElement().getModelName());
+		for (Couple<WorldObject, Boolean> newCouple : (ArrayList<Couple<WorldObject, Boolean>>) this.agent.getMemory()
+				.getPerceivedObjects().clone()) {
+			
+			if (newCouple != null) {
+				vision.add(newCouple.getFirstElement().getModelName());
+			}
 			
 		}
+		if (vision == null || vision.size() == 0) {
+			return;
+		}
+		
 		ArrayList<property_rule> tabpropertyrule = Model.getInstance().getAI().getWorld().getProperty_rule_tab();
 		
 		int[][] vector_perception = new int[1][tabpropertyrule.size()];

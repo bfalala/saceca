@@ -21,6 +21,7 @@ import fr.n7.saceca.u3du.model.ai.Visibility;
 import fr.n7.saceca.u3du.model.ai.World;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
 import fr.n7.saceca.u3du.model.ai.agent.Gauge;
+import fr.n7.saceca.u3du.model.ai.agent.behavior.DefaultAgentBehavior;
 import fr.n7.saceca.u3du.model.ai.agent.memory.Memory;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
 import fr.n7.saceca.u3du.model.ai.object.properties.PropertiesContainer;
@@ -35,8 +36,49 @@ import fr.n7.saceca.u3du.model.util.Couple;
  */
 public class DefaultPerceptionModule implements PerceptionModule {
 	
+	/**
+	 * The Class PerceptionThread.
+	 */
+	private class PerceptionThread extends Thread {
+		
+		/**
+		 * Instantiates a new perception thread and names it according to the owning object.
+		 */
+		public PerceptionThread() {
+			super();
+			this.setName(DefaultPerceptionModule.this.agent.toShortString() + "Perception thread");
+		}
+		
+		/**
+		 * This method represents the "perception loop"
+		 */
+		@Override
+		public void run() {
+			while (DefaultPerceptionModule.this.agent.isAlive() && !DefaultPerceptionModule.this.agent.isPause()) {
+				DefaultPerceptionModule.this.perceive();
+				try {
+					Thread.sleep(DefaultAgentBehavior.BEHAVE_PERIOD);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
 	/** The agent. */
 	private Agent agent;
+	
+	/** The perception thread */
+	private PerceptionThread perceptionThread;
+	
+	/**
+	 * Checks if the perception thread is alive
+	 */
+	@Override
+	public boolean isAlive() {
+		return this.perceptionThread != null && this.perceptionThread.isAlive();
+	}
 	
 	/**
 	 * Instantiates a new default perception module.
@@ -53,10 +95,21 @@ public class DefaultPerceptionModule implements PerceptionModule {
 	 */
 	@Override
 	public void perceive() {
+		// synchronized (this.agent.getMemory()) {
 		this.doInternalPerception();
 		this.doEyesightPerception();
 		
 		this.agent.getMemory().arrangeMemory();
+		// }
+	}
+	
+	/**
+	 * Starts the perception module's thread
+	 */
+	@Override
+	public void start() {
+		this.perceptionThread = new PerceptionThread();
+		this.perceptionThread.start();
 	}
 	
 	/**

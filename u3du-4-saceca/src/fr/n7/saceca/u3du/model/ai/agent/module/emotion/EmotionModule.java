@@ -26,4 +26,16 @@ public interface EmotionModule extends Storable {
 	 */
 	public void detectEmotions();
 	
+	/**
+	 * Checks if the emotion thread is alive
+	 * 
+	 * @return thread's state
+	 */
+	boolean isAlive();
+	
+	/**
+	 * Starts the emotion module's thread
+	 */
+	void start();
+	
 }

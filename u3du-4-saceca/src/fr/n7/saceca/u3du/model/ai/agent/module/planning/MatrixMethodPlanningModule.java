@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 import fr.n7.saceca.u3du.model.Model;
 import fr.n7.saceca.u3du.model.ai.World;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
+import fr.n7.saceca.u3du.model.ai.agent.behavior.DefaultAgentBehavior;
 import fr.n7.saceca.u3du.model.ai.agent.memory.Memory;
 import fr.n7.saceca.u3du.model.ai.agent.module.perception.PerceptionModule;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.initialization.GenerateProperties;
@@ -45,6 +46,37 @@ import fr.n7.saceca.u3du.util.Log;
  * 
  */
 public class MatrixMethodPlanningModule implements PlanningModule {
+	
+	/**
+	 * The Class PlanningThread.
+	 */
+	private class PlanningThread extends Thread {
+		
+		/**
+		 * Instantiates a new planning thread and names it according to the owning object.
+		 */
+		public PlanningThread() {
+			super();
+			this.setName(MatrixMethodPlanningModule.this.agent.toShortString() + "Planning thread");
+		}
+		
+		/**
+		 * This method represents the "planning/executing loop"
+		 */
+		@Override
+		public void run() {
+			while (MatrixMethodPlanningModule.this.agent.isAlive() && !MatrixMethodPlanningModule.this.agent.isPause()) {
+				MatrixMethodPlanningModule.this.planAndExecute();
+				try {
+					Thread.sleep(DefaultAgentBehavior.BEHAVE_PERIOD);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
 	/** The Constant logger. */
 	@SuppressWarnings("unused")
 	private static Logger logger = Logger.getLogger(MatrixMethodPlanningModule.class);
@@ -72,6 +104,17 @@ public class MatrixMethodPlanningModule implements PlanningModule {
 	/** The current index. */
 	private int currentIndex = 0;
 	
+	/** The planning thread */
+	private PlanningThread planningThread;
+	
+	/**
+	 * Checks if the planning thread is alive
+	 */
+	@Override
+	public boolean isAlive() {
+		return this.planningThread != null && this.planningThread.isAlive();
+	}
+	
 	/**
 	 * This boolean is true if there was a command that forces the execution of the corresponding
 	 * plan.
@@ -94,13 +137,13 @@ public class MatrixMethodPlanningModule implements PlanningModule {
 	@Override
 	public synchronized void planAndExecute() {
 		// We forced a plan execution and there is no element in it
-		if (this.forcePlan && this.currentPlan == null || (this.currentPlan != null && this.currentPlan.size() == 0)) {
+		if (this.forcePlan && (this.currentPlan == null || this.currentPlan.size() == 0)) {
 			return;
 		}
 		// There is an element in the plan
 		else if (this.forcePlan || this.currentGoal != null && !this.agent.getMemory().getGoalStack().isEmpty()
 				&& this.currentGoal.equals(this.agent.getMemory().getGoalStack().get(0)) && this.currentPlan != null
-				&& this.currentPlan.size() >= this.currentIndex) {
+				&& this.currentPlan.size() != 0 && this.currentPlan.size() >= this.currentIndex) {
 			this.execute();
 			// There is a goal in the stack
 		} else if (!this.agent.getMemory().getGoalStack().isEmpty()) {
@@ -121,7 +164,8 @@ public class MatrixMethodPlanningModule implements PlanningModule {
 						if (!resultedPlan.getFirstElement()) {
 							this.currentGoal.setReachable(false);
 							return;
-							// if the current plan is null because the goal is already reached
+							// if the current plan is null because the goal is
+							// already reached
 						} else {
 							this.currentGoal.setReachable(true);
 							this.currentGoal.setReached(true);
@@ -133,6 +177,15 @@ public class MatrixMethodPlanningModule implements PlanningModule {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Starts the planning module's thread
+	 */
+	@Override
+	public void start() {
+		this.planningThread = new PlanningThread();
+		this.planningThread.start();
 	}
 	
 	/**
@@ -267,7 +320,6 @@ public class MatrixMethodPlanningModule implements PlanningModule {
 	 */
 	public void execute() {
 		PlanElement planElement = this.currentPlan.get(this.currentIndex);
-		
 		ExecutionStatus status = planElement.execute(this.agent, ExecutionMode.REAL);
 		
 		switch (status) {

@@ -14,9 +14,11 @@ package fr.n7.saceca.u3du.model.ai.agent.module.communication;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Queue;
 
 import fr.n7.saceca.u3du.model.Model;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
+import fr.n7.saceca.u3du.model.ai.agent.behavior.DefaultAgentBehavior;
 import fr.n7.saceca.u3du.model.ai.agent.module.communication.message.Message;
 import fr.n7.saceca.u3du.model.ai.agent.module.communication.messagehandler.CanYouMakeItNoAnswerMessageHandler;
 import fr.n7.saceca.u3du.model.ai.agent.module.communication.messagehandler.CanYouMakeItQuestionMessageHandler;
@@ -31,6 +33,37 @@ import fr.n7.saceca.u3du.model.ai.agent.module.communication.messagehandler.Wher
  */
 public class DefaultCommunicationModule implements CommunicationModule {
 	
+	/**
+	 * The Class CommunicationThread.
+	 */
+	private class CommunicationThread extends Thread {
+		
+		/**
+		 * Instantiates a new communication thread and names it according to the owning object.
+		 */
+		public CommunicationThread() {
+			super();
+			this.setName(DefaultCommunicationModule.this.getAgent().toShortString() + "Communication thread");
+		}
+		
+		/**
+		 * This method represents the "communication loop"
+		 */
+		@Override
+		public void run() {
+			while (DefaultCommunicationModule.this.agent.isAlive() && !DefaultCommunicationModule.this.agent.isPause()) {
+				DefaultCommunicationModule.this.communicate();
+				try {
+					Thread.sleep(DefaultAgentBehavior.BEHAVE_PERIOD);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		}
+	}
+	
 	// TODO: find another place for it
 	/** The Constant DEFAULT_MAX_DIST. */
 	public static final int DEFAULT_MAX_DIST = 10;
@@ -40,6 +73,17 @@ public class DefaultCommunicationModule implements CommunicationModule {
 	
 	/** The agent. */
 	private Agent agent;
+	
+	/** The communication thread */
+	private CommunicationThread communicationThread;
+	
+	/**
+	 * Checks if the communication thread is alive
+	 */
+	@Override
+	public boolean isAlive() {
+		return this.communicationThread != null && this.communicationThread.isAlive();
+	}
 	
 	/**
 	 * Instantiates a new default communication module.
@@ -65,9 +109,11 @@ public class DefaultCommunicationModule implements CommunicationModule {
 	public void communicate() {
 		Message message = null;
 		Message answer = null;
-		while (!this.agent.getMemory().getMessageInbox().isEmpty()) {
-			// Because of the !isEmpty, when poll returns null, STOP_CONVERSAITION(=null) is meant.
-			message = this.agent.getMemory().getMessageInbox().poll();
+		Queue<Message> inbox = this.agent.getMemory().getMessageInbox();
+		while (!inbox.isEmpty()) {
+			// Because of the !isEmpty, when poll returns null, STOP_CONVERSAITION(=null) is
+			// meant.
+			message = inbox.poll();
 			if (message != Message.STOP_CONVERSATION) {
 				answer = this.handleMessage(message);
 				if (answer != null) {
@@ -75,6 +121,15 @@ public class DefaultCommunicationModule implements CommunicationModule {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Starts the communication module's thread
+	 */
+	@Override
+	public void start() {
+		this.communicationThread = new CommunicationThread();
+		this.communicationThread.start();
 	}
 	
 	/**

@@ -88,4 +88,16 @@ public interface PlanningModule extends Storable {
 	 * Enables the planning.
 	 */
 	public void enablePlanning();
+	
+	/**
+	 * Checks if the planning thread is alive
+	 * 
+	 * @return thread's state
+	 */
+	boolean isAlive();
+	
+	/**
+	 * Starts the planning module's thread
+	 */
+	void start();
 }

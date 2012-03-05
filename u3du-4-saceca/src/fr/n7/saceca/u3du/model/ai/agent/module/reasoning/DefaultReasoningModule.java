@@ -165,4 +165,13 @@ public class DefaultReasoningModule implements ReasoningModule {
 		return DefaultReasoningModule.class.getCanonicalName();
 	}
 	
+	@Override
+	public boolean isAlive() {
+		return false;
+	}
+	
+	@Override
+	public void start() {
+		this.reason();
+	}
 }

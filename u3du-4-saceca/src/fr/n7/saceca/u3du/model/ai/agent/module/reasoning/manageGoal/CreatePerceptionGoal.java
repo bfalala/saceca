@@ -48,8 +48,10 @@ public class CreatePerceptionGoal extends SameElementsRule<WorldObject> {
 		this.elementsToCheck = new ArrayList<WorldObject>();
 		// we get only the objects from the perceived objects list that weren't perceived in the
 		// previous perception
-		for (Couple<WorldObject, Boolean> couple : this.agent.getMemory().getPerceivedObjects()) {
-			if (couple.getSecondElement()) {
+		for (Couple<WorldObject, Boolean> couple : (ArrayList<Couple<WorldObject, Boolean>>) this.agent.getMemory()
+				.getPerceivedObjects().clone()) {
+			
+			if (couple != null && couple.getSecondElement()) {
 				this.elementsToCheck.add(couple.getFirstElement());
 			}
 		}
@@ -63,6 +65,9 @@ public class CreatePerceptionGoal extends SameElementsRule<WorldObject> {
 	
 	@Override
 	protected void applyEffects() {
+		if (this.elementsToCheck == null || this.elementsToCheck.size() == 0) {
+			return;
+		}
 		MMGoal goalToAdd;
 		// take every object in the list
 		for (WorldObject worldObject : this.elementsToCheck) {
@@ -134,6 +139,7 @@ public class CreatePerceptionGoal extends SameElementsRule<WorldObject> {
 			}
 			goal.setSuccessCondition(premise);
 			goal.setPriority(effectPlus.getAttractivity());
+			
 			return goal;
 		}
 		

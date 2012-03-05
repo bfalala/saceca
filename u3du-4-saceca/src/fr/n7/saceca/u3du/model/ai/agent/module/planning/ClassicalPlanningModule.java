@@ -283,4 +283,14 @@ public class ClassicalPlanningModule implements PlanningModule {
 	public synchronized void enablePlanning() {
 		this.forcePlan = false;
 	}
+	
+	@Override
+	public boolean isAlive() {
+		return false;
+	}
+	
+	@Override
+	public void start() {
+		this.planAndExecute();
+	}
 }

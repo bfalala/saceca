@@ -26,4 +26,16 @@ public interface ReasoningModule extends Storable {
 	 */
 	public void reason();
 	
+	/**
+	 * Checks if the reasoning thread is alive
+	 * 
+	 * @return thread's state
+	 */
+	boolean isAlive();
+	
+	/**
+	 * Starts the reasoning module's thread
+	 */
+	void start();
+	
 }

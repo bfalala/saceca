@@ -69,6 +69,7 @@ public class CreateGaugeGoal extends SameElementsRule<Gauge> {
 		double goalValue = 0;
 		// take every gauge from the list adn create a goal
 		for (Gauge gauge : this.elementsToCheck) {
+			
 			goalValue = MMReasoningModule.GAUGE_REFILL * gauge.getMaxValue();
 			
 			goalToAdd = new MMGoal();

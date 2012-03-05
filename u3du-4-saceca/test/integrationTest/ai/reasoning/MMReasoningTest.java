@@ -67,10 +67,11 @@ public class MMReasoningTest {
 		
 		System.out
 				.println("\n* Buts (test de la règle CreateGaugeGoal et ChooseGoalToReach.\n Le premier but de la liste devrait avoir une priorité de 100 pour signifier que c'est le but à atteindre pendant un bon moment.\n");
+		// synchronized (agent.getMemory().getGoalStack()) {
 		for (MMGoal goal : agent.getMemory().getGoalStack()) {
 			System.out.println(goal);
 		}
-		
+		// }
 		Thread.sleep(2000);
 		
 		/*

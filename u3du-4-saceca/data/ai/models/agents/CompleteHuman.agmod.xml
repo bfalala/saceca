@@ -8,5 +8,6 @@
   </categories>
   <services/>
   <properties>
+    <string name="i_graphics_conf" default="Man" visibility="private"/>
   </properties>
 </agent-model>

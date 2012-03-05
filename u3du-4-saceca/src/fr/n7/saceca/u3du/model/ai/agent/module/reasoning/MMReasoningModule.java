@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
+import fr.n7.saceca.u3du.model.ai.agent.behavior.DefaultAgentBehavior;
 import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.manageGoal.CreateGaugeGoal;
 import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.manageGoal.CreatePerceptionGoal;
 import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.manageGoal.Rule;
@@ -28,6 +29,37 @@ import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.manageGoal.Rule;
  * 
  */
 public class MMReasoningModule implements ReasoningModule {
+	
+	/**
+	 * The Class ReasoningThread.
+	 */
+	private class ReasoningThread extends Thread {
+		
+		/**
+		 * Instantiates a new reasoning thread and names it according to the owning object.
+		 */
+		public ReasoningThread() {
+			super();
+			this.setName(MMReasoningModule.this.agent.toShortString() + "Reasoning thread");
+		}
+		
+		/**
+		 * This method represents the "reasoning loop"
+		 */
+		@Override
+		public void run() {
+			while (MMReasoningModule.this.agent.isAlive() && !MMReasoningModule.this.agent.isPause()) {
+				MMReasoningModule.this.reason();
+				try {
+					Thread.sleep(DefaultAgentBehavior.BEHAVE_PERIOD);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
 	/** The list of rules */
 	private List<Rule> rules;
 	
@@ -46,6 +78,17 @@ public class MMReasoningModule implements ReasoningModule {
 	/** The Constant UNREACHABLE_GOAL_PRIORITY. */
 	public static final int UNREACHABLE_GOAL_PRIORITY = 0;
 	
+	/** The reasoning thread */
+	private ReasoningThread reasoningThread;
+	
+	/**
+	 * Checks if the reasoning thread is alive
+	 */
+	@Override
+	public boolean isAlive() {
+		return this.reasoningThread != null && this.reasoningThread.isAlive();
+	}
+	
 	/**
 	 * Constructor
 	 * 
@@ -62,6 +105,8 @@ public class MMReasoningModule implements ReasoningModule {
 	
 	@Override
 	public void reason() {
+		// synchronized necessary
+		// synchronized (this.agent.getMemory()) {
 		// checks the stack of goals
 		this.checkGoalStack();
 		
@@ -70,6 +115,16 @@ public class MMReasoningModule implements ReasoningModule {
 		
 		// sorts the stack of goals by their priority
 		this.sortGoals();
+		// }
+	}
+	
+	/**
+	 * Starts the reasoning module's thread
+	 */
+	@Override
+	public void start() {
+		this.reasoningThread = new ReasoningThread();
+		this.reasoningThread.start();
 	}
 	
 	/**
@@ -128,15 +183,17 @@ public class MMReasoningModule implements ReasoningModule {
 	 * Check the stack of goals
 	 */
 	private void checkGoalStack() {
-		if (this.agent.getMemory().getGoalStack().isEmpty()) {
-			return;
-		}
-		for (Iterator<MMGoal> it_goal = this.agent.getMemory().getGoalStack().iterator(); it_goal.hasNext();) {
-			MMGoal goal = it_goal.next();
-			if (goal.isReached() == true) {
-				it_goal.remove();
-			} else if (goal.isReachable() == false) {
-				goal.setPriority(0);
+		synchronized (this.agent.getMemory().getGoalStack()) {
+			if (this.agent.getMemory().getGoalStack().isEmpty()) {
+				return;
+			}
+			for (Iterator<MMGoal> it_goal = this.agent.getMemory().getGoalStack().iterator(); it_goal.hasNext();) {
+				MMGoal goal = it_goal.next();
+				if (goal.isReached() == true) {
+					it_goal.remove();
+				} else if (goal.isReachable() == false) {
+					goal.setPriority(0);
+				}
 			}
 		}
 	}
