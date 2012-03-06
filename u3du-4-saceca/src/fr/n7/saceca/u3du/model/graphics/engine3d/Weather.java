@@ -19,7 +19,7 @@ import fr.n7.saceca.u3du.model.Model;
  * The class that deals with the weather of the little world. 
  * The weather play a role in the emotion of the agents.
  * 
- * @author Eric Blachère
+ * @author Eric BlachÃ¨re
  */
 public class Weather {
 	
@@ -74,14 +74,14 @@ public class Weather {
 	    // Adjustments   
 	    
 	    points.setImagesX(1); // only one image of raindrop
-	    points.setLowLife(0.5f); // how much time does at least a drop survive 
-	    points.setHighLife(0.6f); // how much time does at max a drop survive 
+	    points.setLowLife( 0.5f); // how much time does at least a drop survive 
+	    points.setHighLife( 0.6f); // how much time does at max a drop survive 
 	    points.setParticlesPerSec(1000000); // not accurate (a lot too much)
-	    points.setStartSize(0.5f); // % of size of the drop
-        points.setEndSize(0.5f);
+	    points.setStartSize( 0.5f); // % of size of the drop
+        points.setEndSize( 0.5f);
 	   
-	    points.setStartColor(new ColorRGBA(80f/255,80f/255,255f/255, 255/255)); // blue drop
-	    points.setEndColor(new ColorRGBA(80f/255,80f/255,255f/255, 255/255));
+	    points.setStartColor(new ColorRGBA( 80.0f/255, 80.0f/255, 255.0f/255, 255/255)); // blue drop
+	    points.setEndColor(new ColorRGBA( 80.0f/255, 80.0f/255, 255.0f/255, 255/255));
 	    points.setGravity(1000); // how fast does it fall ?
 	 
 	    this.engie.getRootNode().attachChild(points);
@@ -137,28 +137,28 @@ public class Weather {
 		//this.rootNode.addLight(al);
 		
 		DirectionalLight dl = new DirectionalLight();
-		dl.setDirection(new Vector3f(0f, -1f, 0f).normalize());	
+		dl.setDirection(new Vector3f( 0.0f, -1.0f, 0.0f).normalize());	
 		//dl.setColor(ColorRGBA.Blue);
 		this.engie.getRootNode().addLight(dl);		
 		
 		DirectionalLight dl2 = new DirectionalLight();
-		dl2.setDirection(new Vector3f(500f, -1f, 500f).normalize());
+		dl2.setDirection(new Vector3f( 500.0f, -1.0f, 500.0f).normalize());
 		//dl2.setColor(ColorRGBA.Blue);
 		this.engie.getRootNode().addLight(dl2);		
 		
 		DirectionalLight dl3 = new DirectionalLight();
-		dl3.setDirection(new Vector3f(500f, -1f, -500f).normalize());
+		dl3.setDirection(new Vector3f( 500.0f, -1.0f, -500.0f).normalize());
 		//dl3.setColor(ColorRGBA.Blue);
 		this.engie.getRootNode().addLight(dl3);		
 		
 		DirectionalLight dl4 = new DirectionalLight();
-		dl4.setDirection(new Vector3f(-500f, -1f, 500f).normalize());
+		dl4.setDirection(new Vector3f(-500.0f, -1.0f, 500.0f).normalize());
 		//dl4.setColor(ColorRGBA.Blue);
 		this.engie.getRootNode().addLight(dl4);		
 		
 		
 		DirectionalLight dl5 = new DirectionalLight();
-		dl5.setDirection(new Vector3f(-100f, -1f, -100f).normalize());
+		dl5.setDirection(new Vector3f(-100.0f, -1.0f, -100.0f).normalize());
 		//dl5.setColor(ColorRGBA.Blue);
 		this.engie.getRootNode().addLight(dl5);
 		

@@ -1,0 +1,6 @@
+<category-model name="StockOwner">
+  <properties>
+	<int name="c_StockOwner_stock" min="0" max="1000000" default="100" visibility="private"/>
+	<int name="c_StockOwner_shoppingTime" min="0" max="100" default="50" visibility="private"/>
+  </properties>
+</category-model>

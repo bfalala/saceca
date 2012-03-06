@@ -5,7 +5,8 @@
   </categories>
   <services>
     <service>restAtHome</service>
-    <service>eatAt</service>
+    <service>eatAtHome</service>
+    <service>doNaturalNeedsAtHome</service>
   </services>
   <properties>
     <string name="i_graphics_conf" default="House" visibility="private"/>

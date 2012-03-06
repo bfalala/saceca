@@ -35,7 +35,7 @@
     <double name="i_emotion_secondary_optimism" value="50.0"/>
     <double name="i_emotion_angry" value="50.0"/>
     <double name="i_gauge_primordial_naturalneeds" value="86.0"/>
-    <double name="i_gauge_primordial_tiredness" value="86.0"/>
+    <double name="i_gauge_primordial_tiredness" value="56.0"/>
     <int name="i_decrement_period_default" value="14"/>
     <double name="i_emotion_sadness" value="50.0"/>
     <double name="i_emotion_fear" value="50.0"/>
@@ -44,7 +44,8 @@
     <double name="i_gauge_social_love" value="90.0"/>
     <int name="c_Worker_workingTime" value="40"/>
     <double name="i_gauge_primordial_skintemperature" value="86.0"/>
-    <string name="c_BuildingOwner_address" value="9 Beach road"/>
+    <string name="c_BuildingOwner_address" value="8 Main street"/>
+    <int name="c_BuildingOwner_id" value="27"/>    
     <int name="i_perception_maxEyesightDistance" value="10"/>
     <string name="i_name" value="Johann"/>
     <double name="i_gauge_security_body" value="90.0"/>
@@ -417,7 +418,8 @@
               <double name="i_gauge_social_love" value="90.0"/>
               <int name="c_Worker_workingTime" value="40"/>
               <double name="i_gauge_primordial_skintemperature" value="86.0"/>
-              <string name="c_BuildingOwner_address" value="13 Beach road"/>
+              <string name="c_BuildingOwner_address" value="8 Main street"/>
+    		  <int name="c_BuildingOwner_id" value="27"/>  
               <int name="i_perception_maxEyesightDistance" value="10"/>
               <string name="i_name" value="Johann"/>
               <double name="i_gauge_security_body" value="90.0"/>

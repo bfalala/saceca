@@ -44,7 +44,8 @@
     <double name="i_gauge_social_love" value="90.0"/>
     <int name="c_Worker_workingTime" value="40"/>
     <double name="i_gauge_primordial_skintemperature" value="86.0"/>
-    <string name="c_BuildingOwner_address" value="15 Beach road"/>
+    <string name="c_BuildingOwner_address" value="5 Beach road"/>
+    <int name="c_BuildingOwner_id" value="34"/>    
     <int name="i_perception_maxEyesightDistance" value="10"/>
     <string name="i_name" value="Aurelien"/>
     <double name="i_gauge_security_body" value="90.0"/>
@@ -433,7 +434,8 @@
               <double name="i_gauge_social_love" value="90.0"/>
               <int name="c_Worker_workingTime" value="40"/>
               <double name="i_gauge_primordial_skintemperature" value="86.0"/>
-              <string name="c_BuildingOwner_address" value="15 Beach road"/>
+              <string name="c_BuildingOwner_address" value="5 Beach road"/>
+    		  <int name="c_BuildingOwner_id" value="34"/>  
               <int name="i_perception_maxEyesightDistance" value="10"/>
               <string name="i_name" value="Aurelien"/>
               <double name="i_gauge_security_body" value="90.0"/>

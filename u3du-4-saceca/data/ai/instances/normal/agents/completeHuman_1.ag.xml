@@ -44,7 +44,8 @@
     <double name="i_gauge_social_love" value="90.0"/>
     <int name="c_Worker_workingTime" value="40"/>
     <double name="i_gauge_primordial_skintemperature" value="86.0"/>
-    <string name="c_BuildingOwner_address" value="9 Beach road"/>
+    <string name="c_BuildingOwner_address" value="13 Beach road"/>
+    <int name="c_BuildingOwner_id" value="30"/>
     <int name="i_perception_maxEyesightDistance" value="10"/>
     <string name="i_name" value="LilBob"/>
     <double name="i_gauge_security_body" value="90.0"/>
@@ -127,6 +128,7 @@
               <int name="c_Worker_workingTime" value="40"/>
               <double name="i_gauge_primordial_skintemperature" value="86.0"/>
               <string name="c_BuildingOwner_address" value="13 Beach road"/>
+              <int name="c_BuildingOwner_id" value="30"/>
               <int name="i_perception_maxEyesightDistance" value="10"/>
               <string name="i_name" value="LilBob"/>
               <double name="i_gauge_security_body" value="90.0"/>
@@ -170,17 +172,17 @@
         </memory-element>
       </entry>
       <entry>
-        <long>33</long>
+        <long>30</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="House" id="33">
-            <position x="70.0" y="-9.0" theta="1.5707964"/>
-            <properties>
-              <bool name="i_threaded" value="false"/>
-              <bool name="i_isMisc" value="false"/>
-              <string name="c_Building_address" value="15 Beach road"/>
-              <int name="i_mass" value="42"/>
-              <string name="i_graphics_conf" value="House5"/>
-            </properties>
+          <worldObject model="House" id="30">
+            <position x="85.0" y="-45.0" theta="0.0"/>
+			<properties>
+			    <bool name="i_threaded" value="false"/>
+			    <bool name="i_isMisc" value="false"/>
+			    <string name="c_Building_address" value="13 Beach road"/>
+		    	<int name="i_mass" value="42"/>
+			    <string name="i_graphics_conf" value="House1"/>
+			</properties>
             <belongings/>
           </worldObject>
         </memory-element>

@@ -1,5 +1,6 @@
 <category-model name="BuildingOwner">
   <properties>
     <string name="c_BuildingOwner_address" default="none" visibility="private"/>
+    <int name="c_BuildingOwner_id" min="0" max="1000000" default="0" visibility="public"/>
   </properties>
 </category-model>

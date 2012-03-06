@@ -2,10 +2,10 @@
   <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.DefaultBehavior</behavior>
   <categories>
     <category>Building</category>
-    <category>Tesco</category>
+    <category>Shop</category>
   </categories>
   <services>
-    <service>buy</service>
+    <service>doShopping</service>
   </services>
   <properties>
     <string name="i_graphics_conf" default="Tesco" visibility="private"/>

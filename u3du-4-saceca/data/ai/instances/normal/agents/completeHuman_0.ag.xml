@@ -45,6 +45,7 @@
     <int name="c_Worker_workingTime" value="30"/>
     <double name="i_gauge_primordial_skintemperature" value="86.0"/>
     <string name="c_BuildingOwner_address" value="13 Beach road"/>
+    <int name="c_BuildingOwner_id" value="30"/>
     <int name="i_perception_maxEyesightDistance" value="10"/>
     <string name="i_name" value="Jack"/>
     <double name="i_gauge_security_body" value="90.0"/>
@@ -110,6 +111,7 @@
               <int name="c_Worker_workingTime" value="30"/>
               <double name="i_gauge_primordial_skintemperature" value="86.0"/>
               <string name="c_BuildingOwner_address" value="13 Beach road"/>
+              <int name="c_BuildingOwner_id" value="30"/>
               <int name="i_perception_maxEyesightDistance" value="10"/>
               <string name="i_name" value="Jack"/>
               <double name="i_gauge_security_body" value="90.0"/>

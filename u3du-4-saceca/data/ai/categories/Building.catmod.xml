@@ -1,5 +1,6 @@
 <category-model name="Building">
   <properties>
     <string name="c_Building_address" default="none" visibility="public"/>
+    <int name="c_Building_mealDuration" min="0" max="100" default="20" visibility="public"/>
   </properties>
 </category-model>

@@ -39,8 +39,10 @@
   <!-- Actions -->
   <class qName="fr.n7.saceca.u3du.model.ai.service.action.DoSomethingInABuildingAction"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/DoSomethingInABuildingAction.class"/>
   <class qName="fr.n7.saceca.u3du.model.ai.service.action.Work"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/Work.class"/>
-  <class qName="fr.n7.saceca.u3du.model.ai.service.action.Eat"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/Eat.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.service.action.Eat_home"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/Eat_home.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.service.action.Eat_restaurant"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/Eat_restaurant.class"/>
   <class qName="fr.n7.saceca.u3du.model.ai.service.action.Rest"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/Rest.class"/>
+  <class qName="fr.n7.saceca.u3du.model.ai.service.action.DoShopping"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/DoShopping.class"/>
   <class qName="fr.n7.saceca.u3du.model.ai.service.action.WatchAMovie"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/WatchAMovie.class"/>
   <class qName="fr.n7.saceca.u3du.model.ai.service.action.WalkTo"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/WalkTo.class"/>
   <class qName="fr.n7.saceca.u3du.model.ai.service.action.GoToToilet"  file="bin/fr/n7/saceca/u3du/model/ai/service/action/GoToToilet.class"/>

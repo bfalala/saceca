@@ -5,7 +5,7 @@
     <category>Building</category>
   </categories>
   <services>
-    <service>eatAt</service>
+    <service>eatAtRestaurant</service>
   </services>
   <properties>
     <string name="i_graphics_conf" default="MacDo" visibility="private"/>

@@ -1,6 +1,7 @@
 <service name="restAtHome" active="true" maxDist="25">
 	<consumer-categories>
 		<category>Human</category>
+		<category>BuildingOwner</category>
 	</consumer-categories>
 	<provider-categories>
 		<category>Building</category>
@@ -11,7 +12,7 @@
 			<paramValue></paramValue>
 			<paramType>int</paramType>
 			<fixed>true</fixed>
-			<findValue>id</findValue>
+			<findValue>c_BuildingOwner_id</findValue>
 		</param>
 	</service-parameters>
     <service-preconditions>

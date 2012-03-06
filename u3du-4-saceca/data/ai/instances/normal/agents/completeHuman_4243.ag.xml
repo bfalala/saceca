@@ -44,7 +44,8 @@
     <double name="i_gauge_social_love" value="90.0"/>
     <int name="c_Worker_workingTime" value="30"/>
     <double name="i_gauge_primordial_skintemperature" value="86.0"/>
-    <string name="c_BuildingOwner_address" value="13 Beach road"/>
+    <string name="c_BuildingOwner_address" value="7 Beach road"/>
+    <int name="c_BuildingOwner_id" value="28"/>
     <int name="i_perception_maxEyesightDistance" value="10"/>
     <string name="i_name" value="Henry"/>
     <double name="i_gauge_security_body" value="90.0"/>
@@ -112,6 +113,22 @@
         </memory-element>
       </entry>
       <entry>
+        <long>28</long>
+        <memory-element forgettable="true" place="long" nbRef="50">
+          <worldObject model="House" id="28">
+      		<position x="62.0" y="-85.0" theta="1.5707964"/>
+  			<properties>
+    			<bool name="i_threaded" value="false"/>
+    			<bool name="i_isMisc" value="false"/>
+    			<string name="c_Building_address" value="7 Beach road"/>
+    			<int name="i_mass" value="42"/>
+    			<string name="i_graphics_conf" value="House4"/>
+  			</properties>
+      		<belongings/>
+          </worldObject>
+        </memory-element>
+      </entry>
+      <entry>
         <long>8124</long>
         <memory-element forgettable="true" place="long" nbRef="50">
           <worldObject model="DrinkVendingMachine" id="8124">
@@ -175,7 +192,8 @@
               <double name="i_gauge_social_love" value="90.0"/>
               <int name="c_Worker_workingTime" value="30"/>
               <double name="i_gauge_primordial_skintemperature" value="86.0"/>
-              <string name="c_BuildingOwner_address" value="13 Beach road"/>
+              <string name="c_BuildingOwner_address" value="7 Beach road"/>
+    		  <int name="c_BuildingOwner_id" value="28"/>
               <int name="i_perception_maxEyesightDistance" value="10"/>
               <string name="i_name" value="Henry"/>
               <double name="i_gauge_security_body" value="90.0"/>

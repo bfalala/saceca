@@ -5,7 +5,7 @@
  * 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
  *
  * The original Urban 3 Dimensional Universe application was created by Sylvain Cambon,
- * Aurélien Chabot, Anthony Foulfoin, Jérôme Dalbert & Johann Legaye.
+ * AurÃ©lien Chabot, Anthony Foulfoin, JÃ©rÃ´me Dalbert & Johann Legaye.
  * Contact them for other licensing possibilities, using this email address pattern:
  * <first_name> DOT <name> AT etu DOT enseeiht DOT fr .
  * http://www.projet.long.2011.free.fr
@@ -25,7 +25,7 @@ import fr.n7.saceca.u3du.model.graphics.engine3d.Config3D.CameraKey;
 /**
  * Defines the controller of the 3D part.
  * 
- * @author Sylvain Cambon & Jérome Dalbert & Anthony Foulfoin & Johann Legaye & Aurélien Chabot
+ * @author Sylvain Cambon & JÃ©rome Dalbert & Anthony Foulfoin & Johann Legaye & AurÃ©lien Chabot
  */
 public class Controller3D implements AnalogListener, com.jme3.input.controls.ActionListener {
 	

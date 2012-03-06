@@ -5,7 +5,7 @@
  * 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
  *
  * The original Urban 3 Dimensional Universe application was created by Sylvain Cambon,
- * Aurélien Chabot, Anthony Foulfoin, Jérôme Dalbert & Johann Legaye.
+ * AurÃ©lien Chabot, Anthony Foulfoin, JÃ©rÃ´me Dalbert & Johann Legaye.
  * Contact them for other licensing possibilities, using this email address pattern:
  * <first_name> DOT <name> AT etu DOT enseeiht DOT fr .
  * http://www.projet.long.2011.free.fr
@@ -88,7 +88,7 @@ import jme3tools.converters.ImageToAwt;
 /**
  * The 3D Engine that renders the world and all its objects and agents.
  * 
- * @author Aurélien Chabot, Anthony Foulfoin, Johann Legaye
+ * @author AurÃ©lien Chabot, Anthony Foulfoin, Johann Legaye
  */
 public class Engine3D extends SimpleApplication implements Graphics {
 	
@@ -292,7 +292,7 @@ public class Engine3D extends SimpleApplication implements Graphics {
 			float x2 = position2.x;
 			float y2 = y;
 			float z2 = position2.y;
-			float pitch = 1f / 16f;
+			float pitch = 1.0f / 16.0f;
 			for (float k = 0; k <= 1; k += pitch) {
 				
 				Vector3f midPoint = new Vector3f(x1 + (x2 - x1) * k, y + y1 + (y2 - y1 + 1)
@@ -376,19 +376,19 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		
 		// we set wave properties
 		waterProcessor.setWaterDepth(0); // transparency of water
-		waterProcessor.setDistortionScale(2f); // strength of waves
-		waterProcessor.setWaveSpeed(0.05f); // speed of waves
+		waterProcessor.setDistortionScale( 2.0f); // strength of waves
+		waterProcessor.setWaveSpeed( 0.05f); // speed of waves
 		waterProcessor.setWaterTransparency(1);
 		waterProcessor.setWaterColor(ColorRGBA.Brown);		
 		
 		// we define the wave size by setting the size of the texture coordinates
 		Quad quad = new Quad(10000, 10000);
-		quad.scaleTextureCoordinates(new Vector2f(2000f, 2000f));
+		quad.scaleTextureCoordinates(new Vector2f( 2000.0f, 2000.0f));
 		
 		// we create the water geometry from the quad
 		Geometry water = new Geometry("water", quad);
 		water.setLocalRotation(new Quaternion().fromAngleAxis(-FastMath.HALF_PI, Vector3f.UNIT_X));
-		water.setLocalTranslation(-1000, -1f, 1000);
+		water.setLocalTranslation(-1000, -1.0f, 1000);
 		water.setShadowMode(ShadowMode.Receive);
 		water.setMaterial(waterProcessor.getMaterial());
 		this.rootNode.attachChild(water);
@@ -410,22 +410,22 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		Texture grass = this.assetManager.loadTexture("Textures/Terrain/splat/grass.jpg");
 		grass.setWrap(WrapMode.Repeat);
 		matRock.setTexture("DiffuseMap", grass);
-		matRock.setFloat("DiffuseMap_0_scale", 64f);
+		matRock.setFloat("DiffuseMap_0_scale", 64.0f);
 		
 		// load dirt texture
 		Texture dirt = this.assetManager.loadTexture("Textures/Terrain/splat/dirt.jpg");
 		dirt.setWrap(WrapMode.Repeat);
 		matRock.setTexture("DiffuseMap_1", dirt);
-		matRock.setFloat("DiffuseMap_1_scale", 32f);
+		matRock.setFloat("DiffuseMap_1_scale", 32.0f);
 		
 		// load sand texture
 		Texture rock = this.assetManager.loadTexture("Textures/Terrain/splat/sand.jpg");
 		rock.setWrap(WrapMode.Repeat);
 		matRock.setTexture("DiffuseMap_2", rock);
-		matRock.setFloat("DiffuseMap_2_scale", 128f);
+		matRock.setFloat("DiffuseMap_2_scale", 128.0f);
 		
 		ImageBasedHeightMap heightmap = new ImageBasedHeightMap(ImageToAwt.convert(heightMapImage.getImage(), false,
-				true, 0), 1f);
+				true, 0), 1.0f);
 		heightmap.load();
 		
 		// If we redraw the terrain
@@ -438,7 +438,7 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		this.terrain.setMaterial(matRock);
 		this.terrain.setModelBound(new BoundingBox());
 		this.terrain.updateModelBound();
-		this.terrain.setLocalScale(2f, 1f, 2f); // scale to make it less steep
+		this.terrain.setLocalScale( 2.0f, 1.0f, 2.0f); // scale to make it less steep
 		this.terrain.addControl(new RigidBodyControl(0));
 		this.rootNode.attachChild(this.terrain);
 		this.bulletAppState.getPhysicsSpace().add(this.terrain);
@@ -726,7 +726,7 @@ public class Engine3D extends SimpleApplication implements Graphics {
 	 */
 	public void makeBall() {
 		
-		Sphere sphere = new Sphere(32, 32, 2f, true, false);
+		Sphere sphere = new Sphere(32, 32, 2.0f, true, false);
 		sphere.setTextureMode(TextureMode.Projected);
 		Geometry ballGeo = new Geometry("cannon ball", sphere);
 		Material stoneMat = new Material(this.assetManager, "Common/MatDefs/Misc/SimpleTextured.j3md");
@@ -741,14 +741,14 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		ballGeo.setLocalTranslation(-80, 40, -62);
 		ballGeo.setShadowMode(ShadowMode.CastAndReceive);
 		/** Make the ball physcial with a mass > 0.0f */
-		RigidBodyControl ballPhy = new RigidBodyControl(2f);
+		RigidBodyControl ballPhy = new RigidBodyControl( 2.0f);
 		
 		/** Add physical ball to physics space. */
 		ballGeo.addControl(ballPhy);
 		this.bulletAppState.getPhysicsSpace().add(ballPhy);
 		/** Accelerate the physcical ball. */
 		ballPhy.setLinearVelocity(new Vector3f(0, -20, 0));
-		ballPhy.setFriction(1f);
+		ballPhy.setFriction( 1.0f);
 	}
 	
 	/**

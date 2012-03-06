@@ -5,7 +5,7 @@
  * 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
  *
  * The original Urban 3 Dimensional Universe application was created by Sylvain Cambon,
- * Aurélien Chabot, Anthony Foulfoin, Jérôme Dalbert & Johann Legaye.
+ * AurÃ©lien Chabot, Anthony Foulfoin, JÃ©rÃ´me Dalbert & Johann Legaye.
  * Contact them for other licensing possibilities, using this email address pattern:
  * <first_name> DOT <name> AT etu DOT enseeiht DOT fr .
  * http://www.projet.long.2011.free.fr
@@ -22,8 +22,8 @@ package fr.n7.saceca.u3du.model.util.io.storage;
  */
 public interface Repository<T extends Storable> extends Iterable<T> {
 	
-	// TODO : Sylvain à Jerome :
-	// "en V2, je ferai une sous-classe si tu veux. Il suffit que le repository ait une méthode capable de lire ce nom"
+	// TODO : Sylvain Ã  Jerome :
+	// "en V2, je ferai une sous-classe si tu veux. Il suffit que le repository ait une mÃ©thode capable de lire ce nom"
 	
 	/**
 	 * Clears the repository.

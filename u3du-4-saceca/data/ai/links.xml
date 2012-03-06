@@ -10,6 +10,7 @@
 				<fixed>false</fixed>
 				<findValue></findValue>
 			  </param>
+			  completeHuman
 			  <param>
 				<paramName>amount</paramName>
 				<paramValue></paramValue>
@@ -43,6 +44,53 @@
 			<order></order>
 			<treatment__precond></treatment__precond>
 			<treatment__effect>c_AccountOwner_account__+__amount</treatment__effect>
+		</conclusion>
+	</link>
+	<link>
+		<premise>
+			<propertyName>biggerThan</propertyName>
+			<propertyParameters>
+			  <param>
+				<paramName>c_StockOwner_stock</paramName>
+				<paramValue></paramValue>
+				<paramType>int</paramType>
+				<fixed>false</fixed>
+				<findValue></findValue>
+			  </param>
+			  completeHuman
+			  <param>
+				<paramName>amount</paramName>
+				<paramValue>50</paramValue>
+				<paramType>int</paramType>
+				<fixed>false</fixed>
+				<findValue></findValue>
+			  </param>
+			</propertyParameters>
+			<order>1</order>
+			<treatment__precond>c_StockOwner_stock__&gt;__amount</treatment__precond>
+			<treatment__effect></treatment__effect>
+		</premise>
+		<conclusion>
+			<propertyName>become_plus</propertyName>
+			<propertyParameters>
+			  <param>
+				<paramName>c_StockOwner_stock</paramName>
+				<paramValue></paramValue>
+				<paramType>int</paramType>
+				<fixed>false</fixed>
+				<findValue/>
+			  </param>
+			  <param>
+				<paramName>amount</paramName>
+				<paramValue>100</paramValue>
+				<paramType>int</paramType>
+				<fixed>true</fixed>
+				<findValue></findValue>
+			  </param>
+			</propertyParameters>
+			<order></order>
+			<treatment__precond></treatment__precond>
+			<treatment__effect>c_StockOwner_stock__+__amount</treatment__effect>
 		</conclusion>
 	</link>
 	<link>

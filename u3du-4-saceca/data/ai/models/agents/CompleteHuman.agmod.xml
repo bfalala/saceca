@@ -3,6 +3,7 @@
   <categories>
     <category>Human</category>
     <category>AccountOwner</category>
+    <category>StockOwner</category>
     <category>BuildingOwner</category>
     <category>Worker</category>    
   </categories>
