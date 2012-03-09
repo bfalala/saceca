@@ -105,8 +105,6 @@ public class MMReasoningModule implements ReasoningModule {
 	
 	@Override
 	public void reason() {
-		// synchronized necessary
-		// synchronized (this.agent.getMemory()) {
 		// checks the stack of goals
 		this.checkGoalStack();
 		
@@ -115,7 +113,6 @@ public class MMReasoningModule implements ReasoningModule {
 		
 		// sorts the stack of goals by their priority
 		this.sortGoals();
-		// }
 	}
 	
 	/**

@@ -95,12 +95,10 @@ public class DefaultPerceptionModule implements PerceptionModule {
 	 */
 	@Override
 	public void perceive() {
-		// synchronized (this.agent.getMemory()) {
 		this.doInternalPerception();
 		this.doEyesightPerception();
 		
 		this.agent.getMemory().arrangeMemory();
-		// }
 	}
 	
 	/**

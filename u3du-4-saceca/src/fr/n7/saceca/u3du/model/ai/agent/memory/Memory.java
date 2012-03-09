@@ -508,9 +508,7 @@ public class Memory {
 	 * @return the message queue
 	 */
 	public Queue<Message> getMessageInbox() {
-		// synchronized (this.messageInbox) {
 		return this.messageInbox;
-		// }
 	}
 	
 	/**
