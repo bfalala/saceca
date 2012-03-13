@@ -21,4 +21,6 @@ public interface Plan extends Iterable<PlanElement> {
 	public PlanElement get(int index);
 	
 	public int size();
+	
+	public int getIndex(PlanElement pe);
 }

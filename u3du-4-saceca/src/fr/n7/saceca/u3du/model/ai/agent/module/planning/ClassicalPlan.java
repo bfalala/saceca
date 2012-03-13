@@ -69,4 +69,9 @@ public final class ClassicalPlan implements Plan {
 	public int size() {
 		return this.backingCollection.size();
 	}
+	
+	@Override
+	public int getIndex(PlanElement pe) {
+		return this.backingCollection.lastIndexOf(pe);
+	}
 }

@@ -92,4 +92,9 @@ public class MatrixMethodPlan implements Plan {
 		return this.backingCollection.size();
 	}
 	
+	@Override
+	public int getIndex(PlanElement pe) {
+		return this.backingCollection.lastIndexOf(pe);
+	}
+	
 }

@@ -142,9 +142,15 @@ public class MatrixMethodPlanningModule implements PlanningModule {
 			return;
 		}
 		// There is an element in the plan
-		else if (this.forcePlan || this.currentGoal != null && !this.agent.getMemory().getGoalStack().isEmpty()
-				&& this.currentGoal.equals(this.agent.getMemory().getGoalStack().get(0)) && this.currentPlan != null
-				&& this.currentPlan.size() != 0 && this.currentPlan.size() >= this.currentIndex) {
+		else if (this.forcePlan
+				|| this.currentGoal != null
+				&& !this.agent.getMemory().getGoalStack().isEmpty()
+				&& this.currentPlan != null
+				&& this.currentPlan.size() != 0
+				&& this.currentPlan.size() >= this.currentIndex
+				&& (this.currentGoal.equals(this.agent.getMemory().getGoalStack().get(0)) || (this.agent.getMemory()
+						.getGoalStack().get(0).getPriority()
+						- this.currentGoal.getPriority() <= 10))) {
 			this.execute();
 			// There is a goal in the stack
 		} else if (!this.agent.getMemory().getGoalStack().isEmpty()) {
