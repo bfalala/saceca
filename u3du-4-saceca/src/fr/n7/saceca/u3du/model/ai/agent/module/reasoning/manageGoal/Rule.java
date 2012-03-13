@@ -57,6 +57,13 @@ public abstract class Rule {
 	protected abstract boolean hasElementsToCheck();
 	
 	/**
+	 * Checks for elements to check with Type of Gauge.
+	 * 
+	 * @return true, if successful
+	 */
+	protected abstract boolean hasElementsToCheckWithType();
+	
+	/**
 	 * Check the Rule conditions on some elements to check.
 	 * 
 	 * @return true, if successful

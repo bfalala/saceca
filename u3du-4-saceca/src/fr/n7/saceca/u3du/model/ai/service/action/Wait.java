@@ -16,6 +16,7 @@ import java.util.Map;
 
 import fr.n7.saceca.u3du.model.Model;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
+import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
 import fr.n7.saceca.u3du.model.ai.service.ExecutionStatus;
 
 /**
@@ -87,6 +88,13 @@ public class Wait implements Action {
 		}
 		
 		return ExecutionStatus.CONTINUE_NEXT_TIME;
+	}
+	
+	@Override
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> parameters)
+			throws UnknownPropertyException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	/**

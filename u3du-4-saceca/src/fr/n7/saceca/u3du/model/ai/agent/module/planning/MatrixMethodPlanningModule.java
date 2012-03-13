@@ -28,6 +28,7 @@ import fr.n7.saceca.u3du.model.ai.agent.module.planning.initialization.GenerateP
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.initialization.Matrix;
 import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.MMGoal;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
+import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
 import fr.n7.saceca.u3du.model.ai.service.ExecutionStatus;
 import fr.n7.saceca.u3du.model.ai.service.PropertyLink;
 import fr.n7.saceca.u3du.model.ai.service.Service;
@@ -180,6 +181,54 @@ public class MatrixMethodPlanningModule implements PlanningModule {
 	}
 	
 	/**
+	 * Estimation to reach a goal
+	 * 
+	 * @param goal
+	 * @return
+	 */
+	
+	public int timeEstimationForAGoal(MMGoal goal) {
+		if (goal.getSuccessCondition().getPropertyName().startsWith("reactive")) {
+			return 0;
+			// we plan to reach the currentGoal
+		} else {
+			Plan plan = new MatrixMethodPlan();
+			// if the current goal is reacheable we plan for it
+			if (goal.isReachable()) {
+				Couple<Boolean, Plan> resultedPlan = this.buildPlan(this.agent, goal, 0, 0);
+				plan = resultedPlan.getSecondElement();
+				
+				if (plan == null) {
+					return 0;
+				}
+				World world = Model.getInstance().getAI().getWorld();
+				int compteur = 0;
+				for (int i = 0; i < plan.size(); i++) {
+					PlanElement planElement = plan.get(i);
+					if (!planElement.getService().getName().equals("walkTo")) {
+						planElement.setProvider(world.getWorldObjects().get(planElement.getService().getProviderId()));
+						try {
+							// System.out.println(planElement.getService().getName() + " THIESSE ");
+							// System.out.println(planElement.getService().getDuration(this.agent) +
+							// " BERNARD");
+							compteur = compteur + planElement.getService().getDuration(this.agent);
+						} catch (UnknownPropertyException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+
+					else {
+						
+					}
+				}
+				return compteur;
+			}
+			return 0;
+		}
+	}
+	
+	/**
 	 * Starts the planning module's thread
 	 */
 	@Override
@@ -270,7 +319,7 @@ public class MatrixMethodPlanningModule implements PlanningModule {
 		Matrix matrixCondServ = new Matrix();
 		matrixCondServ.createMatrixP(servicePropertyList, serviceList);
 		
-		MatrixMethodPlanner mmPlanner = new MatrixMethodPlanner(this.currentGoal, serviceList, servicePropertyList,
+		MatrixMethodPlanner mmPlanner = new MatrixMethodPlanner(currentGoal, serviceList, servicePropertyList,
 				virtualMemory, linkList, matrixServProp, matrixCondServ);
 		
 		return mmPlanner.buildPlan();

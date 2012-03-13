@@ -92,9 +92,9 @@ public class MatrixMethodPlanner {
 	 */
 	public Couple<Boolean, Plan> buildPlan() {
 		// we check to see if the goal is already reached
-		if (this.virtualMemory.checkVirtualMemory(this.goalToReach)) {
-			return new Couple<Boolean, Plan>(true, MatrixMethodPlanningModule.GOAL_ALREADY_ACHIEVED);
-		}
+		// if (this.virtualMemory.checkVirtualMemory(this.goalToReach)) {
+		// return new Couple<Boolean, Plan>(true, MatrixMethodPlanningModule.GOAL_ALREADY_ACHIEVED);
+		// }
 		
 		Plan plan = new MatrixMethodPlan();
 		

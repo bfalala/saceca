@@ -39,7 +39,7 @@ import fr.n7.saceca.u3du.model.util.MathUtil;
  * 
  * This class is the code linked to the service "walkTo".
  * 
- * @author Jérôme Dalbert dfsdf
+ * @author Jérôme Dalbert
  */
 public class WalkTo implements Action {
 	
@@ -70,6 +70,17 @@ public class WalkTo implements Action {
 		UndirectedSparseGraph<WorldObject, WeightedEdge> graph = Model.getInstance().getAI().getWorld()
 				.getWalkableGraph();
 		this.path = GraphSolver.forGraph(graph).getShortestPath(source, destination);
+		this.path.size();
+	}
+	
+	public static int getNumberOfPavements(WorldObject source, WorldObject destination) {
+		List<WorldObject> path = new ArrayList<WorldObject>();
+		path.add(source);
+		
+		UndirectedSparseGraph<WorldObject, WeightedEdge> graph = Model.getInstance().getAI().getWorld()
+				.getWalkableGraph();
+		path = GraphSolver.forGraph(graph).getShortestPath(source, destination);
+		return path.size();
 	}
 	
 	@Override
@@ -234,6 +245,13 @@ public class WalkTo implements Action {
 	@Override
 	public String getStorageLabel() {
 		return WalkTo.class.getCanonicalName();
+	}
+	
+	@Override
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> parameters)
+			throws UnknownPropertyException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

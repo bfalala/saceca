@@ -166,8 +166,8 @@ public class DefaultEmotionModule implements EmotionModule {
 		Hashtable<String, Integer> emotion_index_tab = Model.getInstance().getAI().getWorld().getEmotion_index_tab();
 		for (Emotion emotion : this.agent.getEmotions()) {
 			int value = vector_forwarded_result[0][emotion_index_tab.get(emotion.getName())];
-			
 			emotion.setValue(emotion.getValue() + 5 * value);
 		}
+		//agent.getMemory().emotionsAffectSizeMemory();
 	}
 }

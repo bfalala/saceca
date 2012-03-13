@@ -4,5 +4,9 @@
     <int name="c_Human_cash" min="0" max="100000" default="0"  visibility="private"/>
     <double name="c_Human_walk_speed" min="0" max="1000" default="0.04" visibility="private" />
     <int name="c_Human_restDuration" min="0" max="1000" default="50" visibility="private" />
+    <int name="c_Toilet_duration" min="0" max="100" default="5" visibility="public"/>
+    <int name="c_Restaurant_mealDuration" min="0" max="100" default="20" visibility="public"/>
+    <int name="c_Cinema_filmDuration" min="0" max="240" default="90" visibility="public"/>
+    <int name="c_Building_mealDuration" min="0" max="100" default="20" visibility="public"/>
   </properties>
 </category-model>

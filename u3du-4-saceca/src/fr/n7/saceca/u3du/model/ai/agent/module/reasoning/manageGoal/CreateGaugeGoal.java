@@ -18,9 +18,11 @@ import java.util.Iterator;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
 import fr.n7.saceca.u3du.model.ai.agent.Gauge;
 import fr.n7.saceca.u3du.model.ai.agent.memory.Memory;
+import fr.n7.saceca.u3du.model.ai.agent.module.planning.MatrixMethodPlanningModule;
 import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.MMGoal;
 import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.MMReasoningModule;
 import fr.n7.saceca.u3du.model.ai.service.Param;
+import fr.n7.saceca.u3du.model.util.Couple;
 
 /**
  * The CreateGaugeGoal class - it creates goals from gauges values
@@ -44,21 +46,49 @@ public class CreateGaugeGoal extends SameElementsRule<Gauge> {
 		Memory memory = this.agent.getMemory();
 		Agent knowledgeAboutOwner = memory.getKnowledgeAboutOwner();
 		// take all the gauges
-		this.elementsToCheck = new ArrayList<Gauge>(knowledgeAboutOwner.getGauges());
+		this.elementsToCheckWithType = new ArrayList<Couple<Gauge, gaugeType>>();
+		ArrayList<Gauge> liste_gauges = new ArrayList<Gauge>(knowledgeAboutOwner.getGauges());
+		for (Gauge gauge : liste_gauges) {
+			this.elementsToCheckWithType.add(new Couple<Gauge, gaugeType>(gauge, gaugeType.SAFE));
+		}
 	}
 	
 	@Override
 	protected boolean checkConditions() {
-		if (!this.hasElementsToCheck()) {
+		
+		Gauge gauge_next_no_safe = null;
+		double minTimeToBeCritical = -1.0;
+		double timeToBeCritical = 0;
+		
+		if (!this.hasElementsToCheckWithType()) {
 			return false;
 		}
 		// take only the gauges whose values are not bigger than the gauge_refill level
-		for (Iterator<Gauge> it_gauge = this.elementsToCheck.iterator(); it_gauge.hasNext();) {
-			Gauge gauge = it_gauge.next();
+		for (Iterator<Couple<Gauge, gaugeType>> it_gauge = this.elementsToCheckWithType.iterator(); it_gauge.hasNext();) {
+			Couple<Gauge, gaugeType> couple_gauge = it_gauge.next();
+			Gauge gauge = couple_gauge.getFirstElement();
 			if (gauge.getValue() >= MMReasoningModule.GAUGE_REFILL * gauge.getMaxValue()) {
 				it_gauge.remove();
+				if (gauge.isDecreased()) {
+					
+					timeToBeCritical = (gauge.getValue() - MMReasoningModule.GAUGE_REFILL * gauge.getMaxValue())
+							* gauge.getDecrementPeriod(this.agent) + gauge.getDecrementPeriod(this.agent) - 1
+							- gauge.getGaugeDecrementTime();
+					
+					if (minTimeToBeCritical == -1 || minTimeToBeCritical >= timeToBeCritical) {
+						minTimeToBeCritical = timeToBeCritical;
+						gauge_next_no_safe = new Gauge(gauge);
+					}
+				}
+			} else {
+				couple_gauge.setSecondElement(gaugeType.CRITICAL);
 			}
 		}
+		
+		if (gauge_next_no_safe != null) {
+			this.elementsToCheckWithType.add(new Couple<Gauge, gaugeType>(gauge_next_no_safe, gaugeType.SAFE));
+		}
+		
 		return true;
 	}
 	
@@ -67,9 +97,11 @@ public class CreateGaugeGoal extends SameElementsRule<Gauge> {
 		MMGoal goalToAdd;
 		
 		double goalValue = 0;
+		
 		// take every gauge from the list adn create a goal
-		for (Gauge gauge : this.elementsToCheck) {
-			
+		for (Couple<Gauge, gaugeType> couple_gauge : this.elementsToCheckWithType) {
+			Gauge gauge = couple_gauge.getFirstElement();
+			gaugeType type = couple_gauge.getSecondElement();
 			goalValue = MMReasoningModule.GAUGE_REFILL * gauge.getMaxValue();
 			
 			goalToAdd = new MMGoal();
@@ -82,7 +114,22 @@ public class CreateGaugeGoal extends SameElementsRule<Gauge> {
 			// set the treatment precondition to know how to check if the goal is satisfied
 			goalToAdd.getSuccessCondition().setTreatment_precond(gauge.getName() + "__>__amount");
 			// set the goal priority
-			goalToAdd.setPriority((gauge.getValue() < goalValue) ? (int) Math.round(goalValue - gauge.getValue()) : 0);
+			if (type == gaugeType.CRITICAL) {
+				goalToAdd.setPriority((gauge.getValue() < goalValue) ? (int) Math.round(gauge.getMaxValue()
+						- gauge.getValue()) : 0);
+			} else {
+				MatrixMethodPlanningModule MMPM = new MatrixMethodPlanningModule(this.agent);
+				double timeToBeCritical = (gauge.getValue() - goalValue) * gauge.getDecrementPeriod(this.agent)
+						+ gauge.getDecrementPeriod(this.agent) - 1
+						- (Gauge.getGaugeFromList(this.agent.getGauges(), gauge.getName()).getGaugeDecrementTime());
+				
+				double timeEstimation = MMPM.timeEstimationForAGoal(goalToAdd);
+				if (timeEstimation > timeToBeCritical) {
+					goalToAdd.setPriority((int) Math.round(gauge.getMaxValue() - gauge.getValue()));
+				} else {
+					goalToAdd.setPriority(-1);
+				}
+			}
 			// add the goal in the stack
 			this.agent.getMemory().getGoalStack().addMiddle(goalToAdd, "gauge");
 		}

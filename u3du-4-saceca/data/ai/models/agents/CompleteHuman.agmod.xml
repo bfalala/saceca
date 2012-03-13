@@ -5,7 +5,7 @@
     <category>AccountOwner</category>
     <category>StockOwner</category>
     <category>BuildingOwner</category>
-    <category>Worker</category>    
+    <category>Worker</category> 
   </categories>
   <services/>
   <properties>

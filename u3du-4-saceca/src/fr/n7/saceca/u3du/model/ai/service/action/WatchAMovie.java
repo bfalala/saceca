@@ -38,8 +38,8 @@ public class WatchAMovie extends DoSomethingInABuildingAction {
 	 *             the unknown property exception
 	 */
 	@Override
-	protected int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> params)
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> params)
 			throws UnknownPropertyException {
-		return provider.getPropertiesContainer().getInt("c_Cinema_filmDuration");
+		return consumer.getPropertiesContainer().getInt("c_Cinema_filmDuration");
 	}
 }

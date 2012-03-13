@@ -34,10 +34,9 @@ public class DoShopping extends DoSomethingInABuildingAction {
 	 *            the params
 	 * @return the duration
 	 * @throws UnknownPropertyException
-	 *             the unknown property exception
 	 */
 	@Override
-	protected int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> params)
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> params)
 			throws UnknownPropertyException {
 		return consumer.getPropertiesContainer().getInt("c_StockOwner_shoppingTime");
 	}

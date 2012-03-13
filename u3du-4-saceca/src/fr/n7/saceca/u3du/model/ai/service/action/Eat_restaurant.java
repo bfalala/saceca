@@ -35,11 +35,11 @@ public class Eat_restaurant extends DoSomethingInABuildingAction {
 	 *            the params
 	 * @return the duration
 	 * @throws UnknownPropertyException
-	 *             the unknown property exception
 	 */
 	@Override
-	protected int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> params)
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> params)
 			throws UnknownPropertyException {
-		return provider.getPropertiesContainer().getInt("c_Restaurant_mealDuration");
+		return consumer.getPropertiesContainer().getInt("c_Restaurant_mealDuration");
+		
 	}
 }

@@ -36,7 +36,15 @@
       <Name>Flower</Name>
     </premise>
     <conclusion>
-      <Name>Nice</Name>
+      <Name>Angry</Name>
+    </conclusion>
+  </rule>
+    <rule>
+    <premise>
+      <Name>Chaussette</Name>
+    </premise>
+    <conclusion>
+      <Name>Trou</Name>
     </conclusion>
   </rule>
   <rule>

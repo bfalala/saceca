@@ -15,6 +15,7 @@ package fr.n7.saceca.u3du.model.ai.service.action;
 import java.util.Map;
 
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
+import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
 import fr.n7.saceca.u3du.model.ai.service.ExecutionStatus;
 import fr.n7.saceca.u3du.model.util.io.storage.Storable;
 
@@ -38,5 +39,21 @@ public interface Action extends Storable {
 	 * @return the status after the execution.
 	 */
 	public ExecutionStatus executeStep(WorldObject provider, WorldObject consumer, Map<String, Object> parameters);
+	
+	/**
+	 * Gets the duration of the action.
+	 * 
+	 * @param provider
+	 *            the provider
+	 * @param consumer
+	 *            the consumer
+	 * @param parameters
+	 *            the parameters
+	 * @return the duration
+	 * @throws UnknownPropertyException
+	 *             If the duration property was not found.
+	 */
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> parameters)
+			throws UnknownPropertyException;
 	
 }

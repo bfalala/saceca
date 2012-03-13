@@ -29,13 +29,24 @@ public class forward_chaining {
 			this.vector_forwarded = this.multiplyMatrix(vision_vector, matrice);
 			// this.vector_forwarded = this.normalize(this.vector_forwarded);
 			/*
-			 * for (this.i = 0; this.i < this.vector_forwarded.length; this.i++) { for (this.j = 0;
-			 * this.j < this.vector_forwarded[0].length; this.j++) { System.out.print(" " + f +
-			 * " "); System.out.print(" " + this.vector_forwarded[this.i][this.j]); } }
+			 * System.out.println("TROUBADOUR " + f); for (this.i = 0; this.i <
+			 * this.vector_forwarded.length; this.i++) { for (this.j = 0; this.j <
+			 * this.vector_forwarded[0].length; this.j++) { System.out.print(" " +
+			 * this.vector_forwarded[this.i][this.j]); } } System.out.println("LUBRIFIANT");
 			 */
+
 			this.vector_forwarded_result = this.orMatrix(this.vector_forwarded_result, this.vector_forwarded);
 			vision_vector = this.vector_forwarded;
 			
+//			System.out.println("matrice vector_forwarded_result");
+//			for (this.i = 0; this.i < this.vector_forwarded_result.length; this.i++) {
+//				for (this.j = 0; this.j < this.vector_forwarded_result.length; this.j++) {
+//					System.out.print(this.vector_forwarded_result[this.i][this.j] + " ");
+//				}
+//				
+//				System.out.println();
+//			}
+//			
 		}
 		
 		// System.out.println("");
@@ -47,7 +58,7 @@ public class forward_chaining {
 		 * = 0; this.j < this.vector_forwarded_result[0].length; this.j++) { System.out.print(" " +
 		 * this.vector_forwarded_result[this.i][this.j]); } }
 		 */
-		
+
 	}
 	
 	public int[][] getVector_forwarded() {
@@ -162,7 +173,10 @@ public class forward_chaining {
 			// System.out.println();
 			for (this.j = 0; this.j < m1colsa; this.j++) {
 				result[i][this.j] = matrixa[i][this.j] | matrixb[i][this.j];
-				// System.out.print(" " + result[i][this.j]);
+				/*
+				 * System.out .println("TRUITE" + result[i][this.j] + " " + matrixa[i][this.j] +
+				 * " | " + matrixb[i][this.j]);
+				 */
 			}
 			// System.out.println();
 		}

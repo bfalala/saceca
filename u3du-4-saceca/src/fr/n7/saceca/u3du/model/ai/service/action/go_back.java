@@ -16,6 +16,7 @@ import java.util.Map;
 
 import fr.n7.saceca.u3du.model.Model;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
+import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
 import fr.n7.saceca.u3du.model.ai.service.ExecutionStatus;
 import fr.n7.saceca.u3du.model.graphics.animation.Goback_Animation;
 
@@ -76,6 +77,13 @@ public class go_back implements Action {
 		// this.initialized = true;
 		
 		return ExecutionStatus.CONTINUE_NEXT_TIME;
+	}
+	
+	@Override
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> parameters)
+			throws UnknownPropertyException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	/**

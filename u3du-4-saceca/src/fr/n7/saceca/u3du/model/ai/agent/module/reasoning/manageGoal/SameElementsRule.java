@@ -15,6 +15,7 @@ package fr.n7.saceca.u3du.model.ai.agent.module.reasoning.manageGoal;
 import java.util.List;
 
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
+import fr.n7.saceca.u3du.model.util.Couple;
 
 /**
  * The abstract class SameElementsRule represents a rule that checks elements that have the same
@@ -26,6 +27,13 @@ import fr.n7.saceca.u3du.model.ai.agent.Agent;
  * @author Jérôme Dalbert
  */
 public abstract class SameElementsRule<T> extends Rule {
+	
+	enum gaugeType {
+		SAFE, CRITICAL, ANTICIPATED, SOONCRITICAL
+	};
+	
+	/** The remaining elements to check with type of Gauge. */
+	protected List<Couple<T, gaugeType>> elementsToCheckWithType;
 	
 	/** The remaining elements to check. */
 	protected List<T> elementsToCheck;
@@ -43,6 +51,11 @@ public abstract class SameElementsRule<T> extends Rule {
 	@Override
 	protected boolean hasElementsToCheck() {
 		return !this.elementsToCheck.isEmpty();
+	}
+	
+	@Override
+	protected boolean hasElementsToCheckWithType() {
+		return !this.elementsToCheckWithType.isEmpty();
 	}
 	
 	@Override

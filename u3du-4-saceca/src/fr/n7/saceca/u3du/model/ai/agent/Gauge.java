@@ -12,6 +12,8 @@
  */
 package fr.n7.saceca.u3du.model.ai.agent;
 
+import java.util.List;
+
 import fr.n7.saceca.u3du.model.ai.object.properties.DoublePropertyModel;
 import fr.n7.saceca.u3du.model.ai.object.properties.Property;
 import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
@@ -45,7 +47,24 @@ public class Gauge extends Property<Double> {
 	public Gauge(Property<Double> prop) {
 		super(prop.getModel());
 		this.setValue(prop.getValue());
-		this.gaugeDecrementTime = 0;
+		this.setGaugeDecrementTime(0);
+	}
+	
+	/**
+	 * Get a Gauge from a List of Gauges
+	 * 
+	 * @param liste_gauges
+	 * @param name
+	 * @return
+	 */
+	public static Gauge getGaugeFromList(List<Gauge> liste_gauges, String name) {
+		Gauge gauge = null;
+		for (Gauge parcours : liste_gauges) {
+			if (name.equals(parcours.getName())) {
+				gauge = parcours;
+			}
+		}
+		return gauge;
 	}
 	
 	/**
@@ -188,7 +207,7 @@ public class Gauge extends Property<Double> {
 	 *            the agent who owns this gauge
 	 * @return the decrement period
 	 */
-	private Integer getDecrementPeriod(Agent agent) {
+	public Integer getDecrementPeriod(Agent agent) {
 		Integer gaugeDecrementPeriod = null;
 		
 		// Case when there is a decrement period for the current gauge
@@ -217,10 +236,18 @@ public class Gauge extends Property<Double> {
 	public void periodicDecrement(Agent agent) {
 		int decrementPeriod = this.getDecrementPeriod(agent);
 		
-		if (this.gaugeDecrementTime == decrementPeriod - 1) {
+		if (this.getGaugeDecrementTime() == decrementPeriod - 1) {
 			this.decrement();
 		}
 		
-		this.gaugeDecrementTime = Periodic.incrementPeriodTime(this.gaugeDecrementTime, decrementPeriod);
+		this.setGaugeDecrementTime(Periodic.incrementPeriodTime(this.getGaugeDecrementTime(), decrementPeriod));
+	}
+	
+	public int getGaugeDecrementTime() {
+		return this.gaugeDecrementTime;
+	}
+	
+	public void setGaugeDecrementTime(int gaugeDecrementTime) {
+		this.gaugeDecrementTime = gaugeDecrementTime;
 	}
 }

@@ -28,10 +28,10 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
 import fr.n7.saceca.u3du.model.ai.agent.Emotion;
-import fr.n7.saceca.u3du.model.ai.agent.memory.Memory;
 import fr.n7.saceca.u3du.model.ai.category.Category;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
 import fr.n7.saceca.u3du.model.ai.object.properties.PropertiesContainer;
+import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
 import fr.n7.saceca.u3du.model.ai.service.action.Action;
 import fr.n7.saceca.u3du.model.ai.statement.ExecutionMode;
 import fr.n7.saceca.u3du.model.util.Couple;
@@ -265,7 +265,7 @@ public class Service implements Storable {
 			
 			if (agent.getMemory().getKnowledgeAbout(this.providerId) != null) {
 				agent.getMemory().getMemoryElements().get(this.providerId)
-						.increaseNbReferences(Memory.NB_REFERENCES_FROM_USAGE);
+						.increaseNbReferences(agent.getMemory().getNB_REFERENCES_FROM_USAGE());
 			}
 			
 			update_secondary update = new update_secondary();
@@ -911,6 +911,33 @@ public class Service implements Storable {
 		clone.setServiceEffectsMinus(proprList);
 		
 		return clone;
+	}
+	
+	/**
+	 * Gets the duration of the service for this agent.
+	 * 
+	 * @param agent
+	 *            the agent
+	 * @return the duration
+	 * 
+	 * @throws UnknownPropertyException
+	 */
+	
+	public int getDuration(Agent agent) throws UnknownPropertyException {
+		if (this.actionClass != null) {
+			try {
+				Action action = this.actionClass.newInstance();
+				return action.getDuration(null, agent, null);
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return 0;
+		
 	}
 	
 }

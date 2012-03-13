@@ -20,7 +20,6 @@ import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
 import fr.n7.saceca.u3du.model.ai.service.ExecutionStatus;
 import fr.n7.saceca.u3du.model.graphics.animation.AppearAnimation;
 import fr.n7.saceca.u3du.model.graphics.animation.DisappearAnimation;
-import fr.n7.saceca.u3du.util.Log;
 
 /**
  * This class gather the common code for making an agent disappear in a building and reappear a
@@ -73,12 +72,11 @@ public abstract class DoSomethingInABuildingAction implements Action {
 	public ExecutionStatus executeStep(WorldObject provider, WorldObject consumer, Map<String, Object> parameters) {
 		int currentTime = Model.getInstance().getAI().getSimulation().getTime();
 		if (!this.initialized) {
-			// This is the first call
 			try {
 				this.expectedEnd = this.getDuration(provider, consumer, parameters) + currentTime;
 			} catch (UnknownPropertyException e) {
-				Log.debug("A duration property related to the Action  \"" + this.getStorageLabel() + "\" is missing.");
-				return ExecutionStatus.FAILURE;
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			// Send a disappearance animation to simulate doing something in a building
 			// Model.getInstance().getGraphics().sendAnimation(new
@@ -101,20 +99,11 @@ public abstract class DoSomethingInABuildingAction implements Action {
 		return ExecutionStatus.CONTINUE_NEXT_TIME;
 	}
 	
-	/**
-	 * Gets the duration of the action.
-	 * 
-	 * @param provider
-	 *            the provider
-	 * @param consumer
-	 *            the consumer
-	 * @param parameters
-	 *            the parameters
-	 * @return the duration
-	 * @throws UnknownPropertyException
-	 *             If the duration property was not found.
-	 */
-	protected abstract int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> parameters)
-			throws UnknownPropertyException;
+	@Override
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> parameters)
+			throws UnknownPropertyException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

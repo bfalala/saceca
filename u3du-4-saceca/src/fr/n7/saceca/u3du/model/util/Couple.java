@@ -24,10 +24,10 @@ package fr.n7.saceca.u3du.model.util;
 public final class Couple<A, B> {
 	
 	/** The first element. */
-	private final A firstElement;
+	private A firstElement;
 	
 	/** The second element. */
-	private final B secondElement;
+	private B secondElement;
 	
 	/**
 	 * Instantiates a new couple.
@@ -89,6 +89,24 @@ public final class Couple<A, B> {
 	 */
 	public final B getSecondElement() {
 		return this.secondElement;
+	}
+	
+	/**
+	 * Sets the first element.
+	 * 
+	 * @return the first element
+	 */
+	public final void setFirstElement(A newElement) {
+		this.firstElement = newElement;
+	}
+	
+	/**
+	 * Sets the second element.
+	 * 
+	 * @return the second element
+	 */
+	public final void setSecondElement(B newElement) {
+		this.secondElement = newElement;
 	}
 	
 	@Override

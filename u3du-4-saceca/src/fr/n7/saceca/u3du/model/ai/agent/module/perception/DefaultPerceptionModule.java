@@ -253,7 +253,7 @@ public class DefaultPerceptionModule implements PerceptionModule {
 			knowledgeAboutObject = this.agent.getMemory().remember(object.getEmptyClone());
 		} else if (!this.agent.getMemory().isUnimportantObject(object.getModelName())) {
 			this.agent.getMemory().getMemoryElements().get(knowledgeAboutObject.getId())
-					.increaseNbReferences(Memory.NB_REFERENCES_FROM_PERCEPTION);
+					.increaseNbReferences(agent.getMemory().NB_REFERENCES_FROM_PERCEPTION);
 		}
 		
 		// Perceive position

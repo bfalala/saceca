@@ -12,7 +12,7 @@
     <double name="i_gauge_security_financial" value="90.0"/>
     <string name="i_graphics_conf" value="FatMan2"/>
     <double name="i_emotion_disgust" value="50.0"/>
-    <double name="c_Human_walk_speed" value="0.04"/>
+    <double name="c_Human_walk_speed" value="0.05"/>
     <bool name="i_threaded" value="true"/>
     <double name="i_emotion_secondary_horror" value="50.0"/>
     <double name="i_emotion_secondary_Submission" value="50.0"/>

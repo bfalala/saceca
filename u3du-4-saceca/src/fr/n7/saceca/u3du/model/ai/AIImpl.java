@@ -284,7 +284,10 @@ public class AIImpl implements AI {
 	}
 	
 	private void createruleTable() {
+		
+		// Récupération table des implications
 		generate_propertyrule_tab tabs = new generate_propertyrule_tab("data/ai/knowlage.xml");
+		// Création de la matrice associée
 		this.world.setMatrule(new matrix_rule(tabs.getProperty_rule_Tab(), tabs.getRuleTab()));
 		this.world.setProperty_rule_tab(tabs.getProperty_rule_Tab());
 		
