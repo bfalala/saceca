@@ -5,7 +5,7 @@
  * 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
  *
  * The original Urban 3 Dimensional Universe application was created by Sylvain Cambon,
- * AurÃ©lien Chabot, Anthony Foulfoin, JÃ©rÃ´me Dalbert & Johann Legaye.
+ * Aurélien Chabot, Anthony Foulfoin, Jérôme Dalbert & Johann Legaye.
  * Contact them for other licensing possibilities, using this email address pattern:
  * <first_name> DOT <name> AT etu DOT enseeiht DOT fr .
  * http://www.projet.long.2011.free.fr
@@ -30,6 +30,7 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import fr.n7.saceca.u3du.exception.MalformedObjectException;
 import fr.n7.saceca.u3du.model.ai.Internal;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
+import fr.n7.saceca.u3du.model.ai.agent.Emotion;
 import fr.n7.saceca.u3du.model.ai.agent.module.communication.message.Message;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.Plan;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.initialization.TableClass;
@@ -53,7 +54,7 @@ import fr.n7.saceca.u3du.model.util.Oriented2DPosition;
  * 
  * The Memory also contains the message inbox, the goals, and the past plans of the agent.
  * 
- * @author JÃ©rÃ´me Dalbert, Ciprian Munteanu
+ * @author Jérôme Dalbert, Ciprian Munteanu
  */
 @XStreamAlias("memory")
 public class Memory {
@@ -114,31 +115,55 @@ public class Memory {
 	 * The Constant LIMIT_NB_REFERENCES - the required number of references for an object to be
 	 * added in the long-term memory.
 	 */
-	public static final int LIMIT_NB_REFERENCES = 30;
+	public int LIMIT_NB_REFERENCES = 30;
 	
 	/**
 	 * The Constant NB_REFERENCES_FROM_PERCEPTION - the increase value of number of references from
 	 * perception.
 	 */
-	public static final int NB_REFERENCES_FROM_PERCEPTION = 1;
+	public int NB_REFERENCES_FROM_PERCEPTION = 1;
 	
 	/**
 	 * The Constant NB_REFERENCES_FROM_USAGE - the increase value of number of references when the
 	 * agent uses an object's service.
 	 */
-	public static final int NB_REFERENCES_FROM_USAGE = 10;
+	public int NB_REFERENCES_FROM_USAGE = 10;
 	
 	/**
 	 * The Constant DIVIDE_PERCENT - the division percent = how much represents the short-term
 	 * memory from the entire memory.
 	 */
-	public static final double DIVIDE_PERCENT = 0.3;
+	public static final double DIVIDE_PERCENT = 0.5;
 	
 	/**
 	 * The Constant MISC_MODELS - models of objects that are not very important for the agent - they
 	 * cannot be added in the long-term memory.
 	 */
 	public static final String[] MISC_MODELS = { "Pavement", "TrafficLight", "Road", "PedestrianCrossing", "Car", "Bus" };
+	
+	public int getLIMIT_NB_REFERENCES() {
+		return this.LIMIT_NB_REFERENCES;
+	}
+	
+	public void setLIMIT_NB_REFERENCES(int lIMIT_NB_REFERENCES) {
+		this.LIMIT_NB_REFERENCES = lIMIT_NB_REFERENCES;
+	}
+	
+	public int getNB_REFERENCES_FROM_PERCEPTION() {
+		return this.NB_REFERENCES_FROM_PERCEPTION;
+	}
+	
+	public void setNB_REFERENCES_FROM_PERCEPTION(int nB_REFERENCES_FROM_PERCEPTION) {
+		this.NB_REFERENCES_FROM_PERCEPTION = nB_REFERENCES_FROM_PERCEPTION;
+	}
+	
+	public int getNB_REFERENCES_FROM_USAGE() {
+		return this.NB_REFERENCES_FROM_USAGE;
+	}
+	
+	public void setNB_REFERENCES_FROM_USAGE(int nB_REFERENCES_FROM_USAGE) {
+		this.NB_REFERENCES_FROM_USAGE = nB_REFERENCES_FROM_USAGE;
+	}
 	
 	/**
 	 * Instantiates a new memory.
@@ -442,7 +467,7 @@ public class Memory {
 			}
 			// if the number of references is bigger than the LIMIT_NB_REFERENCES and if it is an
 			// important object we put it in the long-term memory
-			if (element.getNbReferences() >= Memory.LIMIT_NB_REFERENCES
+			if (element.getNbReferences() >= this.LIMIT_NB_REFERENCES
 					&& !this.isUnimportantObject(element.getWorldObject().getModelName())) {
 				// if the long-term memory is not full we put the object in the long-term memory
 				if (nbElementsLongTermMemory <= (1 - Memory.DIVIDE_PERCENT) * this.maxSize) {
@@ -728,4 +753,84 @@ public class Memory {
 		}
 		return updateList;
 	}
+	
+	/**
+	 * Gets the Max Size
+	 * 
+	 * @return
+	 */
+	
+	public int getMaxSize() {
+		return this.maxSize;
+	}
+	
+	/**
+	 * Sets the Max Size
+	 * 
+	 * @param maxSize
+	 */
+	
+	public void setMaxSize(int maxSize) {
+		this.maxSize = maxSize;
+	}
+	
+	/**
+	 * Emotions have an influence on memory size
+	 * 
+	 */
+	
+	// Used in Arrange Memory : maxSize, limit_nb_references, divide_percent
+	public void emotionsAffectSizeMemory() {
+		// LIMIT_NB_REFERENCES = 30;
+		// NB_REFERENCES_FROM_PERCEPTION = 1;
+		// NB_REFERENCES_FROM_USAGE = 10;
+		// Paramètre
+		double facteur_multiplicateur = 1;
+		
+		for (Emotion primemotion : this.ownerAgent.getEmotions()) {
+			
+			String nameemotion = primemotion.getNameSuffix();
+			
+			if (nameemotion.equals("joy")) {
+				facteur_multiplicateur = facteur_multiplicateur * (1 + primemotion.getValue() / 100);
+			} else if (nameemotion.equals("sadness")) {
+				facteur_multiplicateur = facteur_multiplicateur * (1 - primemotion.getValue() / 200);
+			} else if (nameemotion.equals("angry")) {
+				facteur_multiplicateur = facteur_multiplicateur * (1 - primemotion.getValue() / 100);
+			} else if (nameemotion.equals("surprise")) {
+				facteur_multiplicateur = facteur_multiplicateur * (1 + primemotion.getValue() / 100);
+			} else if (nameemotion.equals("fear")) {
+				facteur_multiplicateur = facteur_multiplicateur * (1 - primemotion.getValue() / 100);
+			} else {
+				facteur_multiplicateur = facteur_multiplicateur * (1 + primemotion.getValue() / 200);
+			}
+		}
+		
+		this.setNB_REFERENCES_FROM_PERCEPTION((int) Math.round(facteur_multiplicateur));
+		this.setNB_REFERENCES_FROM_USAGE(10 * (int) Math.round(facteur_multiplicateur));
+		this.setLIMIT_NB_REFERENCES(30 * (int) Math.round(facteur_multiplicateur));
+		
+		System.out.println("name = " + this.ownerAgent.getId());
+		System.out.println("NB_REFERENCES_FROM_PERCEPTION = " + this.getNB_REFERENCES_FROM_PERCEPTION());
+		System.out.println("NB_REFERENCES_FROM_USAGE = " + this.getNB_REFERENCES_FROM_USAGE());
+		System.out.println("LIMIT_NB_REFERENCES = " + this.getLIMIT_NB_REFERENCES());
+		System.out.println("");
+		
+		// this.maxSize = this.maxSize/2;
+		// Memory.initial_entry_nb_references = Memory.initial_entry_nb_references/2;
+		// Memory.nb_references_from_perception = Memory.nb_references_from_perception/2;
+		// Memory.nb_references_from_usage = Memory.nb_references_from_usage/2;
+		// Memory.limit_nb_references = Memory.limit_nb_references/2;
+		// Memory.divide_percent = Memory.divide_percent/2;
+	}
+	
+	/**
+	 * Modifiables ? The Constant INITIAL_ENTRY_NB_REFERENCES - number of references when a new
+	 * object is added in the memory. => KO The Constant LIMIT_NB_REFERENCES - the required number
+	 * of references for an object to be added in the long-term memory. -> OK The Constant
+	 * NB_REFERENCES_FROM_PERCEPTION - the increase value of number of references from perception.
+	 * => OK The Constant NB_REFERENCES_FROM_USAGE - the increase value of number of references when
+	 * the agent uses an object's service. -> OK The Constant DIVIDE_PERCENT - the division percent
+	 * = how much represents the short-term memory from the entire memory. => KO
+	 */
 }
