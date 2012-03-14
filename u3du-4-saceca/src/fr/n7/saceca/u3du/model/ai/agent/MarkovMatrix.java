@@ -23,8 +23,8 @@ import fr.n7.saceca.u3du.model.util.io.storage.Repository;
 
 public class MarkovMatrix {
 	
-	public static final String CCPOWERMATRIX = "data\\ai\\CCPOWER.txt";
-	public static final String CONCEPT_LIST = "data\\ai\\concept.txt";
+	public static final String CCPOWERMATRIX = "data/ai/CCPOWER.txt";
+	public static final String CONCEPT_LIST = "data/ai/concept.txt";
 	
 	/*
 	 * public static void main(final String[] args) { final MarkovMatrix mm = new MarkovMatrix();
@@ -163,7 +163,7 @@ public class MarkovMatrix {
 			}
 		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("The concept list doesn\'t seem to be in the right place...");
+			System.out.println("The concept list doesn\'t seem to be here : " + MarkovMatrix.CONCEPT_LIST);
 		} catch (final IOException e) {
 			e.printStackTrace();
 		}
@@ -192,7 +192,7 @@ public class MarkovMatrix {
 			
 		} catch (final FileNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("The concept matrix doesn\'t seem to be in the right place...");
+			System.out.println("The concept matrix doesn\'t seem to be here : " + MarkovMatrix.CCPOWERMATRIX);
 		} catch (final IOException e) {
 			e.printStackTrace();
 		}
