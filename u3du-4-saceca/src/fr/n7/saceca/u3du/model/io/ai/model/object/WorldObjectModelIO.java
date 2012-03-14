@@ -45,6 +45,7 @@ public class WorldObjectModelIO extends XStreamIO<WorldObjectModel> {
 	@Override
 	protected synchronized void configureIfNecessary(final XStream xStream) {
 		if (!configured) {
+			xStream.alias("concept", String.class);
 			xStream.processAnnotations(WorldObjectModel.class);
 			xStream.processAnnotations(AgentModel.class);
 			xStream.processAnnotations(AbstractPropertyModel.class);

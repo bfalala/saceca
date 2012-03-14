@@ -32,7 +32,7 @@ public class Matrix {
 	private char[][] p_order;
 	
 	/**
-	 * Creates the matrix Services X Effects
+	 * Creates the matrix Services X Effects -- 1 if the effect is one of the services effectPlus -1 if effectMinus 0 otherwise
 	 * 
 	 * @param serviceList
 	 *            the list of services
@@ -72,7 +72,7 @@ public class Matrix {
 	}
 	
 	/**
-	 * Creates the matrix Preconditions X Servies
+	 * Creates the matrix Preconditions X Services 
 	 * 
 	 * @param effectList
 	 *            the properties list

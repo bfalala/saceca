@@ -1,4 +1,7 @@
 <object-model name="Car">
+  <concepts>
+  	<concept>car_1</concept>
+  </concepts>
   <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.VehicleBehavior</behavior>
   <categories>
     <category>Vehicle</category>

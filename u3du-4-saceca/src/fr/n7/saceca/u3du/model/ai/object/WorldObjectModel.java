@@ -12,6 +12,7 @@
  */
 package fr.n7.saceca.u3du.model.ai.object;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -49,6 +50,18 @@ public class WorldObjectModel implements Storable {
 	/** The properties of the world object. */
 	@XStreamAlias("props")
 	private Set<PropertyModel<?>> properties = new HashSet<PropertyModel<?>>();
+	
+	/** The concepts attached to the world object. */
+	@XStreamAlias("concepts")
+	private ArrayList<String> concepts = new ArrayList<String>();
+	
+	public ArrayList<String> getConcepts() {
+		return this.concepts;
+	}
+	
+	public void setConcepts(ArrayList<String> concepts) {
+		this.concepts = concepts;
+	}
 	
 	/**
 	 * Instantiates a new world object model.

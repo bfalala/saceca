@@ -83,7 +83,7 @@ public class ClassicalPlanningModule implements PlanningModule {
 	 */
 	@Override
 	public synchronized void planAndExecute() {
-		// We forced a plan execution and thhere is no element in it
+		// We forced a plan execution and there is no element in it
 		if (this.forcePlan && this.currentPlan == null || (this.currentPlan != null && this.currentPlan.size() == 0)) {
 			return;
 		}

@@ -1,4 +1,5 @@
-<object-model name="TrafficLight"> 
+<object-model name="TrafficLight">  
+  <concepts/>
   <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.TrafficLightBehavior</behavior>
   <categories/>
   <services />

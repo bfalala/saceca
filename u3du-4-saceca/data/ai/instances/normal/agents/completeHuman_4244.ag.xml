@@ -37,7 +37,7 @@
     <double name="i_gauge_primordial_naturalneeds" value="86.0"/>
     <double name="i_gauge_primordial_tiredness" value="76.0"/>
     <int name="i_decrement_period_default" value="14"/>
-    <double name="i_emotion_sadness" value="50.0"/>
+<!--     <double name="i_emotion_sadness" value="50.0"/> -->
     <double name="i_emotion_fear" value="50.0"/>
     <double name="i_emotion_secondary_Awe" value="50.0"/>
     <int name="i_decrement_period_thirst" value="14"/>
@@ -51,7 +51,7 @@
     <double name="i_gauge_security_body" value="90.0"/>
     <double name="i_gauge_primordial_hunger" value="80.0"/>
     <double name="i_gauge_primordial_breath" value="86.0"/>
-    <int name="i_decrement_period_sadness" value="1"/>
+<!--     <int name="i_decrement_period_sadness" value="1"/> -->
     <int name="c_Human_maxCarriedMass" value="10"/>
     <double name="i_emotion_joy" value="50.0"/>
     <double name="i_gauge_social_friendship" value="90.0"/>
@@ -394,7 +394,7 @@
               <double name="i_gauge_primordial_naturalneeds" value="86.0"/>
               <double name="i_gauge_primordial_tiredness" value="76.0"/>
               <int name="i_decrement_period_default" value="14"/>
-              <double name="i_emotion_sadness" value="50.0"/>
+<!--               <double name="i_emotion_sadness" value="50.0"/> -->
               <double name="i_emotion_fear" value="50.0"/>
               <double name="i_emotion_secondary_Awe" value="50.0"/>
               <int name="i_decrement_period_thirst" value="14"/>
@@ -408,7 +408,7 @@
               <double name="i_gauge_security_body" value="90.0"/>
               <double name="i_gauge_primordial_hunger" value="80.0"/>
               <double name="i_gauge_primordial_breath" value="86.0"/>
-              <int name="i_decrement_period_sadness" value="1"/>
+<!--               <int name="i_decrement_period_sadness" value="1"/> -->
               <int name="c_Human_maxCarriedMass" value="10"/>
               <double name="i_emotion_joy" value="50.0"/>
               <double name="i_gauge_social_friendship" value="90.0"/>

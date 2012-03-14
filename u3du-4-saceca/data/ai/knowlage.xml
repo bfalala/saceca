@@ -167,14 +167,14 @@
       <Name>Work</Name>
     </conclusion>
   </rule>
-  <rule>
+  <!-- <rule>
     <premise>
       <Name>Work</Name>
     </premise>
     <conclusion>
       <Name>Sadness</Name>
     </conclusion>
-  </rule>
+  </rule>  -->
   <rule>
     <premise>
       <Name>Building</Name>

@@ -1,4 +1,7 @@
 <object-model name="Computerosaurus"> 
+  <concepts>
+  	<concept>object_3</concept>
+  </concepts>
   <behavior>RandomBehavior</behavior>
   <categories>
     <category>CommitFacility</category>

@@ -215,6 +215,8 @@ public class MemoryElement {
 		return nbReferencesDecrementPeriod;
 	}
 	
+	/**  */
+	
 	/**
 	 * Decrements periodically the number of references at every nbReferencesDecrementTime
 	 * 

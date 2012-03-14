@@ -91,6 +91,7 @@ public class AIImpl implements AI {
 		this.createMatrix_primary_secondary();
 		this.createStimulusReactionTable();
 		this.createruleTable();
+		
 	}
 	
 	/**
@@ -212,7 +213,7 @@ public class AIImpl implements AI {
 				emotionssecondaires.add(line);
 			}
 		}
-
+		
 		catch (Exception e) {
 			
 		}
@@ -297,7 +298,7 @@ public class AIImpl implements AI {
 		emotion_index_tab.put("i_emotion_joy", tabs.getIndex_Joy());
 		emotion_index_tab.put("i_emotion_angry", tabs.getIndex_Angry());
 		emotion_index_tab.put("i_emotion_disgust", tabs.getIndex_Disgust());
-		emotion_index_tab.put("i_emotion_sadness", tabs.getIndex_Sadness());
+		// emotion_index_tab.put("i_emotion_sadness", tabs.getIndex_Sadness());
 		emotion_index_tab.put("i_emotion_surprise", tabs.getIndex_Surprise());
 		
 		this.world.setEmotion_index_tab(emotion_index_tab);

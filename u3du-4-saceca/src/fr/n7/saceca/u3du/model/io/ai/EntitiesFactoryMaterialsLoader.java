@@ -112,8 +112,18 @@ public class EntitiesFactoryMaterialsLoader {
 			logger.error("Could not load " + filename + ", so class files loading was skipped.", e);
 		}
 		
+		// EmotionWordRepositoryLoader emowLoader = new EmotionWordRepositoryLoader();
+		// materials.setEmotionWordRepository(emowLoader.loadFilesToRepository(path + separator
+		// + Constants.EMOTION_WORDS_FOLDER_NAME));
+		//
+		// MarkovEmotionRepositoryLoader emotionsLoader = new MarkovEmotionRepositoryLoader();
+		// materials.setMarkovEmotionRepository(emotionsLoader.loadFilesToRepository(path +
+		// separator
+		// + Constants.MARKOV_EMOTIONS_FOLDER_NAME));
+		
 		ServiceRepositoryLoader servLoader = new ServiceRepositoryLoader(materials.getActionRepository());
-		materials.setServiceRepository(servLoader.loadFilesToRepository(path + separator + Constants.SERVICES_FOLDER_NAME));
+		materials.setServiceRepository(servLoader.loadFilesToRepository(path + separator
+				+ Constants.SERVICES_FOLDER_NAME));
 		
 		final long after = new Date().getTime();
 		final long diff = after - before;

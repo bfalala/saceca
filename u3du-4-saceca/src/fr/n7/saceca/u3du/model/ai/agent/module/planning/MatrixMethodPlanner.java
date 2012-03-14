@@ -255,6 +255,7 @@ public class MatrixMethodPlanner {
 				}
 				
 				// we count how many services satisfy the goal to reach
+				// TODO : emotion stuff
 				int choise = 0;
 				for (i = 0; i < possible_Services_list.get(possible_Services_list.size() - 1)[0].length; i++) {
 					if (possible_Services_list.get(possible_Services_list.size() - 1)[0][i] == 1) {

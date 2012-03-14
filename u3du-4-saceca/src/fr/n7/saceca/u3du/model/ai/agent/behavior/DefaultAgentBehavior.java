@@ -21,7 +21,7 @@ import fr.n7.saceca.u3du.model.ai.agent.Gauge;
 import fr.n7.saceca.u3du.model.ai.agent.memory.MemoryElement;
 import fr.n7.saceca.u3du.model.ai.agent.module.communication.CommunicationModule;
 import fr.n7.saceca.u3du.model.ai.agent.module.communication.DefaultCommunicationModule;
-import fr.n7.saceca.u3du.model.ai.agent.module.emotion.DefaultEmotionModule;
+import fr.n7.saceca.u3du.model.ai.agent.module.emotion.MarkovEmotionModule;
 import fr.n7.saceca.u3du.model.ai.agent.module.perception.DefaultPerceptionModule;
 import fr.n7.saceca.u3du.model.ai.agent.module.perception.PerceptionModule;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.MatrixMethodPlanningModule;
@@ -83,7 +83,7 @@ public class DefaultAgentBehavior implements Behavior {
 		final CommunicationModule communicationModule = new DefaultCommunicationModule(this.agent);
 		this.agent.setCommunicationModule(communicationModule);
 		
-		final DefaultEmotionModule emotionModule = new DefaultEmotionModule(this.agent);
+		final MarkovEmotionModule emotionModule = new MarkovEmotionModule(this.agent);
 		this.agent.setEmotionModule(emotionModule);
 		
 		final PerceptionModule perceptionModule = new DefaultPerceptionModule(this.agent);

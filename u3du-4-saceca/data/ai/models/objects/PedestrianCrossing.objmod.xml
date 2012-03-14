@@ -1,4 +1,5 @@
-<object-model name="PedestrianCrossing">
+<object-model name="PedestrianCrossing">  
+  <concepts/>
   <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.DefaultBehavior</behavior>
   <categories>
     <category>Walkable</category>

@@ -57,6 +57,12 @@ public class WorldObjectModelConverter implements Converter {
 	/** The Constant PROPERTIES_NODE. */
 	private static final String PROPERTIES_NODE = "properties";
 	
+	/** The Constant CONCEPTS_NODE. */
+	private static final String CONCEPTS_NODE = "concepts";
+	
+	/** The Constant CONCEPT_NODE. */
+	private static final String CONCEPT_NODE = "concept";
+	
 	/**
 	 * Can convert.
 	 * 
@@ -130,6 +136,9 @@ public class WorldObjectModelConverter implements Converter {
 		// Model creation
 		WorldObjectModel model = new WorldObjectModel(name);
 		
+		// Concepts
+		this.readConceptsNode(reader, name, model);
+		
 		// Behavior
 		this.readBehaviorNode(reader, name, model);
 		
@@ -176,6 +185,46 @@ public class WorldObjectModelConverter implements Converter {
 			throw new ConversionException("The property models in the model \"" + name + "\" were null.");
 		}
 		model.getProperties().addAll(propertyModels);
+		reader.moveUp();
+	}
+	
+	/**
+	 * <p>
+	 * Reads the concepts node.
+	 * </p>
+	 * <p>
+	 * A ConversionException is thrown if a problem arose during the conversion.
+	 * </p>
+	 * 
+	 * @param reader
+	 *            the reader
+	 * @param name
+	 *            the name
+	 * @param model
+	 *            the model
+	 */
+	protected void readConceptsNode(HierarchicalStreamReader reader, String name, WorldObjectModel model) {
+		String nodeName;
+		reader.moveDown();
+		nodeName = reader.getNodeName();
+		if (!CONCEPTS_NODE.equals(nodeName)) {
+			throw new ConversionException("The expected node was \"" + CONCEPTS_NODE + "\" but was instead: \""
+					+ nodeName + "\" in the model \"" + name + "\".");
+		}
+		while (reader.hasMoreChildren()) {
+			reader.moveDown();
+			nodeName = reader.getNodeName();
+			if (!CONCEPT_NODE.equals(nodeName)) {
+				throw new ConversionException("The expected node was \"concept\" but was instead: \"" + nodeName
+						+ "\" in the model \"" + name + "\".");
+			}
+			String concept = reader.getValue();
+			if (concept == null) {
+				throw new ConversionException("A concept name in the model \"" + name + "\" was null.");
+			}
+			model.getConcepts().add(concept);
+			reader.moveUp();
+		}
 		reader.moveUp();
 	}
 	

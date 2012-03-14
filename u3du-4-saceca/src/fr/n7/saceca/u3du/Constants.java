@@ -5,7 +5,7 @@
  * 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
  *
  * The original Urban 3 Dimensional Universe application was created by Sylvain Cambon,
- * AurÃ©lien Chabot, Anthony Foulfoin, JÃ©rÃ´me Dalbert & Johann Legaye.
+ * Aurélien Chabot, Anthony Foulfoin, Jérôme Dalbert & Johann Legaye.
  * Contact them for other licensing possibilities, using this email address pattern:
  * <first_name> DOT <name> AT etu DOT enseeiht DOT fr .
  * http://www.projet.long.2011.free.fr
@@ -81,4 +81,14 @@ public class Constants {
 	
 	/** The Constant WORLD_CONFIGURATION_FILE_NAME. */
 	public static final String WORLD_CONFIGURATION_FILE_NAME = "conf.world.xml";
+	
+	/** The Constant SERVICES_EXTENSION. */
+	public static final String EMOTION_WORD_EXTENSION = ".emow.xml";
+	
+	public static final String EMOTION_WORDS_FOLDER_NAME = "emotionWords";
+	
+	public static final String MARKOV_EMOTIONS_FOLDER_NAME = "markovEmotions";
+	
+	public static final String MARKOV_EMOTION_EXTENSION = ".memo.xml";
+	
 }

@@ -13,6 +13,8 @@
 package fr.n7.saceca.u3du.model.ai;
 
 import fr.n7.saceca.u3du.model.ai.agent.AgentModel;
+import fr.n7.saceca.u3du.model.ai.agent.EmotionWord;
+import fr.n7.saceca.u3du.model.ai.agent.MarkovEmotion;
 import fr.n7.saceca.u3du.model.ai.agent.module.communication.CommunicationModule;
 import fr.n7.saceca.u3du.model.ai.agent.module.emotion.EmotionModule;
 import fr.n7.saceca.u3du.model.ai.agent.module.perception.PerceptionModule;
@@ -32,6 +34,12 @@ import fr.n7.saceca.u3du.model.util.io.storage.StorableClassWrapper;
  * @author Sylvain Cambon
  */
 public class EntitiesFactoryMaterials {
+	
+	/** The emotion words repository. */
+	private Repository<MarkovEmotion> markovEmotionRepository;
+	
+	/** The emotion words repository. */
+	private Repository<EmotionWord> emotionWordRepository;
 	
 	/** The category model repository. */
 	private Repository<CategoryModel> categoryModelRepository;
@@ -74,6 +82,15 @@ public class EntitiesFactoryMaterials {
 	}
 	
 	/**
+	 * Gets the emotion words repository.
+	 * 
+	 * @return the emotion words repository
+	 */
+	public final Repository<EmotionWord> getEmotionWordRepository() {
+		return this.emotionWordRepository;
+	}
+	
+	/**
 	 * Gets the behavior classes repository.
 	 * 
 	 * @return the behavior classes repository
@@ -107,6 +124,16 @@ public class EntitiesFactoryMaterials {
 	 */
 	public final Repository<WorldObjectModel> getWorldObjectModelRepository() {
 		return this.worldObjectModelRepository;
+	}
+	
+	/**
+	 * Sets the emotion words repository.
+	 * 
+	 * @param emotionWordRepository
+	 *            the new emotion words repository
+	 */
+	public final void setEmotionWordRepository(Repository<EmotionWord> emotionWordRepository) {
+		this.emotionWordRepository = emotionWordRepository;
 	}
 	
 	/**
@@ -281,6 +308,25 @@ public class EntitiesFactoryMaterials {
 	 */
 	public final void setActionRepository(Repository<StorableClassWrapper<Action>> actionRepository) {
 		this.actionRepository = actionRepository;
+	}
+	
+	/**
+	 * Gets the markov emotions repository.
+	 * 
+	 * @return the markov emotions repository
+	 */
+	public Repository<MarkovEmotion> getMarkovEmotionRepository() {
+		return this.markovEmotionRepository;
+	}
+	
+	/**
+	 * Sets the markov emotions repository.
+	 * 
+	 * @param markovEmotionRepository
+	 *            the new markov emotions classes repository
+	 */
+	public void setMarkovEmotionRepository(Repository<MarkovEmotion> markovEmotionRepository) {
+		this.markovEmotionRepository = markovEmotionRepository;
 	}
 	
 }

@@ -12,6 +12,9 @@
  */
 package fr.n7.saceca.u3du.model.ai.agent;
 
+import java.util.ArrayList;
+
+import fr.n7.saceca.u3du.model.ai.EntitiesFactory;
 import fr.n7.saceca.u3du.model.ai.object.properties.DoublePropertyModel;
 import fr.n7.saceca.u3du.model.ai.object.properties.Property;
 import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
@@ -47,6 +50,16 @@ public class Emotion extends Property<Double> {
 		super(prop.getModel());
 		this.setValue(prop.getValue());
 		this.emotionDecrementTime = 0;
+	}
+	
+	/**
+	 * Get all the names of the emotions felt by an agent. The same of EntitiesFactory.getEmotions()
+	 * Just more logical to have this method here
+	 * 
+	 * @return the emotion list
+	 */
+	public static ArrayList<String> getEmotions() {
+		return EntitiesFactory.getEmotions();
 	}
 	
 	/**
@@ -95,9 +108,10 @@ public class Emotion extends Property<Double> {
 	 *            the decrement value
 	 */
 	public void decrement(double decrementValue) {
+		double middleGauge = (this.getMaxValue() + this.getMinValue()) / 2;
 		this.setValue(this.getValue() - decrementValue);
-		if (this.getValue() < this.getMinValue()) {
-			this.setValue(this.getMinValue());
+		if (this.getValue() < middleGauge) {
+			this.setValue(middleGauge);
 		}
 	}
 	
@@ -165,7 +179,7 @@ public class Emotion extends Property<Double> {
 	 *            the agent who owns this emotion
 	 * @return the decrement period
 	 */
-	private Integer getDecrementPeriod(Agent agent) {
+	public Integer getDecrementPeriod(Agent agent) {
 		Integer emotionDecrementPeriod = null;
 		
 		// Case when there is a decrement period for the current emotion

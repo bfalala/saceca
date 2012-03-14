@@ -13,6 +13,7 @@
 package fr.n7.saceca.u3du.model.ai;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -92,6 +93,23 @@ public class EntitiesFactory {
 		super();
 		this.materials = materials;
 		this.categoriesRepository = new HashMapRepository<Category>("Category");
+	}
+	
+	/**
+	 * Get all the names of the emotions felt by an agent
+	 * 
+	 * @return the emotion list
+	 */
+	public static ArrayList<String> getEmotions() {
+		ArrayList<String> emotionList = new ArrayList<String>();
+		
+		for (PropertyModel pm : EntitiesFactory.agentCommonProperties) {
+			if (pm.getName().startsWith(Emotion.PREFIX)) { // if it is an emotion
+				emotionList.add(pm.getName().split("_")[2]); // we add its name
+			}
+		}
+		
+		return emotionList;
 	}
 	
 	/**
@@ -272,6 +290,9 @@ public class EntitiesFactory {
 		if (!endedWell) {
 			return null;
 		}
+		
+		// 1.6 Concepts (for the markov method)
+		worldObject.setConcepts(wom.getConcepts());
 		
 		// 2. Building the properties
 		PropertiesContainer properties = worldObject.getPropertiesContainer();

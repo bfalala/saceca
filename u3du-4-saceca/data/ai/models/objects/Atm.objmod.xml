@@ -1,4 +1,7 @@
 <object-model name="Atm"> 
+  <concepts>
+  	<concept>atm_1</concept>
+  </concepts>
   <behavior>RandomBehavior</behavior>
   <categories/>
   <services>

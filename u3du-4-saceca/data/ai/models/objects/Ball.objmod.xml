@@ -1,4 +1,7 @@
 <object-model name="Ball">
+  <concepts>
+  	<concept>ball_1</concept>
+  </concepts>
   <behavior>RandomBehavior</behavior>
   <categories>
     <category>Rolling</category>

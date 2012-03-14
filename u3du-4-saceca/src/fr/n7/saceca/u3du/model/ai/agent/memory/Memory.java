@@ -616,6 +616,36 @@ public class Memory {
 	}
 	
 	/**
+	 * Gets the list of newly perceived objects
+	 * 
+	 * @return
+	 */
+	public ArrayList<Couple<WorldObject, Boolean>> getNewlyPerceivedObjects() {
+		ArrayList<Couple<WorldObject, Boolean>> res = new ArrayList<Couple<WorldObject, Boolean>>();
+		for (Couple<WorldObject, Boolean> c : this.perceivedObjects) {
+			if (c.getSecondElement()) {
+				res.add(c);
+			}
+		}
+		return res;
+	}
+	
+	/**
+	 * Gets the list of old perceived objects
+	 * 
+	 * @return
+	 */
+	public ArrayList<Couple<WorldObject, Boolean>> getOldPerceivedObjects() {
+		ArrayList<Couple<WorldObject, Boolean>> res = new ArrayList<Couple<WorldObject, Boolean>>();
+		for (Couple<WorldObject, Boolean> c : this.perceivedObjects) {
+			if (!c.getSecondElement()) {
+				res.add(c);
+			}
+		}
+		return res;
+	}
+	
+	/**
 	 * Adds a new object in the list of perceived objects
 	 * 
 	 * @param object

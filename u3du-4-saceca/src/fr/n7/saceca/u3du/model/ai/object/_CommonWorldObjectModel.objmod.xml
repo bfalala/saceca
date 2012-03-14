@@ -1,5 +1,6 @@
 <object-model name="_CommonAgentModel">
   <!-- This file describes properties common to all world objects. -->
+  <concepts/>
   <behavior/>
   <categories/>
   <services/>

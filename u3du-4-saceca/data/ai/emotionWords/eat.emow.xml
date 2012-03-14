@@ -1,0 +1,15 @@
+<emotion-word>
+	<name>eat</name>
+	<concepts>
+		<concept>eat_1</concept>
+		<concept>food_1</concept>
+	</concepts>
+	<effects>
+		<effect>
+			<precond>gastronome</precond>
+			<emotion>joy</emotion>
+			<!-- <sign>plus</sign>  -->
+			<value>10</value>		
+		</effect>	
+	</effects>
+</emotion-word>

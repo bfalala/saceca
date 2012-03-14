@@ -1,4 +1,7 @@
 <object-model name="Flower">
+  <concepts>
+  	<concept>flower_1</concept>
+  </concepts>
   <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.DefaultBehavior</behavior>
   <categories/>
   <services>

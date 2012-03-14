@@ -85,6 +85,7 @@ public class GraphicalVehicule extends GraphicalDynamicObject {
 		this.model.addControl(this.control);
 		this.bulletAppState.getPhysicsSpace().add(this.control);
 		
+		
 	}
 	
 	/** {@inheritDoc} */

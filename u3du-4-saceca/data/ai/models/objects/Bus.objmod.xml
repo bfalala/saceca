@@ -1,4 +1,7 @@
 <object-model name="Bus">
+  <concepts>
+  	<concept>bus_1</concept>
+  </concepts>
   <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.BusBehavior</behavior>
   <categories>
     <category>Vehicle</category>

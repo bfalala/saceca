@@ -1,4 +1,7 @@
-<object-model name="DrinkVendingMachine"> 
+<object-model name="DrinkVendingMachine">
+  <concepts>
+  	<concept>drink_1</concept>
+  </concepts> 
   <behavior>RandomBehavior</behavior>
   <categories/>
   <services>

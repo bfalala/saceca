@@ -97,6 +97,9 @@ public class WorldObject {
 	/** The services the world object can offer. */
 	private Collection<Service> services;
 	
+	/** The concepts representing the world object */
+	private Collection<String> concepts;
+	
 	/** The position. */
 	private Oriented2DPosition position;
 	
@@ -152,6 +155,7 @@ public class WorldObject {
 			this.belongings = new LinkedList<WorldObject>();
 			this.categories = new ArrayList<Category>();
 			this.services = new LinkedList<Service>();
+			this.concepts = new ArrayList<String>();
 		}
 	}
 	
@@ -617,4 +621,24 @@ public class WorldObject {
 	public Vector2f getInitialDirection() {
 		return MathUtil.rotate(MathUtil.UNIT_Y, this.position.theta);
 	}
+	
+	/**
+	 * Gets the concept list (for the markov method)
+	 * 
+	 * @return the concept list
+	 * */
+	public Collection<String> getConcepts() {
+		return this.concepts;
+	}
+	
+	/**
+	 * Sets the collection of concepts
+	 * 
+	 * @param concepts
+	 *            collection of concepts
+	 * */
+	public void setConcepts(Collection<String> concepts) {
+		this.concepts = concepts;
+	}
+	
 }

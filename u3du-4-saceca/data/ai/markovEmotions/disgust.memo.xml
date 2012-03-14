@@ -1,0 +1,9 @@
+<emotion>
+	<name>disgust</name>
+	<synonyms>
+		<concept>disgust_1</concept>		
+	</synonyms>		
+	<opposites>	
+		<concept>beauty_1</concept>
+	</opposites>	
+</emotion>

@@ -1,4 +1,5 @@
-<object-model name="Road">
+<object-model name="Road">  	
+  <concepts/>
   <behavior>fr.n7.saceca.u3du.model.ai.object.behavior.DefaultBehavior</behavior>
   <categories/>
   <services>

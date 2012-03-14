@@ -15,6 +15,9 @@ package fr.n7.saceca.u3du.model.graphics.configuration;
 import org.apache.log4j.Logger;
 
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.shapes.CollisionShape;
+import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.Material;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
@@ -261,7 +264,13 @@ public class GraphicsFactory {
 		long id = object.getId();
 		Node rootNode = (configuration.isPerceptible() ? engine.getPerceptibleNodes() : engine.getNonPerceptibleNodes());
 		String modelName = configuration.getPathModel();
-		Spatial model = engine.getAssetManager().loadModel(modelName);
+		Spatial model = engine.getAssetManager().loadModel(modelName);	
+		
+		
+		float xScale = configuration.getScaleX();
+		float yScale = configuration.getScaleY();
+		float zScale = configuration.getScaleZ();
+		model.setLocalScale(xScale, yScale, zScale);
 		
 		Oriented2DPosition position = object.getPosition();
 		float graphicalX = position.x;
@@ -272,12 +281,18 @@ public class GraphicsFactory {
 		model.getLocalRotation().fromAngleAxis(orientation, Vector3f.UNIT_Y);
 		model.setLocalTranslation(graphicalX, graphicalY, graphicalZ);
 		
-		float xScale = configuration.getScaleX();
-		float yScale = configuration.getScaleY();
-		float zScale = configuration.getScaleZ();
-		model.setLocalScale(xScale, yScale, zScale);
+		//landscape.getPhysicsRotation().fromAngleAxis(orientation, Vector3f.UNIT_Y);
+		//landscape.setPhysicsLocation(new Vector3f(graphicalX, graphicalY, graphicalZ));		
 		
-		// BulletAppState bulletAppState = engine.getBulletAppState(); // TODO
+		
+		//CollisionShape sceneShape = CollisionShapeFactory.createSingleBoxShape((Node) model);
+		//RigidBodyControl landscape = new RigidBodyControl(sceneShape, 0);	   
+		
+		//model.addControl(landscape);
+		//rootNode.attachChild(model);
+		//engine.getBulletAppState().getPhysicsSpace().add(landscape);
+		
+		// BulletAppState bulletAppState = engine.getBulletAppState(); // TODO		
 				
 		GraphicalObject graphicalObject = new GraphicalObject(id, rootNode, model, engine);
 		
@@ -292,7 +307,7 @@ public class GraphicsFactory {
 		engine.objects.put(id, graphicalObject);
 		
 		// Set visible if needed
-		graphicalObject.setVisible(configuration.isVisible());
+		graphicalObject.setVisible(configuration.isVisible());	   
 		
 		return graphicalObject;
 	}

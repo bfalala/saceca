@@ -30,7 +30,9 @@ import com.jme3.asset.TextureKey;
 import com.jme3.asset.plugins.FileLocator;
 import com.jme3.bounding.BoundingBox;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.collision.CollisionResult;
 import com.jme3.collision.CollisionResults;
 import com.jme3.input.ChaseCamera;
@@ -174,7 +176,7 @@ public class Engine3D extends SimpleApplication implements Graphics {
 		logger.setLevel(Level.ERROR);
 		this.visualisationMode = Config3D.VisualisationMode.SIMULATION;
 		this.terrainSize = 512;
-		this.walkableGraphDisplayed = false;
+		this.walkableGraphDisplayed = false;	
 		
 	}
 	
@@ -218,6 +220,26 @@ public class Engine3D extends SimpleApplication implements Graphics {
 			this.viewPort.addProcessor(bsr);
 		}
 		
+		this.bulletAppState.getPhysicsSpace().enableDebug(this.getAssetManager());
+		
+		//Spatial sceneModel = assetManager.loadModel("Models/CinemaGaumont/Cinema.mesh.xml");
+	    //sceneModel.setLocalScale(2f);
+	    //sceneModel.setLocalTranslation(250, 0, 250);
+	 
+	    // We set up collision detection for the scene by creating a
+	    // compound collision shape and a static RigidBodyControl with mass zero.
+	    /*CollisionShape sceneShape =
+	            CollisionShapeFactory.createSingleBoxShape((Node) sceneModel);
+	    RigidBodyControl landscape = new RigidBodyControl(sceneShape, 0);
+	    
+	    sceneModel.addControl(landscape);
+	    
+	    this.rootNode.attachChild(sceneModel);
+	    bulletAppState.getPhysicsSpace().add(landscape);
+	    
+	    landscape.setPhysicsLocation(new Vector3f(250, 0, 250)); */
+	    
+	 
 		this.initCamera();
 		this.initListener();
 		this.initKeys();
@@ -256,10 +278,7 @@ public class Engine3D extends SimpleApplication implements Graphics {
 	public void simpleUpdate(float tpf) {
 		for (GraphicalDynamicObject obj : this.dynObjects.values()) {
 			obj.update(tpf);
-		}
-		
-		// weather managing
-		
+		}	
 		
 	}
 	

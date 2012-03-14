@@ -5,7 +5,7 @@
  * 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
  *
  * The original Urban 3 Dimensional Universe application was created by Sylvain Cambon,
- * AurÃ©lien Chabot, Anthony Foulfoin, JÃ©rÃ´me Dalbert & Johann Legaye.
+ * Aurélien Chabot, Anthony Foulfoin, Jérôme Dalbert & Johann Legaye.
  * Contact them for other licensing possibilities, using this email address pattern:
  * <first_name> DOT <name> AT etu DOT enseeiht DOT fr .
  * http://www.projet.long.2011.free.fr
@@ -40,7 +40,7 @@ import fr.n7.saceca.u3du.model.Model;
 /**
  * Represents a graphical agent.
  * 
- * @author AurÃ©lien Chabot
+ * @author Aurélien Chabot
  */
 public class GraphicalAgent extends GraphicalDynamicObject {
 	
@@ -469,9 +469,9 @@ public class GraphicalAgent extends GraphicalDynamicObject {
 	@Override
 	public void init() {
 		
-		//this.bulletAppState.getPhysicsSpace().enableDebug(this.engine3D.getAssetManager());
 		
-		this.control = new CharacterControl(new CapsuleCollisionShape( 1.5f, 2.0f), 0.2f);
+		
+		this.control = new CharacterControl(new CapsuleCollisionShape(1.5f, 2f), 0.2f);
 		this.model.addControl(this.control);
 		this.bulletAppState.getPhysicsSpace().add(this.control);
 		

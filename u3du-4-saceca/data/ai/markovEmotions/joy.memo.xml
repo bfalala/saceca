@@ -1,0 +1,9 @@
+<emotion>
+	<name>joy</name>
+	<synonyms>
+		<concept>happy_1</concept>		
+	</synonyms>		
+	<opposites>	
+		<concept>sad_1</concept>
+	</opposites>	
+</emotion>
