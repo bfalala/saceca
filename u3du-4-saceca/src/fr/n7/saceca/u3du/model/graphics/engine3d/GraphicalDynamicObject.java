@@ -272,7 +272,7 @@ public abstract class GraphicalDynamicObject extends GraphicalObject {
 			this.direction.addLocal(new Vector3f(-0.1f, 0, 0));
 		}
 		if (this.down) {
-			this.direction.addLocal(new Vector3f( 0.1f, 0, 0));
+			this.direction.addLocal(new Vector3f(0.1f, 0, 0));
 		}
 	}
 	
@@ -335,6 +335,7 @@ public abstract class GraphicalDynamicObject extends GraphicalObject {
 						moveAnimation.getDestinationPoint().y).negate();
 		
 		float length = direction.x * direction.x + direction.y * direction.y + direction.z * direction.z;
+		
 		if (length > this.moveLength) {
 			length = this.moveLength / FastMath.sqrt(length);
 			direction.multLocal(length);

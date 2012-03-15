@@ -73,7 +73,7 @@ public abstract class DoSomethingInABuildingAction implements Action {
 		int currentTime = Model.getInstance().getAI().getSimulation().getTime();
 		if (!this.initialized) {
 			try {
-				this.expectedEnd = this.getDuration(provider, consumer, parameters) + currentTime;
+				this.expectedEnd = this.getDuration(provider, consumer, parameters, false) + currentTime;
 			} catch (UnknownPropertyException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -100,8 +100,8 @@ public abstract class DoSomethingInABuildingAction implements Action {
 	}
 	
 	@Override
-	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> parameters)
-			throws UnknownPropertyException {
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> parameters,
+			Boolean anticipation) throws UnknownPropertyException {
 		// TODO Auto-generated method stub
 		return 0;
 	}

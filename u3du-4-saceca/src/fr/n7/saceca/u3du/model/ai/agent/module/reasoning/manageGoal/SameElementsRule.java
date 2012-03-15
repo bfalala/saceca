@@ -24,9 +24,14 @@ import fr.n7.saceca.u3du.model.util.Couple;
  * @param <T>
  *            the generic type of the elements
  * 
- * @author Jérôme Dalbert
+ * @author Jérôme Dalbert, Bertrand Deguelle
  */
 public abstract class SameElementsRule<T> extends Rule {
+	
+	/**
+	 * Many types in order to implement anticipation ANTICIPATED and SOONCRITICAL are not explicited
+	 * used but can be useful for futures codes
+	 */
 	
 	enum gaugeType {
 		SAFE, CRITICAL, ANTICIPATED, SOONCRITICAL

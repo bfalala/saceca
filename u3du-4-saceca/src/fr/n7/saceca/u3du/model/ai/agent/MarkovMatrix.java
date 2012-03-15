@@ -31,7 +31,7 @@ public class MarkovMatrix {
 	 * 
 	 * }
 	 */
-	
+
 	/** the power matrix itself */
 	private float[][] matrix;
 	

@@ -41,7 +41,7 @@ import fr.n7.saceca.u3du.model.util.io.storage.Storable;
 /**
  * A class to represent a service. A service is shared among all its providers.
  * 
- * @author Sylvain Cambon, Ciprian Munteanu, Mehdi Boukhris
+ * @author Sylvain Cambon, Ciprian Munteanu, Mehdi Boukhris, Bertrand Deguelle
  */
 @XStreamAlias("service")
 public class Service implements Storable {
@@ -931,7 +931,7 @@ public class Service implements Storable {
 		if (this.actionClass != null) {
 			try {
 				Action action = this.actionClass.newInstance();
-				return action.getDuration(null, agent, null);
+				return action.getDuration(null, agent, null, true);
 			} catch (InstantiationException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

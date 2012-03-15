@@ -27,7 +27,7 @@ import fr.n7.saceca.u3du.model.util.Couple;
 /**
  * The CreateGaugeGoal class - it creates goals from gauges values
  * 
- * @author Ciprian Munteanu, Mehdi Boukhris
+ * @author Ciprian Munteanu, Mehdi Boukhris, Bertrand Deguelle
  * 
  */
 public class CreateGaugeGoal extends SameElementsRule<Gauge> {
@@ -69,6 +69,7 @@ public class CreateGaugeGoal extends SameElementsRule<Gauge> {
 			Gauge gauge = couple_gauge.getFirstElement();
 			if (gauge.getValue() >= MMReasoningModule.GAUGE_REFILL * gauge.getMaxValue()) {
 				it_gauge.remove();
+				// We conserved the next critical gauge
 				if (gauge.isDecreased()) {
 					
 					timeToBeCritical = (gauge.getValue() - MMReasoningModule.GAUGE_REFILL * gauge.getMaxValue())
@@ -113,10 +114,12 @@ public class CreateGaugeGoal extends SameElementsRule<Gauge> {
 					.add(new Param("amount", String.valueOf(goalValue), "double", "", "false"));
 			// set the treatment precondition to know how to check if the goal is satisfied
 			goalToAdd.getSuccessCondition().setTreatment_precond(gauge.getName() + "__>__amount");
-			// set the goal priority
+			// set the goal priority, fonction of gauge type
 			if (type == gaugeType.CRITICAL) {
 				goalToAdd.setPriority((gauge.getValue() < goalValue) ? (int) Math.round(gauge.getMaxValue()
 						- gauge.getValue()) : 0);
+				// we compare necessary time to realize the plan and time before the gauge become
+				// CRITICAL
 			} else {
 				MatrixMethodPlanningModule MMPM = new MatrixMethodPlanningModule(this.agent);
 				double timeToBeCritical = (gauge.getValue() - goalValue) * gauge.getDecrementPeriod(this.agent)

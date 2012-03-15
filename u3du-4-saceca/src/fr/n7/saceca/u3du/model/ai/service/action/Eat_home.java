@@ -14,13 +14,16 @@ package fr.n7.saceca.u3du.model.ai.service.action;
 
 import java.util.Map;
 
+import fr.n7.saceca.u3du.model.ai.agent.Agent;
+import fr.n7.saceca.u3du.model.ai.agent.Gauge;
+import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.MMReasoningModule;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
 import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
 
 /**
  * A class to simulate eating in a restaurant. This class is the code linked to the service "eatAt".
  * 
- * @author Sylvain Cambon
+ * @author Sylvain Cambon, Bertrand Deguelle
  */
 public class Eat_home extends DoSomethingInABuildingAction {
 	
@@ -37,8 +40,33 @@ public class Eat_home extends DoSomethingInABuildingAction {
 	 * @throws UnknownPropertyException
 	 */
 	@Override
-	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> params)
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> params, Boolean anticipation)
 			throws UnknownPropertyException {
-		return consumer.getPropertiesContainer().getInt("c_Building_mealDuration");
+		
+		// Time is influenced by gauge level
+		
+		double percentVariation = 0;
+		
+		if (!anticipation) {
+			Agent agent = (Agent) consumer;
+			Gauge gauge = Gauge.getGaugeFromList(agent.getGauges(), "i_gauge_primordial_hunger");
+			
+			double goalValue = MMReasoningModule.GAUGE_REFILL * gauge.getMaxValue();
+			double value = gauge.getValue();
+			
+			// We divide per 4 to have a small influence
+			
+			percentVariation = ((goalValue / 2 - value) / (goalValue / 2)) / 4;
+			
+		}
+		return (int) (consumer.getPropertiesContainer().getInt("c_Building_mealDuration") * (1 + percentVariation));
 	}
+	// Gauges name :
+	// i_gauge_primordial_thirst
+	// i_gauge_primordial_naturalneeds
+	// i_gauge_primordial_tiredness
+	// i_gauge_primordial_skintemperature
+	// i_gauge_primordial_hunger
+	// i_gauge_primordial_breath
+	
 }

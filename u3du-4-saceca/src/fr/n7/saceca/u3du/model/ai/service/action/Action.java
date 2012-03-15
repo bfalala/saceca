@@ -23,7 +23,7 @@ import fr.n7.saceca.u3du.model.util.io.storage.Storable;
  * The Action Interface is designed for inserting Java code into services, between conditions
  * checking and execution of the results. This allows to send animations for instance.
  * 
- * @author JÃ©rÃ´me Dalbert
+ * @author JÃ©rÃ´me Dalbert, Bertrand Deguelle
  */
 public interface Action extends Storable {
 	
@@ -49,11 +49,13 @@ public interface Action extends Storable {
 	 *            the consumer
 	 * @param parameters
 	 *            the parameters
+	 * @param anticipation
+	 *            In the case of anticipation, agents don't take in count their level gauge
 	 * @return the duration
 	 * @throws UnknownPropertyException
 	 *             If the duration property was not found.
 	 */
-	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> parameters)
-			throws UnknownPropertyException;
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> parameters,
+			Boolean anticipation) throws UnknownPropertyException;
 	
 }

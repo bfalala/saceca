@@ -24,7 +24,7 @@ import fr.n7.saceca.u3du.model.graphics.animation.Goback_Animation;
  * This class gather the common code for making an agent disappear in a building and reappear a
  * while after.
  * 
- * @author Sylvain Cambon
+ * @author Sylvain Cambon, Bertrand Deguelle
  */
 public class go_back implements Action {
 	
@@ -80,8 +80,8 @@ public class go_back implements Action {
 	}
 	
 	@Override
-	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> parameters)
-			throws UnknownPropertyException {
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> parameters,
+			Boolean anticipation) throws UnknownPropertyException {
 		// TODO Auto-generated method stub
 		return 0;
 	}

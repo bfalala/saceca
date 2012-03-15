@@ -214,9 +214,6 @@ public class MatrixMethodPlanningModule implements PlanningModule {
 					if (!planElement.getService().getName().equals("walkTo")) {
 						planElement.setProvider(world.getWorldObjects().get(planElement.getService().getProviderId()));
 						try {
-							// System.out.println(planElement.getService().getName() + " THIESSE ");
-							// System.out.println(planElement.getService().getDuration(this.agent) +
-							// " BERNARD");
 							compteur = compteur + planElement.getService().getDuration(this.agent);
 						} catch (UnknownPropertyException e) {
 							// TODO Auto-generated catch block

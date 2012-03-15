@@ -39,7 +39,7 @@ import fr.n7.saceca.u3du.model.util.MathUtil;
  * 
  * This class is the code linked to the service "walkTo".
  * 
- * @author Jérôme Dalbert
+ * @author Jérôme Dalbert, Bertrand Deguelle
  */
 public class WalkTo implements Action {
 	
@@ -248,8 +248,8 @@ public class WalkTo implements Action {
 	}
 	
 	@Override
-	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> parameters)
-			throws UnknownPropertyException {
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> parameters,
+			Boolean anticipation) throws UnknownPropertyException {
 		// TODO Auto-generated method stub
 		return 0;
 	}

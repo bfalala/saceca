@@ -14,13 +14,16 @@ package fr.n7.saceca.u3du.model.ai.service.action;
 
 import java.util.Map;
 
+import fr.n7.saceca.u3du.model.ai.agent.Agent;
+import fr.n7.saceca.u3du.model.ai.agent.Gauge;
+import fr.n7.saceca.u3du.model.ai.agent.module.reasoning.MMReasoningModule;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
 import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
 
 /**
  * A class to simulate resting at home. This class is the code linked to the service "restAtHome".
  * 
- * @author Sylvain Cambon
+ * @author Sylvain Cambon, Bertrand Deguelle
  */
 public class Rest extends DoSomethingInABuildingAction {
 	
@@ -38,8 +41,26 @@ public class Rest extends DoSomethingInABuildingAction {
 	 *             the unknown property exception
 	 */
 	@Override
-	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> params)
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> params, Boolean anticipation)
 			throws UnknownPropertyException {
-		return consumer.getPropertiesContainer().getInt("c_Human_restDuration");
+		
+		// Time is influenced by gauge level
+		
+		double percentVariation = 0;
+		
+		if (!anticipation) {
+			Agent agent = (Agent) consumer;
+			Gauge gauge = Gauge.getGaugeFromList(agent.getGauges(), "i_gauge_primordial_tiredness");
+			
+			double goalValue = MMReasoningModule.GAUGE_REFILL * gauge.getMaxValue();
+			double value = gauge.getValue();
+			
+			// We divide per 4 to have a small influence
+			
+			percentVariation = ((goalValue / 2 - value) / (goalValue / 2)) / 4;
+			
+		}
+		
+		return (int) (consumer.getPropertiesContainer().getInt("c_Human_restDuration") * (1 + percentVariation));
 	}
 }

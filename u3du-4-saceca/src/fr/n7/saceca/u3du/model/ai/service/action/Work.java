@@ -20,7 +20,7 @@ import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
 /**
  * A class to simulate working. This class is the code linked to the service "work".
  * 
- * @author Sylvain Cambon
+ * @author Sylvain Cambon, Bertrand Deguelle
  */
 public class Work extends DoSomethingInABuildingAction {
 	
@@ -38,7 +38,7 @@ public class Work extends DoSomethingInABuildingAction {
 	 *             the unknown property exception
 	 */
 	@Override
-	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> params)
+	public int getDuration(WorldObject provider, WorldObject consumer, Map<String, Object> params, Boolean anticipation)
 			throws UnknownPropertyException {
 		return consumer.getPropertiesContainer().getInt("c_Worker_workingTime");
 	}
