@@ -27,7 +27,7 @@
 	<double name="i_emotion_disgust" value="50.0" />
 	<double name="i_emotion_sadness" value="50.0" />
 	<double name="i_emotion_surprise" value="50.0" />
-	<double name="i_emotion_angry" value="50.0" />
+	<double name="i_emotion_anger" value="50.0" />
     <bool name="i_threaded" value="true"/>
     <bool name="i_isMisc" value="false"/>
     <int name="c_Worker_salary" value="200"/>
@@ -67,7 +67,7 @@
 	<double name="i_emotion_disgust" value="50.0" />
 	<double name="i_emotion_sadness" value="50.0" />
 	<double name="i_emotion_surprise" value="50.0" />
-	<double name="i_emotion_angry" value="50.0" />
+	<double name="i_emotion_anger" value="50.0" />
     <bool name="i_threaded" value="true"/>
     <bool name="i_isMisc" value="false"/>
     <int name="c_Worker_salary" value="200"/>

@@ -20,7 +20,7 @@
     <java-class>fr.n7.saceca.u3du.model.ai.service.action.Jump</java-class>
   </entry>
   <entry>
-    <string>reactive_emotion_angry</string>
+    <string>reactive_emotion_anger</string>
     <java-class>fr.n7.saceca.u3du.model.ai.service.action.Jump</java-class>
   </entry>
 </list>

@@ -7,7 +7,7 @@
     <int name="c_Human_cash" value="100"/>
     <double name="i_emotion_secondary_relief" value="50.0"/>
     <int name="i_decrement_period_joy" value="1"/>
-    <int name="i_decrement_period_angry" value="1"/>
+    <int name="i_decrement_period_anger" value="1"/>
     <int name="i_decrement_period_disgust" value="1"/>
     <double name="i_emotion_surprise" value="50.0"/>
     <double name="i_emotion_secondary_Remorse" value="50.0"/>
@@ -35,7 +35,7 @@
     <double name="i_emotion_secondary_jealousy" value="50.0"/>
     <double name="i_emotion_secondary_shame" value="50.0"/>
     <double name="i_emotion_secondary_optimism" value="50.0"/>
-    <double name="i_emotion_angry" value="50.0"/>
+    <double name="i_emotion_anger" value="50.0"/>
     <double name="i_gauge_primordial_naturalneeds" value="86.0"/>
     <double name="i_gauge_primordial_tiredness" value="65.0"/>
     <int name="i_decrement_period_default" value="14"/>
@@ -66,7 +66,7 @@
       <entry>
         <long>3</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="Bank" id="3">
+          <serviceEmotions/><worldObject model="Bank" id="3">
             <position x="-91.0" y="28.0" theta="1.57"/>
             <properties>
               <bool name="i_threaded" value="false"/>
@@ -82,7 +82,7 @@
       <entry>
       	<long>8860</long>
       	<memory-element forgettable="true" place="long" nbRef="50">
-      		<worldObject model="Tesco" id="8860">
+      		<serviceEmotions/><worldObject model="Tesco" id="8860">
       			<position x="-86.0" y="-4.0" theta="0.0"></position>
       			<properties>
               		<bool name="i_threaded" value="false"/>
@@ -98,7 +98,7 @@
       	<entry>
         <long>8118</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="Toilet" id="8118">
+          <serviceEmotions/><worldObject model="Toilet" id="8118">
             <position x="-10.0" y="-81.0" theta="0.0"/>
             <properties>
               <int name="c_Toilet_duration" value="5"/>
@@ -115,7 +115,7 @@
       <entry>
         <long>20</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="Restaurant" id="20">
+          <serviceEmotions/><worldObject model="Restaurant" id="20">
             <position x="-16.0" y="-53.0" theta="7.853982"/>
             <properties>
               <bool name="i_threaded" value="false"/>
@@ -132,7 +132,7 @@
       <entry>
         <long>36</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="House" id="36">
+          <serviceEmotions/><worldObject model="House" id="36">
             <position x="84.0" y="-55.0" theta="0.0"/>
             <properties>
               <bool name="i_threaded" value="false"/>
@@ -148,7 +148,7 @@
       <entry>
         <long>33</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="House" id="33">
+          <serviceEmotions/><worldObject model="House" id="33">
             <position x="70.0" y="-6.0" theta="1.5707964"/>
             <properties>
     			<bool name="i_threaded" value="false"/>
@@ -164,7 +164,7 @@
       <entry>
         <long>7</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="Building" id="7">
+          <serviceEmotions/><worldObject model="Building" id="7">
             <position x="-83.0" y="43.0" theta="3.1407964"/>
             <properties>
               <string name="c_Company_name" value="The World Company"/>
@@ -181,7 +181,7 @@
       <entry>
         <long>8124</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="DrinkVendingMachine" id="8124">
+          <serviceEmotions/><worldObject model="DrinkVendingMachine" id="8124">
             <position x="86.0" y="20.0" theta="0.0"/>
             <properties>
               <bool name="i_threaded" value="false"/>
@@ -205,7 +205,7 @@
               <int name="c_Human_cash" value="100"/>
               <double name="i_emotion_secondary_relief" value="50.0"/>
               <int name="i_decrement_period_joy" value="1"/>
-              <int name="i_decrement_period_angry" value="1"/>
+              <int name="i_decrement_period_anger" value="1"/>
               <int name="i_decrement_period_disgust" value="1"/>
               <double name="i_emotion_surprise" value="50.0"/>
               <double name="i_emotion_secondary_Remorse" value="50.0"/>
@@ -233,7 +233,7 @@
               <double name="i_emotion_secondary_jealousy" value="50.0"/>
               <double name="i_emotion_secondary_shame" value="50.0"/>
               <double name="i_emotion_secondary_optimism" value="50.0"/>
-              <double name="i_emotion_angry" value="50.0"/>
+              <double name="i_emotion_anger" value="50.0"/>
               <double name="i_gauge_primordial_naturalneeds" value="86.0"/>
               <double name="i_gauge_primordial_tiredness" value="65.0"/>
               <int name="i_decrement_period_default" value="14"/>

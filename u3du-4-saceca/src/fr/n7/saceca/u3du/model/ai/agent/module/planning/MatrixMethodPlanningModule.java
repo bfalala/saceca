@@ -220,7 +220,7 @@ public class MatrixMethodPlanningModule implements PlanningModule {
 							e.printStackTrace();
 						}
 					}
-
+					
 					else {
 						
 					}
@@ -323,7 +323,7 @@ public class MatrixMethodPlanningModule implements PlanningModule {
 		matrixCondServ.createMatrixP(servicePropertyList, serviceList);
 		
 		MatrixMethodPlanner mmPlanner = new MatrixMethodPlanner(currentGoal, serviceList, servicePropertyList,
-				virtualMemory, linkList, matrixServProp, matrixCondServ);
+				virtualMemory, linkList, matrixServProp, matrixCondServ, agent);
 		
 		return mmPlanner.buildPlan();
 	}

@@ -9,7 +9,7 @@
 	<double name="i_emotion_disgust" value="50.0" />
 	<double name="i_emotion_sadness" value="50.0" />
 	<double name="i_emotion_surprise" value="50.0" />
-	<double name="i_emotion_angry" value="50.0" />
+	<double name="i_emotion_anger" value="50.0" />
         <int name="c_Human_maxCarriedMass" value="20"/>
 		<int name="i_mass" value="70" />
 		<string name="i_name" value="reasoningtester_5" />
@@ -37,7 +37,7 @@
 	<double name="i_emotion_disgust" value="50.0" />
 	<double name="i_emotion_sadness" value="50.0" />
 	<double name="i_emotion_surprise" value="50.0" />
-	<double name="i_emotion_angry" value="50.0" />
+	<double name="i_emotion_anger" value="50.0" />
 							<string name="i_name" value="reasoningtester_5" />
 						</properties>
 						<belongings />

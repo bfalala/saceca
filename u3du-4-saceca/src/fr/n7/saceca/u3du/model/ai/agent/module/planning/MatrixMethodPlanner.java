@@ -14,8 +14,12 @@ package fr.n7.saceca.u3du.model.ai.agent.module.planning;
 
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import Emotion_secondary.update_secondary;
 
+import fr.n7.saceca.u3du.model.ai.agent.Agent;
+import fr.n7.saceca.u3du.model.ai.agent.EmotionalState;
 import fr.n7.saceca.u3du.model.ai.agent.memory.Memory;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.initialization.Matrix;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.initialization.TableClass;
@@ -54,6 +58,12 @@ public class MatrixMethodPlanner {
 	/** The matrix Preconditionx X Services */
 	private Matrix matrixCondServ;
 	
+	/** l'agent */
+	private Agent agent;
+	
+	/** the logger */
+	private static Logger logger = Logger.getLogger(MatrixMethodPlanner.class);
+	
 	/**
 	 * Creates a new MatrixMethodPlanner object
 	 * 
@@ -74,7 +84,7 @@ public class MatrixMethodPlanner {
 	 */
 	public MatrixMethodPlanner(MMGoal goalToReach, ArrayList<Service> serviceList,
 			ArrayList<ServiceProperty> servicePropertyList, Memory virtualMemory, ArrayList<PropertyLink> linkList,
-			Matrix matrixServProp, Matrix matrixCondServ) {
+			Matrix matrixServProp, Matrix matrixCondServ, Agent agent) {
 		
 		this.goalToReach = goalToReach.getSuccessCondition();
 		this.serviceList = serviceList;
@@ -83,6 +93,7 @@ public class MatrixMethodPlanner {
 		this.linkList = linkList;
 		this.matrixServProp = matrixServProp;
 		this.matrixCondServ = matrixCondServ;
+		this.agent = agent;
 	}
 	
 	/**
@@ -105,7 +116,8 @@ public class MatrixMethodPlanner {
 		
 		boolean need_new_Service = true, plan_done = false, go_back = false, everything_done = false, do_again = false;
 		
-		int i, j, V[][], Service_index = 0, property_index = 0;
+		int i, j, V[][], property_index = 0;
+		int Service_index = 0;
 		
 		ArrayList<int[][]> possible_Services_list = new ArrayList<int[][]>();
 		
@@ -137,6 +149,9 @@ public class MatrixMethodPlanner {
 				orders[i][j] = this.matrixCondServ.getP_order()[i][j];
 			}
 		}
+		
+		// get emotional state of the current agent
+		EmotionalState currentState = this.agent.getEmotionalState();
 		
 		// add the goal to reach in the goal list
 		goal_list.add(this.goalToReach.deepDataClone());
@@ -255,17 +270,37 @@ public class MatrixMethodPlanner {
 				}
 				
 				// we count how many services satisfy the goal to reach
-				// TODO : emotion stuff
+				// and look for the emotional optimal service
 				int choise = 0;
+				
+				float optimalGain = 0;
+				
 				for (i = 0; i < possible_Services_list.get(possible_Services_list.size() - 1)[0].length; i++) {
 					if (possible_Services_list.get(possible_Services_list.size() - 1)[0][i] == 1) {
-						if (choise == 0) {
-							Service_index = i;
-							possible_Services_list.get(possible_Services_list.size() - 1)[0][i] = 0;
+						
+						Service serv = this.serviceList.get(i);
+						EmotionalState state = this.virtualMemory.getServiceState(serv);
+						
+						if (state == null) {
+							// no information about this service yet
+							state = this.agent.getEmotionModule().generateEmotions(serv.getConcepts());
 						}
+						
+						float gain = state.computeGain(currentState);
+						if (choise == 0) {
+							// first passage : initializing
+							Service_index = i;
+							optimalGain = gain;
+						} else if (gain > optimalGain) {
+							optimalGain = gain;
+							Service_index = i;
+						}
+						
 						choise++;
 					}
 				}
+				logger.info("GAIN : " + optimalGain);
+				possible_Services_list.get(possible_Services_list.size() - 1)[0][Service_index] = 0;
 				// if the number of found services is bigger that one then we clone everything
 				if (choise > 1) {
 					update_index_list.add(virtualMemory_updates_list.size());

@@ -29,7 +29,7 @@
 	<double name="i_emotion_disgust" min="0" max="100" default="50" visibility="public"/>
 <!-- 	<double name="i_emotion_sadness" min="0" max="100" default="50" visibility="public"/> -->
 	<double name="i_emotion_surprise" min="0" max="100" default="50" visibility="public"/>
-	<double name="i_emotion_angry" min="0" max="100" default="50" visibility="public"/>
+	<double name="i_emotion_anger" min="0" max="100" default="50" visibility="public"/>
 	
 	<double name="i_emotion_secondary_jealousy" min="0" max="100" default="50" visibility="public"/>
 	<double name="i_emotion_secondary_shame" min="0" max="100" default="50" visibility="public"/>
@@ -54,7 +54,7 @@
 	
 	<int name="i_decrement_period_joy" min="0" max="1000" default="1" visibility="private" />
     <int name="i_decrement_period_fear" min="0" max="1000" default="1" visibility="private" />
-    <int name="i_decrement_period_angry" min="0" max="1000" default="1" visibility="private" />
+    <int name="i_decrement_period_anger" min="0" max="1000" default="1" visibility="private" />
 <!--      <int name="i_decrement_period_sadness" min="0" max="1000" default="1" visibility="private" />  -->
     <int name="i_decrement_period_surprise" min="0" max="1000" default="1" visibility="private" />
     <int name="i_decrement_period_disgust" min="0" max="1000" default="1" visibility="private" />

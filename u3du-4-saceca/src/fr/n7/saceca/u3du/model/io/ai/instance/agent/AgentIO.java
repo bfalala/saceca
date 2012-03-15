@@ -48,11 +48,15 @@ public class AgentIO extends XStreamIO<Agent> {
 	@Override
 	protected void configureIfNecessary(XStream xStream) {
 		if (!configured) {
+			xStream.alias("serviceName", String.class);
+			xStream.alias("emotionName", String.class);
+			xStream.alias("emotionValue", Float.class);
 			xStream.processAnnotations(WorldObject.class);
 			xStream.registerConverter(new WorldObjectConverter(this.factory));
 			xStream.processAnnotations(Agent.class);
 			xStream.registerConverter(new AgentConverter(this.factory));
 			xStream.registerConverter(new Oriented2DPositionConverter());
+			
 			AgentIO.configured = true;
 		}
 	}

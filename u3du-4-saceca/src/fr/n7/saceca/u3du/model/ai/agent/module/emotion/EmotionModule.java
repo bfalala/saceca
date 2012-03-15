@@ -12,6 +12,10 @@
  */
 package fr.n7.saceca.u3du.model.ai.agent.module.emotion;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.n7.saceca.u3du.model.ai.agent.EmotionalState;
 import fr.n7.saceca.u3du.model.util.io.storage.Storable;
 
 /**
@@ -25,6 +29,10 @@ public interface EmotionModule extends Storable {
 	 * Detect emotions.
 	 */
 	public void detectEmotions();
+	
+	public void applyEmotions(List<String> concepts);
+	
+	public EmotionalState generateEmotions(ArrayList<String> concepts);
 	
 	/**
 	 * Checks if the emotion thread is alive

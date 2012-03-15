@@ -12,11 +12,15 @@
  */
 package fr.n7.saceca.u3du.model.ai.agent.memory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
+import fr.n7.saceca.u3du.model.ai.agent.EmotionalState;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
 import fr.n7.saceca.u3du.model.ai.object.properties.UnknownPropertyException;
 import fr.n7.saceca.u3du.model.util.Periodic;
@@ -31,6 +35,10 @@ public class MemoryElement {
 	
 	/** The object. */
 	private WorldObject worldObject;
+	
+	/** the emotions related to its services */
+	@XStreamAlias("serviceEmotions")
+	private Map<String, EmotionalState> serviceEmotions;
 	
 	/** The forgettable. */
 	@XStreamAlias("forgettable")
@@ -69,6 +77,7 @@ public class MemoryElement {
 		this.forgettable = forgettable;
 		this.setPlace(place);
 		this.setNbReferences(nbReferences);
+		this.serviceEmotions = new HashMap<String, EmotionalState>();
 	}
 	
 	/**
@@ -193,7 +202,22 @@ public class MemoryElement {
 	 * @return the memory element
 	 */
 	public MemoryElement deepDataClone() {
-		return new MemoryElement(this.worldObject.deepDataClone(), this.forgettable, this.place, this.nbReferences);
+		MemoryElement me = new MemoryElement(this.worldObject.deepDataClone(), this.forgettable, this.place,
+				this.nbReferences);
+		me.setServiceEmotions(this.serviceEmotions);
+		return me;
+	}
+	
+	public Map<String, EmotionalState> getServiceEmotions() {
+		return this.serviceEmotions;
+	}
+	
+	public void setServiceEmotions(Map<String, EmotionalState> serviceEmotions) {
+		this.serviceEmotions = serviceEmotions;
+	}
+	
+	public void setAServiceEmotions(String serviceName, EmotionalState es) {
+		this.serviceEmotions.put(serviceName, es);
 	}
 	
 	private Integer getDecrementPeriod(Agent agent) {

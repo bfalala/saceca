@@ -127,7 +127,8 @@ public class Service implements Storable {
 	public Service(String name, boolean active, int maxDistanceForUsage, Set<Category> providerCategories,
 			Set<Category> consumerCategories, ArrayList<Param> serviceParameters,
 			ArrayList<ServiceProperty> servicePreconditions, ArrayList<ServiceProperty> serviceEffectsPlus,
-			ArrayList<ServiceProperty> serviceEffectsMinus, Class<? extends Action> actionClass) {
+			ArrayList<ServiceProperty> serviceEffectsMinus, Class<? extends Action> actionClass,
+			ArrayList<String> concepts) {
 		super();
 		this.active = active;
 		this.maxDistanceForUsage = maxDistanceForUsage;
@@ -139,6 +140,7 @@ public class Service implements Storable {
 		this.serviceEffectsPlus = serviceEffectsPlus;
 		this.serviceEffectsMinus = serviceEffectsMinus;
 		this.actionClass = actionClass;
+		this.concepts = concepts;
 		this.readResolve();
 	}
 	
@@ -157,7 +159,16 @@ public class Service implements Storable {
 		this.serviceEffectsPlus = null;
 		this.serviceEffectsMinus = null;
 		this.setProviderId(0L);
+		this.concepts = null;
 		this.readResolve();
+	}
+	
+	public ArrayList<String> getConcepts() {
+		return this.concepts;
+	}
+	
+	public void setConcepts(ArrayList<String> concepts) {
+		this.concepts = concepts;
 	}
 	
 	/**
@@ -289,6 +300,14 @@ public class Service implements Storable {
 		return useable ? ExecutionStatus.SUCCESSFUL_TERMINATION : ExecutionStatus.FAILURE;
 	}
 	
+	private void applyEmotions(WorldObject provider, Agent consumer) {
+		logger.info("APPLY EMOTIONS : ");
+		for (String s : this.concepts) {
+			logger.info(s);
+		}
+		consumer.getEmotionModule().applyEmotions(this.concepts);
+	}
+	
 	/**
 	 * Execute the service.
 	 * 
@@ -314,6 +333,10 @@ public class Service implements Storable {
 				try {
 					action = this.actionClass.newInstance();
 					this.runningActions.put(couple, action);
+					
+					this.applyEmotions(provider, (Agent) consumer);
+					((Agent) consumer).rememberEmotions(this, provider);
+					
 				} catch (InstantiationException e) {
 					logger.warn("Could not instantiate " + this.actionClass.getCanonicalName(), e);
 					state = ExecutionStatus.SUCCESSFUL_TERMINATION;
@@ -873,7 +896,7 @@ public class Service implements Storable {
 	 */
 	public Service deepDataClone() {
 		Service clone = new Service(this.name, this.active, this.maxDistanceForUsage, null, null, null, null, null,
-				null, this.actionClass);
+				null, this.actionClass, this.concepts);
 		
 		clone.setProviderId(this.providerId);
 		

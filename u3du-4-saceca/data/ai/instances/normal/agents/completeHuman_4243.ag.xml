@@ -6,7 +6,7 @@
     <int name="c_Human_cash" value="100"/>
     <double name="i_emotion_secondary_relief" value="50.0"/>
     <int name="i_decrement_period_joy" value="1"/>
-    <int name="i_decrement_period_angry" value="1"/>
+    <int name="i_decrement_period_anger" value="1"/>
     <int name="i_decrement_period_disgust" value="1"/>
     <double name="i_emotion_surprise" value="50.0"/>
     <double name="i_emotion_secondary_Remorse" value="50.0"/>
@@ -34,7 +34,7 @@
     <double name="i_emotion_secondary_jealousy" value="50.0"/>
     <double name="i_emotion_secondary_shame" value="50.0"/>
     <double name="i_emotion_secondary_optimism" value="50.0"/>
-    <double name="i_emotion_angry" value="50.0"/>
+    <double name="i_emotion_anger" value="50.0"/>
     <double name="i_gauge_primordial_naturalneeds" value="86.0"/>
     <double name="i_gauge_primordial_tiredness" value="35.0"/>
     <int name="i_decrement_period_default" value="13"/>
@@ -65,7 +65,7 @@
       <entry>
         <long>21</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="Cinema" id="21">
+          <serviceEmotions/><worldObject model="Cinema" id="21">
             <position x="64.0" y="52.0" theta="0.0"/>
             <properties>
               <int name="c_Cinema_filmDuration" value="30"/>
@@ -82,7 +82,7 @@
       <entry>
         <long>20</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="Restaurant" id="20">
+          <serviceEmotions/><worldObject model="Restaurant" id="20">
             <position x="-16.0" y="-53.0" theta="7.853982"/>
             <properties>
               <bool name="i_threaded" value="false"/>
@@ -99,7 +99,7 @@
       <entry>
         <long>7</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="Building" id="7">
+          <serviceEmotions/><worldObject model="Building" id="7">
             <position x="-83.0" y="43.0" theta="3.1407964"/>
             <properties>
               <string name="c_Company_name" value="The World Company"/>
@@ -116,7 +116,7 @@
       <entry>
         <long>28</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="House" id="28">
+          <serviceEmotions/><worldObject model="House" id="28">
       		<position x="62.0" y="-85.0" theta="1.5707964"/>
   			<properties>
     			<bool name="i_threaded" value="false"/>
@@ -132,7 +132,7 @@
       <entry>
         <long>8124</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="DrinkVendingMachine" id="8124">
+          <serviceEmotions/><worldObject model="DrinkVendingMachine" id="8124">
             <position x="86.0" y="20.0" theta="0.0"/>
             <properties>
               <bool name="i_threaded" value="false"/>
@@ -155,7 +155,7 @@
               <int name="c_Human_cash" value="100"/>
               <double name="i_emotion_secondary_relief" value="50.0"/>
               <int name="i_decrement_period_joy" value="1"/>
-              <int name="i_decrement_period_angry" value="1"/>
+              <int name="i_decrement_period_anger" value="1"/>
               <int name="i_decrement_period_disgust" value="1"/>
               <double name="i_emotion_surprise" value="50.0"/>
               <double name="i_emotion_secondary_Remorse" value="50.0"/>
@@ -183,7 +183,7 @@
               <double name="i_emotion_secondary_jealousy" value="50.0"/>
               <double name="i_emotion_secondary_shame" value="50.0"/>
               <double name="i_emotion_secondary_optimism" value="50.0"/>
-              <double name="i_emotion_angry" value="50.0"/>
+              <double name="i_emotion_anger" value="50.0"/>
               <double name="i_gauge_primordial_naturalneeds" value="86.0"/>
               <double name="i_gauge_primordial_tiredness" value="86.0"/>
               <int name="i_decrement_period_default" value="13"/>
@@ -226,7 +226,7 @@
       <entry>
         <long>8121</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="Atm" id="8121">
+          <serviceEmotions/><worldObject model="Atm" id="8121">
             <position x="8.0" y="46.0" theta="0.0"/>
             <properties>
               <bool name="i_threaded" value="false"/>
@@ -241,7 +241,7 @@
       <entry>
         <long>8120</long>
         <memory-element forgettable="true" place="long" nbRef="50">
-          <worldObject model="Toilet" id="8120">
+          <serviceEmotions/><worldObject model="Toilet" id="8120">
             <position x="74.0" y="9.0" theta="0.0"/>
             <properties>
               <int name="c_Toilet_duration" value="5"/>

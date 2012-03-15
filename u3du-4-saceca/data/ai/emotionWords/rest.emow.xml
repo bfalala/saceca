@@ -8,7 +8,7 @@
 			<precond>lazy</precond>
 			<emotion>joy</emotion>
 			<!-- <sign>plus</sign>  -->
-			<value>10</value>		
+			<value>30</value>		
 		</effect>				
 	</effects>
 </emotion-word>

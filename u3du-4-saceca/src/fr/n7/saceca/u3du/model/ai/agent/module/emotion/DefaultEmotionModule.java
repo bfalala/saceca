@@ -14,6 +14,7 @@ package fr.n7.saceca.u3du.model.ai.agent.module.emotion;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 import Emotion_primary.forward_chaining;
 import Emotion_primary.property_rule;
@@ -21,6 +22,7 @@ import Emotion_primary.property_rule;
 import fr.n7.saceca.u3du.model.Model;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
 import fr.n7.saceca.u3du.model.ai.agent.Emotion;
+import fr.n7.saceca.u3du.model.ai.agent.EmotionalState;
 import fr.n7.saceca.u3du.model.ai.agent.behavior.DefaultAgentBehavior;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
 import fr.n7.saceca.u3du.model.util.Couple;
@@ -168,6 +170,18 @@ public class DefaultEmotionModule implements EmotionModule {
 			int value = vector_forwarded_result[0][emotion_index_tab.get(emotion.getName())];
 			emotion.setValue(emotion.getValue() + 5 * value);
 		}
-		//agent.getMemory().emotionsAffectSizeMemory();
+		// agent.getMemory().emotionsAffectSizeMemory();
+	}
+	
+	// TODO : write this method
+	@Override
+	public void applyEmotions(List<String> concepts) {
+		
+	}
+	
+	// TODO : write this method
+	@Override
+	public EmotionalState generateEmotions(ArrayList<String> concepts) {
+		return null;
 	}
 }

@@ -9,7 +9,7 @@
     <int name="i_decrement_period_default" value="14"/>
 	<int name="i_decrement_period_joy" value="1"/>
 	<int name="i_decrement_period_fear" value="1"/>
-	<int name="i_decrement_period_angry" value="1"/>
+	<int name="i_decrement_period_anger" value="1"/>
 	<int name="i_decrement_period_sadness" value="1"/>
 	<int name="i_decrement_period_surprise" value="1"/>
 	<int name="i_decrement_period_disgust" value="1"/>
@@ -34,7 +34,7 @@
 	<double name="i_emotion_disgust" value="60.0" />
 	<double name="i_emotion_sadness" value="60.0" />
 	<double name="i_emotion_surprise" value="60.0" />
-	<double name="i_emotion_angry" value="60.0" />
+	<double name="i_emotion_anger" value="60.0" />
     <bool name="i_threaded" value="true"/>
     <bool name="i_isMisc" value="false"/>
     <int name="c_Worker_salary" value="200"/>
@@ -71,7 +71,7 @@
 			  <double name="i_emotion_disgust" value="50.0" />
 			  <double name="i_emotion_sadness" value="50.0" />
 			  <double name="i_emotion_surprise" value="50.0" />
-			  <double name="i_emotion_angry" value="50.0" />
+			  <double name="i_emotion_anger" value="50.0" />
               <int name="c_Worker_workingTime" value="40"/>
               <int name="c_Human_restDuration" value="50"/>
               <int name="c_Human_maxCarriedMass" value="10"/>

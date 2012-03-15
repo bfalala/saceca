@@ -17,7 +17,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import fr.n7.saceca.u3du.model.Model;
 import fr.n7.saceca.u3du.model.ai.Internal;
@@ -72,6 +75,10 @@ public class Agent extends WorldObject {
 	
 	/** The characteristics of the agent (property i_characteristics) */
 	private ArrayList<String> characteristics;
+	
+	/** The logger. */
+	@XStreamOmitField
+	private static Logger logger = Logger.getLogger(Agent.class);
 	
 	/**
 	 * Instantiates a new agent.
@@ -520,4 +527,39 @@ public class Agent extends WorldObject {
 		
 		return characteristics.contains(c);
 	}
+	
+	/**
+	 * @param service
+	 *            the service which was used with these emotions
+	 * @param provider
+	 *            the place where these emotions were felt
+	 * 
+	 * */
+	public void rememberEmotions(Service service, WorldObject provider) {
+		logger.info("JE ME SOUVIENS !!!!!!!!!!!!!!!!!!");
+		logger.info("service : " + service.getName());
+		
+		if (!service.getName().equals("walkTo")) {
+			logger.info("provider : " + provider.getModelName());
+			// build the emotional state
+			EmotionalState state = new EmotionalState();
+			for (Emotion e : this.getEmotions()) {
+				state.put(e.getName().split("_")[2], e.getValue().floatValue());
+			}
+			
+			// add or change the emotionalState of that service in that world object
+			
+			this.getMemory().getMemoryElements().get(provider.getId()).setAServiceEmotions(service.getName(), state);
+			
+		}
+	}
+	
+	public EmotionalState getEmotionalState() {
+		EmotionalState state = new EmotionalState();
+		for (Emotion e : this.getEmotions()) {
+			state.put(e.getName().split("_")[2], e.getValue().floatValue());
+		}
+		return state;
+	}
+	
 }

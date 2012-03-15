@@ -1,13 +1,17 @@
 package fr.n7.saceca.u3du.model.ai.agent.module.emotion;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import org.apache.log4j.Logger;
 
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
 import fr.n7.saceca.u3du.model.ai.agent.Concept_wordTranslator;
 import fr.n7.saceca.u3du.model.ai.agent.Emotion;
 import fr.n7.saceca.u3du.model.ai.agent.EmotionWord;
 import fr.n7.saceca.u3du.model.ai.agent.EmotionWordEffect;
+import fr.n7.saceca.u3du.model.ai.agent.EmotionalState;
 import fr.n7.saceca.u3du.model.ai.agent.MarkovMatrix;
 import fr.n7.saceca.u3du.model.ai.agent.behavior.DefaultAgentBehavior;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
@@ -20,6 +24,8 @@ public class MarkovEmotionModule implements EmotionModule {
 	
 	private MarkovMatrix matrix;
 	private Concept_wordTranslator translator;
+	
+	private static Logger logger = Logger.getLogger(MarkovEmotionModule.class);
 	
 	public MarkovEmotionModule(Agent agent) {
 		super();
@@ -121,66 +127,7 @@ public class MarkovEmotionModule implements EmotionModule {
 			}
 			
 		}
-		// vision.add("car_1");
-		// if none, nothing to do
-		if (vision == null || vision.size() == 0) {
-			return;
-		}
-		
-		Map<String, Float> emotionsScores = this.matrix.generateEmotions(vision);
-		Map<String, Float> emowScores = this.matrix.generateEmotionWords(vision);
-		
-		// influence of the emotion words
-		
-		for (String emowName : emowScores.keySet()) {
-			float emowScore = emowScores.get(emowName);
-			if (emowScore != 0) {
-				
-				// for each emotion word found, we apply its effects if the preconditions are
-				// respected by the agent. We multiply the value of the effect by the score of the
-				// emotion word to avoid too strange behaviors
-				
-				EmotionWord emow = MarkovEmotionModule.materials.getEmotionWord(emowName);
-				for (EmotionWordEffect effect : emow.getEffects()) {
-					if (this.agent.hasCharacteristic(effect.getPrecondition())) {
-						emotionsScores.put(effect.getEmotion(), emotionsScores.get(effect.getEmotion()) + emowScore
-								* Float.parseFloat(effect.getValue()));
-						
-						for (String s : vision) {
-							System.out.println(s);
-						}
-						System.out.println(" : " + emowName + " " + effect.getEmotion() + " " + effect.getValue()
-								+ " score : " + emowScore);
-						
-					}
-				}
-				
-			}
-		}
-		
-		if (emotionsScores.get("joy") > 0) {
-			for (String s : vision) {
-				System.out.println("JOY vision :" + s);
-			}
-			System.out.println("JOY " + emotionsScores.get("joy"));
-		}
-		
-		for (Emotion e : this.agent.getEmotions()) {
-			String emotionName = e.getModel().getName().split("_")[2];
-			if (emotionsScores.get(emotionName) != null) {
-				float score = emotionsScores.get(emotionName);
-				if (score != 0f) {
-					float effect;
-					if (Math.abs(score) < 6) {
-						effect = Math.signum(score) * 6;
-					} else {
-						effect = score;
-					}
-					e.setValue(e.getValue() + effect);
-				}
-			}
-			
-		}
+		this.applyEmotions(vision);
 	}
 	
 	/**
@@ -211,6 +158,108 @@ public class MarkovEmotionModule implements EmotionModule {
 	@Override
 	public String getStorageLabel() {
 		return EmotionModule.class.getCanonicalName();
+	}
+	
+	public EmotionalState generateEmotions(ArrayList<String> concepts) {
+		
+		Map<String, Float> emotionsScores = this.matrix.generateEmotions(concepts);
+		Map<String, Float> emowScores = this.matrix.generateEmotionWords(concepts);
+		
+		// influence of the emotion words
+		
+		for (String emowName : emowScores.keySet()) {
+			float emowScore = emowScores.get(emowName);
+			if (emowScore != 0) {
+				
+				// for each emotion word found, we apply its effects if the preconditions are
+				// respected by the agent. We multiply the value of the effect by the score of the
+				// emotion word to avoid too strange behaviors
+				
+				EmotionWord emow = MarkovEmotionModule.materials.getEmotionWord(emowName);
+				for (EmotionWordEffect effect : emow.getEffects()) {
+					if (this.agent.hasCharacteristic(effect.getPrecondition())) {
+						emotionsScores.put(effect.getEmotion(), emotionsScores.get(effect.getEmotion()) + emowScore
+								* Float.parseFloat(effect.getValue()));
+						
+						logger.info("concepts vector : ");
+						for (String s : concepts) {
+							logger.info(s);
+						}
+						logger.info(" emotion word : " + emowName + "; emow score : " + emowScore
+								+ " ; affected emotion " + effect.getEmotion() + " ; effect value " + effect.getValue());
+						
+					}
+				}
+				
+			}
+		}
+		EmotionalState state = new EmotionalState();
+		state.setEmotions(emotionsScores);
+		return state;
+	}
+	
+	@Override
+	public void applyEmotions(List<String> concepts) {
+		if (concepts == null || concepts.size() == 0) {
+			return;
+		}
+		
+		Map<String, Float> emotionsScores = this.matrix.generateEmotions(concepts);
+		Map<String, Float> emowScores = this.matrix.generateEmotionWords(concepts);
+		
+		// influence of the emotion words
+		
+		for (String emowName : emowScores.keySet()) {
+			float emowScore = emowScores.get(emowName);
+			if (emowScore != 0) {
+				
+				// for each emotion word found, we apply its effects if the preconditions are
+				// respected by the agent. We multiply the value of the effect by the score of the
+				// emotion word to avoid too strange behaviors
+				
+				EmotionWord emow = MarkovEmotionModule.materials.getEmotionWord(emowName);
+				for (EmotionWordEffect effect : emow.getEffects()) {
+					if (this.agent.hasCharacteristic(effect.getPrecondition())) {
+						emotionsScores.put(effect.getEmotion(), emotionsScores.get(effect.getEmotion()) + emowScore
+								* Float.parseFloat(effect.getValue()));
+						
+						logger.info("concepts vector : ");
+						for (String s : concepts) {
+							logger.info(s);
+						}
+						logger.info(" emotion word : " + emowName + "; emow score : " + emowScore
+								+ " ; affected emotion " + effect.getEmotion() + " ; effect value " + effect.getValue());
+						
+					}
+				}
+				
+			}
+		}
+		logger.info("emotion scores after applying effects : ");
+		
+		/*
+		 * if (emotionsScores.get("joy") > 0) { for (String s : concepts) {
+		 * System.out.println("JOY vision :" + s); } System.out.println("JOY " +
+		 * emotionsScores.get("joy")); }
+		 */
+		
+		for (Emotion e : this.agent.getEmotions()) {
+			String emotionName = e.getModel().getName().split("_")[2];
+			if (emotionsScores.get(emotionName) != null) {
+				float score = emotionsScores.get(emotionName);
+				logger.info(emotionName + " : " + score);
+				if (score != 0f) {
+					float effect;
+					if (Math.abs(score) < 6) {
+						effect = Math.signum(score) * 6;
+					} else {
+						effect = score;
+					}
+					e.setValue(e.getValue() + effect);
+				}
+			}
+			
+		}
 	}
 	
 }

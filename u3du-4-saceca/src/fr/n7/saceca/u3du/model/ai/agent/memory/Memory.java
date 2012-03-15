@@ -31,6 +31,7 @@ import fr.n7.saceca.u3du.exception.MalformedObjectException;
 import fr.n7.saceca.u3du.model.ai.Internal;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
 import fr.n7.saceca.u3du.model.ai.agent.Emotion;
+import fr.n7.saceca.u3du.model.ai.agent.EmotionalState;
 import fr.n7.saceca.u3du.model.ai.agent.module.communication.message.Message;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.Plan;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.initialization.TableClass;
@@ -802,6 +803,18 @@ public class Memory {
 	
 	public void setMaxSize(int maxSize) {
 		this.maxSize = maxSize;
+	}
+	
+	/**
+	 * @param serv
+	 *            we want the emotional state of this service
+	 * @return its emotional state
+	 * 
+	 *         Get the emotional state of a service. providerId must exist
+	 */
+	public EmotionalState getServiceState(Service serv) {
+		MemoryElement provider = this.memoryElements.get(serv.getProviderId());
+		return provider.getServiceEmotions().get(serv.getName());
 	}
 	
 	/**
