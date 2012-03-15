@@ -23,7 +23,7 @@ import fr.n7.saceca.u3du.model.ai.World;
 import fr.n7.saceca.u3du.model.ai.agent.Agent;
 import fr.n7.saceca.u3du.model.ai.agent.Gauge;
 import fr.n7.saceca.u3du.model.ai.agent.behavior.DefaultAgentBehavior;
-import fr.n7.saceca.u3du.model.ai.agent.memory.Memory;
+import fr.n7.saceca.u3du.model.ai.agent.module.planning.Plan;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.PlanElement;
 import fr.n7.saceca.u3du.model.ai.agent.module.planning.PlanningModule;
 import fr.n7.saceca.u3du.model.ai.object.WorldObject;
@@ -254,17 +254,15 @@ public class DefaultPerceptionModule implements PerceptionModule {
 						for (PlanElement pe : pm.getCurrentPlan()) {
 							// System.out.println(pe.toString());
 							if (pe.getService().getName().equals("drinkACan")) {
-								/*
-								 * try { System.out.println("ICIIICICICIC" +
-								 * this.agent.getPropertiesContainer
-								 * ().getString(Internal.Agent.NAME)); } catch
-								 * (UnknownPropertyException e) { // TODO Auto-generated catch block
-								 * e.printStackTrace(); }
-								 */
 								int i = pm.getCurrentPlan().getIndex(pe);
 								PlanElement walkToPe = null;
-								if (i - 1 >= 0) {
+								PlanElement nextWalkToPe = null;
+								Plan plan = pm.getCurrentPlan();
+								if (i - 1 >= 0 && plan.get(i - 1).getService().getName().equals("walkTo")) {
 									walkToPe = pm.getCurrentPlan().get(i - 1);
+									if (i + 1 < plan.size() && plan.get(i + 1).getService().getName().equals("walkTo")) {
+										nextWalkToPe = plan.get(i + 1);
+									}
 								}
 								
 								// pe.setProviderId(object.getId());
@@ -272,13 +270,13 @@ public class DefaultPerceptionModule implements PerceptionModule {
 								pe.setProvider(knowledgeAboutObject);
 								
 								if (walkToPe != null) {
-									walkToPe.getService().getParameter("destination")
-											.setParamValue(knowledgeAboutObject.getPosition().toStringForXML());
+									String destination = knowledgeAboutObject.getPosition().toStringForXML();
+									walkToPe.getService().getParameter("destination").setParamValue(destination);
 									String[] coordonates = walkToPe.getService().getParamValue("position").split("_");
 									Oriented2DPosition initialConsumerPosition = new Oriented2DPosition(
 											Float.parseFloat(coordonates[0]), Float.parseFloat(coordonates[1]),
 											Float.parseFloat(coordonates[2]));
-									coordonates = walkToPe.getService().getParamValue("destination").split("_");
+									coordonates = destination.split("_");
 									Oriented2DPosition providerPosition = new Oriented2DPosition(
 											Float.parseFloat(coordonates[0]), Float.parseFloat(coordonates[1]),
 											Float.parseFloat(coordonates[2]));
@@ -295,7 +293,30 @@ public class DefaultPerceptionModule implements PerceptionModule {
 										walkToPe.setProviderId(provider.getId());
 									}
 								}
-								
+								if (nextWalkToPe != null) {
+									String position = knowledgeAboutObject.getPosition().toStringForXML();
+									nextWalkToPe.getService().getParameter("position").setParamValue(position);
+									String[] coordonates = position.split("_");
+									Oriented2DPosition initialConsumerPosition = new Oriented2DPosition(
+											Float.parseFloat(coordonates[0]), Float.parseFloat(coordonates[1]),
+											Float.parseFloat(coordonates[2]));
+									coordonates = nextWalkToPe.getService().getParamValue("destination").split("_");
+									Oriented2DPosition providerPosition = new Oriented2DPosition(
+											Float.parseFloat(coordonates[0]), Float.parseFloat(coordonates[1]),
+											Float.parseFloat(coordonates[2]));
+									int maxDist = 0;
+									maxDist = pm.getCurrentPlan().get(i).getService().getMaxDistanceForUsage();
+									final float distance = initialConsumerPosition.distance(providerPosition);
+									if (maxDist > distance) {
+										// The service can directly be used
+										nextWalkToPe = null;
+									} else {
+										WorldObject provider = world.getClosestWalkable(initialConsumerPosition);
+										// walkToPe.getParameters().put("destination", provider);
+										nextWalkToPe.setProvider(provider);
+										nextWalkToPe.setProviderId(provider.getId());
+									}
+								}
 							}
 						}
 					}
@@ -327,78 +348,31 @@ public class DefaultPerceptionModule implements PerceptionModule {
 	 *            the object
 	 */
 	private void perceiveInformation(WorldObject object) {
-		// World world = Model.getInstance().getAI().getWorld();
 		// Get the memory about "object", and initialize it if it doesn't exist in memory
 		WorldObject knowledgeAboutObject = this.agent.getMemory().getKnowledgeAbout(object);
-		PlanningModule pm = this.agent.getPlanningModule();
-		synchronized (pm) {
-			if (knowledgeAboutObject == null) {
-				
-				knowledgeAboutObject = this.agent.getMemory().remember(object.getEmptyClone());
-			} else if (!this.agent.getMemory().isUnimportantObject(object.getModelName())) {
-				this.agent.getMemory().getMemoryElements().get(knowledgeAboutObject.getId())
-						.increaseNbReferences(agent.getMemory().NB_REFERENCES_FROM_PERCEPTION);
-			}
+		if (knowledgeAboutObject == null) {
 			
-			// Perceive position
-			knowledgeAboutObject.setPosition(object.getPosition().clone());
-			
-			// Perceive public properties
-			PropertiesContainer knownProperties = knowledgeAboutObject.getPropertiesContainer();
-			
-			for (Property<?> prop : object.getPropertiesContainer().getProperties()) {
-				PropertyModel<?> model = prop.getModel();
-				Visibility visibility = model.getVisibility();
-				if (visibility.equals(Visibility.PUBLIC)) {
-					knownProperties.addProperty(prop.clone());
-				}
-			}
-			
-			// Perceive services
-			knowledgeAboutObject.setServices(object.getServices());
-			
-			/*
-			 * if (pm.getCurrentPlan() != null &&
-			 * this.agent.getMemory().getGoalStack().get(0).displayName
-			 * ().contains("i_gauge_primordial_thirst") &&
-			 * object.getModelName().equals("DrinkVendingMachine")) { // pm.setCurrentPlan(null);
-			 * try { if
-			 * (this.agent.getPropertiesContainer().getString(Internal.Agent.NAME).equals("Jerome"))
-			 * { for (PlanElement pe : pm.getCurrentPlan()) { System.out.println(pe.toString()); if
-			 * (pe.getService().getName().equals("drinkACan")) { System.out.println("ICIIICICICIC");
-			 * int i = pm.getPlanElementIndex(pe); PlanElement walkToPe = null; if (i - 1 >= 0) {
-			 * walkToPe = pm.getCurrentPlan().get(i - 1); System.out.println(walkToPe.toString());
-			 * System.out.println(walkToPe.getParameters().toString()); } //
-			 * pe.setProviderId(object.getId()); pe.setService(((LinkedList<Service>)
-			 * knowledgeAboutObject.getServices()).getLast()); pe.setProvider(knowledgeAboutObject);
-			 * 
-			 * if (walkToPe != null) { walkToPe.getService().getParameter("destination")
-			 * .setParamValue(knowledgeAboutObject.getPosition().toStringForXML()); String[]
-			 * coordonates = walkToPe.getService().getParamValue("position").split("_");
-			 * Oriented2DPosition initialConsumerPosition = new Oriented2DPosition(
-			 * Float.parseFloat(coordonates[0]), Float.parseFloat(coordonates[1]),
-			 * Float.parseFloat(coordonates[2])); coordonates =
-			 * walkToPe.getService().getParamValue("destination").split("_"); Oriented2DPosition
-			 * providerPosition = new Oriented2DPosition( Float.parseFloat(coordonates[0]),
-			 * Float.parseFloat(coordonates[1]), Float.parseFloat(coordonates[2])); int maxDist = 0;
-			 * maxDist = pm.getCurrentPlan().get(i).getService().getMaxDistanceForUsage(); final
-			 * float distance = initialConsumerPosition.distance(providerPosition); if (maxDist >
-			 * distance) { // The service can directly be used walkToPe = null; } else { WorldObject
-			 * provider = world.getClosestWalkable(initialConsumerPosition);
-			 * walkToPe.getParameters().put("destination", provider);
-			 * walkToPe.setProvider(provider); walkToPe.setProviderId(provider.getId()); } //
-			 * System.out.println(walkToPe.getParameters().toString()); //
-			 * System.out.println(walkToPe.getParameters().keySet().toString()); }
-			 * 
-			 * } } // System.out.println(object.toString()); //
-			 * System.out.println(object.toShortString()); }
-			 * 
-			 * } catch (UnknownPropertyException e) { // TODO Auto-generated catch block
-			 * e.printStackTrace(); }
-			 * 
-			 * }
-			 */
-
+			knowledgeAboutObject = this.agent.getMemory().remember(object.getEmptyClone());
+		} else if (!this.agent.getMemory().isUnimportantObject(object.getModelName())) {
+			this.agent.getMemory().getMemoryElements().get(knowledgeAboutObject.getId())
+					.increaseNbReferences(this.agent.getMemory().NB_REFERENCES_FROM_PERCEPTION);
 		}
+		
+		// Perceive position
+		knowledgeAboutObject.setPosition(object.getPosition().clone());
+		
+		// Perceive public properties
+		PropertiesContainer knownProperties = knowledgeAboutObject.getPropertiesContainer();
+		
+		for (Property<?> prop : object.getPropertiesContainer().getProperties()) {
+			PropertyModel<?> model = prop.getModel();
+			Visibility visibility = model.getVisibility();
+			if (visibility.equals(Visibility.PUBLIC)) {
+				knownProperties.addProperty(prop.clone());
+			}
+		}
+		
+		// Perceive services
+		knowledgeAboutObject.setServices(object.getServices());
 	}
 }
