@@ -1,0 +1,32 @@
+<emotion-word>
+	<name>shopping</name>
+	<concepts>
+		<concept>shopping_1</concept>				
+	</concepts>
+	<effects>
+		<effect>
+			<precond>lazy</precond>
+			<emotion>joy</emotion>
+			<!-- <sign>plus</sign>  -->
+			<value>-5</value>		
+		</effect>
+		<effect>
+			<precond>spender</precond>
+			<emotion>joy</emotion>
+			<!-- <sign>plus</sign>  -->
+			<value>10</value>		
+		</effect>	
+		<effect>
+			<precond>greedy</precond>
+			<emotion>anger</emotion>
+			<!-- <sign>plus</sign>  -->
+			<value>10</value>		
+		</effect>
+		<effect>
+			<precond>greedy</precond>
+			<emotion>joy</emotion>
+			<!-- <sign>plus</sign>  -->
+			<value>-10</value>		
+		</effect>		
+	</effects>
+</emotion-word>

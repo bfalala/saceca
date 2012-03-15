@@ -1,4 +1,7 @@
 <service name="doShopping" active="true" maxDist="5">
+    <concepts>
+  	     <concept>shopping_1</concept>
+    </concepts>
 	<consumer-categories>
 		<category>Human</category>
 		<category>StockOwner</category>

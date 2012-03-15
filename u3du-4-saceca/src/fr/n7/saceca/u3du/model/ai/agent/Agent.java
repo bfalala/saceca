@@ -13,6 +13,7 @@
 package fr.n7.saceca.u3du.model.ai.agent;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -69,6 +70,9 @@ public class Agent extends WorldObject {
 	/** The emotion module. */
 	private EmotionModule emotionModule;
 	
+	/** The characteristics of the agent (property i_characteristics) */
+	private ArrayList<String> characteristics;
+	
 	/**
 	 * Instantiates a new agent.
 	 * 
@@ -100,6 +104,7 @@ public class Agent extends WorldObject {
 		} else {
 			this.memory = new Memory(null, 0);
 		}
+		
 	}
 	
 	/**
@@ -495,5 +500,24 @@ public class Agent extends WorldObject {
 	
 	public ReasoningModule getMmReasoningModule() {
 		return this.mmReasoningModule;
+	}
+	
+	/**
+	 * @param c
+	 *            a characteristic name
+	 * @return true if c is a characteristic of this agent
+	 * 
+	 * */
+	public boolean hasCharacteristic(String c) {
+		ArrayList<String> characteristics = null;
+		try {
+			characteristics = new ArrayList<String>(Arrays.asList(((String) this.getPropertiesContainer()
+					.getProperty("i_characteristics").getValue()).split(" ")));
+			
+		} catch (UnknownPropertyException e) {
+			e.printStackTrace();
+		}
+		
+		return characteristics.contains(c);
 	}
 }

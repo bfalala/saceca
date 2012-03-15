@@ -1,4 +1,7 @@
 <service name="drinkACan" active="true" maxDist="10">
+    <concepts>
+  	     <concept>drink_1</concept>
+    </concepts>
 	<consumer-categories>
 		<category>Human</category>
 	</consumer-categories>

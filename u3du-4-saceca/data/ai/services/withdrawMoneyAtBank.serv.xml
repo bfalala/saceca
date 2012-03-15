@@ -1,4 +1,8 @@
 <service name="withdrawMoneyAtBank" active="true" maxDist="10">
+    <concepts>
+  	     <concept>withdraw_1</concept>
+  	     <concept>money_1</concept>
+    </concepts>
 	<consumer-categories>
 		<category>Human</category>
 		<category>AccountOwner</category>

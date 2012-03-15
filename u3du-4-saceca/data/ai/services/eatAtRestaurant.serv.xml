@@ -1,4 +1,7 @@
 <service name="eatAtRestaurant" active="true" maxDist="7">
+    <concepts>
+  	     <concept>eat_1</concept>
+    </concepts>
 	<consumer-categories>
 		<category>Human</category>
 	</consumer-categories>

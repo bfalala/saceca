@@ -1,0 +1,18 @@
+<emotion-word>
+	<name>effort</name>
+	<concepts>
+		<concept>effort_1</concept>	
+		<concept>work_1</concept>	
+		<concept>work_2</concept>
+		<concept>work_3</concept>
+		<concept>work_4</concept>
+	</concepts>
+	<effects>
+		<effect>
+			<precond>lazy</precond>
+			<emotion>joy</emotion>
+			<!-- <sign>plus</sign>  -->
+			<value>-10</value>		
+		</effect>				
+	</effects>
+</emotion-word>

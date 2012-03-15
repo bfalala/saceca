@@ -1,6 +1,7 @@
 <agent model="CompleteHuman" id="4247">
   <position x="-7.0" y="26.0" theta="0.0"/>
   <properties>
+  	<string name="i_characteristics" value="lazy" />
     <int name="c_AccountOwner_account" value="250"/>
     <int name="c_Human_cash" value="20"/>
     <double name="i_emotion_secondary_relief" value="50.0"/>
@@ -375,6 +376,7 @@
           <worldObject class="agent" model="CompleteHuman" id="4247">
             <position x="-7.0" y="26.0" theta="0.0"/>
             <properties>
+            	<string name="i_characteristics" value="lazy" />
               <int name="c_AccountOwner_account" value="250"/>
               <int name="c_Human_cash" value="20"/>
               <double name="i_emotion_secondary_relief" value="50.0"/>

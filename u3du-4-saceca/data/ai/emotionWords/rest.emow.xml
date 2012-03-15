@@ -1,0 +1,14 @@
+<emotion-word>
+	<name>rest</name>
+	<concepts>
+		<concept>rest_1</concept>		
+	</concepts>
+	<effects>
+		<effect>
+			<precond>lazy</precond>
+			<emotion>joy</emotion>
+			<!-- <sign>plus</sign>  -->
+			<value>10</value>		
+		</effect>				
+	</effects>
+</emotion-word>

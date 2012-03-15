@@ -1,0 +1,14 @@
+<emotion-word>
+	<name>artistic</name>
+	<concepts>
+		<concept>artistic_1</concept>		
+	</concepts>
+	<effects>
+		<effect>
+			<precond>artist</precond>
+			<emotion>joy</emotion>
+			<!-- <sign>plus</sign>  -->
+			<value>10</value>		
+		</effect>					
+	</effects>
+</emotion-word>

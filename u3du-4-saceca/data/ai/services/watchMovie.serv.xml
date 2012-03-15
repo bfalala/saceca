@@ -1,4 +1,8 @@
 <service name="watchMovie" active="true" maxDist="8">
+    <concepts>
+  	     <concept>watch_1</concept>
+  	     <concept>movie_1</concept>
+    </concepts>
 	<consumer-categories>
 		<category>Human</category>
 	</consumer-categories>

@@ -60,6 +60,10 @@ public class Service implements Storable {
 	private Long providerId;
 	
 	/** The kind of service. */
+	@XStreamAlias("concepts")
+	private ArrayList<String> concepts;
+	
+	/** The kind of service. */
 	@XStreamAlias("active")
 	@XStreamAsAttribute
 	private boolean active;

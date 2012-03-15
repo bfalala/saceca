@@ -109,9 +109,14 @@ public class Emotion extends Property<Double> {
 	 */
 	public void decrement(double decrementValue) {
 		double middleGauge = (this.getMaxValue() + this.getMinValue()) / 2;
-		this.setValue(this.getValue() - decrementValue);
+		
 		if (this.getValue() < middleGauge) {
-			this.setValue(middleGauge);
+			this.setValue(this.getValue() + decrementValue);
+		} else {
+			this.setValue(this.getValue() - decrementValue);
+			if (this.getValue() < middleGauge) {
+				this.setValue(middleGauge);
+			}
 		}
 	}
 	
@@ -119,7 +124,7 @@ public class Emotion extends Property<Double> {
 	 * Decrement.
 	 */
 	public void decrement() {
-		this.decrement(5);
+		this.decrement(2);
 	}
 	
 	/**

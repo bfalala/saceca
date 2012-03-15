@@ -1,0 +1,26 @@
+<emotion-word>
+	<name>withdraw</name>
+	<concepts>
+		<concept>withdraw_1</concept>
+	</concepts>
+	<effects>		
+		<effect>
+			<precond>spender</precond>
+			<emotion>joy</emotion>
+			<!-- <sign>plus</sign>  -->
+			<value>10</value>		
+		</effect>	
+		<effect>
+			<precond>greedy</precond>
+			<emotion>anger</emotion>
+			<!-- <sign>plus</sign>  -->
+			<value>10</value>		
+		</effect>	
+		<effect>
+			<precond>greedy</precond>
+			<emotion>joy</emotion>
+			<!-- <sign>plus</sign>  -->
+			<value>-10</value>		
+		</effect>	
+	</effects>
+</emotion-word>

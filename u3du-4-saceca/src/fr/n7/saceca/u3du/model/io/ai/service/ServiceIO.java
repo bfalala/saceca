@@ -64,6 +64,7 @@ public class ServiceIO extends XStreamIO<Service> {
 	@Override
 	protected synchronized void configureIfNecessary(XStream xStream) {
 		if (!configured) {
+			xStream.alias("concept", String.class);
 			xStream.processAnnotations(Service.class);
 			xStream.processAnnotations(Effect.class);
 			xStream.processAnnotations(DefaultCondition.class);

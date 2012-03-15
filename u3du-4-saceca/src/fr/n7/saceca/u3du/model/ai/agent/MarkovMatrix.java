@@ -74,6 +74,9 @@ public class MarkovMatrix {
 		for (EmotionWord ew : emotionWordRepository) {
 			HashSet<Integer> synonymsIds = new HashSet<Integer>();
 			for (String synonym : ew.getConcepts()) {
+				if (this.conceptsMap.get(synonym) == null) {
+					System.out.println("fail !!");
+				}
 				synonymsIds.add((Integer) this.conceptsMap.get(synonym));
 			}
 			this.emotionWordNumbers.put(ew.getStorageLabel(), synonymsIds);

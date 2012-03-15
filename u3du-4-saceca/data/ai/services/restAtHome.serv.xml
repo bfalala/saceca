@@ -1,4 +1,7 @@
 <service name="restAtHome" active="true" maxDist="25">
+    <concepts>
+  	     <concept>sleep_1</concept>
+    </concepts>
 	<consumer-categories>
 		<category>Human</category>
 		<category>BuildingOwner</category>

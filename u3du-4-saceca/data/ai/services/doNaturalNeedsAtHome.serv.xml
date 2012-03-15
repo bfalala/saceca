@@ -1,4 +1,7 @@
-<service name="doNaturalNeeds" active="true" maxDist="5">
+<service name="doNaturalNeedsAtHome" active="true" maxDist="5">
+    <concepts>
+  	     <concept>excrete_1</concept>
+    </concepts>
 	<consumer-categories>
 		<category>Human</category>
 		<category>BuildingOwner</category>

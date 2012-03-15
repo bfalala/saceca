@@ -1,4 +1,7 @@
 <service name="walkTo" active="true" maxDist="100000">
+    <concepts>
+  	     <concept>walk_1</concept>
+    </concepts>
 	<consumer-categories>
 		<category>Human</category>
 	</consumer-categories>

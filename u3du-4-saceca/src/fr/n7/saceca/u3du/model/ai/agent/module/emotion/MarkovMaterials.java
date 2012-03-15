@@ -41,6 +41,10 @@ public class MarkovMaterials {
 		this.matrix = new MarkovMatrix(this.markovEmotionRepository, this.emotionWordRepository);
 	}
 	
+	public EmotionWord getEmotionWord(String emowName) {
+		return this.emotionWordRepository.get(emowName);
+	}
+	
 	public MarkovMatrix getMatrix() {
 		return this.matrix;
 	}
