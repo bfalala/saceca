@@ -1,0 +1,2 @@
+Mieux qu'un long discours de présentation, on vous invite à regarder la vidéo accessible à :
+http://evrard.perso.enseeiht.fr/Enseignement/3IN/Proj_Longs/2011/ , celle-ci vous donnera une idée du contexte du projet. De nombreux autres documents y sont aussi consultables.
